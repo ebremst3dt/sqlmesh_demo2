@@ -128,6 +128,6 @@ def execute(
 		CAST(VERRAD AS VARCHAR(MAX)) AS verrad,
 		CAST(VERTYP AS VARCHAR(MAX)) AS vertyp,
 		CAST(YKAT_ID AS VARCHAR(MAX)) AS ykat_id 
-	FROM utdata.utdata295.EK_FAKTA_VERIFIKAT
+	FROM utdata.utdata295.EK_FAKTA_VERIFIKAT2
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")

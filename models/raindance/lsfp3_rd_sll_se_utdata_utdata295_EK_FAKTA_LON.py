@@ -7,7 +7,9 @@ from models.mssql import read
 
 
 @model(
-    columns={'ATTESTDATUM1': 'varchar(max)',
+    columns={'ANSTALLD_ID': 'varchar(max)',
+ 'ANSTFORM_ID': 'varchar(max)',
+ 'ATTESTDATUM1': 'varchar(max)',
  'ATTESTDATUM2': 'varchar(max)',
  'ATTESTSIGN1': 'varchar(max)',
  'ATTESTSIGN2': 'varchar(max)',
@@ -36,9 +38,15 @@ from models.mssql import read
  'KONTSIGN': 'varchar(max)',
  'KST_ID': 'varchar(max)',
  'LFRAM_V': 'varchar(max)',
+ 'LONEANTAL1_V': 'varchar(max)',
+ 'LONEANTAL2_V': 'varchar(max)',
+ 'LONEART_ID': 'varchar(max)',
+ 'LONEBELOPP1_V': 'varchar(max)',
+ 'LONEBELOPP2_V': 'varchar(max)',
  'MED': 'varchar(max)',
  'MOTP_ID': 'varchar(max)',
  'ORGVAL_V': 'varchar(max)',
+ 'PERSONALKAT_ID': 'varchar(max)',
  'PNYCKEL': 'varchar(max)',
  'PRG_V': 'varchar(max)',
  'PROC_ID': 'varchar(max)',
@@ -49,6 +57,7 @@ from models.mssql import read
  'REGDAT_ID': 'varchar(max)',
  'REGSIGN': 'varchar(max)',
  'STATUS': 'varchar(max)',
+ 'TRANSDATUM': 'varchar(max)',
  'URSPRUNGS_VERIFIKAT': 'varchar(max)',
  'URSPTEXT': 'varchar(max)',
  'URS_ID': 'varchar(max)',
@@ -73,7 +82,9 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(ATTESTDATUM1 AS VARCHAR(MAX)) AS attestdatum1,
+ 		CAST(ANSTALLD_ID AS VARCHAR(MAX)) AS anstalld_id,
+		CAST(ANSTFORM_ID AS VARCHAR(MAX)) AS anstform_id,
+		CAST(ATTESTDATUM1 AS VARCHAR(MAX)) AS attestdatum1,
 		CAST(ATTESTDATUM2 AS VARCHAR(MAX)) AS attestdatum2,
 		CAST(ATTESTSIGN1 AS VARCHAR(MAX)) AS attestsign1,
 		CAST(ATTESTSIGN2 AS VARCHAR(MAX)) AS attestsign2,
@@ -102,9 +113,15 @@ def execute(
 		CAST(KONTSIGN AS VARCHAR(MAX)) AS kontsign,
 		CAST(KST_ID AS VARCHAR(MAX)) AS kst_id,
 		CAST(LFRAM_V AS VARCHAR(MAX)) AS lfram_v,
+		CAST(LONEANTAL1_V AS VARCHAR(MAX)) AS loneantal1_v,
+		CAST(LONEANTAL2_V AS VARCHAR(MAX)) AS loneantal2_v,
+		CAST(LONEART_ID AS VARCHAR(MAX)) AS loneart_id,
+		CAST(LONEBELOPP1_V AS VARCHAR(MAX)) AS lonebelopp1_v,
+		CAST(LONEBELOPP2_V AS VARCHAR(MAX)) AS lonebelopp2_v,
 		CAST(MED AS VARCHAR(MAX)) AS med,
 		CAST(MOTP_ID AS VARCHAR(MAX)) AS motp_id,
 		CAST(ORGVAL_V AS VARCHAR(MAX)) AS orgval_v,
+		CAST(PERSONALKAT_ID AS VARCHAR(MAX)) AS personalkat_id,
 		CAST(PNYCKEL AS VARCHAR(MAX)) AS pnyckel,
 		CAST(PRG_V AS VARCHAR(MAX)) AS prg_v,
 		CAST(PROC_ID AS VARCHAR(MAX)) AS proc_id,
@@ -115,6 +132,7 @@ def execute(
 		CAST(REGDATUM AS VARCHAR(MAX)) AS regdatum,
 		CAST(REGSIGN AS VARCHAR(MAX)) AS regsign,
 		CAST(STATUS AS VARCHAR(MAX)) AS status,
+		CAST(TRANSDATUM AS VARCHAR(MAX)) AS transdatum,
 		CAST(URS_ID AS VARCHAR(MAX)) AS urs_id,
 		CAST(URSPRUNGS_VERIFIKAT AS VARCHAR(MAX)) AS ursprungs_verifikat,
 		CAST(URSPTEXT AS VARCHAR(MAX)) AS ursptext,
@@ -128,6 +146,6 @@ def execute(
 		CAST(VERRAD AS VARCHAR(MAX)) AS verrad,
 		CAST(VERTYP AS VARCHAR(MAX)) AS vertyp,
 		CAST(YKAT_ID AS VARCHAR(MAX)) AS ykat_id 
-	FROM utdata.utdata295.EK_FAKTA_VERIFIKAT
+	FROM utdata.utdata295.EK_FAKTA_LON
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")

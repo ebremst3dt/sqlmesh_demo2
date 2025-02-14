@@ -22,7 +22,6 @@ from models.mssql import read
  'EXTERNANM': 'varchar(max)',
  'EXTERNID': 'varchar(max)',
  'EXTERNNR': 'varchar(max)',
- 'FORETAG': 'varchar(max)',
  'FRI1_ID': 'varchar(max)',
  'FRI2_ID': 'varchar(max)',
  'FÖPROC_ID': 'varchar(max)',
@@ -49,7 +48,6 @@ from models.mssql import read
  'REGDAT_ID': 'varchar(max)',
  'REGSIGN': 'varchar(max)',
  'STATUS': 'varchar(max)',
- 'URSPRUNGS_VERIFIKAT': 'varchar(max)',
  'URSPTEXT': 'varchar(max)',
  'URS_ID': 'varchar(max)',
  'UTFALL_V': 'varchar(max)',
@@ -88,7 +86,6 @@ def execute(
 		CAST(EXTERNANM AS VARCHAR(MAX)) AS externanm,
 		CAST(EXTERNID AS VARCHAR(MAX)) AS externid,
 		CAST(EXTERNNR AS VARCHAR(MAX)) AS externnr,
-		CAST(FORETAG AS VARCHAR(MAX)) AS foretag,
 		CAST(FRI1_ID AS VARCHAR(MAX)) AS fri1_id,
 		CAST(FRI2_ID AS VARCHAR(MAX)) AS fri2_id,
 		CAST(FÖPROC_ID AS VARCHAR(MAX)) AS föproc_id,
@@ -116,7 +113,6 @@ def execute(
 		CAST(REGSIGN AS VARCHAR(MAX)) AS regsign,
 		CAST(STATUS AS VARCHAR(MAX)) AS status,
 		CAST(URS_ID AS VARCHAR(MAX)) AS urs_id,
-		CAST(URSPRUNGS_VERIFIKAT AS VARCHAR(MAX)) AS ursprungs_verifikat,
 		CAST(URSPTEXT AS VARCHAR(MAX)) AS ursptext,
 		CAST(UTFALL_V AS VARCHAR(MAX)) AS utfall_v,
 		CAST(UTILITY AS VARCHAR(MAX)) AS utility,
@@ -128,6 +124,6 @@ def execute(
 		CAST(VERRAD AS VARCHAR(MAX)) AS verrad,
 		CAST(VERTYP AS VARCHAR(MAX)) AS vertyp,
 		CAST(YKAT_ID AS VARCHAR(MAX)) AS ykat_id 
-	FROM utdata.utdata295.EK_FAKTA_VERIFIKAT
+	FROM utdata.utdata295.EK_FAKTA_VERIFIKAT_295
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")
