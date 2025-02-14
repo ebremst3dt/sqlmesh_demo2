@@ -1,0 +1,79 @@
+
+import typing as t
+from datetime import datetime
+import pandas as pd
+from sqlmesh import ExecutionContext, model
+from models.raindance_src_to_raw import pipe
+
+
+@model(
+    columns={'AVSLÅR_GILTIG_FOM': 'varchar(max)',
+ 'AVSLÅR_GILTIG_TOM': 'varchar(max)',
+ 'AVSLÅR_ID': 'varchar(max)',
+ 'AVSLÅR_ID_TEXT': 'varchar(max)',
+ 'AVSLÅR_PASSIV': 'varchar(max)',
+ 'AVSLÅR_TEXT': 'varchar(max)',
+ 'FIFORM_GILTIG_FOM': 'varchar(max)',
+ 'FIFORM_GILTIG_TOM': 'varchar(max)',
+ 'FIFORM_ID': 'varchar(max)',
+ 'FIFORM_ID_TEXT': 'varchar(max)',
+ 'FIFORM_PASSIV': 'varchar(max)',
+ 'FIFORM_TEXT': 'varchar(max)',
+ 'PROENH_GILTIG_FOM': 'varchar(max)',
+ 'PROENH_GILTIG_TOM': 'varchar(max)',
+ 'PROENH_ID': 'varchar(max)',
+ 'PROENH_ID_TEXT': 'varchar(max)',
+ 'PROENH_PASSIV': 'varchar(max)',
+ 'PROENH_TEXT': 'varchar(max)',
+ 'PROJL_GILTIG_FOM': 'varchar(max)',
+ 'PROJL_GILTIG_TOM': 'varchar(max)',
+ 'PROJL_ID': 'varchar(max)',
+ 'PROJL_ID_TEXT': 'varchar(max)',
+ 'PROJL_PASSIV': 'varchar(max)',
+ 'PROJL_TEXT': 'varchar(max)',
+ 'PROJ_GILTIG_FOM': 'varchar(max)',
+ 'PROJ_GILTIG_TOM': 'varchar(max)',
+ 'PROJ_ID': 'varchar(max)',
+ 'PROJ_ID_TEXT': 'varchar(max)',
+ 'PROJ_PASSIV': 'varchar(max)',
+ 'PROJ_TEXT': 'varchar(max)'},
+    cron="@daily"
+)
+def execute(
+    context: ExecutionContext,
+    start: datetime,
+    end: datetime,
+    execution_time: datetime,
+    **kwargs: t.Any,
+) -> pd.DataFrame:
+    query = """SELECT CAST(AVSLÅR_GILTIG_FOM AS VARCHAR(MAX)) AS AVSLÅR_GILTIG_FOM,
+CAST(AVSLÅR_GILTIG_TOM AS VARCHAR(MAX)) AS AVSLÅR_GILTIG_TOM,
+CAST(AVSLÅR_ID AS VARCHAR(MAX)) AS AVSLÅR_ID,
+CAST(AVSLÅR_ID_TEXT AS VARCHAR(MAX)) AS AVSLÅR_ID_TEXT,
+CAST(AVSLÅR_PASSIV AS VARCHAR(MAX)) AS AVSLÅR_PASSIV,
+CAST(AVSLÅR_TEXT AS VARCHAR(MAX)) AS AVSLÅR_TEXT,
+CAST(FIFORM_GILTIG_FOM AS VARCHAR(MAX)) AS FIFORM_GILTIG_FOM,
+CAST(FIFORM_GILTIG_TOM AS VARCHAR(MAX)) AS FIFORM_GILTIG_TOM,
+CAST(FIFORM_ID AS VARCHAR(MAX)) AS FIFORM_ID,
+CAST(FIFORM_ID_TEXT AS VARCHAR(MAX)) AS FIFORM_ID_TEXT,
+CAST(FIFORM_PASSIV AS VARCHAR(MAX)) AS FIFORM_PASSIV,
+CAST(FIFORM_TEXT AS VARCHAR(MAX)) AS FIFORM_TEXT,
+CAST(PROENH_GILTIG_FOM AS VARCHAR(MAX)) AS PROENH_GILTIG_FOM,
+CAST(PROENH_GILTIG_TOM AS VARCHAR(MAX)) AS PROENH_GILTIG_TOM,
+CAST(PROENH_ID AS VARCHAR(MAX)) AS PROENH_ID,
+CAST(PROENH_ID_TEXT AS VARCHAR(MAX)) AS PROENH_ID_TEXT,
+CAST(PROENH_PASSIV AS VARCHAR(MAX)) AS PROENH_PASSIV,
+CAST(PROENH_TEXT AS VARCHAR(MAX)) AS PROENH_TEXT,
+CAST(PROJ_GILTIG_FOM AS VARCHAR(MAX)) AS PROJ_GILTIG_FOM,
+CAST(PROJ_GILTIG_TOM AS VARCHAR(MAX)) AS PROJ_GILTIG_TOM,
+CAST(PROJ_ID AS VARCHAR(MAX)) AS PROJ_ID,
+CAST(PROJ_ID_TEXT AS VARCHAR(MAX)) AS PROJ_ID_TEXT,
+CAST(PROJ_PASSIV AS VARCHAR(MAX)) AS PROJ_PASSIV,
+CAST(PROJ_TEXT AS VARCHAR(MAX)) AS PROJ_TEXT,
+CAST(PROJL_GILTIG_FOM AS VARCHAR(MAX)) AS PROJL_GILTIG_FOM,
+CAST(PROJL_GILTIG_TOM AS VARCHAR(MAX)) AS PROJL_GILTIG_TOM,
+CAST(PROJL_ID AS VARCHAR(MAX)) AS PROJL_ID,
+CAST(PROJL_ID_TEXT AS VARCHAR(MAX)) AS PROJL_ID_TEXT,
+CAST(PROJL_PASSIV AS VARCHAR(MAX)) AS PROJL_PASSIV,
+CAST(PROJL_TEXT AS VARCHAR(MAX)) AS PROJL_TEXT FROM utdata.utdata295.EK_DIM_OBJ_PROJ"""
+    return pipe(query=query)

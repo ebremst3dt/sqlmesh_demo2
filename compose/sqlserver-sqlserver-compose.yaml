@@ -1,0 +1,61 @@
+---
+networks:
+  local:
+
+services:
+  source_database:
+    image: mcr.microsoft.com/mssql/rhel/server:2019-CU28-rhel-8.7
+    platform: linux/amd64
+    environment:
+      ACCEPT_EULA: 'Y'
+      MSSQL_SA_PASSWORD: Password1!
+    ports:
+      - 31450:1433
+    volumes:
+      - ./.sqlserver_source_init_db:/init_db
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -C -P Password1! -Q 'SELECT 1 as x' || exit 1"]
+      interval: 5s
+      retries: 10
+      start_period: 10s
+      timeout: 3s
+  source_database_configuration:
+    image: mcr.microsoft.com/mssql/rhel/server:2019-CU28-rhel-8.7
+    volumes:
+      - ./.sqlserver_source_init_db:/init_db
+    depends_on:
+      source_database:
+        condition: service_healthy
+    command: >
+      bash -c '
+      /opt/mssql-tools18/bin/sqlcmd -S source_database -U sa -C -P Password1! -d master -i init_db/init_script.sql;
+      echo "All done!";
+      '
+  dest_database:
+    image: mcr.microsoft.com/mssql/rhel/server:2019-CU28-rhel-8.7
+    platform: linux/amd64
+    environment:
+      ACCEPT_EULA: 'Y'
+      MSSQL_SA_PASSWORD: Password1!
+    ports:
+      - 31433:1433
+    volumes:
+      - ./.sqlserver_destination_init_db:/init_db
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -C -P Password1! -Q 'SELECT 1 as x' || exit 1"]
+      interval: 5s
+      retries: 10
+      start_period: 10s
+      timeout: 3s
+  dest_database_configuration:
+    image: mcr.microsoft.com/mssql/rhel/server:2019-CU28-rhel-8.7
+    volumes:
+      - ./.sqlserver_destination_init_db:/init_db
+    depends_on:
+      dest_database:
+        condition: service_healthy
+    command: >
+      bash -c '
+      /opt/mssql-tools18/bin/sqlcmd -S dest_database -U sa -C -P Password1! -d master -i init_db/init_script.sql;
+      echo "All done!";
+      '

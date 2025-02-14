@@ -1,0 +1,59 @@
+
+import typing as t
+from datetime import datetime
+import pandas as pd
+from sqlmesh import ExecutionContext, model
+from models.raindance_src_to_raw import pipe
+
+
+@model(
+    columns={'DATUM_FOM': 'varchar(max)',
+ 'DATUM_TOM': 'varchar(max)',
+ 'NIVA': 'varchar(max)',
+ 'NUMERISK_VANSTER': 'varchar(max)',
+ 'RADNUMMER': 'varchar(max)',
+ 'RADTILLHOR': 'varchar(max)',
+ 'STYRANDE_ID': 'varchar(max)',
+ 'STYRANDE_INTERVALL': 'varchar(max)',
+ 'STYRANDE_INTERVALL2': 'varchar(max)',
+ 'STYRANDE_NR': 'varchar(max)',
+ 'STYRANDE_OBJEKT_FOM': 'varchar(max)',
+ 'STYRANDE_OBJEKT_TOM': 'varchar(max)',
+ 'STYRANDE_STJARNURV': 'varchar(max)',
+ 'STYRD_ID': 'varchar(max)',
+ 'STYRD_INTERVALL': 'varchar(max)',
+ 'STYRD_INTERVALL2': 'varchar(max)',
+ 'STYRD_NR': 'varchar(max)',
+ 'STYRD_STJARNURV': 'varchar(max)',
+ 'VILLKAR': 'varchar(max)',
+ 'VILLKAR_NR': 'varchar(max)'},
+    cron="@daily"
+)
+def execute(
+    context: ExecutionContext,
+    start: datetime,
+    end: datetime,
+    execution_time: datetime,
+    **kwargs: t.Any,
+) -> pd.DataFrame:
+    query = """SELECT CAST(DATUM_FOM AS VARCHAR(MAX)) AS DATUM_FOM,
+CAST(DATUM_TOM AS VARCHAR(MAX)) AS DATUM_TOM,
+CAST(NIVA AS VARCHAR(MAX)) AS NIVA,
+CAST(NUMERISK_VANSTER AS VARCHAR(MAX)) AS NUMERISK_VANSTER,
+CAST(RADNUMMER AS VARCHAR(MAX)) AS RADNUMMER,
+CAST(RADTILLHOR AS VARCHAR(MAX)) AS RADTILLHOR,
+CAST(STYRANDE_ID AS VARCHAR(MAX)) AS STYRANDE_ID,
+CAST(STYRANDE_INTERVALL AS VARCHAR(MAX)) AS STYRANDE_INTERVALL,
+CAST(STYRANDE_INTERVALL2 AS VARCHAR(MAX)) AS STYRANDE_INTERVALL2,
+CAST(STYRANDE_NR AS VARCHAR(MAX)) AS STYRANDE_NR,
+CAST(STYRANDE_OBJEKT_FOM AS VARCHAR(MAX)) AS STYRANDE_OBJEKT_FOM,
+CAST(STYRANDE_OBJEKT_TOM AS VARCHAR(MAX)) AS STYRANDE_OBJEKT_TOM,
+CAST(STYRANDE_STJARNURV AS VARCHAR(MAX)) AS STYRANDE_STJARNURV,
+CAST(STYRD_ID AS VARCHAR(MAX)) AS STYRD_ID,
+CAST(STYRD_INTERVALL AS VARCHAR(MAX)) AS STYRD_INTERVALL,
+CAST(STYRD_INTERVALL2 AS VARCHAR(MAX)) AS STYRD_INTERVALL2,
+CAST(STYRD_NR AS VARCHAR(MAX)) AS STYRD_NR,
+CAST(STYRD_STJARNURV AS VARCHAR(MAX)) AS STYRD_STJARNURV,
+CAST(VILLKAR AS VARCHAR(MAX)) AS VILLKAR,
+CAST(VILLKAR_NR AS VARCHAR(MAX)) AS VILLKAR_NR FROM utdata.utdata295.EK_SAMBAND_STYRANDE"""
+    return pipe(query=query)
