@@ -8,12 +8,12 @@ from models.mssql import read
 
 
 @model(
-    columns={'EXTERN': 'varchar(1)',
- 'EXTERN_TEXT': 'varchar(30)',
- 'RESKONTRA': 'varchar(2)',
- 'RESKONTRA_TEXT': 'varchar(30)',
- 'RESKTYP': 'varchar(1)',
- 'RESKTYP_TEXT': 'varchar(30)'},
+    columns={'EXTERN': 'varchar(max)',
+ 'EXTERN_TEXT': 'varchar(max)',
+ 'RESKONTRA': 'varchar(max)',
+ 'RESKONTRA_TEXT': 'varchar(max)',
+ 'RESKTYP': 'varchar(max)',
+ 'RESKTYP_TEXT': 'varchar(max)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

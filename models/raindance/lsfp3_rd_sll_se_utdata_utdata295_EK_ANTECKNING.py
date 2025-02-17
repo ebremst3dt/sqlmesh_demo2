@@ -8,19 +8,19 @@ from models.mssql import read
 
 
 @model(
-    columns={'ANTECKNING': 'varchar(4000)',
- 'ANTECKNING1': 'varchar(4000)',
- 'ANTECKNING10': 'varchar(4000)',
- 'ANTECKNING2': 'varchar(4000)',
- 'ANTECKNING3': 'varchar(4000)',
- 'ANTECKNING4': 'varchar(4000)',
- 'ANTECKNING5': 'varchar(4000)',
- 'ANTECKNING6': 'varchar(4000)',
- 'ANTECKNING7': 'varchar(4000)',
- 'ANTECKNING8': 'varchar(4000)',
- 'ANTECKNING9': 'varchar(4000)',
- 'DOKTYP': 'numeric',
- 'DOKUMENTID': 'varchar(20)'},
+    columns={'ANTECKNING': 'varchar(max)',
+ 'ANTECKNING1': 'varchar(max)',
+ 'ANTECKNING10': 'varchar(max)',
+ 'ANTECKNING2': 'varchar(max)',
+ 'ANTECKNING3': 'varchar(max)',
+ 'ANTECKNING4': 'varchar(max)',
+ 'ANTECKNING5': 'varchar(max)',
+ 'ANTECKNING6': 'varchar(max)',
+ 'ANTECKNING7': 'varchar(max)',
+ 'ANTECKNING8': 'varchar(max)',
+ 'ANTECKNING9': 'varchar(max)',
+ 'DOKTYP': 'varchar(max)',
+ 'DOKUMENTID': 'varchar(max)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

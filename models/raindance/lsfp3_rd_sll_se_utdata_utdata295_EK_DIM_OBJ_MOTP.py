@@ -8,18 +8,18 @@ from models.mssql import read
 
 
 @model(
-    columns={'MOTFRA_GILTIG_FOM': 'datetime',
- 'MOTFRA_GILTIG_TOM': 'datetime',
- 'MOTFRA_ID': 'varchar(4)',
- 'MOTFRA_ID_TEXT': 'varchar(35)',
- 'MOTFRA_PASSIV': 'bit',
- 'MOTFRA_TEXT': 'varchar(30)',
- 'MOTP_GILTIG_FOM': 'datetime',
- 'MOTP_GILTIG_TOM': 'datetime',
- 'MOTP_ID': 'varchar(4)',
- 'MOTP_ID_TEXT': 'varchar(35)',
- 'MOTP_PASSIV': 'bit',
- 'MOTP_TEXT': 'varchar(30)'},
+    columns={'MOTFRA_GILTIG_FOM': 'varchar(max)',
+ 'MOTFRA_GILTIG_TOM': 'varchar(max)',
+ 'MOTFRA_ID': 'varchar(max)',
+ 'MOTFRA_ID_TEXT': 'varchar(max)',
+ 'MOTFRA_PASSIV': 'varchar(max)',
+ 'MOTFRA_TEXT': 'varchar(max)',
+ 'MOTP_GILTIG_FOM': 'varchar(max)',
+ 'MOTP_GILTIG_TOM': 'varchar(max)',
+ 'MOTP_ID': 'varchar(max)',
+ 'MOTP_ID_TEXT': 'varchar(max)',
+ 'MOTP_PASSIV': 'varchar(max)',
+ 'MOTP_TEXT': 'varchar(max)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

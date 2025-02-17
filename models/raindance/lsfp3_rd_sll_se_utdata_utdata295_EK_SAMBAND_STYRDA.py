@@ -8,12 +8,12 @@ from models.mssql import read
 
 
 @model(
-    columns={'DATUM_FOM': 'datetime',
- 'DATUM_TOM': 'datetime',
- 'NUMERISK_VANSTER': 'varchar(1)',
- 'STYRD_ID': 'varchar(6)',
- 'STYRD_NR': 'numeric',
- 'URVAL': 'varchar(1)'},
+    columns={'DATUM_FOM': 'varchar(max)',
+ 'DATUM_TOM': 'varchar(max)',
+ 'NUMERISK_VANSTER': 'varchar(max)',
+ 'STYRD_ID': 'varchar(max)',
+ 'STYRD_NR': 'varchar(max)',
+ 'URVAL': 'varchar(max)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

@@ -8,7 +8,7 @@ from models.mssql import read
 
 
 @model(
-    columns={'KRAVNIVA': 'numeric', 'KRAVNIVA_TEXT': 'varchar(30)'},
+    columns={'KRAVNIVA': 'varchar(max)', 'KRAVNIVA_TEXT': 'varchar(max)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

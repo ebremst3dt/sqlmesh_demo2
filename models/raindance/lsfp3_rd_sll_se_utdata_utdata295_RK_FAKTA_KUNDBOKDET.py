@@ -8,16 +8,16 @@ from models.mssql import read
 
 
 @model(
-    columns={'BOKBELOPP_INT': 'numeric',
- 'BOKBELOPP_VAL': 'numeric',
- 'BOKSTATUS': 'varchar(6)',
- 'BOKTYP': 'numeric',
- 'DETALJTYP': 'varchar(2)',
- 'NR': 'numeric',
- 'TAB_MOMS': 'varchar(2)',
- 'VERDATUM': 'datetime',
- 'VERNR': 'numeric',
- 'VERRAD': 'int'},
+    columns={'BOKBELOPP_INT': 'varchar(max)',
+ 'BOKBELOPP_VAL': 'varchar(max)',
+ 'BOKSTATUS': 'varchar(max)',
+ 'BOKTYP': 'varchar(max)',
+ 'DETALJTYP': 'varchar(max)',
+ 'NR': 'varchar(max)',
+ 'TAB_MOMS': 'varchar(max)',
+ 'VERDATUM': 'varchar(max)',
+ 'VERNR': 'varchar(max)',
+ 'VERRAD': 'varchar(max)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

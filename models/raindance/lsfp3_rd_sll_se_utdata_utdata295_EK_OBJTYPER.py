@@ -8,15 +8,15 @@ from models.mssql import read
 
 
 @model(
-    columns={'EJITABELL_ID': 'varchar(1)',
- 'EJITABELL_NR': 'numeric',
- 'INVIA_ID': 'varchar(6)',
- 'INVIA_NR': 'numeric',
- 'OBJTYPLANGD': 'numeric',
- 'OBJTYP_ID': 'varchar(6)',
- 'OBJTYP_ID_TEXT': 'varchar(38)',
- 'OBJTYP_NR': 'numeric',
- 'OBJTYP_TEXT': 'varchar(20)'},
+    columns={'EJITABELL_ID': 'varchar(max)',
+ 'EJITABELL_NR': 'varchar(max)',
+ 'INVIA_ID': 'varchar(max)',
+ 'INVIA_NR': 'varchar(max)',
+ 'OBJTYPLANGD': 'varchar(max)',
+ 'OBJTYP_ID': 'varchar(max)',
+ 'OBJTYP_ID_TEXT': 'varchar(max)',
+ 'OBJTYP_NR': 'varchar(max)',
+ 'OBJTYP_TEXT': 'varchar(max)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

@@ -8,17 +8,17 @@ from models.mssql import read
 
 
 @model(
-    columns={'KORR1': 'numeric',
- 'KORR10': 'numeric',
- 'KORR2': 'numeric',
- 'KORR3': 'numeric',
- 'KORR4': 'numeric',
- 'KORR5': 'numeric',
- 'KORR6': 'numeric',
- 'KORR7': 'numeric',
- 'KORR8': 'numeric',
- 'KORR9': 'numeric',
- 'NR': 'numeric'},
+    columns={'KORR1': 'varchar(max)',
+ 'KORR10': 'varchar(max)',
+ 'KORR2': 'varchar(max)',
+ 'KORR3': 'varchar(max)',
+ 'KORR4': 'varchar(max)',
+ 'KORR5': 'varchar(max)',
+ 'KORR6': 'varchar(max)',
+ 'KORR7': 'varchar(max)',
+ 'KORR8': 'varchar(max)',
+ 'KORR9': 'varchar(max)',
+ 'NR': 'varchar(max)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )
