@@ -3,6 +3,7 @@ import typing as t
 from datetime import datetime
 import pandas as pd
 from sqlmesh import ExecutionContext, model
+from sqlmesh.core.model import kind
 from models.mssql import read
 
 
@@ -14,6 +15,7 @@ from models.mssql import read
  'LEV_PÅLOGG_FTG': 'varchar(max)',
  'MOTPKOMB': 'varchar(max)',
  'NR': 'varchar(max)'},
+    kind=kind.FullKind,
     cron="@daily"
 )
 def execute(

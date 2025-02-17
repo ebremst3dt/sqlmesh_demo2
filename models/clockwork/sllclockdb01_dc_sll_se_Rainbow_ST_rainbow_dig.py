@@ -3,6 +3,7 @@ import typing as t
 from datetime import datetime
 import pandas as pd
 from sqlmesh import ExecutionContext, model
+from sqlmesh.core.model import kind
 from models.mssql import read
 
 
@@ -19,6 +20,7 @@ from models.mssql import read
  'srtnam': 'varchar(max)',
  'srtnum': 'varchar(max)',
  'txtdsc': 'varchar(max)'},
+    kind=kind.FullKind,
     cron="@daily"
 )
 def execute(
@@ -41,7 +43,7 @@ def execute(
 		CAST(sigcod AS VARCHAR(MAX)) AS sigcod,
 		CAST(srtnam AS VARCHAR(MAX)) AS srtnam,
 		CAST(srtnum AS VARCHAR(MAX)) AS srtnum,
-		CAST(txtdsc AS VARCHAR(MAX)) AS txtdsc
+		CAST(txtdsc AS VARCHAR(MAX)) AS txtdsc 
 	FROM Rainbow_ST.rainbow.dig
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")

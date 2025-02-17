@@ -3,11 +3,13 @@ import typing as t
 from datetime import datetime
 import pandas as pd
 from sqlmesh import ExecutionContext, model
+from sqlmesh.core.model import kind
 from models.mssql import read
 
 
 @model(
     columns={'KUNDRTYP': 'varchar(max)', 'KUNDRTYP_TEXT': 'varchar(max)'},
+    kind=kind.FullKind,
     cron="@daily"
 )
 def execute(

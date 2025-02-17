@@ -3,6 +3,7 @@ import typing as t
 from datetime import datetime
 import pandas as pd
 from sqlmesh import ExecutionContext, model
+from sqlmesh.core.model import kind
 from models.mssql import read
 
 
@@ -13,6 +14,7 @@ from models.mssql import read
  'ARTKR_ID_TEXT': 'varchar(max)',
  'ARTKR_PASSIV': 'varchar(max)',
  'ARTKR_TEXT': 'varchar(max)'},
+    kind=kind.FullKind,
     cron="@daily"
 )
 def execute(
