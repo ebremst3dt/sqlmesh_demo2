@@ -26,8 +26,8 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(FRI2_GILTIG_FOM AS VARCHAR(MAX)) AS fri2_giltig_fom,
-		CAST(FRI2_GILTIG_TOM AS VARCHAR(MAX)) AS fri2_giltig_tom,
+ 		CONVERT(varchar(max), FRI2_GILTIG_FOM, 126) AS fri2_giltig_fom,
+		CONVERT(varchar(max), FRI2_GILTIG_TOM, 126) AS fri2_giltig_tom,
 		CAST(FRI2_ID AS VARCHAR(MAX)) AS fri2_id,
 		CAST(FRI2_ID_TEXT AS VARCHAR(MAX)) AS fri2_id_text,
 		CAST(FRI2_PASSIV AS VARCHAR(MAX)) AS fri2_passiv,

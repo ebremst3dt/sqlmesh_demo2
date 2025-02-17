@@ -37,7 +37,7 @@ def execute(
 		CAST(DETALJTYP AS VARCHAR(MAX)) AS detaljtyp,
 		CAST(NR AS VARCHAR(MAX)) AS nr,
 		CAST(TAB_MOMS AS VARCHAR(MAX)) AS tab_moms,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum,
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum,
 		CAST(VERNR AS VARCHAR(MAX)) AS vernr,
 		CAST(VERRAD AS VARCHAR(MAX)) AS verrad 
 	FROM utdata.utdata295.RK_FAKTA_KUNDBOKDET

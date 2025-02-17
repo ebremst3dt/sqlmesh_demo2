@@ -36,8 +36,8 @@ def execute(
 	SELECT top 1000
  		CAST(ARTKR_ID AS VARCHAR(MAX)) AS artkr_id,
 		CAST(AVTBES_ID AS VARCHAR(MAX)) AS avtbes_id,
-		CAST(DATUM_FOM AS VARCHAR(MAX)) AS datum_fom,
-		CAST(DATUM_TOM AS VARCHAR(MAX)) AS datum_tom,
+		CONVERT(varchar(max), DATUM_FOM, 126) AS datum_fom,
+		CONVERT(varchar(max), DATUM_TOM, 126) AS datum_tom,
 		CAST(FRI1_ID AS VARCHAR(MAX)) AS fri1_id,
 		CAST(KONTO_ID AS VARCHAR(MAX)) AS konto_id,
 		CAST(KST_ID AS VARCHAR(MAX)) AS kst_id,
@@ -47,7 +47,7 @@ def execute(
 		CAST(TEXT2_TEXT AS VARCHAR(MAX)) AS text2_text,
 		CAST(UTFALL_V AS VARCHAR(MAX)) AS utfall_v,
 		CAST(UTILITY AS VARCHAR(MAX)) AS utility,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum 
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum 
 	FROM utdata.utdata295.EK_FAKTA_VARDE_ARTKR
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")

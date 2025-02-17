@@ -28,10 +28,10 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(ERSGR_DATUM_FOM AS VARCHAR(MAX)) AS ersgr_datum_fom,
-		CAST(ERSGR_DATUM_TOM AS VARCHAR(MAX)) AS ersgr_datum_tom,
-		CAST(ERSGR_GILTIG_FOM AS VARCHAR(MAX)) AS ersgr_giltig_fom,
-		CAST(ERSGR_GILTIG_TOM AS VARCHAR(MAX)) AS ersgr_giltig_tom,
+ 		CONVERT(varchar(max), ERSGR_DATUM_FOM, 126) AS ersgr_datum_fom,
+		CONVERT(varchar(max), ERSGR_DATUM_TOM, 126) AS ersgr_datum_tom,
+		CONVERT(varchar(max), ERSGR_GILTIG_FOM, 126) AS ersgr_giltig_fom,
+		CONVERT(varchar(max), ERSGR_GILTIG_TOM, 126) AS ersgr_giltig_tom,
 		CAST(ERSGR_ID AS VARCHAR(MAX)) AS ersgr_id,
 		CAST(ERSGR_ID_TEXT AS VARCHAR(MAX)) AS ersgr_id_text,
 		CAST(ERSGR_PASSIV AS VARCHAR(MAX)) AS ersgr_passiv,

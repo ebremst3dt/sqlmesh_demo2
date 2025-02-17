@@ -32,14 +32,14 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(VERK_GILTIG_FOM AS VARCHAR(MAX)) AS verk_giltig_fom,
-		CAST(VERK_GILTIG_TOM AS VARCHAR(MAX)) AS verk_giltig_tom,
+ 		CONVERT(varchar(max), VERK_GILTIG_FOM, 126) AS verk_giltig_fom,
+		CONVERT(varchar(max), VERK_GILTIG_TOM, 126) AS verk_giltig_tom,
 		CAST(VERK_ID AS VARCHAR(MAX)) AS verk_id,
 		CAST(VERK_ID_TEXT AS VARCHAR(MAX)) AS verk_id_text,
 		CAST(VERK_PASSIV AS VARCHAR(MAX)) AS verk_passiv,
 		CAST(VERK_TEXT AS VARCHAR(MAX)) AS verk_text,
-		CAST(VGREN_GILTIG_FOM AS VARCHAR(MAX)) AS vgren_giltig_fom,
-		CAST(VGREN_GILTIG_TOM AS VARCHAR(MAX)) AS vgren_giltig_tom,
+		CONVERT(varchar(max), VGREN_GILTIG_FOM, 126) AS vgren_giltig_fom,
+		CONVERT(varchar(max), VGREN_GILTIG_TOM, 126) AS vgren_giltig_tom,
 		CAST(VGREN_ID AS VARCHAR(MAX)) AS vgren_id,
 		CAST(VGREN_ID_TEXT AS VARCHAR(MAX)) AS vgren_id_text,
 		CAST(VGREN_PASSIV AS VARCHAR(MAX)) AS vgren_passiv,

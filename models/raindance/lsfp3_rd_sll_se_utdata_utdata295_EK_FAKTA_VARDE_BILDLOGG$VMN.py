@@ -22,7 +22,7 @@ def execute(
     query = """
 	SELECT top 1000
  		CAST(LOPNUMMER AS VARCHAR(MAX)) AS lopnummer,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum,
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum,
 		CAST(VMN_TEXT AS VARCHAR(MAX)) AS vmn_text 
 	FROM utdata.utdata295.EK_FAKTA_VARDE_BILDLOGG$VMN
 	"""

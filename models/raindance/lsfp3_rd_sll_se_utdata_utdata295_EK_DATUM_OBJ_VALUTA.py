@@ -28,10 +28,10 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(VALUTA_DATUM_FOM AS VARCHAR(MAX)) AS valuta_datum_fom,
-		CAST(VALUTA_DATUM_TOM AS VARCHAR(MAX)) AS valuta_datum_tom,
-		CAST(VALUTA_GILTIG_FOM AS VARCHAR(MAX)) AS valuta_giltig_fom,
-		CAST(VALUTA_GILTIG_TOM AS VARCHAR(MAX)) AS valuta_giltig_tom,
+ 		CONVERT(varchar(max), VALUTA_DATUM_FOM, 126) AS valuta_datum_fom,
+		CONVERT(varchar(max), VALUTA_DATUM_TOM, 126) AS valuta_datum_tom,
+		CONVERT(varchar(max), VALUTA_GILTIG_FOM, 126) AS valuta_giltig_fom,
+		CONVERT(varchar(max), VALUTA_GILTIG_TOM, 126) AS valuta_giltig_tom,
 		CAST(VALUTA_ID AS VARCHAR(MAX)) AS valuta_id,
 		CAST(VALUTA_ID_TEXT AS VARCHAR(MAX)) AS valuta_id_text,
 		CAST(VALUTA_PASSIV AS VARCHAR(MAX)) AS valuta_passiv,

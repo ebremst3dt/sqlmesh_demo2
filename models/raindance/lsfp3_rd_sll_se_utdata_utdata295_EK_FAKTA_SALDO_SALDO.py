@@ -42,7 +42,7 @@ def execute(
     query = """
 	SELECT top 1000
  		CAST(AVTBES_ID AS VARCHAR(MAX)) AS avtbes_id,
-		CAST(BFAR AS VARCHAR(MAX)) AS bfar,
+		CONVERT(varchar(max), BFAR, 126) AS bfar,
 		CAST(BUDGET_ACK AS VARCHAR(MAX)) AS budget_ack,
 		CAST(BUDGET_AR AS VARCHAR(MAX)) AS budget_ar,
 		CAST(BUDGET_FGPER AS VARCHAR(MAX)) AS budget_fgper,
@@ -52,7 +52,7 @@ def execute(
 		CAST(KONTO_ID AS VARCHAR(MAX)) AS konto_id,
 		CAST(KST_ID AS VARCHAR(MAX)) AS kst_id,
 		CAST(MOTP_ID AS VARCHAR(MAX)) AS motp_id,
-		CAST(PERIOD AS VARCHAR(MAX)) AS period,
+		CONVERT(varchar(max), PERIOD, 126) AS period,
 		CAST(PRG_FGPER AS VARCHAR(MAX)) AS prg_fgper,
 		CAST(PRG_PER AS VARCHAR(MAX)) AS prg_per,
 		CAST(PROJ_ID AS VARCHAR(MAX)) AS proj_id,

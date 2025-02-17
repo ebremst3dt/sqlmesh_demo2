@@ -32,10 +32,10 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(chgdat AS VARCHAR(MAX)) AS chgdat,
+ 		CONVERT(varchar(max), chgdat, 126) AS chgdat,
 		CAST(chgusr AS VARCHAR(MAX)) AS chgusr,
 		CAST(compny AS VARCHAR(MAX)) AS compny,
-		CAST(credat AS VARCHAR(MAX)) AS credat,
+		CONVERT(varchar(max), credat, 126) AS credat,
 		CAST(creusr AS VARCHAR(MAX)) AS creusr,
 		CAST(digcod AS VARCHAR(MAX)) AS digcod,
 		CAST(dignam AS VARCHAR(MAX)) AS dignam,

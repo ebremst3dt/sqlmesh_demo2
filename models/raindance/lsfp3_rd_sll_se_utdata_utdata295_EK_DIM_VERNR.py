@@ -28,7 +28,7 @@ def execute(
  		CAST(AR AS VARCHAR(MAX)) AS ar,
 		CAST(INTERNVERNR AS VARCHAR(MAX)) AS internvernr,
 		CAST(INTERNVERNR_TEXT AS VARCHAR(MAX)) AS internvernr_text,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum,
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum,
 		CAST(VERNRGRUPP AS VARCHAR(MAX)) AS vernrgrupp 
 	FROM utdata.utdata295.EK_DIM_VERNR
 	"""

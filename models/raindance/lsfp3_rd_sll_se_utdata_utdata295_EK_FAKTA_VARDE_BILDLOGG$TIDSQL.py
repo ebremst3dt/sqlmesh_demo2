@@ -23,7 +23,7 @@ def execute(
 	SELECT top 1000
  		CAST(LOPNUMMER AS VARCHAR(MAX)) AS lopnummer,
 		CAST(TIDSQL_V AS VARCHAR(MAX)) AS tidsql_v,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum 
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum 
 	FROM utdata.utdata295.EK_FAKTA_VARDE_BILDLOGG$TIDSQL
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")

@@ -23,9 +23,9 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(BOKFORINGSAR AS VARCHAR(MAX)) AS bokforingsar,
+ 		CONVERT(varchar(max), BOKFORINGSAR, 126) AS bokforingsar,
 		CAST(BOKFORINGSAR_TEXT AS VARCHAR(MAX)) AS bokforingsar_text,
-		CAST(BOKFORINGSARSLUT AS VARCHAR(MAX)) AS bokforingsarslut 
+		CONVERT(varchar(max), BOKFORINGSARSLUT, 126) AS bokforingsarslut 
 	FROM utdata.utdata295.EK_DIM_BOKFORINGSAR
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")

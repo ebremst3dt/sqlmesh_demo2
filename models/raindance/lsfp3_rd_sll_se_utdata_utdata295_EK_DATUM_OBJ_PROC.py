@@ -28,10 +28,10 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(PROC_DATUM_FOM AS VARCHAR(MAX)) AS proc_datum_fom,
-		CAST(PROC_DATUM_TOM AS VARCHAR(MAX)) AS proc_datum_tom,
-		CAST(PROC_GILTIG_FOM AS VARCHAR(MAX)) AS proc_giltig_fom,
-		CAST(PROC_GILTIG_TOM AS VARCHAR(MAX)) AS proc_giltig_tom,
+ 		CONVERT(varchar(max), PROC_DATUM_FOM, 126) AS proc_datum_fom,
+		CONVERT(varchar(max), PROC_DATUM_TOM, 126) AS proc_datum_tom,
+		CONVERT(varchar(max), PROC_GILTIG_FOM, 126) AS proc_giltig_fom,
+		CONVERT(varchar(max), PROC_GILTIG_TOM, 126) AS proc_giltig_tom,
 		CAST(PROC_ID AS VARCHAR(MAX)) AS proc_id,
 		CAST(PROC_ID_TEXT AS VARCHAR(MAX)) AS proc_id_text,
 		CAST(PROC_PASSIV AS VARCHAR(MAX)) AS proc_passiv,

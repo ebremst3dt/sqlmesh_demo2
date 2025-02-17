@@ -35,18 +35,18 @@ def execute(
     query = """
 	SELECT top 1000
  		CAST(ANDRAD_AV AS VARCHAR(MAX)) AS andrad_av,
-		CAST(ANDRAD_DATUM AS VARCHAR(MAX)) AS andrad_datum,
+		CONVERT(varchar(max), ANDRAD_DATUM, 126) AS andrad_datum,
 		CAST(ANDRAD_TID AS VARCHAR(MAX)) AS andrad_tid,
 		CAST(ANT_TEXT AS VARCHAR(MAX)) AS ant_text,
-		CAST(DATUM_FOM AS VARCHAR(MAX)) AS datum_fom,
-		CAST(DATUM_TOM AS VARCHAR(MAX)) AS datum_tom,
+		CONVERT(varchar(max), DATUM_FOM, 126) AS datum_fom,
+		CONVERT(varchar(max), DATUM_TOM, 126) AS datum_tom,
 		CAST(FRI1_ID AS VARCHAR(MAX)) AS fri1_id,
 		CAST(KONTO_ID AS VARCHAR(MAX)) AS konto_id,
 		CAST(KST_ID AS VARCHAR(MAX)) AS kst_id,
 		CAST(MOTP_ID AS VARCHAR(MAX)) AS motp_id,
 		CAST(PROJ_ID AS VARCHAR(MAX)) AS proj_id,
 		CAST(UTILITY AS VARCHAR(MAX)) AS utility,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum,
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum,
 		CAST(VERK_ID AS VARCHAR(MAX)) AS verk_id 
 	FROM utdata.utdata295.EK_FAKTA_VARDE_PTXTK
 	"""

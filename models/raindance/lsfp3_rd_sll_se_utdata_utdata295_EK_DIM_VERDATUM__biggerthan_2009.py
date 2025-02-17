@@ -57,9 +57,9 @@ def execute(
 	SELECT top 1000
  		CAST(AR AS VARCHAR(MAX)) AS ar,
 		CAST(AR_TEXT AS VARCHAR(MAX)) AS ar_text,
-		CAST(BOKFORINGSAR AS VARCHAR(MAX)) AS bokforingsar,
+		CONVERT(varchar(max), BOKFORINGSAR, 126) AS bokforingsar,
 		CAST(BOKFORINGSAR_TEXT AS VARCHAR(MAX)) AS bokforingsar_text,
-		CAST(BOKFORINGSARSLUT AS VARCHAR(MAX)) AS bokforingsarslut,
+		CONVERT(varchar(max), BOKFORINGSARSLUT, 126) AS bokforingsarslut,
 		CAST(DAG AS VARCHAR(MAX)) AS dag,
 		CAST(DAG_TEXT AS VARCHAR(MAX)) AS dag_text,
 		CAST(DATUM6_TEXT AS VARCHAR(MAX)) AS datum6_text,
@@ -72,9 +72,9 @@ def execute(
 		CAST(MANADNR AS VARCHAR(MAX)) AS manadnr,
 		CAST(MANADNR_TEXT AS VARCHAR(MAX)) AS manadnr_text,
 		CAST(MANADSNAMN AS VARCHAR(MAX)) AS manadsnamn,
-		CAST(PERIOD AS VARCHAR(MAX)) AS period,
+		CONVERT(varchar(max), PERIOD, 126) AS period,
 		CAST(PERIOD_TEXT AS VARCHAR(MAX)) AS period_text,
-		CAST(PERIODSLUT AS VARCHAR(MAX)) AS periodslut,
+		CONVERT(varchar(max), PERIODSLUT, 126) AS periodslut,
 		CAST(PERIODSTATUS AS VARCHAR(MAX)) AS periodstatus,
 		CAST(PERIODSTATUS_TEXT AS VARCHAR(MAX)) AS periodstatus_text,
 		CAST(TERTIAL AS VARCHAR(MAX)) AS tertial,
@@ -88,8 +88,8 @@ def execute(
 		CAST(VECKODAG_TEXT AS VARCHAR(MAX)) AS veckodag_text,
 		CAST(VECKONR AS VARCHAR(MAX)) AS veckonr,
 		CAST(VECKONR_TEXT AS VARCHAR(MAX)) AS veckonr_text,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum,
-		CAST(VERDATUM_TEXT AS VARCHAR(MAX)) AS verdatum_text
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum,
+		CAST(VERDATUM_TEXT AS VARCHAR(MAX)) AS verdatum_text 
 	FROM utdata.utdata295.EK_DIM_VERDATUM__biggerthan_2009
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")

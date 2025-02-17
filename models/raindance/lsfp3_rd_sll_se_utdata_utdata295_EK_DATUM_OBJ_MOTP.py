@@ -34,16 +34,16 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(MOTFRA_GILTIG_FOM AS VARCHAR(MAX)) AS motfra_giltig_fom,
-		CAST(MOTFRA_GILTIG_TOM AS VARCHAR(MAX)) AS motfra_giltig_tom,
+ 		CONVERT(varchar(max), MOTFRA_GILTIG_FOM, 126) AS motfra_giltig_fom,
+		CONVERT(varchar(max), MOTFRA_GILTIG_TOM, 126) AS motfra_giltig_tom,
 		CAST(MOTFRA_ID AS VARCHAR(MAX)) AS motfra_id,
 		CAST(MOTFRA_ID_TEXT AS VARCHAR(MAX)) AS motfra_id_text,
 		CAST(MOTFRA_PASSIV AS VARCHAR(MAX)) AS motfra_passiv,
 		CAST(MOTFRA_TEXT AS VARCHAR(MAX)) AS motfra_text,
-		CAST(MOTP_DATUM_FOM AS VARCHAR(MAX)) AS motp_datum_fom,
-		CAST(MOTP_DATUM_TOM AS VARCHAR(MAX)) AS motp_datum_tom,
-		CAST(MOTP_GILTIG_FOM AS VARCHAR(MAX)) AS motp_giltig_fom,
-		CAST(MOTP_GILTIG_TOM AS VARCHAR(MAX)) AS motp_giltig_tom,
+		CONVERT(varchar(max), MOTP_DATUM_FOM, 126) AS motp_datum_fom,
+		CONVERT(varchar(max), MOTP_DATUM_TOM, 126) AS motp_datum_tom,
+		CONVERT(varchar(max), MOTP_GILTIG_FOM, 126) AS motp_giltig_fom,
+		CONVERT(varchar(max), MOTP_GILTIG_TOM, 126) AS motp_giltig_tom,
 		CAST(MOTP_ID AS VARCHAR(MAX)) AS motp_id,
 		CAST(MOTP_ID_TEXT AS VARCHAR(MAX)) AS motp_id_text,
 		CAST(MOTP_PASSIV AS VARCHAR(MAX)) AS motp_passiv,

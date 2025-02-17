@@ -26,8 +26,8 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(DATUM_FOM AS VARCHAR(MAX)) AS datum_fom,
-		CAST(DATUM_TOM AS VARCHAR(MAX)) AS datum_tom,
+ 		CONVERT(varchar(max), DATUM_FOM, 126) AS datum_fom,
+		CONVERT(varchar(max), DATUM_TOM, 126) AS datum_tom,
 		CAST(NUMERISK_VANSTER AS VARCHAR(MAX)) AS numerisk_vanster,
 		CAST(STYRD_ID AS VARCHAR(MAX)) AS styrd_id,
 		CAST(STYRD_NR AS VARCHAR(MAX)) AS styrd_nr,

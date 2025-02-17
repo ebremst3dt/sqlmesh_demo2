@@ -31,15 +31,15 @@ def execute(
     query = """
 	SELECT top 1000
  		CAST(ANDRAD_AV AS VARCHAR(MAX)) AS andrad_av,
-		CAST(ANDRAD_DATUM AS VARCHAR(MAX)) AS andrad_datum,
+		CONVERT(varchar(max), ANDRAD_DATUM, 126) AS andrad_datum,
 		CAST(ANDRAD_TID AS VARCHAR(MAX)) AS andrad_tid,
 		CAST(ANM_TEXT AS VARCHAR(MAX)) AS anm_text,
-		CAST(DATUM_FOM AS VARCHAR(MAX)) AS datum_fom,
-		CAST(DATUM_TOM AS VARCHAR(MAX)) AS datum_tom,
+		CONVERT(varchar(max), DATUM_FOM, 126) AS datum_fom,
+		CONVERT(varchar(max), DATUM_TOM, 126) AS datum_tom,
 		CAST(KST_ID AS VARCHAR(MAX)) AS kst_id,
 		CAST(STATUS_V AS VARCHAR(MAX)) AS status_v,
 		CAST(UTILITY AS VARCHAR(MAX)) AS utility,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum 
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum 
 	FROM utdata.utdata295.EK_FAKTA_VARDE_XPSTAT
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")

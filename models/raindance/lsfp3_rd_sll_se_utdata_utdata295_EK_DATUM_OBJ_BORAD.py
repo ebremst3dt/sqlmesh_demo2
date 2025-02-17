@@ -28,10 +28,10 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(BORAD_DATUM_FOM AS VARCHAR(MAX)) AS borad_datum_fom,
-		CAST(BORAD_DATUM_TOM AS VARCHAR(MAX)) AS borad_datum_tom,
-		CAST(BORAD_GILTIG_FOM AS VARCHAR(MAX)) AS borad_giltig_fom,
-		CAST(BORAD_GILTIG_TOM AS VARCHAR(MAX)) AS borad_giltig_tom,
+ 		CONVERT(varchar(max), BORAD_DATUM_FOM, 126) AS borad_datum_fom,
+		CONVERT(varchar(max), BORAD_DATUM_TOM, 126) AS borad_datum_tom,
+		CONVERT(varchar(max), BORAD_GILTIG_FOM, 126) AS borad_giltig_fom,
+		CONVERT(varchar(max), BORAD_GILTIG_TOM, 126) AS borad_giltig_tom,
 		CAST(BORAD_ID AS VARCHAR(MAX)) AS borad_id,
 		CAST(BORAD_ID_TEXT AS VARCHAR(MAX)) AS borad_id_text,
 		CAST(BORAD_PASSIV AS VARCHAR(MAX)) AS borad_passiv,

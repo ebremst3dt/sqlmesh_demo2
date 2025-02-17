@@ -23,7 +23,7 @@ def execute(
 	SELECT top 1000
  		CAST(LOPNUMMER AS VARCHAR(MAX)) AS lopnummer,
 		CAST(URVAL_TEXT AS VARCHAR(MAX)) AS urval_text,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum 
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum 
 	FROM utdata.utdata295.EK_FAKTA_VARDE_BILDLOGG$URVAL
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")

@@ -26,8 +26,8 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(BOANTP_GILTIG_FOM AS VARCHAR(MAX)) AS boantp_giltig_fom,
-		CAST(BOANTP_GILTIG_TOM AS VARCHAR(MAX)) AS boantp_giltig_tom,
+ 		CONVERT(varchar(max), BOANTP_GILTIG_FOM, 126) AS boantp_giltig_fom,
+		CONVERT(varchar(max), BOANTP_GILTIG_TOM, 126) AS boantp_giltig_tom,
 		CAST(BOANTP_ID AS VARCHAR(MAX)) AS boantp_id,
 		CAST(BOANTP_ID_TEXT AS VARCHAR(MAX)) AS boantp_id_text,
 		CAST(BOANTP_PASSIV AS VARCHAR(MAX)) AS boantp_passiv,

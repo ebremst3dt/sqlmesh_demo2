@@ -30,8 +30,8 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT top 1000
- 		CAST(DATUM_FOM AS VARCHAR(MAX)) AS datum_fom,
-		CAST(DATUM_TOM AS VARCHAR(MAX)) AS datum_tom,
+ 		CONVERT(varchar(max), DATUM_FOM, 126) AS datum_fom,
+		CONVERT(varchar(max), DATUM_TOM, 126) AS datum_tom,
 		CAST(INTRADNUMMER AS VARCHAR(MAX)) AS intradnummer,
 		CAST(RADNUMMER AS VARCHAR(MAX)) AS radnummer,
 		CAST(STYRD_ID AS VARCHAR(MAX)) AS styrd_id,

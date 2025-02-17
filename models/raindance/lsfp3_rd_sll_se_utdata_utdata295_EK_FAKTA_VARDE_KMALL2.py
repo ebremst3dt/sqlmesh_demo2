@@ -40,8 +40,8 @@ def execute(
 		CAST(AVTBES_ID AS VARCHAR(MAX)) AS avtbes_id,
 		CAST(BAS_V AS VARCHAR(MAX)) AS bas_v,
 		CAST(BEN_TEXT AS VARCHAR(MAX)) AS ben_text,
-		CAST(DATUM_FOM AS VARCHAR(MAX)) AS datum_fom,
-		CAST(DATUM_TOM AS VARCHAR(MAX)) AS datum_tom,
+		CONVERT(varchar(max), DATUM_FOM, 126) AS datum_fom,
+		CONVERT(varchar(max), DATUM_TOM, 126) AS datum_tom,
 		CAST(FRI1_ID AS VARCHAR(MAX)) AS fri1_id,
 		CAST(FRI2_ID AS VARCHAR(MAX)) AS fri2_id,
 		CAST(KMALL_ID AS VARCHAR(MAX)) AS kmall_id,
@@ -51,7 +51,7 @@ def execute(
 		CAST(PROJ_ID AS VARCHAR(MAX)) AS proj_id,
 		CAST(RAK_ID AS VARCHAR(MAX)) AS rak_id,
 		CAST(UTILITY AS VARCHAR(MAX)) AS utility,
-		CAST(VERDATUM AS VARCHAR(MAX)) AS verdatum 
+		CONVERT(varchar(max), VERDATUM, 126) AS verdatum 
 	FROM utdata.utdata295.EK_FAKTA_VARDE_KMALL2
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")
