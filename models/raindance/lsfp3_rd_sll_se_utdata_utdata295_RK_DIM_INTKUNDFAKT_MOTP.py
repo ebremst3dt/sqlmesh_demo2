@@ -8,13 +8,13 @@ from models.mssql import read
 
 
 @model(
-    columns={'INTKUNDID': 'varchar(max)',
- 'INTLEVID': 'varchar(max)',
- 'KUND_PÅLOGG_FTG': 'varchar(max)',
- 'LEVFAKTNR': 'varchar(max)',
- 'LEV_PÅLOGG_FTG': 'varchar(max)',
- 'MOTPKOMB': 'varchar(max)',
- 'NR': 'varchar(max)'},
+    columns={'INTKUNDID': 'varchar(16)',
+ 'INTLEVID': 'varchar(16)',
+ 'KUND_PÅLOGG_FTG': 'numeric',
+ 'LEVFAKTNR': 'numeric',
+ 'LEV_PÅLOGG_FTG': 'numeric',
+ 'MOTPKOMB': 'varchar(95)',
+ 'NR': 'numeric'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

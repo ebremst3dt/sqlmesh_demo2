@@ -8,16 +8,16 @@ from models.mssql import read
 
 
 @model(
-    columns={'DELSYS': 'varchar(max)',
- 'DELSYS_TEXT': 'varchar(max)',
- 'DOKUMENTTYP': 'varchar(max)',
- 'EXTERNID': 'varchar(max)',
- 'EXTERNID2': 'varchar(max)',
- 'EXTERNID2_ID_TEXT': 'varchar(max)',
- 'EXTERNID_GRUPP': 'varchar(max)',
- 'EXTERNID_ID_TEXT': 'varchar(max)',
- 'EXTERNID_TEXT': 'varchar(max)',
- 'NAMN2': 'varchar(max)'},
+    columns={'DELSYS': 'varchar(68)',
+ 'DELSYS_TEXT': 'varchar(40)',
+ 'DOKUMENTTYP': 'numeric',
+ 'EXTERNID': 'varchar(27)',
+ 'EXTERNID2': 'varchar(25)',
+ 'EXTERNID2_ID_TEXT': 'varchar(66)',
+ 'EXTERNID_GRUPP': 'varchar(20)',
+ 'EXTERNID_ID_TEXT': 'varchar(68)',
+ 'EXTERNID_TEXT': 'varchar(40)',
+ 'NAMN2': 'varchar(40)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

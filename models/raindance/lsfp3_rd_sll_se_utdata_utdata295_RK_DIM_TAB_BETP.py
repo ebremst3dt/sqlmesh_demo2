@@ -8,11 +8,11 @@ from models.mssql import read
 
 
 @model(
-    columns={'DUMMY2': 'varchar(max)',
- 'TAB_BETP': 'varchar(max)',
- 'TAB_BETP_ID_TEXT': 'varchar(max)',
- 'TAB_BETP_TEXT': 'varchar(max)',
- 'VARDE1': 'varchar(max)'},
+    columns={'DUMMY2': 'varchar(2)',
+ 'TAB_BETP': 'varchar(2)',
+ 'TAB_BETP_ID_TEXT': 'varchar(120)',
+ 'TAB_BETP_TEXT': 'varchar(80)',
+ 'VARDE1': 'numeric'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

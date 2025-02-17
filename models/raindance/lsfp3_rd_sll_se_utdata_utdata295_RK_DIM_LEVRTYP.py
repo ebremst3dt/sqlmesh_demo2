@@ -8,7 +8,7 @@ from models.mssql import read
 
 
 @model(
-    columns={'LEVRTYP': 'varchar(max)', 'LEVRTYP_TEXT': 'varchar(max)'},
+    columns={'LEVRTYP': 'varchar(2)', 'LEVRTYP_TEXT': 'varchar(30)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

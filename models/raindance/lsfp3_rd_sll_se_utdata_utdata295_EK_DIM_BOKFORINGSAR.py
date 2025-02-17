@@ -8,9 +8,9 @@ from models.mssql import read
 
 
 @model(
-    columns={'BOKFORINGSAR': 'varchar(max)',
- 'BOKFORINGSARSLUT': 'varchar(max)',
- 'BOKFORINGSAR_TEXT': 'varchar(max)'},
+    columns={'BOKFORINGSAR': 'datetime',
+ 'BOKFORINGSARSLUT': 'datetime',
+ 'BOKFORINGSAR_TEXT': 'varchar(30)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

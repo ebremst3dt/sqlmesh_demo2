@@ -8,18 +8,18 @@ from models.mssql import read
 
 
 @model(
-    columns={'BILAGA1': 'varchar(max)',
- 'BILAGA10': 'varchar(max)',
- 'BILAGA2': 'varchar(max)',
- 'BILAGA3': 'varchar(max)',
- 'BILAGA4': 'varchar(max)',
- 'BILAGA5': 'varchar(max)',
- 'BILAGA6': 'varchar(max)',
- 'BILAGA7': 'varchar(max)',
- 'BILAGA8': 'varchar(max)',
- 'BILAGA9': 'varchar(max)',
- 'DOKTYP': 'varchar(max)',
- 'DOKUMENTID': 'varchar(max)'},
+    columns={'BILAGA1': 'varchar(200)',
+ 'BILAGA10': 'varchar(200)',
+ 'BILAGA2': 'varchar(200)',
+ 'BILAGA3': 'varchar(200)',
+ 'BILAGA4': 'varchar(200)',
+ 'BILAGA5': 'varchar(200)',
+ 'BILAGA6': 'varchar(200)',
+ 'BILAGA7': 'varchar(200)',
+ 'BILAGA8': 'varchar(200)',
+ 'BILAGA9': 'varchar(200)',
+ 'DOKTYP': 'numeric',
+ 'DOKUMENTID': 'varchar(20)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

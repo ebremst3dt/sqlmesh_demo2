@@ -8,11 +8,11 @@ from models.mssql import read
 
 
 @model(
-    columns={'DELSYSTEM': 'varchar(max)',
- 'DELSYSTEM_TEXT': 'varchar(max)',
- 'VERTYP': 'varchar(max)',
- 'VERTYP_PASSIV': 'varchar(max)',
- 'VERTYP_TEXT': 'varchar(max)'},
+    columns={'DELSYSTEM': 'varchar(2)',
+ 'DELSYSTEM_TEXT': 'varchar(30)',
+ 'VERTYP': 'varchar(6)',
+ 'VERTYP_PASSIV': 'varchar(1)',
+ 'VERTYP_TEXT': 'varchar(20)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

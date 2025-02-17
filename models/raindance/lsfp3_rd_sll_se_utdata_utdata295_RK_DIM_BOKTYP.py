@@ -8,11 +8,11 @@ from models.mssql import read
 
 
 @model(
-    columns={'BOKTYP': 'varchar(max)',
- 'BOKTYP_ID': 'varchar(max)',
- 'BOKTYP_ID_TEXT': 'varchar(max)',
- 'BOKTYP_NR': 'varchar(max)',
- 'BOKTYP_TEXT': 'varchar(max)'},
+    columns={'BOKTYP': 'varchar(2)',
+ 'BOKTYP_ID': 'varchar(2)',
+ 'BOKTYP_ID_TEXT': 'varchar(41)',
+ 'BOKTYP_NR': 'varchar(2)',
+ 'BOKTYP_TEXT': 'varchar(38)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

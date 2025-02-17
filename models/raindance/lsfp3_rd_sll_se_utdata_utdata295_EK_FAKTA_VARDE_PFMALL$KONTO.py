@@ -8,9 +8,9 @@ from models.mssql import read
 
 
 @model(
-    columns={'KONTO_ID': 'varchar(max)',
- 'MALLID_ID': 'varchar(max)',
- 'RAK_ID': 'varchar(max)'},
+    columns={'KONTO_ID': 'varchar(120)',
+ 'MALLID_ID': 'varchar(20)',
+ 'RAK_ID': 'varchar(20)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

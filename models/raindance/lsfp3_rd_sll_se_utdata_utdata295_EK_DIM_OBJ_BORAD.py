@@ -8,12 +8,12 @@ from models.mssql import read
 
 
 @model(
-    columns={'BORAD_GILTIG_FOM': 'varchar(max)',
- 'BORAD_GILTIG_TOM': 'varchar(max)',
- 'BORAD_ID': 'varchar(max)',
- 'BORAD_ID_TEXT': 'varchar(max)',
- 'BORAD_PASSIV': 'varchar(max)',
- 'BORAD_TEXT': 'varchar(max)'},
+    columns={'BORAD_GILTIG_FOM': 'datetime',
+ 'BORAD_GILTIG_TOM': 'datetime',
+ 'BORAD_ID': 'varchar(3)',
+ 'BORAD_ID_TEXT': 'varchar(34)',
+ 'BORAD_PASSIV': 'bit',
+ 'BORAD_TEXT': 'varchar(30)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

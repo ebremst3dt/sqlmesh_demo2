@@ -8,12 +8,12 @@ from models.mssql import read
 
 
 @model(
-    columns={'FÖPROC_GILTIG_FOM': 'varchar(max)',
- 'FÖPROC_GILTIG_TOM': 'varchar(max)',
- 'FÖPROC_ID': 'varchar(max)',
- 'FÖPROC_ID_TEXT': 'varchar(max)',
- 'FÖPROC_PASSIV': 'varchar(max)',
- 'FÖPROC_TEXT': 'varchar(max)'},
+    columns={'FÖPROC_GILTIG_FOM': 'datetime',
+ 'FÖPROC_GILTIG_TOM': 'datetime',
+ 'FÖPROC_ID': 'varchar(4)',
+ 'FÖPROC_ID_TEXT': 'varchar(35)',
+ 'FÖPROC_PASSIV': 'bit',
+ 'FÖPROC_TEXT': 'varchar(30)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

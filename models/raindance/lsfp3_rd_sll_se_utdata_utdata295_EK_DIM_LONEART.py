@@ -8,12 +8,12 @@ from models.mssql import read
 
 
 @model(
-    columns={'LONEART_GILTIG_FOM': 'varchar(max)',
- 'LONEART_GILTIG_TOM': 'varchar(max)',
- 'LONEART_ID': 'varchar(max)',
- 'LONEART_ID_TEXT': 'varchar(max)',
- 'LONEART_PASSIV': 'varchar(max)',
- 'LONEART_TEXT': 'varchar(max)'},
+    columns={'LONEART_GILTIG_FOM': 'datetime',
+ 'LONEART_GILTIG_TOM': 'datetime',
+ 'LONEART_ID': 'varchar(20)',
+ 'LONEART_ID_TEXT': 'varchar(50)',
+ 'LONEART_PASSIV': 'bit',
+ 'LONEART_TEXT': 'varchar(50)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

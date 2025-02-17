@@ -8,17 +8,17 @@ from models.mssql import read
 
 
 @model(
-    columns={'ANDRAD_AV': 'varchar(max)',
- 'ANDRAD_DATUM': 'varchar(max)',
- 'ANDRAD_TID': 'varchar(max)',
- 'BOANTP_ID': 'varchar(max)',
- 'DATUM_FOM': 'varchar(max)',
- 'DATUM_TOM': 'varchar(max)',
- 'KONTO_ID': 'varchar(max)',
- 'KTOAV_TEXT': 'varchar(max)',
- 'UTILITY': 'varchar(max)',
- 'VERDATUM': 'varchar(max)',
- 'X_V': 'varchar(max)'},
+    columns={'ANDRAD_AV': 'varchar(3)',
+ 'ANDRAD_DATUM': 'datetime',
+ 'ANDRAD_TID': 'varchar(6)',
+ 'BOANTP_ID': 'varchar(4)',
+ 'DATUM_FOM': 'datetime',
+ 'DATUM_TOM': 'datetime',
+ 'KONTO_ID': 'varchar(5)',
+ 'KTOAV_TEXT': 'varchar(5)',
+ 'UTILITY': 'numeric',
+ 'VERDATUM': 'datetime',
+ 'X_V': 'numeric'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

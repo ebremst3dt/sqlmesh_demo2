@@ -8,14 +8,14 @@ from models.mssql import read
 
 
 @model(
-    columns={'BOTYP_DATUM_FOM': 'varchar(max)',
- 'BOTYP_DATUM_TOM': 'varchar(max)',
- 'BOTYP_GILTIG_FOM': 'varchar(max)',
- 'BOTYP_GILTIG_TOM': 'varchar(max)',
- 'BOTYP_ID': 'varchar(max)',
- 'BOTYP_ID_TEXT': 'varchar(max)',
- 'BOTYP_PASSIV': 'varchar(max)',
- 'BOTYP_TEXT': 'varchar(max)'},
+    columns={'BOTYP_DATUM_FOM': 'datetime',
+ 'BOTYP_DATUM_TOM': 'datetime',
+ 'BOTYP_GILTIG_FOM': 'datetime',
+ 'BOTYP_GILTIG_TOM': 'datetime',
+ 'BOTYP_ID': 'varchar(1)',
+ 'BOTYP_ID_TEXT': 'varchar(32)',
+ 'BOTYP_PASSIV': 'bit',
+ 'BOTYP_TEXT': 'varchar(30)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

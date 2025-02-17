@@ -8,15 +8,15 @@ from models.mssql import read
 
 
 @model(
-    columns={'AVTBES_ID': 'varchar(max)',
- 'FRI1_ID': 'varchar(max)',
- 'FRI2_ID': 'varchar(max)',
- 'KONTO_ID': 'varchar(max)',
- 'KST_ID': 'varchar(max)',
- 'MOTP_ID': 'varchar(max)',
- 'PROJ_ID': 'varchar(max)',
- 'UTFALL_V': 'varchar(max)',
- 'VERK_ID': 'varchar(max)'},
+    columns={'AVTBES_ID': 'varchar(7)',
+ 'FRI1_ID': 'varchar(4)',
+ 'FRI2_ID': 'varchar(3)',
+ 'KONTO_ID': 'varchar(4)',
+ 'KST_ID': 'varchar(5)',
+ 'MOTP_ID': 'varchar(4)',
+ 'PROJ_ID': 'varchar(5)',
+ 'UTFALL_V': 'numeric',
+ 'VERK_ID': 'varchar(2)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

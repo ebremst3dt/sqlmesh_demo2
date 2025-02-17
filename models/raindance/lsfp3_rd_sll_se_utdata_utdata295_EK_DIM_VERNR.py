@@ -8,11 +8,11 @@ from models.mssql import read
 
 
 @model(
-    columns={'AR': 'varchar(max)',
- 'INTERNVERNR': 'varchar(max)',
- 'INTERNVERNR_TEXT': 'varchar(max)',
- 'VERDATUM': 'varchar(max)',
- 'VERNRGRUPP': 'varchar(max)'},
+    columns={'AR': 'varchar(4)',
+ 'INTERNVERNR': 'numeric',
+ 'INTERNVERNR_TEXT': 'varchar(70)',
+ 'VERDATUM': 'datetime',
+ 'VERNRGRUPP': 'varchar(9)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

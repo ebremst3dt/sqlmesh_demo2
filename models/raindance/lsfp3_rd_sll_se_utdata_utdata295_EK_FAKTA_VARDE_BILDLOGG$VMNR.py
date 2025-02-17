@@ -8,9 +8,7 @@ from models.mssql import read
 
 
 @model(
-    columns={'LOPNUMMER': 'varchar(max)',
- 'VERDATUM': 'varchar(max)',
- 'VMNR_TEXT': 'varchar(max)'},
+    columns={'LOPNUMMER': 'int', 'VERDATUM': 'datetime', 'VMNR_TEXT': 'varchar(120)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

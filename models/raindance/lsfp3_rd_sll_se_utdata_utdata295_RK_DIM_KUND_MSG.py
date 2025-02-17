@@ -8,17 +8,17 @@ from models.mssql import read
 
 
 @model(
-    columns={'BIT_PAF': 'varchar(max)',
- 'ENVELOPE_TRS': 'varchar(max)',
- 'FORMATV_RDF': 'varchar(max)',
- 'FREEVALUE': 'varchar(max)',
- 'LOGICALVALUE': 'varchar(max)',
- 'MEDIA_TRS': 'varchar(max)',
- 'MSGKEY': 'varchar(max)',
- 'MSGTYPEV': 'varchar(max)',
- 'MSGWAY': 'varchar(max)',
- 'PART': 'varchar(max)',
- 'SBID': 'varchar(max)'},
+    columns={'BIT_PAF': 'numeric',
+ 'ENVELOPE_TRS': 'varchar(10)',
+ 'FORMATV_RDF': 'varchar(15)',
+ 'FREEVALUE': 'varchar(75)',
+ 'LOGICALVALUE': 'varchar(20)',
+ 'MEDIA_TRS': 'varchar(10)',
+ 'MSGKEY': 'numeric',
+ 'MSGTYPEV': 'varchar(15)',
+ 'MSGWAY': 'numeric',
+ 'PART': 'numeric',
+ 'SBID': 'varchar(16)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

@@ -8,18 +8,18 @@ from models.mssql import read
 
 
 @model(
-    columns={'VERK_GILTIG_FOM': 'varchar(max)',
- 'VERK_GILTIG_TOM': 'varchar(max)',
- 'VERK_ID': 'varchar(max)',
- 'VERK_ID_TEXT': 'varchar(max)',
- 'VERK_PASSIV': 'varchar(max)',
- 'VERK_TEXT': 'varchar(max)',
- 'VGREN_GILTIG_FOM': 'varchar(max)',
- 'VGREN_GILTIG_TOM': 'varchar(max)',
- 'VGREN_ID': 'varchar(max)',
- 'VGREN_ID_TEXT': 'varchar(max)',
- 'VGREN_PASSIV': 'varchar(max)',
- 'VGREN_TEXT': 'varchar(max)'},
+    columns={'VERK_GILTIG_FOM': 'datetime',
+ 'VERK_GILTIG_TOM': 'datetime',
+ 'VERK_ID': 'varchar(2)',
+ 'VERK_ID_TEXT': 'varchar(33)',
+ 'VERK_PASSIV': 'bit',
+ 'VERK_TEXT': 'varchar(30)',
+ 'VGREN_GILTIG_FOM': 'datetime',
+ 'VGREN_GILTIG_TOM': 'datetime',
+ 'VGREN_ID': 'varchar(4)',
+ 'VGREN_ID_TEXT': 'varchar(35)',
+ 'VGREN_PASSIV': 'bit',
+ 'VGREN_TEXT': 'varchar(30)'},
     kind=ModelKindName.FULL,
     cron="@daily"
 )

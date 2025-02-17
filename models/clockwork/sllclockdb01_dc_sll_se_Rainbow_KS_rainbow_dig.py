@@ -8,17 +8,17 @@ from models.mssql import read
 
 
 @model(
-    columns={'chgdat': 'varchar(max)',
- 'chgusr': 'varchar(max)',
- 'compny': 'varchar(max)',
- 'credat': 'varchar(max)',
- 'creusr': 'varchar(max)',
- 'digcod': 'varchar(max)',
- 'dignam': 'varchar(max)',
- 'migcod': 'varchar(max)',
- 'sigcod': 'varchar(max)',
- 'srtnam': 'varchar(max)',
- 'srtnum': 'varchar(max)',
+    columns={'chgdat': 'datetime',
+ 'chgusr': 'char(10)',
+ 'compny': 'char(2)',
+ 'credat': 'datetime',
+ 'creusr': 'char(10)',
+ 'digcod': 'char(10)',
+ 'dignam': 'varchar(40)',
+ 'migcod': 'char(10)',
+ 'sigcod': 'char(10)',
+ 'srtnam': 'char(10)',
+ 'srtnum': 'char(10)',
  'txtdsc': 'varchar(max)'},
     kind=ModelKindName.FULL,
     cron="@daily"
