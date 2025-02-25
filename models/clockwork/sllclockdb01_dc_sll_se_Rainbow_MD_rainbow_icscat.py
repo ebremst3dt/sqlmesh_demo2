@@ -13,6 +13,7 @@ from models.mssql import read
  'compny': 'varchar(max)',
  'credat': 'varchar(max)',
  'creusr': 'varchar(max)',
+ 'data_modified': 'date',
  'digcod': 'varchar(max)',
  'gencom': 'varchar(max)',
  'hidsrc': 'varchar(max)',
@@ -30,6 +31,7 @@ from models.mssql import read
  'prbuac': 'varchar(max)',
  'seqnum': 'varchar(max)',
  'sigcod': 'varchar(max)',
+ 'source_catalog': 'varchar(max)',
  'txtdsc': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,

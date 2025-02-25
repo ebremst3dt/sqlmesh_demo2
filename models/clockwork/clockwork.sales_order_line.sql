@@ -164,4 +164,3 @@ SELECT
 	data_modified,
 	source_catalog
 FROM clockwork.rainbow_sol
-    
