@@ -4,10 +4,10 @@ MODEL (
 );
 
 SELECT
-    accnsh AS 'accumulate_sales_history_log',
+    accnsh AS 'accnsh_accumulate_sales_history_log',
 	acpdch AS 'accumulate_production_history_log',
 	acprch AS 'accumulate_purchase_history_log',
-	acsalh AS 'accumulate_sales_history_log',
+	acsalh AS 'acsalh_accumulate_sales_history_log',
 	admad AS 'sales_cost_addition',
 	admadd AS 'administration_cost_addition',
 	agncod AS 'agent_identification_code',
@@ -141,4 +141,3 @@ SELECT
 	data_modified,
 	source_catalog
 FROM clockwork.rainbow_mig
-    
