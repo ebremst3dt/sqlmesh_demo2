@@ -6,7 +6,7 @@ from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
 
-
+        
 @model(
     columns={'agrnum': 'varchar(max)',
  'catbuy': 'varchar(max)',
@@ -126,9 +126,15 @@ from models.mssql import read
  'vrscod': 'varchar(max)',
  'whscod': 'varchar(max)',
  'wkgtyp': 'varchar(max)'},
-    kind=ModelKindName.FULL,
+    kind=dict(
+        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
+
+        time_column="data_modified"
+    ),
     cron="@daily"
 )
+
+        
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -137,7 +143,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT 
  		CAST(agrnum AS VARCHAR(MAX)) AS agrnum,
 		CAST(catbuy AS VARCHAR(MAX)) AS catbuy,
 		CAST(cbccnl AS VARCHAR(MAX)) AS cbccnl,
@@ -255,7 +261,20 @@ def execute(
 		CAST(vdmtyp AS VARCHAR(MAX)) AS vdmtyp,
 		CAST(vrscod AS VARCHAR(MAX)) AS vrscod,
 		CAST(whscod AS VARCHAR(MAX)) AS whscod,
-		CAST(wkgtyp AS VARCHAR(MAX)) AS wkgtyp 
+		CAST(wkgtyp AS VARCHAR(MAX)) AS wkgtyp,
+		CAST(
+                COALESCE(
+                    CASE
+                        WHEN credat > chgdat OR chgdat IS NULL THEN credat
+                        WHEN chgdat > credat OR credat IS NULL THEN chgdat
+                        ELSE credat
+                    END,
+                    chgdat,
+                    credat
+                ) AS DATE
+            ) AS data_modified,
+		'Rainbow_TH' as source_catalog 
 	FROM Rainbow_TH.rainbow.pol
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
+        
