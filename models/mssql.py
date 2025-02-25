@@ -4,7 +4,7 @@ from roskarl import env_var_dsn, DSN
 
 
 def read(query: str, server_url: str):
-    dsn: DSN = env_var_dsn(server_url=server_url)
+    dsn: DSN = env_var_dsn(name=server_url)
 
     conn = pymssql.connect(
         server=dsn.hostname,
