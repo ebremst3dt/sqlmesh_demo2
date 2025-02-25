@@ -27,6 +27,6 @@ config = Config(
     ),
     model_defaults=ModelDefaultsConfig(
         dialect="tsql",
-        start="2024-01-01"
+        start="2025-02-15"
     )
 )
