@@ -83,7 +83,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(ANSTALLD_ID AS VARCHAR(MAX)) AS anstalld_id,
 		CAST(ANSTFORM_ID AS VARCHAR(MAX)) AS anstform_id,
 		CONVERT(varchar(max), ATTESTDATUM1, 126) AS attestdatum1,

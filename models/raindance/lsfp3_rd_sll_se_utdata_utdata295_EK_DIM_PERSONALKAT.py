@@ -22,7 +22,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(PERSONALKAT_ID AS VARCHAR(MAX)) AS personalkat_id,
 		CAST(PERSONALKAT_ID_TEXT AS VARCHAR(MAX)) AS personalkat_id_text,
 		CAST(PERSONALKAT_TEXT AS VARCHAR(MAX)) AS personalkat_text 

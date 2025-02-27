@@ -126,9 +126,9 @@ def main():
         st.info("Please upload a CSV file or use sample data")
         return
 
-    # Visualization type selector
-    viz_type = st.selectbox(
-        "Select visualization type",
+    # Visualization type SELECT TOP 1000or
+    viz_type = st.SELECT TOP 1000box(
+        "SELECT TOP 1000 visualization type",
         ["Network Graph", "Sankey Diagram"]
     )
 

@@ -12,7 +12,7 @@ GO
 
 USE CLOCKWORK_SLLCLOCKDB01_dc_sll_se;
 
-IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'RAINBOW_KS')
+IF NOT EXISTS (SELECT TOP 1000 * FROM sys.schemas WHERE name = 'RAINBOW_KS')
 BEGIN
     EXEC('CREATE SCHEMA RAINBOW_KS');
 END
@@ -24,13 +24,13 @@ GO
 
 USE raindance_lsfp3_rd_sll_se;
 
--- IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'rainbow')
+-- IF NOT EXISTS (SELECT TOP 1000 * FROM sys.schemas WHERE name = 'rainbow')
 -- BEGIN
 --     EXEC('CREATE SCHEMA rainbow');
 -- END;
 -- GO
 
-IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'utdata_utdata295')
+IF NOT EXISTS (SELECT TOP 1000 * FROM sys.schemas WHERE name = 'utdata_utdata295')
 BEGIN
     EXEC('CREATE SCHEMA utdata_utdata295');
 END

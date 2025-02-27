@@ -6,7 +6,7 @@ GO
 
 USE Rainbow_KS;
 
-IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'rainbow')
+IF NOT EXISTS (SELECT TOP 1000 * FROM sys.schemas WHERE name = 'rainbow')
 BEGIN
     EXEC('GO
 
@@ -60,7 +60,7 @@ GO
 
 USE Rainbow_DS;
 
-IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'rainbow')
+IF NOT EXISTS (SELECT TOP 1000 * FROM sys.schemas WHERE name = 'rainbow')
 BEGIN
     EXEC('GO
 
@@ -111,7 +111,7 @@ GO
 
 USE Utdata;
 
-IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'utdata295')
+IF NOT EXISTS (SELECT TOP 1000 * FROM sys.schemas WHERE name = 'utdata295')
 BEGIN
     EXEC('GO
 

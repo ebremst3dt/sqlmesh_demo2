@@ -22,7 +22,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CONVERT(varchar(max), BOKFORINGSAR, 126) AS bokforingsar,
 		CAST(BOKFORINGSAR_TEXT AS VARCHAR(MAX)) AS bokforingsar_text,
 		CONVERT(varchar(max), BOKFORINGSARSLUT, 126) AS bokforingsarslut 

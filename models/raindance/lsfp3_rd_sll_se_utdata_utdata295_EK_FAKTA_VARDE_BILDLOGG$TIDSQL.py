@@ -22,7 +22,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(LOPNUMMER AS VARCHAR(MAX)) AS lopnummer,
 		CAST(TIDSQL_V AS VARCHAR(MAX)) AS tidsql_v,
 		CONVERT(varchar(max), VERDATUM, 126) AS verdatum 

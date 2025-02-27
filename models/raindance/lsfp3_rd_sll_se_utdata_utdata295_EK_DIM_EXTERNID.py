@@ -29,7 +29,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(DELSYS AS VARCHAR(MAX)) AS delsys,
 		CAST(DELSYS_TEXT AS VARCHAR(MAX)) AS delsys_text,
 		CAST(DOKUMENTTYP AS VARCHAR(MAX)) AS dokumenttyp,

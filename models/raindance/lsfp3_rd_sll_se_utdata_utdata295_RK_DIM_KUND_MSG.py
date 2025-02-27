@@ -30,7 +30,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(BIT_PAF AS VARCHAR(MAX)) AS bit_paf,
 		CAST(ENVELOPE_TRS AS VARCHAR(MAX)) AS envelope_trs,
 		CAST(FORMATV_RDF AS VARCHAR(MAX)) AS formatv_rdf,

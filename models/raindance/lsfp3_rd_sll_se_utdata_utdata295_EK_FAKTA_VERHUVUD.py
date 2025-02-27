@@ -33,7 +33,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(ANTALFEL AS VARCHAR(MAX)) AS antalfel,
 		CAST(ANTALRADER AS VARCHAR(MAX)) AS antalrader,
 		CONVERT(varchar(max), BOKFORINGSAR, 126) AS bokforingsar,

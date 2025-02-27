@@ -28,7 +28,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(ANDRAD_AV AS VARCHAR(MAX)) AS andrad_av,
 		CONVERT(varchar(max), ANDRAD_DATUM, 126) AS andrad_datum,
 		CAST(ANDRAD_TID AS VARCHAR(MAX)) AS andrad_tid,

@@ -14,7 +14,7 @@ services:
     volumes:
       - ./.sqlserver_source_init_db:/init_db
     healthcheck:
-      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -C -P Password1! -Q 'SELECT 1 as x' || exit 1"]
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -C -P Password1! -Q 'SELECT TOP 1000 1 as x' || exit 1"]
       interval: 5s
       retries: 10
       start_period: 10s
@@ -42,7 +42,7 @@ services:
     volumes:
       - ./.sqlserver_destination_init_db:/init_db
     healthcheck:
-      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -C -P Password1! -Q 'SELECT 1 as x' || exit 1"]
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -C -P Password1! -Q 'SELECT TOP 1000 1 as x' || exit 1"]
       interval: 5s
       retries: 10
       start_period: 10s

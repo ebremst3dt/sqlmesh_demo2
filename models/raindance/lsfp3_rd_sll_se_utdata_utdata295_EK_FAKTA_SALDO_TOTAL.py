@@ -48,7 +48,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(AVTBES_ID AS VARCHAR(MAX)) AS avtbes_id,
 		CONVERT(varchar(max), BFAR, 126) AS bfar,
 		CAST(BUDGET_ACK AS VARCHAR(MAX)) AS budget_ack,

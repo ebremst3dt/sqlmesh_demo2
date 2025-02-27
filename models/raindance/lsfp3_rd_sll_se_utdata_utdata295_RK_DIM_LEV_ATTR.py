@@ -22,7 +22,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(ATTR_KEY_PAT AS VARCHAR(MAX)) AS attr_key_pat,
 		CAST(ATTRIBUTE AS VARCHAR(MAX)) AS attribute,
 		CAST(SBID AS VARCHAR(MAX)) AS sbid 

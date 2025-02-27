@@ -20,7 +20,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(IB AS VARCHAR(MAX)) AS ib,
 		CAST(IB_TEXT AS VARCHAR(MAX)) AS ib_text 
 	FROM utdata.utdata295.EK_DIM_IB

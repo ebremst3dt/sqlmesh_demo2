@@ -20,7 +20,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(PART AS VARCHAR(MAX)) AS part,
 		CAST(SBID AS VARCHAR(MAX)) AS sbid 
 	FROM utdata.utdata295.RK_DIM_KUND_PART

@@ -20,7 +20,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(KUNDRTYP AS VARCHAR(MAX)) AS kundrtyp,
 		CAST(KUNDRTYP_TEXT AS VARCHAR(MAX)) AS kundrtyp_text 
 	FROM utdata.utdata295.RK_DIM_KUNDRTYP

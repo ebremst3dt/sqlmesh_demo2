@@ -17,7 +17,8 @@ config = Config(
                 host=lakehouse_dsn.hostname,
                 password=lakehouse_dsn.password,
                 port=lakehouse_dsn.port,
-                database=lakehouse_dsn.database
+                database=lakehouse_dsn.database,
+                charset='cp1252'
             )
         )
     },

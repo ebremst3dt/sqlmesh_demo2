@@ -20,7 +20,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(FAKTNR AS VARCHAR(MAX)) AS faktnr,
 		CAST(ORDERNR AS VARCHAR(MAX)) AS ordernr 
 	FROM utdata.utdata295.RK_ORDERKOPPL

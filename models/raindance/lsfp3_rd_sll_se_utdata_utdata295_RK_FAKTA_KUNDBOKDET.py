@@ -29,7 +29,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(BOKBELOPP_INT AS VARCHAR(MAX)) AS bokbelopp_int,
 		CAST(BOKBELOPP_VAL AS VARCHAR(MAX)) AS bokbelopp_val,
 		CAST(BOKSTATUS AS VARCHAR(MAX)) AS bokstatus,

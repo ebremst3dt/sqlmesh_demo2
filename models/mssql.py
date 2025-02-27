@@ -10,7 +10,8 @@ def read(query: str, server_url: str):
         server=dsn.hostname,
         user=dsn.username,
         password=dsn.password,
-        database=dsn.database
+        database=dsn.database,
+        charset="UTF-8"
     )
 
     try:

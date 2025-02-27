@@ -161,7 +161,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT 
+	SELECT TOP 1000 
  		CAST(
                 COALESCE(
                     CASE

@@ -31,7 +31,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(BILAGA1 AS VARCHAR(MAX)) AS bilaga1,
 		CAST(BILAGA10 AS VARCHAR(MAX)) AS bilaga10,
 		CAST(BILAGA2 AS VARCHAR(MAX)) AS bilaga2,

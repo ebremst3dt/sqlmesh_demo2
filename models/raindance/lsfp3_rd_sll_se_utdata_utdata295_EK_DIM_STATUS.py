@@ -23,7 +23,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(STATUS AS VARCHAR(MAX)) AS status,
 		CAST(STATUS_TEXT AS VARCHAR(MAX)) AS status_text,
 		CAST(STATUSTYP AS VARCHAR(MAX)) AS statustyp,

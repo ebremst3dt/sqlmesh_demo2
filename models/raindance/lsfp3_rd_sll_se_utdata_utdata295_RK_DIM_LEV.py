@@ -115,7 +115,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(ADR1 AS VARCHAR(MAX)) AS adr1,
 		CAST(ADR2 AS VARCHAR(MAX)) AS adr2,
 		CAST(ATTRIBUTE_ACTORID AS VARCHAR(MAX)) AS attribute_actorid,

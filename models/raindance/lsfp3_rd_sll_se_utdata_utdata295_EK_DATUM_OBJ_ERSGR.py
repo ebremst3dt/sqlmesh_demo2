@@ -27,7 +27,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CONVERT(varchar(max), ERSGR_DATUM_FOM, 126) AS ersgr_datum_fom,
 		CONVERT(varchar(max), ERSGR_DATUM_TOM, 126) AS ersgr_datum_tom,
 		CONVERT(varchar(max), ERSGR_GILTIG_FOM, 126) AS ersgr_giltig_fom,

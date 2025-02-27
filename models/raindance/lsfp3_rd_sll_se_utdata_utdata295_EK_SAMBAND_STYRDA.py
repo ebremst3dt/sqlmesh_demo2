@@ -25,7 +25,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CONVERT(varchar(max), DATUM_FOM, 126) AS datum_fom,
 		CONVERT(varchar(max), DATUM_TOM, 126) AS datum_tom,
 		CAST(NUMERISK_VANSTER AS VARCHAR(MAX)) AS numerisk_vanster,

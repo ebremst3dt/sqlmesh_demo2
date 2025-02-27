@@ -25,7 +25,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(DUMMY2 AS VARCHAR(MAX)) AS dummy2,
 		CAST(TAB_UBF AS VARCHAR(MAX)) AS tab_ubf,
 		CAST(TAB_UBF_ID_TEXT AS VARCHAR(MAX)) AS tab_ubf_id_text,

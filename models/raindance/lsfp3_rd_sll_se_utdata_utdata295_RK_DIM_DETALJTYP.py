@@ -24,7 +24,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(DETALJTYP AS VARCHAR(MAX)) AS detaljtyp,
 		CAST(DETALJTYP_ID AS VARCHAR(MAX)) AS detaljtyp_id,
 		CAST(DETALJTYP_ID_TEXT AS VARCHAR(MAX)) AS detaljtyp_id_text,

@@ -31,7 +31,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CONVERT(varchar(max), VERK_GILTIG_FOM, 126) AS verk_giltig_fom,
 		CONVERT(varchar(max), VERK_GILTIG_TOM, 126) AS verk_giltig_tom,
 		CAST(VERK_ID AS VARCHAR(MAX)) AS verk_id,

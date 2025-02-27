@@ -25,7 +25,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CAST(EXTERN AS VARCHAR(MAX)) AS extern,
 		CAST(EXTERN_TEXT AS VARCHAR(MAX)) AS extern_text,
 		CAST(RESKONTRA AS VARCHAR(MAX)) AS reskontra,

@@ -25,7 +25,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT top 1000
+	SELECT TOP 1000 top 1000
  		CONVERT(varchar(max), MOMS_GILTIG_FOM, 126) AS moms_giltig_fom,
 		CONVERT(varchar(max), MOMS_GILTIG_TOM, 126) AS moms_giltig_tom,
 		CAST(MOMS_ID AS VARCHAR(MAX)) AS moms_id,
