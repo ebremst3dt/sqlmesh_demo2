@@ -8,7 +8,9 @@ from models.mssql import read
 
         
 @model(
-    columns={'agrnum': 'varchar(max)',
+    columns={'_data_modified': 'date',
+ '_source_catalog': 'varchar(max)',
+ 'agrnum': 'varchar(max)',
  'appdat': 'varchar(max)',
  'appsts': 'varchar(max)',
  'appusr': 'varchar(max)',
@@ -24,7 +26,6 @@ from models.mssql import read
  'creusr': 'varchar(max)',
  'crtcod': 'varchar(max)',
  'curcod': 'varchar(max)',
- 'data_modified': 'date',
  'dfiseq': 'varchar(max)',
  'dlgdat': 'varchar(max)',
  'dlgidc': 'varchar(max)',
@@ -84,7 +85,6 @@ from models.mssql import read
  'rsptyp': 'varchar(max)',
  'rtndat': 'varchar(max)',
  'seqnum': 'varchar(max)',
- 'source_catalog': 'varchar(max)',
  'splmst': 'varchar(max)',
  'srctyp': 'varchar(max)',
  'tadref': 'varchar(max)',
@@ -116,7 +116,19 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT 
- 		CAST(agrnum AS VARCHAR(MAX)) AS agrnum,
+ 		CAST(
+                COALESCE(
+                    CASE
+                        WHEN credat > chgdat OR chgdat IS NULL THEN credat
+                        WHEN chgdat > credat OR credat IS NULL THEN chgdat
+                        ELSE credat
+                    END,
+                    chgdat,
+                    credat
+                ) AS DATE
+            ) AS _data_modified,
+		'Rainbow_KS' as _source_catalog,
+		CAST(agrnum AS VARCHAR(MAX)) AS agrnum,
 		CONVERT(varchar(max), appdat, 126) AS appdat,
 		CAST(appsts AS VARCHAR(MAX)) AS appsts,
 		CAST(appusr AS VARCHAR(MAX)) AS appusr,
@@ -203,19 +215,7 @@ def execute(
 		CAST(vatcod AS VARCHAR(MAX)) AS vatcod,
 		CAST(vrfsts AS VARCHAR(MAX)) AS vrfsts,
 		CAST(vrscod AS VARCHAR(MAX)) AS vrscod,
-		CAST(wwfseq AS VARCHAR(MAX)) AS wwfseq,
-		CAST(
-                COALESCE(
-                    CASE
-                        WHEN credat > chgdat OR chgdat IS NULL THEN credat
-                        WHEN chgdat > credat OR credat IS NULL THEN chgdat
-                        ELSE credat
-                    END,
-                    chgdat,
-                    credat
-                ) AS DATE
-            ) AS data_modified,
-		'Rainbow_KS' as source_catalog 
+		CAST(wwfseq AS VARCHAR(MAX)) AS wwfseq 
 	FROM Rainbow_KS.rainbow.mrqlin
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")

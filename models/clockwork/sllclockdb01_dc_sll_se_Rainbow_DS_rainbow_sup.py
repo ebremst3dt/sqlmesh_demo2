@@ -8,7 +8,9 @@ from models.mssql import read
 
         
 @model(
-    columns={'abcexd': 'varchar(max)',
+    columns={'_data_modified': 'date',
+ '_source_catalog': 'varchar(max)',
+ 'abcexd': 'varchar(max)',
  'abcexu': 'varchar(max)',
  'abcfvd': 'varchar(max)',
  'abcfvu': 'varchar(max)',
@@ -59,7 +61,6 @@ from models.mssql import read
  'ctrpri': 'varchar(max)',
  'curcod': 'varchar(max)',
  'curtyp': 'varchar(max)',
- 'data_modified': 'date',
  'dcscod': 'varchar(max)',
  'defprc': 'varchar(max)',
  'dicing': 'varchar(max)',
@@ -138,7 +139,6 @@ from models.mssql import read
  'sgrcod': 'varchar(max)',
  'sifcod': 'varchar(max)',
  'sixcod': 'varchar(max)',
- 'source_catalog': 'varchar(max)',
  'splcod': 'varchar(max)',
  'splord': 'varchar(max)',
  'srtnam': 'varchar(max)',
@@ -180,7 +180,19 @@ def execute(
 ) -> pd.DataFrame:
     query = """
 	SELECT 
- 		CONVERT(varchar(max), abcexd, 126) AS abcexd,
+ 		CAST(
+                COALESCE(
+                    CASE
+                        WHEN credat > chgdat OR chgdat IS NULL THEN credat
+                        WHEN chgdat > credat OR credat IS NULL THEN chgdat
+                        ELSE credat
+                    END,
+                    chgdat,
+                    credat
+                ) AS DATE
+            ) AS _data_modified,
+		'Rainbow_DS' as _source_catalog,
+		CONVERT(varchar(max), abcexd, 126) AS abcexd,
 		CAST(abcexu AS VARCHAR(MAX)) AS abcexu,
 		CONVERT(varchar(max), abcfvd, 126) AS abcfvd,
 		CAST(abcfvu AS VARCHAR(MAX)) AS abcfvu,
@@ -331,19 +343,7 @@ def execute(
 		CAST(viadr3 AS VARCHAR(MAX)) AS viadr3,
 		CAST(viadr4 AS VARCHAR(MAX)) AS viadr4,
 		CAST(whscod AS VARCHAR(MAX)) AS whscod,
-		CAST(xtccod AS VARCHAR(MAX)) AS xtccod,
-		CAST(
-                COALESCE(
-                    CASE
-                        WHEN credat > chgdat OR chgdat IS NULL THEN credat
-                        WHEN chgdat > credat OR credat IS NULL THEN chgdat
-                        ELSE credat
-                    END,
-                    chgdat,
-                    credat
-                ) AS DATE
-            ) AS data_modified,
-		'Rainbow_DS' as source_catalog 
+		CAST(xtccod AS VARCHAR(MAX)) AS xtccod 
 	FROM Rainbow_DS.rainbow.sup
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
