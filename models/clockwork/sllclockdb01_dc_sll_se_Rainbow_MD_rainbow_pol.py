@@ -131,7 +131,7 @@ from models.mssql import read
     kind=dict(
         name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
 
-        time_column="data_modified"
+        time_column="_data_modified"
     ),
     cron="@daily"
 )

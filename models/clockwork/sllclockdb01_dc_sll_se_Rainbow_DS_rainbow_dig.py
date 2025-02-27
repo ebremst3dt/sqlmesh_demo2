@@ -6,7 +6,7 @@ from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
 
-
+        
 @model(
     columns={'_data_modified': 'date',
  '_source_catalog': 'varchar(max)',
@@ -30,7 +30,7 @@ from models.mssql import read
     cron="@daily"
 )
 
-
+        
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -39,7 +39,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT
+	SELECT 
  		CAST(
                 COALESCE(
                     CASE
@@ -63,7 +63,8 @@ def execute(
 		CAST(sigcod AS VARCHAR(MAX)) AS sigcod,
 		CAST(srtnam AS VARCHAR(MAX)) AS srtnam,
 		CAST(srtnum AS VARCHAR(MAX)) AS srtnum,
-		CAST(txtdsc AS VARCHAR(MAX)) AS txtdsc
+		CAST(txtdsc AS VARCHAR(MAX)) AS txtdsc 
 	FROM Rainbow_DS.rainbow.dig
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
+        
