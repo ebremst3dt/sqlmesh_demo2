@@ -8,7 +8,8 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified': 'date',
+    columns={'_data_modified_utc': 'date',
+ '_metadata_modified_utc': 'datetime2',
  '_source_catalog': 'varchar(max)',
  'chgdat': 'varchar(max)',
  'chgusr': 'varchar(max)',
@@ -35,10 +36,11 @@ from models.mssql import read
  'txtdsc': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified"
+        batch_size=1,
+        time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_KS_rainbow_icscat_data_modified_utc ON clockwork.Rainbow_KS_rainbow_icscat (_data_modified_utc)"]
 )
 
         
@@ -49,19 +51,22 @@ def execute(
     execution_time: datetime,
     **kwargs: t.Any,
 ) -> pd.DataFrame:
-    query = """
-	SELECT TOP 1000 
+    query = f"""
+	SELECT * FROM (SELECT 
  		CAST(
-                COALESCE(
-                    CASE
-                        WHEN credat > chgdat OR chgdat IS NULL THEN credat
-                        WHEN chgdat > credat OR credat IS NULL THEN chgdat
-                        ELSE credat
-                    END,
-                    chgdat,
-                    credat
-                ) AS DATE
-            ) AS _data_modified,
+			CAST(
+				COALESCE(
+					CASE
+						WHEN credat > chgdat or chgdat IS NULL then credat
+						WHEN chgdat > credat or credat is NULL then chgdat
+						ELSE credat
+					END,
+					chgdat,
+					credat
+				) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC'
+			AS datetime2
+		) AS DATE ) as data_modified_utc,
+		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'Rainbow_KS' as _source_catalog,
 		CONVERT(varchar(max), chgdat, 126) AS chgdat,
 		CAST(chgusr AS VARCHAR(MAX)) AS chgusr,
@@ -87,6 +92,9 @@ def execute(
 		CAST(sigcod AS VARCHAR(MAX)) AS sigcod,
 		CAST(txtdsc AS VARCHAR(MAX)) AS txtdsc 
 	FROM Rainbow_KS.rainbow.icscat
+     )y
+        WHERE _data_modified_utc between '{start}' and '{end}'
+        
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
         
