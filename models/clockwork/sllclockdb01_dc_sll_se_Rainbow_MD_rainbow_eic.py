@@ -109,7 +109,7 @@ from models.mssql import read
         time_column="_data_modified_utc"
     ),
     cron="@daily",
-    post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_MD_rainbow_eic_data_modified_utc ON clockwork.Rainbow_MD_rainbow_eic (_data_modified_utc)"]
+    post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_MD_rainbow_eic_data_modified_utc ON clockwork.sllclockdb01_dc_sll_se_Rainbow_MD_rainbow_eic (_data_modified_utc)"]
 )
 
         
