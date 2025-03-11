@@ -66,10 +66,10 @@ from models.mssql import read
         time_column="_data_modified_utc"
     ),
     cron="@daily",
-    post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_DS_rainbow_sig_data_modified_utc ON clockwork.sllclockdb01_dc_sll_se_Rainbow_DS_rainbow_sig (_data_modified_utc)"]
+    post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_DS_rainbow_sig_data_modified_utc ON clockwork_sllclockdb01_dc_sll_se.Rainbow_DS_rainbow_sig (_data_modified_utc)"]
 )
 
-        
+    
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -80,18 +80,18 @@ def execute(
     query = f"""
 	SELECT * FROM (SELECT 
  		CAST(
-			CAST(
-				COALESCE(
-					CASE
-						WHEN credat > chgdat or chgdat IS NULL then credat
-						WHEN chgdat > credat or credat is NULL then chgdat
-						ELSE credat
-					END,
-					chgdat,
-					credat
-				) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC'
-			AS datetime2
-		) AS DATE ) as data_modified_utc,
+        CAST(
+            COALESCE(
+                CASE
+                    WHEN credat > chgdat or chgdat IS NULL then credat
+                    WHEN chgdat > credat or credat is NULL then chgdat
+                    ELSE credat
+                END,
+                chgdat,
+                credat
+            ) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC'
+        AS datetime2
+    ) AS DATE ) as data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'Rainbow_DS' as _source_catalog,
 		CAST(astcod AS VARCHAR(MAX)) AS astcod,
@@ -145,8 +145,8 @@ def execute(
 		CAST(txtdsc AS VARCHAR(MAX)) AS txtdsc 
 	FROM Rainbow_DS.rainbow.sig
      )y
-        WHERE _data_modified_utc between '{start}' and '{end}'
-        
+    WHERE _data_modified_utc between '{start}' and '{end}'
+    
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
-        
+    

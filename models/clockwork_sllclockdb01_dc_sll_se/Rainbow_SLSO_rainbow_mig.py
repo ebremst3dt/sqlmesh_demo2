@@ -151,10 +151,10 @@ from models.mssql import read
         time_column="_data_modified_utc"
     ),
     cron="@daily",
-    post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_SLSO_rainbow_mig_data_modified_utc ON clockwork.sllclockdb01_dc_sll_se_Rainbow_SLSO_rainbow_mig (_data_modified_utc)"]
+    post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_SLSO_rainbow_mig_data_modified_utc ON clockwork_sllclockdb01_dc_sll_se.Rainbow_SLSO_rainbow_mig (_data_modified_utc)"]
 )
 
-        
+    
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -165,18 +165,18 @@ def execute(
     query = f"""
 	SELECT * FROM (SELECT 
  		CAST(
-			CAST(
-				COALESCE(
-					CASE
-						WHEN credat > chgdat or chgdat IS NULL then credat
-						WHEN chgdat > credat or credat is NULL then chgdat
-						ELSE credat
-					END,
-					chgdat,
-					credat
-				) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC'
-			AS datetime2
-		) AS DATE ) as data_modified_utc,
+        CAST(
+            COALESCE(
+                CASE
+                    WHEN credat > chgdat or chgdat IS NULL then credat
+                    WHEN chgdat > credat or credat is NULL then chgdat
+                    ELSE credat
+                END,
+                chgdat,
+                credat
+            ) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC'
+        AS datetime2
+    ) AS DATE ) as data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'Rainbow_SLSO' as _source_catalog,
 		CAST(accnsh AS VARCHAR(MAX)) AS accnsh,
@@ -315,8 +315,8 @@ def execute(
 		CAST(worrsp AS VARCHAR(MAX)) AS worrsp 
 	FROM Rainbow_SLSO.rainbow.mig
      )y
-        WHERE _data_modified_utc between '{start}' and '{end}'
-        
+    WHERE _data_modified_utc between '{start}' and '{end}'
+    
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
-        
+    
