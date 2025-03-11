@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'MOTFRA_GILTIG_FOM': 'varchar(max)', 'MOTFRA_GILTIG_TOM': 'varchar(max)', 'MOTFRA_ID': 'varchar(max)', 'MOTFRA_ID_TEXT': 'varchar(max)', 'MOTFRA_PASSIV': 'varchar(max)', 'MOTFRA_TEXT': 'varchar(max)', 'MOTP_GILTIG_FOM': 'varchar(max)', 'MOTP_GILTIG_TOM': 'varchar(max)', 'MOTP_ID': 'varchar(max)', 'MOTP_ID_TEXT': 'varchar(max)', 'MOTP_PASSIV': 'varchar(max)', 'MOTP_TEXT': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'MOTFRA_GILTIG_FOM': 'varchar(max)', 'MOTFRA_GILTIG_TOM': 'varchar(max)', 'MOTFRA_ID': 'varchar(max)', 'MOTFRA_ID_TEXT': 'varchar(max)', 'MOTFRA_PASSIV': 'varchar(max)', 'MOTFRA_TEXT': 'varchar(max)', 'MOTP_GILTIG_FOM': 'varchar(max)', 'MOTP_GILTIG_TOM': 'varchar(max)', 'MOTP_ID': 'varchar(max)', 'MOTP_ID_TEXT': 'varchar(max)', 'MOTP_PASSIV': 'varchar(max)', 'MOTP_TEXT': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),

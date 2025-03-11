@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'ANDRAD_AV': 'varchar(max)', 'ANDRAD_DATUM': 'varchar(max)', 'ANDRAD_TID': 'varchar(max)', 'ANST_ID': 'varchar(max)', 'ANTMÅN_V': 'varchar(max)', 'BELOPP_V': 'varchar(max)', 'DATUM_FOM': 'varchar(max)', 'DATUM_TOM': 'varchar(max)', 'ERSGR_ID': 'varchar(max)', 'KST_ID': 'varchar(max)', 'LÖNEÖK_V': 'varchar(max)', 'OMF_V': 'varchar(max)', 'PROJ_ID': 'varchar(max)', 'TOTBEL_V': 'varchar(max)', 'UTILITY': 'varchar(max)', 'VERDATUM': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ANDRAD_AV': 'varchar(max)', 'ANDRAD_DATUM': 'varchar(max)', 'ANDRAD_TID': 'varchar(max)', 'ANST_ID': 'varchar(max)', 'ANTMÅN_V': 'varchar(max)', 'BELOPP_V': 'varchar(max)', 'DATUM_FOM': 'varchar(max)', 'DATUM_TOM': 'varchar(max)', 'ERSGR_ID': 'varchar(max)', 'KST_ID': 'varchar(max)', 'LÖNEÖK_V': 'varchar(max)', 'OMF_V': 'varchar(max)', 'PROJ_ID': 'varchar(max)', 'TOTBEL_V': 'varchar(max)', 'UTILITY': 'varchar(max)', 'VERDATUM': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),

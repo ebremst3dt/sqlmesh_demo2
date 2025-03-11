@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'DUMMY2': 'varchar(max)', 'TAB_BETP': 'varchar(max)', 'TAB_BETP_ID_TEXT': 'varchar(max)', 'TAB_BETP_TEXT': 'varchar(max)', 'VARDE1': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'DUMMY2': 'varchar(max)', 'TAB_BETP': 'varchar(max)', 'TAB_BETP_ID_TEXT': 'varchar(max)', 'TAB_BETP_TEXT': 'varchar(max)', 'VARDE1': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),

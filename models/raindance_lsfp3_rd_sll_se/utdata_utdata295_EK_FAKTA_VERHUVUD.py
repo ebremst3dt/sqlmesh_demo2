@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'ANTALFEL': 'varchar(max)', 'ANTALRADER': 'varchar(max)', 'BOKFORINGSAR': 'varchar(max)', 'DEFDATUM': 'varchar(max)', 'DEFSIGN': 'varchar(max)', 'FTG': 'varchar(max)', 'HUVUDTEXT': 'varchar(max)', 'INTERNVERNR': 'varchar(max)', 'REGDATUM': 'varchar(max)', 'REGSIGN': 'varchar(max)', 'STATUS': 'varchar(max)', 'VERDATUM': 'varchar(max)', 'VERNR': 'varchar(max)', 'VERTYP': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ANTALFEL': 'varchar(max)', 'ANTALRADER': 'varchar(max)', 'BOKFORINGSAR': 'varchar(max)', 'DEFDATUM': 'varchar(max)', 'DEFSIGN': 'varchar(max)', 'FTG': 'varchar(max)', 'HUVUDTEXT': 'varchar(max)', 'INTERNVERNR': 'varchar(max)', 'REGDATUM': 'varchar(max)', 'REGSIGN': 'varchar(max)', 'STATUS': 'varchar(max)', 'VERDATUM': 'varchar(max)', 'VERNR': 'varchar(max)', 'VERTYP': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),

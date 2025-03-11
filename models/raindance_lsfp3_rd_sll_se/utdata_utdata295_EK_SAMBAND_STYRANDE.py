@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'DATUM_FOM': 'varchar(max)', 'DATUM_TOM': 'varchar(max)', 'NIVA': 'varchar(max)', 'NUMERISK_VANSTER': 'varchar(max)', 'RADNUMMER': 'varchar(max)', 'RADTILLHOR': 'varchar(max)', 'STYRANDE_ID': 'varchar(max)', 'STYRANDE_INTERVALL': 'varchar(max)', 'STYRANDE_INTERVALL2': 'varchar(max)', 'STYRANDE_NR': 'varchar(max)', 'STYRANDE_OBJEKT_FOM': 'varchar(max)', 'STYRANDE_OBJEKT_TOM': 'varchar(max)', 'STYRANDE_STJARNURV': 'varchar(max)', 'STYRD_ID': 'varchar(max)', 'STYRD_INTERVALL': 'varchar(max)', 'STYRD_INTERVALL2': 'varchar(max)', 'STYRD_NR': 'varchar(max)', 'STYRD_STJARNURV': 'varchar(max)', 'VILLKAR': 'varchar(max)', 'VILLKAR_NR': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'DATUM_FOM': 'varchar(max)', 'DATUM_TOM': 'varchar(max)', 'NIVA': 'varchar(max)', 'NUMERISK_VANSTER': 'varchar(max)', 'RADNUMMER': 'varchar(max)', 'RADTILLHOR': 'varchar(max)', 'STYRANDE_ID': 'varchar(max)', 'STYRANDE_INTERVALL': 'varchar(max)', 'STYRANDE_INTERVALL2': 'varchar(max)', 'STYRANDE_NR': 'varchar(max)', 'STYRANDE_OBJEKT_FOM': 'varchar(max)', 'STYRANDE_OBJEKT_TOM': 'varchar(max)', 'STYRANDE_STJARNURV': 'varchar(max)', 'STYRD_ID': 'varchar(max)', 'STYRD_INTERVALL': 'varchar(max)', 'STYRD_INTERVALL2': 'varchar(max)', 'STYRD_NR': 'varchar(max)', 'STYRD_STJARNURV': 'varchar(max)', 'VILLKAR': 'varchar(max)', 'VILLKAR_NR': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),

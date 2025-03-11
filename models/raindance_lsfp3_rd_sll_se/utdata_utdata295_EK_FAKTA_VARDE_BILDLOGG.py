@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'ANVID_TEXT': 'varchar(max)', 'BILDNR_TEXT': 'varchar(max)', 'BILDN_TEXT': 'varchar(max)', 'DATUM_FOM': 'varchar(max)', 'DATUM_TOM': 'varchar(max)', 'DELSYS_TEXT': 'varchar(max)', 'HHMMSS_TEXT': 'varchar(max)', 'LOPNUMMER': 'varchar(max)', 'TIDSQL_V': 'varchar(max)', 'TID_V': 'varchar(max)', 'URVAL_TEXT': 'varchar(max)', 'UTILITY': 'varchar(max)', 'VERDATUM': 'varchar(max)', 'VMNR_TEXT': 'varchar(max)', 'VMN_TEXT': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ANVID_TEXT': 'varchar(max)', 'BILDNR_TEXT': 'varchar(max)', 'BILDN_TEXT': 'varchar(max)', 'DATUM_FOM': 'varchar(max)', 'DATUM_TOM': 'varchar(max)', 'DELSYS_TEXT': 'varchar(max)', 'HHMMSS_TEXT': 'varchar(max)', 'LOPNUMMER': 'varchar(max)', 'TIDSQL_V': 'varchar(max)', 'TID_V': 'varchar(max)', 'URVAL_TEXT': 'varchar(max)', 'UTILITY': 'varchar(max)', 'VERDATUM': 'varchar(max)', 'VMNR_TEXT': 'varchar(max)', 'VMN_TEXT': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),

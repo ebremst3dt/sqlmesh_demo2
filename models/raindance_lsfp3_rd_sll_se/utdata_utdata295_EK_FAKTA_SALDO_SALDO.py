@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'AVTBES_ID': 'varchar(max)', 'BFAR': 'varchar(max)', 'BUDGET_ACK': 'varchar(max)', 'BUDGET_AR': 'varchar(max)', 'BUDGET_FGPER': 'varchar(max)', 'BUDGET_PER': 'varchar(max)', 'FRI1_ID': 'varchar(max)', 'FRI2_ID': 'varchar(max)', 'KONTO_ID': 'varchar(max)', 'KST_ID': 'varchar(max)', 'MOTP_ID': 'varchar(max)', 'PERIOD': 'varchar(max)', 'PRG_FGPER': 'varchar(max)', 'PRG_PER': 'varchar(max)', 'PROJ_ID': 'varchar(max)', 'UTFALL_ACK': 'varchar(max)', 'UTFALL_AR': 'varchar(max)', 'UTFALL_FGPER': 'varchar(max)', 'UTFALL_IB': 'varchar(max)', 'UTFALL_PER': 'varchar(max)', 'VERK_ID': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AVTBES_ID': 'varchar(max)', 'BFAR': 'varchar(max)', 'BUDGET_ACK': 'varchar(max)', 'BUDGET_AR': 'varchar(max)', 'BUDGET_FGPER': 'varchar(max)', 'BUDGET_PER': 'varchar(max)', 'FRI1_ID': 'varchar(max)', 'FRI2_ID': 'varchar(max)', 'KONTO_ID': 'varchar(max)', 'KST_ID': 'varchar(max)', 'MOTP_ID': 'varchar(max)', 'PERIOD': 'varchar(max)', 'PRG_FGPER': 'varchar(max)', 'PRG_PER': 'varchar(max)', 'PROJ_ID': 'varchar(max)', 'UTFALL_ACK': 'varchar(max)', 'UTFALL_AR': 'varchar(max)', 'UTFALL_FGPER': 'varchar(max)', 'UTFALL_IB': 'varchar(max)', 'UTFALL_PER': 'varchar(max)', 'VERK_ID': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),

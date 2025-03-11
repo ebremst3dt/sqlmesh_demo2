@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'ANDRAD_AV': 'varchar(max)', 'ANDRAD_DATUM': 'varchar(max)', 'ANDRAD_TID': 'varchar(max)', 'ANM_TEXT': 'varchar(max)', 'ANST_ID': 'varchar(max)', 'ANTMÅN_V': 'varchar(max)', 'BUDHEL_V': 'varchar(max)', 'DATUM_FOM': 'varchar(max)', 'DATUM_TOM': 'varchar(max)', 'KONTO_ID': 'varchar(max)', 'KST_ID': 'varchar(max)', 'LÖNETI_V': 'varchar(max)', 'LÖNEÖK_V': 'varchar(max)', 'LÖN_V': 'varchar(max)', 'OMF_V': 'varchar(max)', 'SEMERS_V': 'varchar(max)', 'TIM_V': 'varchar(max)', 'UTILITY': 'varchar(max)', 'VERDATUM': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ANDRAD_AV': 'varchar(max)', 'ANDRAD_DATUM': 'varchar(max)', 'ANDRAD_TID': 'varchar(max)', 'ANM_TEXT': 'varchar(max)', 'ANST_ID': 'varchar(max)', 'ANTMÅN_V': 'varchar(max)', 'BUDHEL_V': 'varchar(max)', 'DATUM_FOM': 'varchar(max)', 'DATUM_TOM': 'varchar(max)', 'KONTO_ID': 'varchar(max)', 'KST_ID': 'varchar(max)', 'LÖNETI_V': 'varchar(max)', 'LÖNEÖK_V': 'varchar(max)', 'LÖN_V': 'varchar(max)', 'OMF_V': 'varchar(max)', 'SEMERS_V': 'varchar(max)', 'TIM_V': 'varchar(max)', 'UTILITY': 'varchar(max)', 'VERDATUM': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),

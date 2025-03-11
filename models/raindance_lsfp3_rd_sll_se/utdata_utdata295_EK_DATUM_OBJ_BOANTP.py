@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'BOANTP_DATUM_FOM': 'varchar(max)', 'BOANTP_DATUM_TOM': 'varchar(max)', 'BOANTP_GILTIG_FOM': 'varchar(max)', 'BOANTP_GILTIG_TOM': 'varchar(max)', 'BOANTP_ID': 'varchar(max)', 'BOANTP_ID_TEXT': 'varchar(max)', 'BOANTP_PASSIV': 'varchar(max)', 'BOANTP_TEXT': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'BOANTP_DATUM_FOM': 'varchar(max)', 'BOANTP_DATUM_TOM': 'varchar(max)', 'BOANTP_GILTIG_FOM': 'varchar(max)', 'BOANTP_GILTIG_TOM': 'varchar(max)', 'BOANTP_ID': 'varchar(max)', 'BOANTP_ID_TEXT': 'varchar(max)', 'BOANTP_PASSIV': 'varchar(max)', 'BOANTP_TEXT': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),

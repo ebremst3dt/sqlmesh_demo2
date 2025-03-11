@@ -8,7 +8,7 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', 'BASVARDE1': 'varchar(max)', 'BASVARDE2': 'varchar(max)', 'BASVARDE3': 'varchar(max)', 'BASVARDE4': 'varchar(max)', 'BASVARDE5': 'varchar(max)', 'BASVARDE6': 'varchar(max)', 'BASVARDE7': 'varchar(max)', 'BASVARDE8': 'varchar(max)', 'BASVARDE9': 'varchar(max)', 'BASVARDE10': 'varchar(max)', 'BASVARDE11': 'varchar(max)', 'BASVARDE12': 'varchar(max)', 'PNYCKEL': 'varchar(max)', 'PNYCKEL_ID_TEXT': 'varchar(max)', 'PNYCKEL_TEXT': 'varchar(max)', 'TOTVARDE': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'BASVARDE1': 'varchar(max)', 'BASVARDE2': 'varchar(max)', 'BASVARDE3': 'varchar(max)', 'BASVARDE4': 'varchar(max)', 'BASVARDE5': 'varchar(max)', 'BASVARDE6': 'varchar(max)', 'BASVARDE7': 'varchar(max)', 'BASVARDE8': 'varchar(max)', 'BASVARDE9': 'varchar(max)', 'BASVARDE10': 'varchar(max)', 'BASVARDE11': 'varchar(max)', 'BASVARDE12': 'varchar(max)', 'PNYCKEL': 'varchar(max)', 'PNYCKEL_ID_TEXT': 'varchar(max)', 'PNYCKEL_TEXT': 'varchar(max)', 'TOTVARDE': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.FULL
     ),
