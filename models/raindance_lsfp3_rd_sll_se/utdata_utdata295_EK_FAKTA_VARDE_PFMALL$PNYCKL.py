@@ -24,14 +24,14 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = """
-	SELECT * FROM (SELECT 
+	SELECT TOP 10 * FROM (SELECT 
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata295' as _source,
 		CAST(MALLID_ID AS VARCHAR(MAX)) AS mallid_id,
 		CAST(PNYCKL_ID AS VARCHAR(MAX)) AS pnyckl_id,
 		CAST(RAK_ID AS VARCHAR(MAX)) AS rak_id 
-	FROM utdata.utdata295.EK_FAKTA_VARDE_PFMALL$PNYCKL
+	FROM utdata.utdata295.EK_FAKTA_VARDE_PFMALL$PNYCKL) y
 
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")
