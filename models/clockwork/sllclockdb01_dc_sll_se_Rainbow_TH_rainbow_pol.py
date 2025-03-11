@@ -6,7 +6,7 @@ from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
 
-        
+
 @model(
     columns={'_data_modified_utc': 'date',
  '_metadata_modified_utc': 'datetime2',
@@ -138,7 +138,7 @@ from models.mssql import read
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_TH_rainbow_pol_data_modified_utc ON clockwork.sllclockdb01_dc_sll_se_Rainbow_TH_rainbow_pol (_data_modified_utc)"]
 )
 
-        
+
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -147,7 +147,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = f"""
-	SELECT * FROM (SELECT 
+	SELECT * FROM (SELECT
  		CAST(
 			CAST(
 				COALESCE(
@@ -160,7 +160,7 @@ def execute(
 					credat
 				) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC'
 			AS datetime2
-		) AS DATE ) as data_modified_utc,
+		) AS DATE ) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'Rainbow_TH' as _source_catalog,
 		CAST(agrnum AS VARCHAR(MAX)) AS agrnum,
@@ -280,11 +280,10 @@ def execute(
 		CAST(vdmtyp AS VARCHAR(MAX)) AS vdmtyp,
 		CAST(vrscod AS VARCHAR(MAX)) AS vrscod,
 		CAST(whscod AS VARCHAR(MAX)) AS whscod,
-		CAST(wkgtyp AS VARCHAR(MAX)) AS wkgtyp 
+		CAST(wkgtyp AS VARCHAR(MAX)) AS wkgtyp
 	FROM Rainbow_TH.rainbow.pol
      )y
         WHERE _data_modified_utc between '{start}' and '{end}'
-        
+
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
-        

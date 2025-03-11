@@ -6,7 +6,7 @@ from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
 
-        
+
 @model(
     columns={'_data_modified_utc': 'date',
  '_metadata_modified_utc': 'datetime2',
@@ -112,7 +112,7 @@ from models.mssql import read
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_MD_rainbow_eic_data_modified_utc ON clockwork.sllclockdb01_dc_sll_se_Rainbow_MD_rainbow_eic (_data_modified_utc)"]
 )
 
-        
+
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -121,7 +121,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = f"""
-	SELECT * FROM (SELECT 
+	SELECT * FROM (SELECT
  		CAST(
 			CAST(
 				COALESCE(
@@ -134,7 +134,7 @@ def execute(
 					credat
 				) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC'
 			AS datetime2
-		) AS DATE ) as data_modified_utc,
+		) AS DATE ) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'Rainbow_MD' as _source_catalog,
 		CAST(adcsf1 AS VARCHAR(MAX)) AS adcsf1,
@@ -228,11 +228,10 @@ def execute(
 		CAST(untinf AS VARCHAR(MAX)) AS untinf,
 		CAST(usefco AS VARCHAR(MAX)) AS usefco,
 		CONVERT(varchar(max), valfrm, 126) AS valfrm,
-		CAST(wtrcod AS VARCHAR(MAX)) AS wtrcod 
+		CAST(wtrcod AS VARCHAR(MAX)) AS wtrcod
 	FROM Rainbow_MD.rainbow.eic
      )y
         WHERE _data_modified_utc between '{start}' and '{end}'
-        
+
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
-        

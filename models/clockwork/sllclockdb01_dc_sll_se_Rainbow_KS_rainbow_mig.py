@@ -6,7 +6,7 @@ from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
 
-        
+
 @model(
     columns={'_data_modified_utc': 'date',
  '_metadata_modified_utc': 'datetime2',
@@ -154,7 +154,7 @@ from models.mssql import read
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_KS_rainbow_mig_data_modified_utc ON clockwork.sllclockdb01_dc_sll_se_Rainbow_KS_rainbow_mig (_data_modified_utc)"]
 )
 
-        
+
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -163,7 +163,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = f"""
-	SELECT * FROM (SELECT 
+	SELECT * FROM (SELECT
  		CAST(
 			CAST(
 				COALESCE(
@@ -176,7 +176,7 @@ def execute(
 					credat
 				) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC'
 			AS datetime2
-		) AS DATE ) as data_modified_utc,
+		) AS DATE ) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'Rainbow_KS' as _source_catalog,
 		CAST(accnsh AS VARCHAR(MAX)) AS accnsh,
@@ -312,11 +312,10 @@ def execute(
 		CAST(vatprc AS VARCHAR(MAX)) AS vatprc,
 		CAST(vatsal AS VARCHAR(MAX)) AS vatsal,
 		CAST(whscod AS VARCHAR(MAX)) AS whscod,
-		CAST(worrsp AS VARCHAR(MAX)) AS worrsp 
+		CAST(worrsp AS VARCHAR(MAX)) AS worrsp
 	FROM Rainbow_KS.rainbow.mig
      )y
         WHERE _data_modified_utc between '{start}' and '{end}'
-        
+
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
-        

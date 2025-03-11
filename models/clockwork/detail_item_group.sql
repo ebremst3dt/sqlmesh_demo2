@@ -12,11 +12,7 @@ MODEL (
     short_name = 'Short Name',
     short_number = 'Short Number',
     additional_text__slash__description = 'Additional Text / Description'
-  ),
-  cron '@daily',
-  kind INCREMENTAL_BY_TIME_RANGE (
-		time_column _data_modified_utc
-	)
+  )
 );
 
 SELECT
