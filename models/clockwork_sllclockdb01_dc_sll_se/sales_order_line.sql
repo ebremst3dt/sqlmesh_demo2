@@ -318,4 +318,4 @@ SELECT
   whscod AS Warehouse_identification_code,
   wkgtyp AS Weight_per_unit_or_total,
   cbycod AS _Entry_Caused_by
-FROM clockwork.rainbow_sol
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_sol

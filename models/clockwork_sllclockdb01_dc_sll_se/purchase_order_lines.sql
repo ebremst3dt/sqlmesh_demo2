@@ -240,4 +240,4 @@ SELECT
   vdmtyp AS Volume_per_unit_or_total,
   whscod AS Warehouse_identification_code,
   wkgtyp AS Weight_per_unit_or_total
-FROM clockwork.rainbow_pol
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_pol

@@ -298,4 +298,4 @@ SELECT
   tdlown AS tdlown_Terms_defined_for_this_specific_owner,
   tpyown AS tpyown_Terms_defined_for_this_specific_owner,
   wtrown AS wtrown_Terms_defined_for_this_specific_owner
-FROM clockwork.rainbow_soh
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_soh

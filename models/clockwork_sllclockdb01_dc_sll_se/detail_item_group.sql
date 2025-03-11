@@ -28,4 +28,4 @@ SELECT
   srtnam AS Short_Name,
   srtnum AS Short_Number,
   sigcod AS Sub_Item_Group_Identification_Code
-FROM clockwork.rainbow_dig
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_dig

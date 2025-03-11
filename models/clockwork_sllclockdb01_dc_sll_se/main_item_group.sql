@@ -270,4 +270,4 @@ SELECT
   accnsh AS accnsh_Accumulate_sales_history_log,
   acsalh AS acsalh_Accumulate_sales_history_log,
   reqcbr AS required_contribution_rate
-FROM clockwork.rainbow_mig
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_mig

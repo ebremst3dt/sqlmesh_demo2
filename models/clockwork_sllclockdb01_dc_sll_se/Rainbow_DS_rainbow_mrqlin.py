@@ -6,7 +6,7 @@ from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
 
-
+        
 @model(
     columns={'_data_modified_utc': 'date',
  '_metadata_modified_utc': 'datetime2',
@@ -108,7 +108,7 @@ from models.mssql import read
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_Rainbow_DS_rainbow_mrqlin_data_modified_utc ON clockwork.sllclockdb01_dc_sll_se_Rainbow_DS_rainbow_mrqlin (_data_modified_utc)"]
 )
 
-
+        
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -117,7 +117,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = f"""
-	SELECT * FROM (SELECT
+	SELECT * FROM (SELECT 
  		CAST(
 			CAST(
 				COALESCE(
@@ -220,10 +220,11 @@ def execute(
 		CAST(vatcod AS VARCHAR(MAX)) AS vatcod,
 		CAST(vrfsts AS VARCHAR(MAX)) AS vrfsts,
 		CAST(vrscod AS VARCHAR(MAX)) AS vrscod,
-		CAST(wwfseq AS VARCHAR(MAX)) AS wwfseq
+		CAST(wwfseq AS VARCHAR(MAX)) AS wwfseq 
 	FROM Rainbow_DS.rainbow.mrqlin
      )y
         WHERE _data_modified_utc between '{start}' and '{end}'
-
+        
 	"""
     return read(query=query, server_url="sllclockdb01.dc.sll.se")
+        

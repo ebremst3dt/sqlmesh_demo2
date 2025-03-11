@@ -188,4 +188,4 @@ SELECT
   usefco AS Use_Forecast_Order_on_This_Item,
   agrusd AS Used_Quantity_on_Agreement,
   wtrcod AS Way_of_Transport_Identification_Code
-FROM clockwork.rainbow_eic
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_eic

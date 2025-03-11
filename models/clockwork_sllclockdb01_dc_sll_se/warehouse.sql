@@ -434,4 +434,4 @@ SELECT
   isssc1 AS Withdrawal_Scanning_Sequence_1,
   isazch AS Zero_Cost_Price_Handling_at_Stock_Adjustment,
   lintyp AS _Default_Line_Type
-FROM clockwork.rainbow_whs
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_whs

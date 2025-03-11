@@ -308,4 +308,4 @@ SELECT
   lintyp AS _Default_Line_Type,
   csvlqd AS csvlqd_Current_service_level_value_quality_assurance_control_last_chan,
   csvlqu AS csvlqu_Current_service_level_value_quality_assurance_control_last_chan
-FROM clockwork.rainbow_sup
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_sup

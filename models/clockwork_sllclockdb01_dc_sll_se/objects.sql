@@ -62,4 +62,4 @@ SELECT
   srtnum AS Short_Number,
   valfrm AS Valid_from_Date,
   valunt AS Valid_until_Date
-FROM clockwork.rainbow_obj
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_obj

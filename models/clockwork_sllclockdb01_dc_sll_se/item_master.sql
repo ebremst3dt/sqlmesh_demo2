@@ -396,4 +396,4 @@ SELECT
   vidfil AS Video_filename_reference,
   whscod AS Warehouse_identification_code_for_main_warehouse,
   worrsp AS Work_Order_Resupply_Control
-FROM clockwork.rainbow_itm
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_itm

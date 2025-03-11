@@ -5,12 +5,12 @@ MODEL (
 
 @UNION(
     'all',
-    Rainbow_DS_rainbow_sig,
-	Rainbow_KS_rainbow_sig,
-	Rainbow_MD_rainbow_sig,
-	Rainbow_SLSO_rainbow_sig,
-	Rainbow_SOS_rainbow_sig,
-	Rainbow_ST_rainbow_sig,
-	Rainbow_TH_rainbow_sig
+    sllclockdb01_dc_sll_se.Rainbow_DS_rainbow_sig,
+	sllclockdb01_dc_sll_se.Rainbow_KS_rainbow_sig,
+	sllclockdb01_dc_sll_se.Rainbow_MD_rainbow_sig,
+	sllclockdb01_dc_sll_se.Rainbow_SLSO_rainbow_sig,
+	sllclockdb01_dc_sll_se.Rainbow_SOS_rainbow_sig,
+	sllclockdb01_dc_sll_se.Rainbow_ST_rainbow_sig,
+	sllclockdb01_dc_sll_se.Rainbow_TH_rainbow_sig
 )
         

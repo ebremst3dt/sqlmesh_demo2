@@ -102,4 +102,4 @@ SELECT
   signam AS Sub_item_group_name__slash__description,
   txgcod AS Tax_Group_Identification_Cocde,
   rtbdtl AS relation_Tyoe_from_Detail_Unit_to_Base_Unit
-FROM clockwork.rainbow_sig
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_sig

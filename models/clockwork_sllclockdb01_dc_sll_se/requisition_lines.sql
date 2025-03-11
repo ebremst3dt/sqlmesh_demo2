@@ -180,4 +180,4 @@ SELECT
   vrscod AS Variant_String,
   vrfsts AS Verification_Status,
   maploc AS Visualized_Mapped_Location
-FROM clockwork.rainbow_mrqlin
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_mrqlin

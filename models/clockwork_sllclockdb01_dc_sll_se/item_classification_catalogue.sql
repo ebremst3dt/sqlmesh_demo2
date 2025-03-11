@@ -50,4 +50,4 @@ SELECT
   prbuac AS Purchase_Budget_Account_Identification_Code,
   seqnum AS Sequence_Number,
   sigcod AS Sub_Item_Group_Identification_Code
-FROM clockwork.rainbow_icscat
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_icscat

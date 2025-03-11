@@ -228,4 +228,4 @@ SELECT
   vatcod AS Value_Added_Tax_Identification_Code,
   wtrcod AS Way_of_Transport_Identification_Code,
   wtrown AS Way_of_Transport_Term_Defined_for_this_Specific_Owner
-FROM clockwork.rainbow_poh
+FROM clockwork_sllclockdb01_dc_sll_se.rainbow_poh
