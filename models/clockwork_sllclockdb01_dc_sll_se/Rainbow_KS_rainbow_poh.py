@@ -155,7 +155,7 @@ def execute(
                 credat
             ) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC'
         AS datetime2
-    ) AS DATE ) as data_modified_utc,
+    ) AS DATE ) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'Rainbow_KS' as _source_catalog,
 		CAST(acrctr AS VARCHAR(MAX)) AS acrctr,
