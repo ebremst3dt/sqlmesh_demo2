@@ -12,7 +12,7 @@ from models.mssql import read
  'D3': 'varchar(max)',
  'DD3': 'varchar(max)',
  'ID': 'varchar(max)',
- 'S': 'varchar(max)',
+ s': 'varchar(max)',
  'S1': 'varchar(max)',
  'S2': 'varchar(max)',
  'S3': 'varchar(max)',
@@ -37,7 +37,7 @@ def execute(
 		CAST(S1 AS VARCHAR(MAX)) AS s1,
 		CAST(S2 AS VARCHAR(MAX)) AS s2,
 		CAST(S3 AS VARCHAR(MAX)) AS s3,
-		CAST(ZEROS AS VARCHAR(MAX)) AS zeros 
+		CAST(ZEROS AS VARCHAR(MAX)) AS zeros
 	FROM utdata.utdata295.EK_UTILITY
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")
