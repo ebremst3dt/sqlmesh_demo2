@@ -9,8 +9,11 @@ from models.mssql import read
         
 @model(
     columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ATTESTDATUM1': 'varchar(max)', 'ATTESTDATUM2': 'varchar(max)', 'ATTESTSIGN1': 'varchar(max)', 'ATTESTSIGN2': 'varchar(max)', 'AVTBES_ID': 'varchar(max)', 'BPUTF_V': 'varchar(max)', 'BUDGET_V': 'varchar(max)', 'DEFDATUM': 'varchar(max)', 'DEFSIGN': 'varchar(max)', 'DOKTYP': 'varchar(max)', 'DOKUMENTID': 'varchar(max)', 'DOK_ANTAL': 'varchar(max)', 'EXTERNANM': 'varchar(max)', 'EXTERNID': 'varchar(max)', 'EXTERNNR': 'varchar(max)', 'FORETAG': 'varchar(max)', 'FRI1_ID': 'varchar(max)', 'FRI2_ID': 'varchar(max)', 'FÖPROC_ID': 'varchar(max)', 'FÖRBEL_V': 'varchar(max)', 'HUVUDTEXT': 'varchar(max)', 'IB': 'varchar(max)', 'ID_ID': 'varchar(max)', 'INTERNVERNR': 'varchar(max)', 'KATEGORI': 'varchar(max)', 'KONTO_ID': 'varchar(max)', 'KONTSIGN': 'varchar(max)', 'KST_ID': 'varchar(max)', 'LFRAM_V': 'varchar(max)', 'MED': 'varchar(max)', 'MOTP_ID': 'varchar(max)', 'ORGVAL_V': 'varchar(max)', 'PNYCKEL': 'varchar(max)', 'PRG_V': 'varchar(max)', 'PROC_ID': 'varchar(max)', 'PROJ_ID': 'varchar(max)', 'RADTEXT': 'varchar(max)', 'RADTYPNR': 'varchar(max)', 'REGDATUM': 'varchar(max)', 'REGDAT_ID': 'varchar(max)', 'REGSIGN': 'varchar(max)', 'STATUS': 'varchar(max)', 'URSPRUNGS_VERIFIKAT': 'varchar(max)', 'URSPTEXT': 'varchar(max)', 'URS_ID': 'varchar(max)', 'UTFALL_V': 'varchar(max)', 'UTILITY': 'varchar(max)', 'VALUTA_ID': 'varchar(max)', 'VERDATUM': 'varchar(max)', 'VERDOKREF': 'varchar(max)', 'VERK_ID': 'varchar(max)', 'VERNR': 'varchar(max)', 'VERRAD': 'varchar(max)', 'VERTYP': 'varchar(max)', 'YKAT_ID': 'varchar(max)'},
+    
     kind=dict(
-        name=ModelKindName.FULL
+        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
+        batch_size=5000,
+        time_column="_data_modified_utc"
     ),
     cron="@daily"
 )
@@ -23,9 +26,9 @@ def execute(
     execution_time: datetime,
     **kwargs: t.Any,
 ) -> pd.DataFrame:
-    query = """
-	SELECT TOP 10 * FROM (SELECT 
- 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
+    query = f"""
+	SELECT * FROM (SELECT 
+ 		CAST(CAST(VERDATUM AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata295' as _source,
 		CONVERT(varchar(max), ATTESTDATUM1, 126) AS attestdatum1,
@@ -83,8 +86,8 @@ def execute(
 		CAST(VERRAD AS VARCHAR(MAX)) AS verrad,
 		CAST(VERTYP AS VARCHAR(MAX)) AS vertyp,
 		CAST(YKAT_ID AS VARCHAR(MAX)) AS ykat_id 
-	FROM utdata.utdata295.EK_FAKTA_VERIFIKAT) y
-
+	FROM utdata.utdata295.EK_FAKTA_VERIFIKAT ) y
+WHERE _data_modified_utc between '{start}' and '{end}'
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")
     

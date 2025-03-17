@@ -23,8 +23,8 @@ def execute(
     execution_time: datetime,
     **kwargs: t.Any,
 ) -> pd.DataFrame:
-    query = """
-	SELECT TOP 10 * FROM (SELECT 
+    query = f"""
+	SELECT * FROM (SELECT 
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata295' as _source,
@@ -77,7 +77,7 @@ def execute(
 		CAST(SALDO AS VARCHAR(MAX)) AS saldo,
 		CAST(SOKBEGR AS VARCHAR(MAX)) AS sokbegr,
 		CAST(TELNR AS VARCHAR(MAX)) AS telnr 
-	FROM utdata.utdata295.RK_DIM_KUND) y
+	FROM utdata.utdata295.RK_DIM_KUND ) y
 
 	"""
     return read(query=query, server_url="lsfp3.rd.sll.se")
