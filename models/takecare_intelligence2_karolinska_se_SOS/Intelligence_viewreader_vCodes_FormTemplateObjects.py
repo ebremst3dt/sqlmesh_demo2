@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Objekt som hör till en formulärdefinition",
+    description="""Objekt som hör till en formulärdefinition""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Caption': 'varchar(max)', 'FormTemplateID': 'varchar(max)', 'HasToBeSplittedByChar': 'varchar(max)', 'ObjectID': 'varchar(max)', 'ObjectName': 'varchar(max)', 'ObjectTypeID': 'varchar(max)', 'RecordCode': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TipText': 'varchar(max)'},
     column_descriptions={'FormTemplateID': "{'title_ui': 'Identitet', 'description': 'Formulärdefinitionens id'}", 'ObjectID': "{'title_ui': None, 'description': 'Objektets numeriska id'}", 'ObjectName': "{'title_ui': 'Unikt objektnamn', 'description': 'Används för att koppla fält till Pdf'}", 'ObjectTypeID': "{'title_ui': None, 'description': {'break': [None, None, None, None, None, None, None, None, None, None, None, None, None]}}", 'Caption': "{'title_ui': 'Rubrik', 'description': None}", 'RecordCode': "{'title_ui': 'Hämta senaste värde från', 'description': 'Kod för att hämta data från journal'}", 'TipText': "{'title_ui': 'Hjälptext', 'description': None}", 'TermID': "{'title_ui': 'Termkatalogsid', 'description': None}", 'HasToBeSplittedByChar': "{'title_ui': 'Dela upp per tecken', 'description': 'Om värdet går att ange för ett objekt men inget valts visas det upp som Nej i TakeCare trots att inget giltigt värde lagras'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

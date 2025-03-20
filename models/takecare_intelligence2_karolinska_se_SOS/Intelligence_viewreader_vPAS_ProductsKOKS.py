@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Produkter som angetts i KÖKS-formuläret. Även vårdkontakter som har godkänns automatiskt i kassan och fått produktkoden -EJ eller -IL (som är KÖKS-koder). Ytterligare egenskaper på produkterna finns i PAS_ProductsKOKS2.",
+    description="""Produkter som angetts i KÖKS-formuläret. Även vårdkontakter som har godkänns automatiskt i kassan och fått produktkoden -EJ eller -IL (som är KÖKS-koder). Ytterligare egenskaper på produkterna finns i PAS_ProductsKOKS2.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Amount': 'varchar(max)', 'DocumentID': 'varchar(max)', 'KOKSCode': 'varchar(max)', 'PatientID': 'varchar(max)', 'ProductCode': 'varchar(max)', 'ProductID': 'varchar(max)', 'ProductType': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'ProductID': "{'title_ui': None, 'description': None}", 'ProductType': "{'title_ui': None, 'description': None}", 'ProductCode': "{'title_ui': None, 'description': None}", 'Amount': "{'title_ui': None, 'description': 'Antal av denna produkt (alltid 1)'}", 'KOKSCode': "{'title_ui': 'Kod N/C-koder', 'description': 'Där N = 1-4'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

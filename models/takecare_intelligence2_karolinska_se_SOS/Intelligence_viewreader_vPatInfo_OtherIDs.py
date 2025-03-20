@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Journaler kan kopplas ihop i TakeCare. Exempelvis kopplas en tidigare okänd persons journal ihop med en känd person, när dennes personnummer blir känt. Dessa kopplade id:n pekar ut andra journaler för samma patient. Kopplingen är inte implicit symmetrisk eller kommutativ i datat.",
+    description="""Journaler kan kopplas ihop i TakeCare. Exempelvis kopplas en tidigare okänd persons journal ihop med en känd person, när dennes personnummer blir känt. Dessa kopplade id:n pekar ut andra journaler för samma patient. Kopplingen är inte implicit symmetrisk eller kommutativ i datat.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ConnectedDatetime': 'varchar(max)', 'ConnectedPatientID': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'SavedByUserID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'ConnectedPatientID': "{'title_ui': 'Kopplat id', 'description': 'Det ihopkopplade id:t'}", 'ConnectedDatetime': "{'title_ui': None, 'description': 'Tid då ihopkoppling registrerats'}", 'SavedByUserID': "{'title_ui': 'Senast ändrad av', 'description': 'Den användare som registrerat kopplingen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Alla registrerade användare i TakeCare-systemet.",
+    description="""Alla registrerade användare i TakeCare-systemet.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'IsActive': 'varchar(max)', 'Name': 'varchar(max)', 'ProfessionID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'UserID': 'varchar(max)', 'UserName': 'varchar(max)'},
     column_descriptions={'UserID': "{'title_ui': 'Personnr', 'description': 'Användarens personnummer'}", 'Name': "{'title_ui': 'Förnamn+Efternamn', 'description': 'Användarens namn'}", 'UserName': "{'title_ui': 'Användarnamn', 'description': 'Användarens inloggningsnamn/signum'}", 'ProfessionID': "{'title_ui': 'Yrkesgrupp', 'description': 'Den yrkesgrupp användaren tillhör'}", 'IsActive': "{'title_ui': 'Giltig t.o.m.', 'description': 'Om användarens konto är aktivt eller avstängt'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

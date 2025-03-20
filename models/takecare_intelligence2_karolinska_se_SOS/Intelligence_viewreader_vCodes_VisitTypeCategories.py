@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Besökstypskategori. Kategorisering av besökstyperna i tabellen: Kassa - Besökstyper",
+    description="""Besökstypskategori. Kategorisering av besökstyperna i tabellen: Kassa - Besökstyper""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)', 'VisitTypeCategoryID': 'varchar(max)'},
     column_descriptions={'VisitTypeCategoryID': "{'title_ui': None, 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

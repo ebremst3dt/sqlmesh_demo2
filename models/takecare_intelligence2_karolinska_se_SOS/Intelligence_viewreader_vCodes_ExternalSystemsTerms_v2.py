@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Termmappning för externa tjänster och register",
+    description="""Termmappning för externa tjänster och register""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ExternalSystemID': 'varchar(max)', 'ExternalTermName': 'varchar(max)', 'InternalTermID': 'varchar(max)', 'IsActive': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'ExternalSystemID': "{'title_ui': None, 'description': 'TakeCares interna id för det externa systemet'}", 'ExternalTermName': "{'title_ui': 'Externt uttryck & Extern grupp', 'description': 'Namn på det externa systemets term. Innehåller ibland även namn på det externa systemets grupp och lagras då som gruppnamn:termnamn.'}", 'InternalTermID': "{'title_ui': 'Term id', 'description': 'En TakeCare-term som motsvarar det externa systemets term'}", 'IsActive': "{'title_ui': None, 'description': 'Term aktiverad via bockruta i termmappningslistan'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

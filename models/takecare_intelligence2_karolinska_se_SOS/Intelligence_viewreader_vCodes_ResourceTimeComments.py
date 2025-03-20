@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Man kan ange en kommentar på en viss resurs tid, t.ex "Lunch".",
+    description="""Man kan ange en kommentar på en viss resurs tid, t.ex "Lunch".""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CareUnitID': 'varchar(max)', 'Comment': 'varchar(max)', 'CommentDatetime': 'varchar(max)', 'ResourceID': 'varchar(max)', 'SavedByUserID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'CareUnitID': "{'title_ui': 'Vårdenhet', 'description': None}", 'ResourceID': "{'title_ui': 'Resurs', 'description': None}", 'CommentDatetime': "{'title_ui': 'Tidpunkt', 'description': 'Tid som kommentaren gäller för.'}", 'SavedByUserID': "{'title_ui': 'Sparad av', 'description': 'Den användare som senast har ändrat dokumentet'}", 'Comment': "{'title_ui': 'Kommentar', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

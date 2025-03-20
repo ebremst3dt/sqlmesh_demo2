@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Analyser som kan kopplas till en beställning (CLab), nedlagd, användes till 2004",
+    description="""Analyser som kan kopplas till en beställning (CLab), nedlagd, användes till 2004""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AnalysisID': 'varchar(max)', 'AnalysisName': 'varchar(max)', 'CoOrder': 'varchar(max)', 'IsEmergency': 'varchar(max)', 'IsOKToOrder': 'varchar(max)', 'IsPaperOrdered': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TubeID': 'varchar(max)', 'Unit': 'varchar(max)'},
     column_descriptions={'AnalysisID': "{'title_ui': None, 'description': 'Analyskod'}", 'AnalysisName': "{'title_ui': None, 'description': 'Analysnamn. Används vid beställning av analys'}", 'Unit': "{'title_ui': 'Enhet', 'description': None}", 'IsOKToOrder': "{'title_ui': None, 'description': 'Beställningsbar. Om 1 syns analysen i beställningbilden.'}", 'TubeID': "{'title_ui': None, 'description': 'Rörnummer. Den typ av rör som analysen kräver'}", 'IsPaperOrdered': "{'title_ui': None, 'description': 'Beställs på papper'}", 'IsEmergency': "{'title_ui': None, 'description': 'Akut'}", 'CoOrder': "{'title_ui': None, 'description': 'Sambeställning. Analyser med samma nummer kan sambeställas.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

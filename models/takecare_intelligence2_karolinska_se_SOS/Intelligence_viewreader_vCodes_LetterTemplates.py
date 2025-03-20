@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Mallar för brev och kallelser. Ej versionshanterade. Innehållet i en mall kan ändras.",
+    description="""Mallar för brev och kallelser. Ej versionshanterade. Innehållet i en mall kan ändras.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CreatedAtCareUnitID': 'varchar(max)', 'TemplateID': 'varchar(max)', 'TemplateName': 'varchar(max)', 'TemplateTypeID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'CreatedAtCareUnitID': "{'title_ui': 'Tillhör vårdenhet', 'description': 'Vårdenhets-id. Mallen tillhör denna vårdenhet.'}", 'TemplateID': "{'title_ui': None, 'description': 'Mall-id. Komponentnumret i vårdenhetens brevmallsfil där mallen finns.'}", 'TemplateName': "{'title_ui': 'Mallnamn', 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': None}", 'TemplateTypeID': "{'title_ui': 'Typ/Typ av mall', 'description': {'break': [None, None]}}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

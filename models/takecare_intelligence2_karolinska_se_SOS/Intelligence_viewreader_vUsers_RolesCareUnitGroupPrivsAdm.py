@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="De vårdenhetsgrupper som användaren har rätt att ge andra behörighet till i rollen (om användaren också har behörighet att dela ut behörigheter).",
+    description="""De vårdenhetsgrupper som användaren har rätt att ge andra behörighet till i rollen (om användaren också har behörighet att dela ut behörigheter).""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CareUnitGroupID': 'varchar(max)', 'RoleID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'UserID': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'UserID': "{'title_ui': 'Personnr', 'description': 'Användarens personnummer'}", 'Version': "{'title_ui': None, 'description': 'Version av uppgifterna'}", 'RoleID': "{'title_ui': None, 'description': 'Vilken roll uppgifterna avser'}", 'CareUnitGroupID': "{'title_ui': None, 'description': 'Vårdenhetsgrupp'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

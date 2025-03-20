@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Pdfmallar som hör till en formulärdefinition",
+    description="""Pdfmallar som hör till en formulärdefinition""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'FormTemplateID': 'varchar(max)', 'PdfID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'FormTemplateID': "{'title_ui': 'Identitet', 'description': 'Formulärdefinition som pdf-mallen hör till'}", 'PdfID': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

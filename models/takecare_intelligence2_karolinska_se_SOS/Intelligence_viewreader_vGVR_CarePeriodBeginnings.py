@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Start av vårdperiod samt korrigeringar av start av vårdperiod",
+    description="""Start av vårdperiod samt korrigeringar av start av vårdperiod""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AddictionDiagnosis': 'varchar(max)', 'ContactRouteDate': 'varchar(max)', 'ContactRoutes': 'varchar(max)', 'DiagnosisGroup': 'varchar(max)', 'FileName': 'varchar(max)', 'PatientCategory': 'varchar(max)', 'PersonalityDisorderDiagnosis': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'DiagnosisGroup': "{'title_ui': None, 'description': 'Initial diagnosgrupp. Avser den initiala bedömningen.'}", 'ContactRoutes': "{'title_ui': None, 'description': 'Kontaktväg'}", 'ContactRouteDate': "{'title_ui': None, 'description': 'Kontaktväg datum'}", 'PatientCategory': "{'title_ui': None, 'description': 'Initial patientkategori'}", 'AddictionDiagnosis': "{'title_ui': None, 'description': 'Beroendediagnos'}", 'PersonalityDisorderDiagnosis': "{'title_ui': None, 'description': 'Personlighetsstörning. Används ej.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

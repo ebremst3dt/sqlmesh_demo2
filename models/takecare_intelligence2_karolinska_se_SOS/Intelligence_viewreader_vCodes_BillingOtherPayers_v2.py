@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Annan betalare vid kreditbesök i kassan. En uppsättning koder per företag.",
+    description="""Annan betalare vid kreditbesök i kassan. En uppsättning koder per företag.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'BillingOtherPayerCode': 'varchar(max)', 'BillingOtherPayerID': 'varchar(max)', 'CompanyID': 'varchar(max)', 'Counterpart': 'varchar(max)', 'EXID': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'BillingOtherPayerID': "{'title_ui': 'Id', 'description': None}", 'BillingOtherPayerCode': "{'title_ui': 'Kod', 'description': None}", 'CompanyID': "{'title_ui': 'Kundkoder', 'description': None}", 'Name': "{'title_ui': 'Beskrivning', 'description': None}", 'ValidFromDate': "{'title_ui': 'Giltig fr.o.m.', 'description': 'Första datum då data är giltigt'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'EXID': "{'title_ui': 'Extern enhet', 'description': 'Extern enhets koppling för adress data etc.'}", 'Counterpart': "{'title_ui': 'Motpart', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

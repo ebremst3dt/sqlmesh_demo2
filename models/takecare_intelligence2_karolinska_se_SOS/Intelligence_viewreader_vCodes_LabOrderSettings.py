@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="labbinställningar.",
+    description="""labbinställningar.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'LabName': 'varchar(max)', 'LabOrderSettingsID': 'varchar(max)', 'LabSystem': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'SID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'LabOrderSettingsID': "{'title_ui': 'Id', 'description': 'Identifierar ett labb och dess inställningar'}", 'LabName': "{'title_ui': 'Namn', 'description': None}", 'SID': "{'title_ui': 'Lab-SID', 'description': 'System-id'}", 'ValidThroughDate': "{'title_ui': 'Giltig tom datum', 'description': None}", 'LabSystem': "{'title_ui': 'Labsystem', 'description': None}", 'OrderRegistryFileName': "{'title_ui': 'Analysregisterfil-namn', 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

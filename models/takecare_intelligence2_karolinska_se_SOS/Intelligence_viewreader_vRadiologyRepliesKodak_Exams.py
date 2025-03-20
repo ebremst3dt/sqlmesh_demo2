@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Resultat från undersökningar",
+    description="""Resultat från undersökningar""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CCode1': 'varchar(max)', 'CCode2': 'varchar(max)', 'CatCode1': 'varchar(max)', 'CatCode2': 'varchar(max)', 'DiagnosisCode': 'varchar(max)', 'DiagnosisText': 'varchar(max)', 'DocumentID': 'varchar(max)', 'Exam': 'varchar(max)', 'ExamID': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'Side': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'ExamID': "{'title_ui': 'Undersökningskod', 'description': None}", 'Exam': "{'title_ui': None, 'description': 'Undersökning'}", 'Side': "{'title_ui': None, 'description': 'Sida'}", 'CatCode1': "{'title_ui': 'Rek. C-koder', 'description': None}", 'CCode1': "{'title_ui': 'Rek. C-koder', 'description': 'Viktklass 1'}", 'CatCode2': "{'title_ui': 'Rek. C-koder', 'description': None}", 'CCode2': "{'title_ui': 'Rek. C-koder', 'description': 'Viktklass 2'}", 'DiagnosisCode': "{'title_ui': None, 'description': 'Diagnos'}", 'DiagnosisText': "{'title_ui': None, 'description': 'Diagnos'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

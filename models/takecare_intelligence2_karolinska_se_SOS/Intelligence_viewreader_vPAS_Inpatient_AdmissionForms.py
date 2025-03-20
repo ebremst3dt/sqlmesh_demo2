@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Psykiatrisk vårdform beskriver inskrivning (används inom psykiatrin). Kan göras om flera gånger under ett vårdtillfälle.",
+    description="""Psykiatrisk vårdform beskriver inskrivning (används inom psykiatrin). Kan göras om flera gånger under ett vårdtillfälle.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AdmissionFormID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'EventDatetime': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'SavedByUserName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TimestampSaved': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'SavedByUserName': "{'title_ui': 'Anv.namn', 'description': 'Den person som registrerat data (användarnamn)'}", 'TimestampSaved': "{'title_ui': 'Senast ändrad', 'description': 'Tid då psykiatrisk vårdform registrerats'}", 'AdmissionFormID': "{'title_ui': 'Psykiatrisk vårdform', 'description': 'Kod för psykiatrisk vårdform'}", 'EventDatetime': "{'title_ui': 'Beslutstid', 'description': 'Tid då psykiatrisk vårdform börjar gälla'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

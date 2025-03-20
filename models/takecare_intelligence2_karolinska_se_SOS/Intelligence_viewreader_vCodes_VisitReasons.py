@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Besöks- och inskrivningsorsaker",
+    description="""Besöks- och inskrivningsorsaker""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CVRCode': 'varchar(max)', 'IsSentToCVR': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TreatmentDefinition': 'varchar(max)', 'ValidThroughDate': 'varchar(max)', 'VisitReasonID': 'varchar(max)'},
     column_descriptions={'VisitReasonID': "{'title_ui': 'Id', 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'IsSentToCVR': "{'title_ui': 'Till CVR', 'description': 'Sant om bokningar med besöksorsaken ska skickas till CVR - Centralt VäntetidsRegister'}", 'TreatmentDefinition': "{'title_ui': 'Behandlingsdefinition', 'description': {'break': [None, None]}}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

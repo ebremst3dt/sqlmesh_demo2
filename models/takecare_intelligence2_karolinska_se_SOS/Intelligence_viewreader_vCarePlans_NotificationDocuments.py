@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Dokument som tillsammans utgör en kallelse",
+    description="""Dokument som tillsammans utgör en kallelse""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'DocumentName': 'varchar(max)', 'DocumentTypeID': 'varchar(max)', 'LetterTemplateID': 'varchar(max)', 'PatientID': 'varchar(max)', 'PrintDatetime': 'varchar(max)', 'Row': 'varchar(max)', 'SomeUserName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': 'Vårdplansid', 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'DocumentTypeID': "{'title_ui': None, 'description': {'break': None}}", 'DocumentName': "{'title_ui': 'Dokument', 'description': 'Beteckning för dokumentet'}", 'LetterTemplateID': "{'title_ui': None, 'description': 'Id för brevmall'}", 'PrintDatetime': "{'title_ui': None, 'description': 'Utskriftsdatum. Verkar inte användas'}", 'SomeUserName': "{'title_ui': None, 'description': 'Den som skrivit ut? Verkar inte användas'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

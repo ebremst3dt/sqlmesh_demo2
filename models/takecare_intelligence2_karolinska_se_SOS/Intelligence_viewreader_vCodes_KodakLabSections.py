@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Innehållet i listan Till Section, i Beställning röntgen. (KODAK)",
+    description="""Innehållet i listan Till Section, i Beställning röntgen. (KODAK)""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'HasDropIn': 'varchar(max)', 'LabOrderSettingsID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ToSectionCode': 'varchar(max)', 'ToSectionID': 'varchar(max)', 'ToSectionName': 'varchar(max)', 'ToSectionType': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'LabOrderSettingsID': "{'title_ui': 'Id', 'description': 'Identifierar ett labb och dess inställningar'}", 'ToSectionID': "{'title_ui': 'Id', 'description': None}", 'ToSectionCode': "{'title_ui': 'Intern kod rtg', 'description': 'Intern kod på röntgen'}", 'ToSectionName': "{'title_ui': 'Till sektion', 'description': None}", 'ToSectionType': "{'title_ui': 'RTG/Isotop', 'description': {'break': [None, None]}}", 'HasDropIn': "{'title_ui': 'Drop In', 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

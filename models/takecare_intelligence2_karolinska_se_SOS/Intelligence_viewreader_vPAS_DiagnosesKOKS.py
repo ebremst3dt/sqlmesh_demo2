@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Angivna diagnoser vid KÖKS. En av dem är huvuddiagnos, resten bidiagnoser.",
+    description="""Angivna diagnoser vid KÖKS. En av dem är huvuddiagnos, resten bidiagnoser.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DiagnosisCode': 'varchar(max)', 'DiagnosisID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'IsMainDiagnosis': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'DiagnosisID': "{'title_ui': None, 'description': 'Löpnummer'}", 'DiagnosisCode': "{'title_ui': 'Huvuddiagnos+Bidiagnos X', 'description': 'Diagnoskod (ICD10 eller ICD10P)'}", 'IsMainDiagnosis': "{'title_ui': None, 'description': 'Om detta är huvuddiagnosen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

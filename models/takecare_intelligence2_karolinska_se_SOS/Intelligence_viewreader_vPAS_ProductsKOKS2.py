@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Produkter som angetts i KÖKS-formuläret (ytterligare egenskaper på produkterna i PAS_ProductsKOKS, dock ej produkter som -EJ och -IL)",
+    description="""Produkter som angetts i KÖKS-formuläret (ytterligare egenskaper på produkterna i PAS_ProductsKOKS, dock ej produkter som -EJ och -IL)""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'PatientID': 'varchar(max)', 'Price': 'varchar(max)', 'ProductCode': 'varchar(max)', 'ProductID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Weight': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'ProductID': "{'title_ui': None, 'description': None}", 'ProductCode': "{'title_ui': None, 'description': 'Produkttyp och produktkod'}", 'Price': '{\'title_ui\': None, \'description\': \'Produktens viktade pris. Är vikten gånger en "konstant" för varje sjukhus, som revideras varje år. Priset här är vägledande och inte slutgiltigt.\'}', 'Weight': "{'title_ui': None, 'description': 'Produktvikt'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

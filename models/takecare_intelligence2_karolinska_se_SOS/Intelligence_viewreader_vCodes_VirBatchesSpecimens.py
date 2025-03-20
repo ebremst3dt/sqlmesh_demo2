@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Paket som finns under beställningskategorierna snabbval och smittämnen och vilka provmaterial som visas under resp. paket. (Virologlabb)",
+    description="""Paket som finns under beställningskategorierna snabbval och smittämnen och vilka provmaterial som visas under resp. paket. (Virologlabb)""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Batch': 'varchar(max)', 'BatchID': 'varchar(max)', 'Category': 'varchar(max)', 'IsAllAnalysesRequired': 'varchar(max)', 'SpecimenID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'BatchID': "{'title_ui': None, 'description': 'Paketid. Alltid unikt med ett undantag då det finns två provmaterial i samma paket.'}", 'Batch': "{'title_ui': None, 'description': 'Paketets namn'}", 'SpecimenID': "{'title_ui': None, 'description': 'I detta paket ska analyserna endast visas med dessa provmaterial. 0=ta provmaterial från Codes_VirSpecAnalyses istället'}", 'IsAllAnalysesRequired': "{'title_ui': None, 'description': 'Alla analyser inom paketet är obligatoriska'}", 'Category': "{'title_ui': None, 'description': {'break': [None, None]}}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

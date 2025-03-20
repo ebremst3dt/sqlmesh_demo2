@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Permissioner under inskrivning",
+    description="""Permissioner under inskrivning""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'EndDatetime': 'varchar(max)', 'PatientID': 'varchar(max)', 'Residence': 'varchar(max)', 'Row': 'varchar(max)', 'StartDatetime': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'StartDatetime': "{'title_ui': 'Fr.o.m.', 'description': 'Starttid för permission'}", 'EndDatetime': "{'title_ui': 'T.o.m.', 'description': 'Sluttid för permission'}", 'Residence': "{'title_ui': 'Vistelseort', 'description': 'Där patienten vistas under permissionen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="De alternativ som förvalt är intressanta att ange för detta hälsoproblem.",
+    description="""De alternativ som förvalt är intressanta att ange för detta hälsoproblem.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'IssueID': 'varchar(max)', 'Optional': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'IssueID': "{'title_ui': 'Id', 'description': None}", 'Optional': "{'title_ui': 'Alternativ', 'description': 'Alternativ som default ska användas för hälsoproblemet. 1=Smittväg. 2=KVÅ.Kod'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

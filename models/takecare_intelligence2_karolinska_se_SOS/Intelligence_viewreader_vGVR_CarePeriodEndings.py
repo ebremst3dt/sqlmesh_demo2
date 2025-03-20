@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Avslut av vårdperiod samt korrigeringar av avslut",
+    description="""Avslut av vårdperiod samt korrigeringar av avslut""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AddictionDiagnosis': 'varchar(max)', 'DiagnosisGroup': 'varchar(max)', 'FileName': 'varchar(max)', 'PatientCategory': 'varchar(max)', 'PersonalityDisorderDiagnosis': 'varchar(max)', 'ReferredTo': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'DiagnosisGroup': "{'title_ui': None, 'description': 'Slutlig diagnosgrupp. Avser den slutliga bedömningen.'}", 'ReferredTo': "{'title_ui': None, 'description': 'Hänvisad till. Används ej.'}", 'PatientCategory': "{'title_ui': None, 'description': 'Slutgiltig patientkategori'}", 'AddictionDiagnosis': "{'title_ui': None, 'description': 'Beroendediagnos'}", 'PersonalityDisorderDiagnosis': "{'title_ui': None, 'description': 'Personlighetsstörning. Används ej.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

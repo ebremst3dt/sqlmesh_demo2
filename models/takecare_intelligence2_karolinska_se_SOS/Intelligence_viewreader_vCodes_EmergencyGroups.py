@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Enheter som använder akutliggaren grupperas så att användaren kan välja att se patienter inlagda på en grupp enheter.",
+    description="""Enheter som använder akutliggaren grupperas så att användaren kan välja att se patienter inlagda på en grupp enheter.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'GroupID': 'varchar(max)', 'HospitalID': 'varchar(max)', 'IsActive': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'GroupID': "{'title_ui': 'Id', 'description': None}", 'Name': "{'title_ui': 'Namn', 'description': None}", 'HospitalID': "{'title_ui': 'Inrättning', 'description': 'Gruppen ska visas om användaren är inloggad på en vårdenhet med denna inrättningskod.'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då vårdenhetsgruppen är giltig'}", 'IsActive': "{'title_ui': None, 'description': 'Om denna grupp används för tillfället.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

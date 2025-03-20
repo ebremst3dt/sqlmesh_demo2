@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Det användaren skriver in i kompletterande uppgifter (tidigare medicinsk information). Innehålla en rad per rad i Kompl. uppgifter för de flesta analyser med några få analyser kan ha flera rader.",
+    description="""Det användaren skriver in i kompletterande uppgifter (tidigare medicinsk information). Innehålla en rad per rad i Kompl. uppgifter för de flesta analyser med några få analyser kan ha flera rader.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Answer': 'varchar(max)', 'DocumentID': 'varchar(max)', 'MedInfoRow': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'MedInfoRow': "{'title_ui': None, 'description': None}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'Answer': "{'title_ui': None, 'description': 'Svar'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

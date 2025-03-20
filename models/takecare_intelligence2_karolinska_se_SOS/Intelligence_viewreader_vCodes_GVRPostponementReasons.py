@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Mappning ändringsorsak till GVR undantagskod.. Orsak till ändring av bokning.",
+    description="""Mappning ändringsorsak till GVR undantagskod.. Orsak till ändring av bokning.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AppPostponementReasonID': 'varchar(max)', 'Description': 'varchar(max)', 'GVRPostponementReasonCode': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'AppPostponementReasonID': "{'title_ui': None, 'description': None}", 'GVRPostponementReasonCode': "{'title_ui': None, 'description': None}", 'Description': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

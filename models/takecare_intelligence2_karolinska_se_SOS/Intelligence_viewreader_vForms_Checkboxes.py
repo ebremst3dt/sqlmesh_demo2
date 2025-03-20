@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Bockrutor. I denna tabell lagras endast en rad när en användare har fyllt i ett värde i objektet.",
+    description="""Bockrutor. I denna tabell lagras endast en rad när en användare har fyllt i ett värde i objektet.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'FormTemplateID': 'varchar(max)', 'ObjectID': 'varchar(max)', 'ObjectTypeID': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Value': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'ObjectID': "{'title_ui': None, 'description': 'Objektets id'}", 'FormTemplateID': "{'title_ui': None, 'description': 'Formulärdefinitionens id'}", 'ObjectTypeID': "{'title_ui': None, 'description': {'break': [None, None, None, None, None, None, None, None, None]}}", 'Value': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

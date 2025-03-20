@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Vilka analyser som ingår i paketen under beställningskategorierna snabbval och smittämnen och vilka provmaterial som analyserna visas med. (Virologlabb)",
+    description="""Vilka analyser som ingår i paketen under beställningskategorierna snabbval och smittämnen och vilka provmaterial som analyserna visas med. (Virologlabb)""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AnalysisID': 'varchar(max)', 'BatchID': 'varchar(max)', 'SpecimenID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'BatchID': "{'title_ui': None, 'description': 'Paketid'}", 'SpecimenID': "{'title_ui': None, 'description': 'Analyserna ska endast visas med dessa provmaterial. 0=ta provmaterial från Codes_VirSpecAnalyses istället'}", 'AnalysisID': "{'title_ui': None, 'description': 'Analysid'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

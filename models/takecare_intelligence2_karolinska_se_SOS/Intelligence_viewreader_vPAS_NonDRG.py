@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Uppgifter om ej debiterbara ekonomitransaktioner. Produktkoderna EJ, EJD och IL.",
+    description="""Uppgifter om ej debiterbara ekonomitransaktioner. Produktkoderna EJ, EJD och IL.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Amount': 'varchar(max)', 'CarePlanDocumentID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'IsAutopsied': 'varchar(max)', 'KOKSCode': 'varchar(max)', 'PatientID': 'varchar(max)', 'ProductCode': 'varchar(max)', 'ProductType': 'varchar(max)', 'ProductTypeDRGGrouper': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'ProductTypeDRGGrouper': "{'title_ui': None, 'description': 'Typ av DRG-grupperare, ej produkttyp'}", 'ProductType': "{'title_ui': None, 'description': 'Den riktiga produkttypen'}", 'ProductCode': "{'title_ui': None, 'description': None}", 'Amount': "{'title_ui': None, 'description': 'Antal av denna produkt (alltid 1)'}", 'KOKSCode': "{'title_ui': 'Kod N/C-koder', 'description': 'Där N = 1-4'}", 'IsAutopsied': "{'title_ui': 'Obducerad', 'description': 'Om patienten har obducerats'}", 'CarePlanDocumentID': "{'title_ui': 'Kopplad vårdplanering', 'description': 'Dokument-id för kopplad vårdplan (från DRG-formuläret)'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

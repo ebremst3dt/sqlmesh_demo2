@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Grupper av analyser.",
+    description="""Grupper av analyser.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'Group': 'varchar(max)', 'GroupComment': 'varchar(max)', 'GroupID': 'varchar(max)', 'GroupRow': 'varchar(max)', 'MedicalComment': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'GroupRow': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'GroupID': "{'title_ui': None, 'description': 'Kod för gruppen'}", 'Group': "{'title_ui': None, 'description': 'Namn/beteckning för gruppen'}", 'MedicalComment': "{'title_ui': 'Medicinsk bedömning', 'description': 'Gemensam bedömning för hela gruppen'}", 'GroupComment': "{'title_ui': 'Laboratorie kommentar', 'description': 'Gemensam kommentar för hela gruppen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="",
+    description="""""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'BICCode': 'varchar(max)', 'BankGiro': 'varchar(max)', 'CompanyID': 'varchar(max)', 'County': 'varchar(max)', 'CountyID': 'varchar(max)', 'CreditDays': 'varchar(max)', 'EconomicalCatalogue': 'varchar(max)', 'IBAN': 'varchar(max)', 'InvoiceNoSeriesEnd': 'varchar(max)', 'InvoiceNoSeriesStart': 'varchar(max)', 'InvoicingCharge': 'varchar(max)', 'Logotype': 'varchar(max)', 'Name': 'varchar(max)', 'OrgNo': 'varchar(max)', 'PGOrBG': 'varchar(max)', 'PhoneNo': 'varchar(max)', 'PlusGiro': 'varchar(max)', 'PlusGiroContract': 'varchar(max)', 'PlusGiroRecipient': 'varchar(max)', 'PostalAddress': 'varchar(max)', 'RESFolder': 'varchar(max)', 'RESUser': 'varchar(max)', 'ReminderCharge': 'varchar(max)', 'SnodUser': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={},
     kind=dict(

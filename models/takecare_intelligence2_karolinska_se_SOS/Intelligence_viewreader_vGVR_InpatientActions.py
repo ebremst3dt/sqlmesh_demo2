@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Registrering/korrigering av medicinska uppgifter ( Åtgärder/Operationer) för slutenvården. Varje åtgärd hör ihop med en diagnos.",
+    description="""Registrering/korrigering av medicinska uppgifter ( Åtgärder/Operationer) för slutenvården. Varje åtgärd hör ihop med en diagnos.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ActionCode': 'varchar(max)', 'ActionDate': 'varchar(max)', 'DiagnosisRow': 'varchar(max)', 'FileName': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'DiagnosisRow': "{'title_ui': None, 'description': 'Pekar på den diagnos till vilken åtgärden hör'}", 'Row': "{'title_ui': None, 'description': 'Inmatningsordning för operationen. Den första är huvudoperation.'}", 'ActionCode': "{'title_ui': None, 'description': 'Åtgärdskod (operationskod)'}", 'ActionDate': "{'title_ui': None, 'description': 'Datum för åtgärd'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

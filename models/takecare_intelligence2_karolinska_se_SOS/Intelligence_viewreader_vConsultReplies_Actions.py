@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Utförda åtgärder i konsultationssvar",
+    description="""Utförda åtgärder i konsultationssvar""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Code': 'varchar(max)', 'CodeSystemID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'Text': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'Row': "{'title_ui': None, 'description': 'Unik rad för åtgärd'}", 'Code': "{'title_ui': 'Åtgärder', 'description': 'Åtgärdskod enligt valt kodverk (för närvarande alltid ICD10 eller KVÅ)'}", 'CodeSystemID': "{'title_ui': None, 'description': 'Identifierar vilket kodverk som använts'}", 'Text': "{'title_ui': 'Åtgärder', 'description': 'Förklarande text som ersätter åtgärdskod'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

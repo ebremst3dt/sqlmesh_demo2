@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Externa register.",
+    description="""Externa register.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Description': 'varchar(max)', 'ExternalRegisterID': 'varchar(max)', 'File': 'varchar(max)', 'IsUsedInCaseNotes': 'varchar(max)', 'Origin': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'ExternalRegisterID': "{'title_ui': None, 'description': None}", 'File': "{'title_ui': None, 'description': None}", 'Origin': "{'title_ui': None, 'description': None}", 'Description': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': None, 'description': None}", 'IsUsedInCaseNotes': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

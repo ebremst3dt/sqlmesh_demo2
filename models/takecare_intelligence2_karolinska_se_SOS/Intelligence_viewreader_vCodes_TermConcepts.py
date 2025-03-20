@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Begreppstillhörighet. Ett sökord kan ha begrepp kopplade till sig, som ett slags semantik.",
+    description="""Begreppstillhörighet. Ett sökord kan ha begrepp kopplade till sig, som ett slags semantik.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ConceptTermID': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'TermID': "{'title_ui': 'Term id', 'description': 'Termens id'}", 'ConceptTermID': "{'title_ui': None, 'description': 'Begreppstermens term-id'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

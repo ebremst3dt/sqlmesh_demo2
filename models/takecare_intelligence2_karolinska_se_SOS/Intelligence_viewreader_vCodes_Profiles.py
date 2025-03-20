@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Profiler som en användare kan ha behörig till.",
+    description="""Profiler som en användare kan ha behörig till.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'IsAdmByUser': 'varchar(max)', 'ProfileID': 'varchar(max)', 'ProfileName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidToDate': 'varchar(max)'},
     column_descriptions={'ProfileID': "{'title_ui': 'Profilkod', 'description': 'Profilkod'}", 'ProfileName': "{'title_ui': 'Profilnamn', 'description': 'Profilens namn'}", 'IsAdmByUser': "{'title_ui': 'Användaradministrerad', 'description': 'Får administreras av normalanvändare'}", 'ValidToDate': "{'title_ui': 'Inaktiveringsdatum', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

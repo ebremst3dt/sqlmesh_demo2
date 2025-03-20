@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Aktiviteter som bara utförs en enda gång.",
+    description="""Aktiviteter som bara utförs en enda gång.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'PatientID': 'varchar(max)', 'PlannedDate': 'varchar(max)', 'PlannedTime': 'varchar(max)', 'TaskID': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampCreated': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'TimestampCreated': "{'title_ui': 'Skapad', 'description': 'När den första versionen av aktiviteten skapades'}", 'TaskID': "{'title_ui': None, 'description': 'Används när flera aktiviteter skapats på samma sekund.'}", 'TermID': "{'title_ui': None, 'description': 'Den term som definierar aktivitetens namn.'}", 'PlannedDate': "{'title_ui': 'Planerad tid', 'description': 'Datum när aktiviteten planeras att genomföras'}", 'PlannedTime': "{'title_ui': 'Planerad tid', 'description': 'Tid när aktiviteten planeras att genomföras'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

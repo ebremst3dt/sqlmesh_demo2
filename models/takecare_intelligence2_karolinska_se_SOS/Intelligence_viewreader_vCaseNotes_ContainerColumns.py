@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="En container lagrar data i tabellformat. I termkatalogen väljs de kolumner som ska finnas (valfritt antal, av olika datatyper), sedan kan användaren ange valfritt antal rader.",
+    description="""En container lagrar data i tabellformat. I termkatalogen väljs de kolumner som ska finnas (valfritt antal, av olika datatyper), sedan kan användaren ange valfritt antal rader.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ColumnHeadingTermID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'KeywordTermID': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'KeywordTermID': "{'title_ui': None, 'description': 'Term-id för detta sökord'}", 'ColumnHeadingTermID': "{'title_ui': None, 'description': 'Term-id för kolumnens rubrik (alla värden i kolumnen hör till denna term)'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

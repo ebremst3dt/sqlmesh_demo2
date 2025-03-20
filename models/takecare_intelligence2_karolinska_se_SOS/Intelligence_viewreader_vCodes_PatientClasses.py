@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Patientklasser. Kommer ursprungligen från kodservern, men stämmer inte nödvändigtvis överens vid varje tidpunkt. Används inte längre.",
+    description="""Patientklasser. Kommer ursprungligen från kodservern, men stämmer inte nödvändigtvis överens vid varje tidpunkt. Används inte längre.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Name': 'varchar(max)', 'PatientClassID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientClassID': "{'title_ui': None, 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

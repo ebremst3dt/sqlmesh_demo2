@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Kopplade (valbara) värdetermer för ett visst sökord. Ett sökord kan ha en uppsättning värdetermer, som användaren kan välja som värde på sökordet.",
+    description="""Kopplade (valbara) värdetermer för ett visst sökord. Ett sökord kan ha en uppsättning värdetermer, som användaren kan välja som värde på sökordet.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'TermID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValueTermID': 'varchar(max)'},
     column_descriptions={'TermID': "{'title_ui': 'Term id', 'description': 'Termens id'}", 'ValueTermID': "{'title_ui': 'Kopplad värdeterm', 'description': 'Värdetermens term-id'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

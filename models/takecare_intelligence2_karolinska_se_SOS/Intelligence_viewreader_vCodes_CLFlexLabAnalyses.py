@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Laboratoriets analyskatalog för beställning. Katalogen uppdateras kontinuerligt av laboratoriet utan versionshantering, vilket innebär att analyser tillkommer och tas bort.",
+    description="""Laboratoriets analyskatalog för beställning. Katalogen uppdateras kontinuerligt av laboratoriet utan versionshantering, vilket innebär att analyser tillkommer och tas bort.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AnalysisID': 'varchar(max)', 'AnalysisName': 'varchar(max)', 'AnalysisShortName': 'varchar(max)', 'CoOrder': 'varchar(max)', 'NoOfTubes': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TubeID': 'varchar(max)'},
     column_descriptions={'AnalysisID': "{'title_ui': None, 'description': 'Analyskod'}", 'AnalysisName': "{'title_ui': None, 'description': 'Analysnamn användes vid beställning av analys'}", 'AnalysisShortName': "{'title_ui': None, 'description': 'Kortnamn till etiketter'}", 'TubeID': "{'title_ui': None, 'description': 'Rörnummer Den typ av rör som analysen kräver'}", 'CoOrder': "{'title_ui': None, 'description': 'Sambeställning. Analyser med samma nummer kan sambeställas.'}", 'NoOfTubes': "{'title_ui': None, 'description': 'Rörantal'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

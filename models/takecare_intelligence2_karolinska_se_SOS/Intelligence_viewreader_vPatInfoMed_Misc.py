@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Diverse inmatad data för utvalda termer i termkatalogen. Varje TakeCare-installation kan själv definiera vilka termer som ska finnas med.",
+    description="""Diverse inmatad data för utvalda termer i termkatalogen. Varje TakeCare-installation kan själv definiera vilka termer som ska finnas med.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Comment': 'varchar(max)', 'PatientID': 'varchar(max)', 'SavedByUserID': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TimestampSaved': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'TimestampSaved': "{'title_ui': 'Senast ändrad', 'description': 'Tidpunkt då denna version sparades'}", 'TermID': "{'title_ui': None, 'description': 'Term för inmatad data'}", 'Comment': "{'title_ui': 'Kommentar/Värde', 'description': 'Inmatad kommentar eller värde'}", 'SavedByUserID': "{'title_ui': 'Senast ändrad av', 'description': 'Den användare som senast matat in uppgiften'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

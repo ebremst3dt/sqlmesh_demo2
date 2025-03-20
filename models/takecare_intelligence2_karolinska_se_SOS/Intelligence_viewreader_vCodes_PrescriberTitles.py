@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Förskrivartitlar e-recept. Förskrivar titlar vid e-recept till Apotek",
+    description="""Förskrivartitlar e-recept. Förskrivar titlar vid e-recept till Apotek""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'GRSAPICode': 'varchar(max)', 'NEFCode': 'varchar(max)', 'Name': 'varchar(max)', 'PrescriberTitleID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'PrescriberTitleID': "{'title_ui': None, 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'GRSAPICode': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': None, 'description': None}", 'NEFCode': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

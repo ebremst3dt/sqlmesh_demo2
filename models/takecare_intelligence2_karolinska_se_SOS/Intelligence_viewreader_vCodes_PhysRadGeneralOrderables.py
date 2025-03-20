@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Beställningsbara undersökningar (Generell analyskatalog för Fysiologi och Röntgen)",
+    description="""Beställningsbara undersökningar (Generell analyskatalog för Fysiologi och Röntgen)""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ExaminationID': 'varchar(max)', 'IsSideRequired': 'varchar(max)', 'MethodID': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'OrderableID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'OrderRegistryFileName': "{'title_ui': None, 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'OrderableID': "{'title_ui': None, 'description': 'Beställningsspec-id'}", 'MethodID': "{'title_ui': None, 'description': 'Metod-id'}", 'ExaminationID': "{'title_ui': None, 'description': 'Undersökningsid'}", 'IsSideRequired': "{'title_ui': None, 'description': 'Sida ska visas och måste fyllas i'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

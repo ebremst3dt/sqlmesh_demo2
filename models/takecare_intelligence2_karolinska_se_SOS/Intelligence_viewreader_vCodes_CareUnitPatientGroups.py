@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Vårdenhetens lista i sök/välj patient över befintliga patientgrupper. Ögonblicksbild då data extraheras från journalsystemet.",
+    description="""Vårdenhetens lista i sök/välj patient över befintliga patientgrupper. Ögonblicksbild då data extraheras från journalsystemet.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CreatedAtCareUnitID': 'varchar(max)', 'Group': 'varchar(max)', 'GroupRow': 'varchar(max)', 'IsAutoRemoved': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'CreatedAtCareUnitID': "{'title_ui': None, 'description': 'Vårdenhet gruppen finns på'}", 'GroupRow': "{'title_ui': None, 'description': {'break': None}}", 'Group': "{'title_ui': 'Grupp', 'description': None}", 'IsAutoRemoved': "{'title_ui': 'Ta bort grupp automatiskt när den blir tom', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

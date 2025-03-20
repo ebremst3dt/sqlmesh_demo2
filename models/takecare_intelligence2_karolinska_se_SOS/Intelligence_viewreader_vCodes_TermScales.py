@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Mätvärdesskala. En skala med möjliga värden, där varje värde har en textrepresentation, som visas för användaren. Endast ett val är möjligt.",
+    description="""Mätvärdesskala. En skala med möjliga värden, där varje värde har en textrepresentation, som visas för användaren. Endast ett val är möjligt.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Description': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Value': 'varchar(max)'},
     column_descriptions={'TermID': "{'title_ui': 'Term id', 'description': 'Termens id'}", 'Value': "{'title_ui': 'Unikt id', 'description': 'Det faktiska värdet'}", 'Description': "{'title_ui': 'Förklarande text', 'description': 'Textrepresentationen av värdet'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

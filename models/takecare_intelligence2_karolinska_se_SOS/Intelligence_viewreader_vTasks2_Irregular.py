@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Aktiviteten utförs enligt ett manuellt schema på oregelbundna tider, en eller flera gånger varje dag.",
+    description="""Aktiviteten utförs enligt ett manuellt schema på oregelbundna tider, en eller flera gånger varje dag.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'EndDate': 'varchar(max)', 'EndTime': 'varchar(max)', 'PatientID': 'varchar(max)', 'StartDate': 'varchar(max)', 'StartTime': 'varchar(max)', 'TaskID': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampCreated': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'TimestampCreated': "{'title_ui': 'Skapad', 'description': 'När den första versionen av aktiviteten skapades'}", 'TaskID': "{'title_ui': None, 'description': 'Används när flera aktiviteter skapats på samma sekund.'}", 'TermID': "{'title_ui': None, 'description': 'Den term som definierar aktivitetens namn.'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'StartDate': "{'title_ui': 'Starttid', 'description': 'Datum då aktiviteten planeras att starta'}", 'StartTime': "{'title_ui': 'Starttid', 'description': 'Tid då aktiviteten planeras att starta'}", 'EndDate': "{'title_ui': 'Sluttid', 'description': 'Datum då aktiviteten planeras avslutas'}", 'EndTime': "{'title_ui': 'Sluttid', 'description': 'Tid då aktiviteten planeras avslutas'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

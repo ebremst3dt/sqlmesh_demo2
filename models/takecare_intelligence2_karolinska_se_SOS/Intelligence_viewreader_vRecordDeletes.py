@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Journaler som ska laddas om helt för att ta bort raderade dokument. Är alltid tom i databasen p.g.a. GDPR",
+    description="""Journaler som ska laddas om helt för att ta bort raderade dokument. Är alltid tom i databasen p.g.a. GDPR""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DeleteID': 'varchar(max)', 'ExportID': 'varchar(max)', 'PatientID': 'varchar(max)', 'RecordPartition': 'varchar(max)', 'TimestampDeleted': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'DeleteID': "{'title_ui': None, 'description': 'Unikt id för omläsningen'}", 'PatientID': "{'title_ui': None, 'description': 'Journal där data ska läsas om helt'}", 'TimestampDeleted': "{'title_ui': None, 'description': 'Tidpunkt då omläsning beställdes'}", 'ExportID': "{'title_ui': None, 'description': None}", 'RecordPartition': "{'title_ui': None, 'description': 'Journalpartition som journalen hör till'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

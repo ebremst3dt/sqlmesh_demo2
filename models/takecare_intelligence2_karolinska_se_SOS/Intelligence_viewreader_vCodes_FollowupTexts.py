@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="",
+    description="""""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'FollowupTechnicalText': 'varchar(max)', 'FollowupText': 'varchar(max)', 'FollowupTextCode': 'varchar(max)', 'FollowupTextID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={},
     kind=dict(

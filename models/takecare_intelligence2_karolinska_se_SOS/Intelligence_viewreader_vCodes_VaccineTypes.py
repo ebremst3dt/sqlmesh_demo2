@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Vaccination - Typer",
+    description="""Vaccination - Typer""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'VaccineTypeID': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'VaccineTypeID': "{'title_ui': 'Id', 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

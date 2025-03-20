@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Planerade datum/tid för oregelbundna aktiviteter",
+    description="""Planerade datum/tid för oregelbundna aktiviteter""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Date': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'TaskID': 'varchar(max)', 'TermID': 'varchar(max)', 'Time': 'varchar(max)', 'TimestampCreated': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'TimestampCreated': "{'title_ui': 'Skapad', 'description': 'När den första versionen av aktiviteten skapades'}", 'TaskID': "{'title_ui': None, 'description': 'Används när flera aktiviteter skapats på samma sekund.'}", 'TermID': "{'title_ui': None, 'description': 'Den term som definierar aktivitetens namn.'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'Row': "{'title_ui': None, 'description': 'Löpnummer för planerad datum/tid'}", 'Date': "{'title_ui': 'Planerad datum', 'description': 'Datum för detta planerade tillfälle'}", 'Time': "{'title_ui': 'Planerad tid', 'description': 'Tid för detta planerade tillfälle'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

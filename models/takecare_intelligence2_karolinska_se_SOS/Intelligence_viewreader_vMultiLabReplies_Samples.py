@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Prov som grupperar analyser",
+    description="""Prov som grupperar analyser""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'Group': 'varchar(max)', 'IsPairSample': 'varchar(max)', 'PatientID': 'varchar(max)', 'SampleComment': 'varchar(max)', 'SampleID': 'varchar(max)', 'SamplingDate': 'varchar(max)', 'SpecimenName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'SampleID': "{'title_ui': None, 'description': 'Labbets id på provet'}", 'Group': "{'title_ui': None, 'description': 'Grupp'}", 'SamplingDate': "{'title_ui': None, 'description': 'Datum då provtagning skett'}", 'SpecimenName': "{'title_ui': 'Provmaterial', 'description': None}", 'IsPairSample': '{\'title_ui\': None, \'description\': \'Om det är ett parallellsatt prov så visas texten "Tidigare analyserat prov från..."\'}', 'SampleComment': "{'title_ui': 'Provkommentar', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

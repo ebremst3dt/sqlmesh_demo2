@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Kopplade dokument.",
+    description="""Kopplade dokument.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'DocumentTypeID': 'varchar(max)', 'LinkedDocumentID': 'varchar(max)', 'PatientID': 'varchar(max)', 'ReferenceType': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Är alltid 1 för att möjliggöra främmande nyckel till huvudtabellen.'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'LinkedDocumentID': "{'title_ui': None, 'description': 'Id för länkat dokument'}", 'ReferenceType': "{'title_ui': None, 'description': 'Typ av post, t.ex. PASType eller id för dokumenttyp'}", 'DocumentTypeID': "{'title_ui': None, 'description': 'Id för dokumenttyp'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

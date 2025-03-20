@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Data som lagras per cell. Raderna hör ihop som en inmatning, där varje kolumn kan ses som en egenskap på det inmatade datat. Denna cell innehåller ett datum.",
+    description="""Data som lagras per cell. Raderna hör ihop som en inmatning, där varje kolumn kan ses som en egenskap på det inmatade datat. Denna cell innehåller ett datum.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ColumnHeadingTermID': 'varchar(max)', 'Date': 'varchar(max)', 'DocumentID': 'varchar(max)', 'KeywordTermID': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'Time': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'KeywordTermID': "{'title_ui': None, 'description': 'Term-id för detta sökord'}", 'ColumnHeadingTermID': "{'title_ui': None, 'description': 'Term-id för kolumnen'}", 'Row': "{'title_ui': None, 'description': 'Den rad i tabellen som denna cell tillhör'}", 'Date': "{'title_ui': None, 'description': 'Datum för det inmatade värdet'}", 'Time': "{'title_ui': None, 'description': 'Tidpunkt för det inmatade värdet'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

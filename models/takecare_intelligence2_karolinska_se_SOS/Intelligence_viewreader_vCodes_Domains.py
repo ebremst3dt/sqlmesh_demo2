@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Register över de vårdgivare som finns inlagda i systemet (kallades tidigare domäner). Användare hos en vårdgivare har inte automatiskt tillgång till journaldata från en annan vårdgivare.",
+    description="""Register över de vårdgivare som finns inlagda i systemet (kallades tidigare domäner). Användare hos en vårdgivare har inte automatiskt tillgång till journaldata från en annan vårdgivare.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DomainID': 'varchar(max)', 'HSAID': 'varchar(max)', 'HasCoherentRecords': 'varchar(max)', 'Name': 'varchar(max)', 'OrgNo': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'DomainID': "{'title_ui': 'Identitet', 'description': None}", 'Name': "{'title_ui': 'Vårdgivarnamn', 'description': 'Namn på vårdgivaren'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då vårdgivaren är giltig'}", 'HasCoherentRecords': "{'title_ui': 'Sammanhållen journal', 'description': 'Om vårdgivaren tillämpar sammanhållen journalföring'}", 'HSAID': "{'title_ui': 'HSA-id', 'description': 'HSA-id för vårdgivare'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

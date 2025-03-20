@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Län och Kommun församlingar.",
+    description="""Län och Kommun församlingar.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CompositeID': 'varchar(max)', 'CountyID': 'varchar(max)', 'MunicipalityID': 'varchar(max)', 'ParishID': 'varchar(max)', 'ParishName': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'CountyID': "{'title_ui': None, 'description': 'Länskod'}", 'MunicipalityID': "{'title_ui': None, 'description': 'Kommunkod'}", 'ParishID': "{'title_ui': None, 'description': 'Församlingskod'}", 'CompositeID': "{'title_ui': None, 'description': 'Län+kommunkod+Församlingskod tillsammans'}", 'ParishName': "{'title_ui': None, 'description': 'Församling'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

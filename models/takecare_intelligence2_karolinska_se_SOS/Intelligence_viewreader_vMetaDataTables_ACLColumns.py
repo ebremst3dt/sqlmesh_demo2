@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Behörighetsgivande vårdenhetskolumner som hör till tabellen",
+    description="""Behörighetsgivande vårdenhetskolumner som hör till tabellen""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ACLColumnName': 'varchar(max)', 'ACLTableName': 'varchar(max)', 'IsFromExport': 'varchar(max)', 'TableName': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'TableName': "{'title_ui': None, 'description': 'Tabellens namn'}", 'IsFromExport': "{'title_ui': None, 'description': 'Om metadata fanns i exporten eller om det är manuellt tillagt statiskt (ev. föråldrat) data'}", 'ACLColumnName': "{'title_ui': None, 'description': 'Namn på en behörighetsgivande kolumn i tabellen'}", 'ACLTableName': "{'title_ui': None, 'description': 'Tabell där de behörighetsgivande kolumnerna finns (kan vara annan än denna tabell)'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

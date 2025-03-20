@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Ej versionshanterat data om de registrerade användarna.",
+    description="""Ej versionshanterat data om de registrerade användarna.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'PrescriberCode': 'varchar(max)', 'PrescriberTitleID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'UserID': 'varchar(max)'},
     column_descriptions={'UserID': "{'title_ui': 'Personnr', 'description': 'Användarens personnummer'}", 'PrescriberCode': "{'title_ui': 'Förskrivarkod', 'description': None}", 'PrescriberTitleID': "{'title_ui': 'Förskrivartyp', 'description': 'Apotekskoden för förskrivartypen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Resultat från analyser för immunologi. Ett svar kan innehålla flera resultat med en egen kommentar. Ett resultat kan omfatta flera analyser.",
+    description="""Resultat från analyser för immunologi. Ett svar kan innehålla flera resultat med en egen kommentar. Ett resultat kan omfatta flera analyser.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'GroupName': 'varchar(max)', 'PatientID': 'varchar(max)', 'ResultComment': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'GroupName': "{'title_ui': 'Kommentar avseende', 'description': 'Samlingsnamn för analyserna i gruppen. Presenteras endast i TC om det finns en kommentar.'}", 'ResultComment': "{'title_ui': 'Kommentar avseende', 'description': 'Kommentar från labbet angående gruppen av analyser.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    table_description="Resurser på en vårdenhet kan grupperas ihop för att göra det lättare för användarna att hitta bland resurserna. En resurs kan förekomma i flera grupper.",
+    description="""Resurser på en vårdenhet kan grupperas ihop för att göra det lättare för användarna att hitta bland resurserna. En resurs kan förekomma i flera grupper.""",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CareUnitID': 'varchar(max)', 'GroupName': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'CareUnitID': "{'title_ui': 'Vårdenhet', 'description': None}", 'GroupName': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
