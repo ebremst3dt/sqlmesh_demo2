@@ -6,7 +6,7 @@ from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
 
-
+    
 @model(
     description="Län och Kommuner. En kombination av kodtabellen 'Län och Kommuner' samt tabellen 'Län och Kommuner - Specialkoder' i generella register. Endast unika län/kommunkoder lagras. Om dubletter förekommer används i första hand det som angetts i generella register och den som inte har ett t.o.m datum, eller den med det senaste t.o.m datumet.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CompositeID': 'varchar(max)', 'CountyID': 'varchar(max)', 'CountyName': 'varchar(max)', 'MunicipalityID': 'varchar(max)', 'MunicipalityName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
@@ -19,7 +19,7 @@ from models.mssql import read
     cron="@daily"
 )
 
-
+    
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -28,7 +28,7 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = f"""
-	SELECT * FROM (SELECT
+	SELECT * FROM (SELECT 
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence2_karolinska_se_Intelligence_viewreader' as _source,
@@ -38,8 +38,9 @@ def execute(
 		CAST(MunicipalityID AS VARCHAR(MAX)) AS MunicipalityID,
 		CAST(MunicipalityName AS VARCHAR(MAX)) AS MunicipalityName,
 		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), ValidThroughDate, 126) AS ValidThroughDate
+		CONVERT(varchar(max), ValidThroughDate, 126) AS ValidThroughDate 
 	FROM Intelligence.viewreader.vCodes_Municipalities) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""
     return read(query=query, server_url="intelligence2.karolinska.se_SOS")
+    
