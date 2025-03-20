@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Grupper av analyser. Både grupper och analyser förekommer flera gånger i tabellen. (Immunologi IdaLab analyskatalog)""",
+    description="Grupper av analyser. Både grupper och analyser förekommer flera gånger i tabellen. (Immunologi IdaLab analyskatalog)",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AnalysisID': 'varchar(max)', 'GroupName': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'AnalysisID': "{'title_ui': None, 'description': 'Analysid'}", 'GroupName': "{'title_ui': None, 'description': 'Gruppnamn (grupperna har inget id)'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

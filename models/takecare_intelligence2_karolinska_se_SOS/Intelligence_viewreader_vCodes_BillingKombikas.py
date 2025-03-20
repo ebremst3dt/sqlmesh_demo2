@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Ekonomiska kombikor och vårdenhetsnamn. Kan kopplas till kassor i Codes_BillingCounters genom kopplingstabellen Codes_BillingCounterKombikas.""",
+    description="Ekonomiska kombikor och vårdenhetsnamn. Kan kopplas till kassor i Codes_BillingCounters genom kopplingstabellen Codes_BillingCounterKombikas.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'EconomicalKombika': 'varchar(max)', 'EconomicalKombikaName': 'varchar(max)', 'EconomicalKombikaRow': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'EconomicalKombikaRow': "{'title_ui': None, 'description': 'Används som id för kombinationen av kombikakod och kombikanamn. Internt id som kan förändras.'}", 'EconomicalKombika': "{'title_ui': 'Kombika', 'description': 'Ekonomisk Kombika/EXID, kod'}", 'EconomicalKombikaName': "{'title_ui': 'Ekonomisk enhet', 'description': 'Ekonomisk Kombika, namn'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""En resurs kan vara en befattning och olika personer kan bemanna denna befattning under olika perioder.""",
+    description="En resurs kan vara en befattning och olika personer kan bemanna denna befattning under olika perioder.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CareUnitID': 'varchar(max)', 'FromDate': 'varchar(max)', 'FromTime': 'varchar(max)', 'ProfessionResourceID': 'varchar(max)', 'StaffedByResourceID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ToDate': 'varchar(max)', 'ToTime': 'varchar(max)'},
     column_descriptions={'CareUnitID': "{'title_ui': 'Vårdenhet', 'description': None}", 'ProfessionResourceID': "{'title_ui': 'Befattning', 'description': None}", 'StaffedByResourceID': "{'title_ui': 'Bemannad av', 'description': None}", 'FromDate': "{'title_ui': 'Datum from', 'description': None}", 'FromTime': "{'title_ui': 'Tid from', 'description': None}", 'ToDate': "{'title_ui': 'Datum tom', 'description': None}", 'ToTime': "{'title_ui': 'Tid tom', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

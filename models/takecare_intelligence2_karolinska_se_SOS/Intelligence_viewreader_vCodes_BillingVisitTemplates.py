@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Kassa - Besöksmallar""",
+    description="Kassa - Besöksmallar",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'BillingRateCode': 'varchar(max)', 'BillingVisitTemplateID': 'varchar(max)', 'CareProviderID1': 'varchar(max)', 'CareProviderID2': 'varchar(max)', 'EmergencyWard': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)', 'VisitLocationID': 'varchar(max)', 'VisitTemplateCode': 'varchar(max)', 'VisitTypeCategoryID': 'varchar(max)', 'VisitTypeCode': 'varchar(max)'},
     column_descriptions={'BillingVisitTemplateID': "{'title_ui': 'ID', 'description': 'Internt id för besöksmallen'}", 'VisitTemplateCode': "{'title_ui': 'Kod', 'description': None}", 'Name': "{'title_ui': 'Namn', 'description': None}", 'VisitTypeCode': "{'title_ui': 'Besökstyp', 'description': 'Besökstypskod'}", 'VisitTypeCategoryID': "{'title_ui': 'Besöksform', 'description': None}", 'VisitLocationID': "{'title_ui': 'Besöksplats', 'description': None}", 'EmergencyWard': "{'title_ui': 'Akut', 'description': '1=Akut, 2=Ej Akut'}", 'CareProviderID1': "{'title_ui': 'Yrkeskategori 1', 'description': 'Yrkeskategorin som utför hälsovård'}", 'CareProviderID2': "{'title_ui': 'Yrkeskategori 2', 'description': 'Yrkeskategorin som utför hälsovård'}", 'BillingRateCode': "{'title_ui': 'Taxa', 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'ValidFromDate': "{'title_ui': 'Giltig fr.o.m', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Registrering/korrigering av medicinska uppgifter (Diagnoser) för slutenvården""",
+    description="Registrering/korrigering av medicinska uppgifter (Diagnoser) för slutenvården",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CauseCode': 'varchar(max)', 'ClinicalPathwayNumber': 'varchar(max)', 'DiagnosisCode': 'varchar(max)', 'FileName': 'varchar(max)', 'IsAutopsied': 'varchar(max)', 'IsCauseOfDeath': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'Row': "{'title_ui': None, 'description': 'Inmatningsordning för diagnos. Den första är huvuddiagnosen.'}", 'IsAutopsied': "{'title_ui': None, 'description': 'Om obduktion utförd'}", 'DiagnosisCode': "{'title_ui': None, 'description': 'Diagnoskod (ICD10, ICD10P eller ATC)'}", 'IsCauseOfDeath': "{'title_ui': None, 'description': 'Är dödsorsak'}", 'CauseCode': "{'title_ui': None, 'description': 'Orsakskod (orsak till diagnosen, ICD10)'}", 'ClinicalPathwayNumber': "{'title_ui': None, 'description': 'Vårdkedjenummer. Används ej.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

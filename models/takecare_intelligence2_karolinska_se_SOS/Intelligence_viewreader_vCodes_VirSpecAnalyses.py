@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Vilka analyser som tillhör vilket provmaterial (Virologlabb)""",
+    description="Vilka analyser som tillhör vilket provmaterial (Virologlabb)",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AnalysisID': 'varchar(max)', 'SpecimenID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'AnalysisID': "{'title_ui': None, 'description': 'Analysid'}", 'SpecimenID': "{'title_ui': None, 'description': 'Provmaterial som visas under valt paket.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

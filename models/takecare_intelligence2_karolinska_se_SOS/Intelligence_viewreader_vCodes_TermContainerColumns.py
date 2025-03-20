@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Containerkolumner, dvs. de kolumner som visas för den angivna containertermen. En containerterm kan ha en eller flera kolumner.""",
+    description="Containerkolumner, dvs. de kolumner som visas för den angivna containertermen. En containerterm kan ha en eller flera kolumner.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ColumnTermID': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'TermID': "{'title_ui': 'Term id', 'description': 'Termens id'}", 'ColumnTermID': "{'title_ui': 'Underterm', 'description': 'Kolumnens term-id'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

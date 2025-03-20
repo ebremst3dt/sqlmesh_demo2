@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Hälsoproblem - Infektionsverktyget""",
+    description="Hälsoproblem - Infektionsverktyget",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'IsSentAsOther': 'varchar(max)', 'IssueID': 'varchar(max)', 'IssueInfectionID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransmissionID': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'IssueInfectionID': "{'title_ui': 'Id', 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'IssueID': "{'title_ui': 'Hälsoproblem Id', 'description': 'Hälsoproblemets Id'}", 'TransmissionID': "{'title_ui': 'Smittväg', 'description': 'Hälsoproblemets smittväg. 1=Samhällsförvärvad. 2=Vårdrelaterad'}", 'IsSentAsOther': '{\'title_ui\': \'Skicka som "Annat"\', \'description\': \'Om hälsoproblemet ska skickas som "Annat" till infektionsverktyget\'}', 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

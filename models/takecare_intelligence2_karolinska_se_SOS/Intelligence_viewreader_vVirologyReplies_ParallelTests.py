@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Kopplingar till tidigare resultat från analyser för virologi""",
+    description="Kopplingar till tidigare resultat från analyser för virologi",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AnalysisID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'LID': 'varchar(max)', 'PatientID': 'varchar(max)', 'ResultRow': 'varchar(max)', 'Row': 'varchar(max)', 'SamplingDate': 'varchar(max)', 'Specimen': 'varchar(max)', 'TestResult': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'ResultRow': "{'title_ui': None, 'description': 'Refererar till en post i VirologyReplies_Result'}", 'AnalysisID': "{'title_ui': 'Analys', 'description': 'Kod för vald analys (Intern lab)'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'LID': "{'title_ui': 'prov-id', 'description': 'LID (labb-id), dvs. labbsvarets id i laboratoriets system'}", 'Specimen': "{'title_ui': 'mtrl', 'description': 'Provmaterial'}", 'SamplingDate': "{'title_ui': 'provtagningsdatum', 'description': 'Provtagningsdatum'}", 'TestResult': "{'title_ui': 'Resultat', 'description': 'ex. Negativ, Positiv eller ett numeriskt värde'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

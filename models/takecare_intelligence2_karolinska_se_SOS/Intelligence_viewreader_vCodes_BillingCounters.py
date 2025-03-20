@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Kassor. Kan kopplas till ekonomiska vårdenheter/kombikor i Codes_BillingKombikas genom kopplingstabellen Codes_BillingCounterKombikas. Kassor som saknar koppling till kombikor i Codes_BillingCounterKombikas, visas i TakeCare upp som kopplade till alla kombikor i vårdenhetsregistret.""",
+    description="Kassor. Kan kopplas till ekonomiska vårdenheter/kombikor i Codes_BillingKombikas genom kopplingstabellen Codes_BillingCounterKombikas. Kassor som saknar koppling till kombikor i Codes_BillingCounterKombikas, visas i TakeCare upp som kopplade till alla kombikor i vårdenhetsregistret.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CompanyCode': 'varchar(max)', 'Counter': 'varchar(max)', 'CounterRow': 'varchar(max)', 'CustomerGroupCode': 'varchar(max)', 'Hospital': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'CounterRow': "{'title_ui': None, 'description': 'Används som id för kassan. Internt id som kan förändras.'}", 'Counter': "{'title_ui': 'Kassa', 'description': 'Kassakod'}", 'Name': "{'title_ui': 'Kassa', 'description': 'Kassanamn'}", 'Hospital': "{'title_ui': 'Inrättning', 'description': 'Inrättning'}", 'CompanyCode': "{'title_ui': 'Kundkod', 'description': 'Det som tidigare kallades företagskod, men egentligen var en kundkod'}", 'CustomerGroupCode': "{'title_ui': 'Kod', 'description': 'Kundgruppskod, är NULL när kundgrupp saknas'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

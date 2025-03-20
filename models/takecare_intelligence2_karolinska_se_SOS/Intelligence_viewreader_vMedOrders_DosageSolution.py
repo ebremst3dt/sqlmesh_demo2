@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Dosering av lösning. Varje tillfälle hamnar på en egen rad.""",
+    description="Dosering av lösning. Varje tillfälle hamnar på en egen rad.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'DosageID': 'varchar(max)', 'DoseNumerical': 'varchar(max)', 'DoseText': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': 'Version', 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'DosageID': "{'title_ui': None, 'description': None}", 'DoseText': "{'title_ui': 'Dos fritext', 'description': 'Dos inklusive enhet, eller fritext för vid behov-ordinationer.'}", 'DoseNumerical': "{'title_ui': 'Dos numerisk', 'description': 'Dos. Är null ex. om det är en vid behov-ordination eller behandlingsschema.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

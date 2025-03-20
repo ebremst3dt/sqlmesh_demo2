@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Kassa - Artiklar""",
+    description="Kassa - Artiklar",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AccountID': 'varchar(max)', 'ArticleCode': 'varchar(max)', 'ArticleID': 'varchar(max)', 'IsOptionalPrice': 'varchar(max)', 'IsPreventiveHealthCare': 'varchar(max)', 'Keywords': 'varchar(max)', 'Name': 'varchar(max)', 'ProfessionID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'ArticleID': "{'title_ui': 'Id', 'description': None}", 'Name': "{'title_ui': 'Namn', 'description': None}", 'ArticleCode': "{'title_ui': 'Artikelkod', 'description': None}", 'AccountID': "{'title_ui': 'Konto', 'description': None}", 'Keywords': "{'title_ui': 'Sökord', 'description': None}", 'IsOptionalPrice': "{'title_ui': 'Valfritt pris', 'description': None}", 'IsPreventiveHealthCare': "{'title_ui': 'Hälsovård', 'description': None}", 'ProfessionID': "{'title_ui': 'Yrke', 'description': 'Yrkeskategorin som utför hälsovård'}", 'ValidFromDate': "{'title_ui': 'Giltig fr.o.m.', 'description': 'Första datum då data är giltigt'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

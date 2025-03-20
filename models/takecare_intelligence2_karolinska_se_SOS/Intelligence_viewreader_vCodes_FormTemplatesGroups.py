@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Vilka formulärdefinitioner som hör till vilken grupp""",
+    description="Vilka formulärdefinitioner som hör till vilken grupp",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'FormTemplateID': 'varchar(max)', 'GroupID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'GroupID': '{\'title_ui\': None, \'description\': \'Gruppens id. 0="Övriga" men den ligger inte i Codes_FormGroups utan hanteras i TC.\'}', 'FormTemplateID': "{'title_ui': 'Identitet', 'description': 'Formulärdefinitionens id'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

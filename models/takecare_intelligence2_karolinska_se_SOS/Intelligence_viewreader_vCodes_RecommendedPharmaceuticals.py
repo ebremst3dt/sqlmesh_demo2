@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Lista över rekommenderade läkemedel, per län.""",
+    description="Lista över rekommenderade läkemedel, per län.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CountyID': 'varchar(max)', 'RegistryNo': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'CountyID': "{'title_ui': None, 'description': 'Länskod'}", 'RegistryNo': "{'title_ui': None, 'description': 'Läkemedelsverkets registreringsnummer (REGNR)'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

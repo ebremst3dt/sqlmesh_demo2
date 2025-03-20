@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Utförda mätningar och resultat för dessa.(Endast Huddinge)""",
+    description="Utförda mätningar och resultat för dessa.(Endast Huddinge)",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'MeasurementID': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Value': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'MeasurementID': "{'title_ui': None, 'description': 'kod för vald mätning'}", 'Value': "{'title_ui': None, 'description': 'Mätningens värde'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

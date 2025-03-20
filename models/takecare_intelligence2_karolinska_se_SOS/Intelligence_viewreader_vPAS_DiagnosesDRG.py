@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Angivna diagnoser vid DRG. En av dem är huvuddiagnos, resten bidiagnoser.""",
+    description="Angivna diagnoser vid DRG. En av dem är huvuddiagnos, resten bidiagnoser.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Cause1': 'varchar(max)', 'Cause2': 'varchar(max)', 'DiagnosisCode': 'varchar(max)', 'DiagnosisID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'EtiologicDiagnosisID': 'varchar(max)', 'IsCauseOfDeath': 'varchar(max)', 'IsMainDiagnosis': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'DiagnosisID': "{'title_ui': None, 'description': 'Löpnummer'}", 'DiagnosisCode': "{'title_ui': 'Diagnos/ATC-kod', 'description': 'Diagnoskod (ICD10, ICD10P eller ATC)'}", 'IsMainDiagnosis': "{'title_ui': 'Huvuddiagnos', 'description': 'Om detta är huvuddiagnosen'}", 'EtiologicDiagnosisID': "{'title_ui': 'Etiologisk kod', 'description': 'Förtydligar diagnosen (ICD10, ICD10P eller ATC)'}", 'Cause1': "{'title_ui': 'Orsakskod 1', 'description': 'Orsakskod 1 (orsak till diagnosen, ICD10)'}", 'Cause2': "{'title_ui': 'Orsakskod 2', 'description': 'Orsakskod 2 (orsak till diagnosen, ICD10)'}", 'IsCauseOfDeath': "{'title_ui': 'Dödsorsak', 'description': 'Om denna diagnos var dödsorsaken'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

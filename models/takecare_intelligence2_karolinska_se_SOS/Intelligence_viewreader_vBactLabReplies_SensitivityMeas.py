@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Resistensbestämning för baktlabbsvar.""",
+    description="Resistensbestämning för baktlabbsvar.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AnalysisID': 'varchar(max)', 'AntimicrobialAgent': 'varchar(max)', 'DocumentID': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'SIRCategory': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'AnalysisID': "{'title_ui': 'SVAR', 'description': None}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'AntimicrobialAgent': "{'title_ui': 'Resistensbestämning', 'description': 'Antimikrobiellt medel. Innehåller även ett ordningsnummer som används för sortering.'}", 'SIRCategory': "{'title_ui': None, 'description': 'SIR-Kategori'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

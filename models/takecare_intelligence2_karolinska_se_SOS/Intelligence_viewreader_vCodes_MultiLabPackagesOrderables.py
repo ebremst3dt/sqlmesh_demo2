@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Vilka beställningsspecifikationer som ingår i varje paket. (MultiLabb analyskatalog)""",
+    description="Vilka beställningsspecifikationer som ingår i varje paket. (MultiLabb analyskatalog)",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'IsRequired': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'OrderableID': 'varchar(max)', 'PackageID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'OrderRegistryFileName': "{'title_ui': None, 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'PackageID': "{'title_ui': None, 'description': 'Paketid'}", 'OrderableID': "{'title_ui': None, 'description': 'Beställningsspec-id'}", 'IsRequired': "{'title_ui': None, 'description': 'Obligatorisk'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

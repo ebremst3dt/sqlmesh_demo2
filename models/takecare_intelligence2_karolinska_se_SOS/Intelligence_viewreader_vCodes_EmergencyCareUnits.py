@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""De vårdenheter som kan använda akutliggaren och skapa akutuppgifter.""",
+    description="De vårdenheter som kan använda akutliggaren och skapa akutuppgifter.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AmbulanceRecordID': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'HasCareTeams': 'varchar(max)', 'HospitalID': 'varchar(max)', 'IsActive': 'varchar(max)', 'ShortName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'CareUnitID': "{'title_ui': 'Id', 'description': 'Vårdenhet'}", 'ShortName': "{'title_ui': 'Kort namn', 'description': 'Det kortnamn som används för att presentera vårdenheter i akutliggaren.'}", 'HospitalID': "{'title_ui': 'Inrättning', 'description': 'En del av inrättningens kombika'}", 'AmbulanceRecordID': "{'title_ui': 'Ambulansjournalkod', 'description': 'Id för styrning av inläsning av ambulansjournaler'}", 'HasCareTeams': "{'title_ui': 'Vårdlag', 'description': 'Om vårdenhetan använder vårdlag'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum som vårdenheten får använda akutliggaren.'}", 'IsActive': "{'title_ui': None, 'description': 'Om denna vårdenhet får använda akutliggaren för tillfället.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

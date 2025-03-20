@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Tider som är spärrade, dvs ingen bokning eller tidsregistrering  kan ske på dessa tider utom av användare med särskild behörighet.""",
+    description="Tider som är spärrade, dvs ingen bokning eller tidsregistrering  kan ske på dessa tider utom av användare med särskild behörighet.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CareUnitID': 'varchar(max)', 'FromDatetime': 'varchar(max)', 'ResourceID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ToDatetime': 'varchar(max)'},
     column_descriptions={'ResourceID': "{'title_ui': 'Resurs', 'description': None}", 'CareUnitID': "{'title_ui': 'Vårdenhet', 'description': None}", 'FromDatetime': "{'title_ui': 'Tidpunkt from', 'description': 'From detta datum och klockslag är alla tider för resursen spärrade'}", 'ToDatetime': "{'title_ui': 'Tidpunkt tom', 'description': 'Tom detta datum och klockslag är alla tider för resursen spärrade'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Undersökningar som kan kopplas till en beställning (Fysiologi)""",
+    description="Undersökningar som kan kopplas till en beställning (Fysiologi)",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Examination': 'varchar(max)', 'ExaminationID': 'varchar(max)', 'HasEKGRegistration': 'varchar(max)', 'IsActive': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'RISCode': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'OrderRegistryFileName': "{'title_ui': None, 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'ExaminationID': "{'title_ui': None, 'description': 'Undersökningsid'}", 'Examination': "{'title_ui': None, 'description': 'Undersökningens namn'}", 'RISCode': "{'title_ui': None, 'description': 'RIS-kod'}", 'HasEKGRegistration': "{'title_ui': None, 'description': 'Ska markera i beställningen att EKG har registrerats'}", 'IsActive': "{'title_ui': None, 'description': 'Beställningsbar'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

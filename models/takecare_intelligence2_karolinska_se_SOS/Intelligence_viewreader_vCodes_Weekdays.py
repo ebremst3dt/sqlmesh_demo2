@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Veckodagar. (bokning) ej inplementerad i TC""",
+    description="Veckodagar. (bokning) ej inplementerad i TC",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)', 'WeekdayID': 'varchar(max)'},
     column_descriptions={'WeekdayID': "{'title_ui': None, 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

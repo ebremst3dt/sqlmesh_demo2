@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Id-typer. Typer av externa IDn som identifierar tex. vårdenheter""",
+    description="Id-typer. Typer av externa IDn som identifierar tex. vårdenheter",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'IdTypeCode': 'varchar(max)', 'IdTypeID': 'varchar(max)', 'IdTypeIntelligenceName': 'varchar(max)', 'IdTypeName': 'varchar(max)', 'IdTypeRegistry': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'IdTypeID': "{'title_ui': None, 'description': None}", 'IdTypeCode': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': None, 'description': None}", 'IdTypeName': "{'title_ui': None, 'description': None}", 'IdTypeRegistry': "{'title_ui': None, 'description': None}", 'IdTypeIntelligenceName': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

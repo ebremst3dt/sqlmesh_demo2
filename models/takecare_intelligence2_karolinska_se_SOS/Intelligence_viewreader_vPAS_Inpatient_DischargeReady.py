@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Utskrivningsklar (hette tidigare medicinskt färdigbehandlad). När patienten anses vara färdig för utskrivning. Påverkar ersättning från kommunen vid samordnad vårdplanering.""",
+    description="Utskrivningsklar (hette tidigare medicinskt färdigbehandlad). När patienten anses vara färdig för utskrivning. Påverkar ersättning från kommunen vid samordnad vårdplanering.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DischargeReadyDate': 'varchar(max)', 'DischargeReadyTime': 'varchar(max)', 'DischargeStatus': 'varchar(max)', 'DocumentID': 'varchar(max)', 'PatientID': 'varchar(max)', 'ResponsibleUserID': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TimestampSaved': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'TimestampSaved': "{'title_ui': 'Senast ändrad', 'description': 'Tid då data registrerats'}", 'DischargeStatus': "{'title_ui': 'Utskrivningsklar/Återtagen', 'description': {'break': None}}", 'DischargeReadyDate': "{'title_ui': 'Datum', 'description': 'Datum för utskrivningsklar/återtagen'}", 'DischargeReadyTime': "{'title_ui': 'Tid', 'description': 'Tid för utskrivningsklar/återtagen'}", 'ResponsibleUserID': "{'title_ui': 'Ansvarig läkare', 'description': 'Den användare som fattat beslutet'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

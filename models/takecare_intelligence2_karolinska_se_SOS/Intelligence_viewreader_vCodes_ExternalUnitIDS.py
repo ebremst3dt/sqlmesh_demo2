@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Externa enheter. Tabellen kopplar ihop internt id för externa enheter (EXID) med enhetens övriga externa idn. EXID lagras i Kombika-kolumnen i alla andra tabeller. EXID är alltid 11 tecken lång, och har i Stockholm samma värde som Kombika. Enhet som tagits bort ur textfilen som laddat registret återfinns i tabellen, men endast EXID och huvud-id är skilda från NULL för den borttagna enheten.""",
+    description="Externa enheter. Tabellen kopplar ihop internt id för externa enheter (EXID) med enhetens övriga externa idn. EXID lagras i Kombika-kolumnen i alla andra tabeller. EXID är alltid 11 tecken lång, och har i Stockholm samma värde som Kombika. Enhet som tagits bort ur textfilen som laddat registret återfinns i tabellen, men endast EXID och huvud-id är skilda från NULL för den borttagna enheten.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CostCenter': 'varchar(max)', 'EAN': 'varchar(max)', 'EXID': 'varchar(max)', 'HSAID': 'varchar(max)', 'Kombika': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'EXID': "{'title_ui': None, 'description': 'Internt id'}", 'HSAID': "{'title_ui': None, 'description': None}", 'Kombika': "{'title_ui': None, 'description': None}", 'EAN': "{'title_ui': None, 'description': None}", 'CostCenter': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

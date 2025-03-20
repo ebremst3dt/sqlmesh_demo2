@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Utplacering av inskrivna patienter på andra vårdenheter. Kan göras ex. av platsbrist.""",
+    description="Utplacering av inskrivna patienter på andra vårdenheter. Kan göras ex. av platsbrist.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CareUnitID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'PatientID': 'varchar(max)', 'ResponsibleUserID': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TimestampSaved': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'TimestampSaved': "{'title_ui': 'Datum', 'description': 'Tid då data registrerats'}", 'CareUnitID': '{\'title_ui\': \'Utplaceras på vårdenhet\', \'description\': \'Vårdenhet patienten placerats ut på (null om patienten "tagits hem" till den vårdenhet denne skrivits in på)\'}', 'ResponsibleUserID': "{'title_ui': None, 'description': 'Den användare som placerat ut patienten'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

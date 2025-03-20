@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Intygstyper för Webcert""",
+    description="Intygstyper för Webcert",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'Description': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)', 'WebcertCertificateTypeCode': 'varchar(max)', 'WebcertCertificateTypeName': 'varchar(max)'},
     column_descriptions={'WebcertCertificateTypeCode': "{'title_ui': None, 'description': 'Extern kod för intygstyp som används för Webcert'}", 'WebcertCertificateTypeName': "{'title_ui': 'Typ av intyg', 'description': 'Namnet på intygstypen som används för Webcert. Visas för användaren när den väljer att skapa ett intyg.'}", 'Description': "{'title_ui': 'Förklaring', 'description': 'Förklarande text för intygstypen som används för Webcert.'}", 'ValidThroughDate': "{'title_ui': None, 'description': 'Giltig t.o.m.'}", 'ValidFromDate': "{'title_ui': None, 'description': 'Giltig fr.o.m.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

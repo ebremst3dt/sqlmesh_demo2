@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Kopplingar för vilka andra spärrgrupper som ska vara markerade i journalfilter när journal öppnas på en spärrgrupp.""",
+    description="Kopplingar för vilka andra spärrgrupper som ska vara markerade i journalfilter när journal öppnas på en spärrgrupp.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ConnectedLockGroupID': 'varchar(max)', 'LockGroupID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'LockGroupID': "{'title_ui': None, 'description': 'Spärr ID'}", 'ConnectedLockGroupID': "{'title_ui': None, 'description': 'Kopplad spärr ID'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

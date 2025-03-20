@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Externa tjänster och register, som journaldata kan importeras från och exporteras till""",
+    description="Externa tjänster och register, som journaldata kan importeras från och exporteras till",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ExternalSystemID': 'varchar(max)', 'IsActive': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'ExternalSystemID': "{'title_ui': None, 'description': 'TakeCares interna id för det externa systemet'}", 'Name': "{'title_ui': None, 'description': 'Namn på systemet'}", 'IsActive': "{'title_ui': None, 'description': 'Om systemet är aktivt (ur TakeCares synvinkel)'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

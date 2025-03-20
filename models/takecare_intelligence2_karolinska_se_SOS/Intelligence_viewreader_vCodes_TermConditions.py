@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Villkor för numeriska termer. Villkor som används vid validering av termer innehållande numeriska värden""",
+    description="Villkor för numeriska termer. Villkor som används vid validering av termer innehållande numeriska värden",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ConditionID': 'varchar(max)', 'Description': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'UseOperand1': 'varchar(max)', 'UseOperand2': 'varchar(max)'},
     column_descriptions={'ConditionID': "{'title_ui': None, 'description': None}", 'Description': "{'title_ui': None, 'description': None}", 'UseOperand1': "{'title_ui': None, 'description': None}", 'UseOperand2': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

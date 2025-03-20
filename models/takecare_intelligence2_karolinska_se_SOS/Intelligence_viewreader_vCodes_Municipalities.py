@@ -8,7 +8,7 @@ from models.mssql import read
 
 
 @model(
-    description="""Län och Kommuner. En kombination av kodtabellen "Län och Kommuner" samt tabellen "Län och Kommuner - Specialkoder" i generella register. Endast unika län/kommunkoder lagras. Om dubletter förekommer används i första hand det som angetts i generella register och den som inte har ett t.o.m datum, eller den med det senaste t.o.m datumet.""",
+    description="Län och Kommuner. En kombination av kodtabellen 'Län och Kommuner' samt tabellen 'Län och Kommuner - Specialkoder' i generella register. Endast unika län/kommunkoder lagras. Om dubletter förekommer används i första hand det som angetts i generella register och den som inte har ett t.o.m datum, eller den med det senaste t.o.m datumet.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CompositeID': 'varchar(max)', 'CountyID': 'varchar(max)', 'CountyName': 'varchar(max)', 'MunicipalityID': 'varchar(max)', 'MunicipalityName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'CountyID': "{'title_ui': None, 'description': 'Länskod'}", 'MunicipalityID': "{'title_ui': None, 'description': 'Kommunkod'}", 'CompositeID': "{'title_ui': None, 'description': 'Län+kommunkod tillsammans'}", 'CountyName': "{'title_ui': None, 'description': 'Län'}", 'MunicipalityName': "{'title_ui': None, 'description': 'Kommun'}", 'ValidThroughDate': "{'title_ui': None, 'description': 'T.o.m datum'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Kassa - Kontoplan. Anger vilka företagsID som är giltiga för en post i huvudtabellen.""",
+    description="Kassa - Kontoplan. Anger vilka företagsID som är giltiga för en post i huvudtabellen.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AccountID': 'varchar(max)', 'CompanyID': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'AccountID': "{'title_ui': 'ID', 'description': None}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'CompanyID': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

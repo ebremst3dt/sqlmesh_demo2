@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""En patient kan tidigare ha haft andra person- eller reservnummer (upp till fem stycken). Detta tidigare id kan motsvara en annan journal. Data kommer från Personuppgiftssystemet.""",
+    description="En patient kan tidigare ha haft andra person- eller reservnummer (upp till fem stycken). Detta tidigare id kan motsvara en annan journal. Data kommer från Personuppgiftssystemet.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'PatientID': 'varchar(max)', 'PreviousPatientID': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'PreviousPatientID': "{'title_ui': 'Tidigare identitet', 'description': 'Ett tidigare id för patienten'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

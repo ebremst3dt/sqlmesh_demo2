@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Riktiga mätvärden lagras i journaltext från våren 2006. Tidigare lagrades fritextvärden. Mätvärden finns även i tabellerna Measurements och Emergency_TriageVitalMeasurements.""",
+    description="Riktiga mätvärden lagras i journaltext från våren 2006. Tidigare lagrades fritextvärden. Mätvärden finns även i tabellerna Measurements och Emergency_TriageVitalMeasurements.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'KeywordTermID': 'varchar(max)', 'PatientID': 'varchar(max)', 'TextValue': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Unit': 'varchar(max)', 'Value': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'KeywordTermID': "{'title_ui': None, 'description': 'Term-id för detta sökord'}", 'Value': "{'title_ui': 'Mätvärde', 'description': 'Numeriskt värde på nya mätvärden (fr.o.m. sommaren 2006)'}", 'TextValue': '{\'title_ui\': None, \'description\': \'Fritextmätvärde om termen inte har datatypen "mätvärde"\'}', 'Unit': "{'title_ui': None, 'description': 'Enhet för värdet'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

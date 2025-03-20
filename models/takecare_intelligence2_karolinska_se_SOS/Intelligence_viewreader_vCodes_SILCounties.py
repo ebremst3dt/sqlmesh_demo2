@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Länskoder, mappningstabell mellan TakeCare och SIL. Översätter länskoder i TakeCare till länskoder i SIL, samt anger vilka SIL-län som ska laddas per TakeCare-län.""",
+    description="Länskoder, mappningstabell mellan TakeCare och SIL. Översätter länskoder i TakeCare till länskoder i SIL, samt anger vilka SIL-län som ska laddas per TakeCare-län.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'County': 'varchar(max)', 'CountyID': 'varchar(max)', 'LoadSILCountyID': 'varchar(max)', 'SILCountyID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'CountyID': "{'title_ui': None, 'description': None}", 'SILCountyID': "{'title_ui': None, 'description': None}", 'LoadSILCountyID': "{'title_ui': None, 'description': None}", 'County': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

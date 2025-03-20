@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Dokumenttyper i Intelligence. Flera dokumenttyps-id kan höra till en och samma tabellgrupp.""",
+    description="Dokumenttyper i Intelligence. Flera dokumenttyps-id kan höra till en och samma tabellgrupp.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentTypeID': 'varchar(max)', 'DocumentTypeName': 'varchar(max)', 'TableName': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'DocumentTypeID': "{'title_ui': None, 'description': 'Id för dokumenttyp'}", 'DocumentTypeName': "{'title_ui': None, 'description': 'Namn på dokumenttypen'}", 'TableName': "{'title_ui': None, 'description': 'Namn på tabellgruppen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

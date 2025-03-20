@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Logg f�r best�llningar av f�rdjupad logguppf�ljning.""",
+    description="Logg f�r best�llningar av f�rdjupad logguppf�ljning.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CreatedAtCareUnitID': 'varchar(max)', 'InvestigatedUserID': 'varchar(max)', 'InvestigationMinuteSpan': 'varchar(max)', 'InvestigationStartDate': 'varchar(max)', 'InvestigationStartTime': 'varchar(max)', 'OrderDateTime': 'varchar(max)', 'OrderID': 'varchar(max)', 'OrderedByUserID': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'OrderID': "{'title_ui': 'Id', 'description': 'Order ID'}", 'InvestigationStartDate': "{'title_ui': 'Datum', 'description': 'Unders�ker detta datum'}", 'InvestigationStartTime': "{'title_ui': 'Start', 'description': 'Startpunkt f�r logguppf�ljningen'}", 'InvestigationMinuteSpan': "{'title_ui': None, 'description': 'L�ngd i minuter f�r logguppf�ljningen'}", 'PatientID': "{'title_ui': 'Patient pnr/rnr', 'description': 'Patientens person- eller reservnummer'}", 'InvestigatedUserID': "{'title_ui': 'Anv�ndare pnr/rnr', 'description': 'Anv�ndares person- eller reservnummer'}", 'CreatedAtCareUnitID': "{'title_ui': 'Tillh�r v�rdenhet', 'description': 'Den v�rdenhet d�r dokumentet �r skapat. Den v�rdenhet som beh�righet utg�r fr�n.'}", 'OrderedByUserID': "{'title_ui': None, 'description': 'Best�llares person- eller reservnummer'}", 'OrderDateTime': "{'title_ui': 'F�rdigst�llt', 'description': 'Datum d� ordern f�rdigst�lldes'}", 'TimestampRead': "{'title_ui': None, 'description': 'N�r data l�sts in fr�n TakeCare-databasen'}"},
     kind=dict(

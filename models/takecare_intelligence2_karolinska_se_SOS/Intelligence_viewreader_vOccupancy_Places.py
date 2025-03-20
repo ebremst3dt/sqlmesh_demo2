@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Dit patienter har utplacerats""",
+    description="Dit patienter har utplacerats",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CareUnitID': 'varchar(max)', 'PatientsPlaced': 'varchar(max)', 'PlacedAtCareUnitKombika': 'varchar(max)', 'ReportDate': 'varchar(max)', 'ReportTime': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'ReportDate': "{'title_ui': 'Datum', 'description': 'Datum för beläggningsdata'}", 'ReportTime': "{'title_ui': None, 'description': 'Klockslag då beläggningsdata-batch körts'}", 'CareUnitID': "{'title_ui': None, 'description': 'Vårdenhet som beläggningsdata gäller'}", 'PlacedAtCareUnitKombika': "{'title_ui': None, 'description': 'Där det finns utplacerade patienter (kombikakod/EXID)'}", 'PatientsPlaced': "{'title_ui': None, 'description': 'Antal utplacerade patienter för denna kombika'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Innehåller metadata för tabeller. Inte alla tabeller existerar i alla installationer. Tabellgruppen kan komma att fyllas på med mer metadata allteftersom.""",
+    description="Innehåller metadata för tabeller. Inte alla tabeller existerar i alla installationer. Tabellgruppen kan komma att fyllas på med mer metadata allteftersom.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'IsFromExport': 'varchar(max)', 'TableName': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'TableName': "{'title_ui': None, 'description': 'Tabellens namn'}", 'IsFromExport': "{'title_ui': None, 'description': 'Om metadata fanns i exporten eller om det är manuellt tillagt statiskt (ev. föråldrat) data'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

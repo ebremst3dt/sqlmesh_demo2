@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Undersökningar kopplade till ett bokningsunderlag. Använd tidpunkt sparad för att se vilken version av bokningsunderlaget som hade vilka kopplingar.""",
+    description="Undersökningar kopplade till ett bokningsunderlag. Använd tidpunkt sparad för att se vilken version av bokningsunderlaget som hade vilka kopplingar.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AppointmentRow': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'ExaminationDate': 'varchar(max)', 'ExaminationID': 'varchar(max)', 'ExaminationTime': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'AppointmentRow': "{'title_ui': None, 'description': 'Internt löpnummer'}", 'CareUnitID': "{'title_ui': 'Vårdenhet', 'description': 'Del av främmande nyckel till undersökning'}", 'ExaminationID': "{'title_ui': 'Undersökning/förberedelse', 'description': None}", 'ExaminationDate': "{'title_ui': 'Datum/tid', 'description': 'Datum när undersökningen planeras att genomföras.'}", 'ExaminationTime': "{'title_ui': 'Datum/tid', 'description': 'Tid när undersökningen planeras att genomföras.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

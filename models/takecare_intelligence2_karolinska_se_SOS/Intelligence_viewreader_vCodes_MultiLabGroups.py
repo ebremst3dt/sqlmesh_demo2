@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Grupper av paket. En grupp kan ingå i en annan grupp (MultiLabb analyskatalog)""",
+    description="Grupper av paket. En grupp kan ingå i en annan grupp (MultiLabb analyskatalog)",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CategoryID': 'varchar(max)', 'GroupID': 'varchar(max)', 'GroupName': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'SuperiorGroupID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'OrderRegistryFileName': "{'title_ui': None, 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'GroupID': "{'title_ui': None, 'description': 'Grupp-id'}", 'GroupName': "{'title_ui': None, 'description': 'Gruppnamn'}", 'CategoryID': "{'title_ui': None, 'description': 'Vilken kategori gruppen tillhör'}", 'SuperiorGroupID': "{'title_ui': None, 'description': 'Vilken överordnad grupp som gruppen tillhör'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

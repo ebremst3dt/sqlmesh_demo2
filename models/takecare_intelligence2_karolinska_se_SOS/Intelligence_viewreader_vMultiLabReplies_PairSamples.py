@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Parallellsatta prov""",
+    description="Parallellsatta prov",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AnalysisID': 'varchar(max)', 'AnalysisRow': 'varchar(max)', 'DocumentID': 'varchar(max)', 'PatientID': 'varchar(max)', 'SampleID': 'varchar(max)', 'SamplingDate': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'AnalysisID': "{'title_ui': None, 'description': 'Labbets kod för analysen'}", 'AnalysisRow': "{'title_ui': None, 'description': None}", 'SampleID': "{'title_ui': None, 'description': 'Labbets id på provet'}", 'SamplingDate': "{'title_ui': None, 'description': 'Datum då provtagning skett'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

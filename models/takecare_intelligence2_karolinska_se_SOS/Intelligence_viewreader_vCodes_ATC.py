@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""ATC-koder. Om ATC-koder finns i SIL, används dessa. Annars används de som kommer från SLLs kodserver.""",
+    description="ATC-koder. Om ATC-koder finns i SIL, används dessa. Annars används de som kommer från SLLs kodserver.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'ATCID': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'ATCID': "{'title_ui': None, 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

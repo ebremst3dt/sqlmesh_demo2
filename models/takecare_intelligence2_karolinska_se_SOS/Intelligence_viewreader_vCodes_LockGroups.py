@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Spärrgrupper. Raderna upprepas för varje vårdenhet som tillhör varje grupp.""",
+    description="Spärrgrupper. Raderna upprepas för varje vårdenhet som tillhör varje grupp.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'CareUnitID': 'varchar(max)', 'DomainID': 'varchar(max)', 'HSAID': 'varchar(max)', 'LockGroupID': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'LockGroupID': "{'title_ui': None, 'description': 'Spärr ID'}", 'Name': "{'title_ui': 'Gruppnamn', 'description': None}", 'DomainID': "{'title_ui': 'Vårdgivare', 'description': 'Den vårdgivare som spärrgruppen tillhör'}", 'HSAID': "{'title_ui': 'HSA-id', 'description': 'HSA-id för spärrgrupp'}", 'CareUnitID': "{'title_ui': 'Vårdenheter', 'description': 'Vårdenhet som tillhör gruppen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

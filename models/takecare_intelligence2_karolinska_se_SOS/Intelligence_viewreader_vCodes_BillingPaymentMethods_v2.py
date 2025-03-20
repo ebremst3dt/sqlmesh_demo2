@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Betalningssätt i kassan. En uppsättning koder per företag.""",
+    description="Betalningssätt i kassan. En uppsättning koder per företag.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'BillingPaymentMethodCode': 'varchar(max)', 'BillingPaymentMethodID': 'varchar(max)', 'CompanyID': 'varchar(max)', 'ExternalCode': 'varchar(max)', 'IsHiddenInCounter': 'varchar(max)', 'IsMixed': 'varchar(max)', 'IsUptoFreecard': 'varchar(max)', 'IsValidForHealthCare': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'BillingPaymentMethodID': "{'title_ui': 'Id', 'description': None}", 'BillingPaymentMethodCode': "{'title_ui': 'Kod', 'description': None}", 'CompanyID': "{'title_ui': 'Kundkoder', 'description': None}", 'Name': "{'title_ui': 'Beskrivning', 'description': None}", 'IsValidForHealthCare': "{'title_ui': 'Giltig för försäljning hälsovård', 'description': None}", 'IsMixed': "{'title_ui': 'Mixad betalning', 'description': 'Betalsättet är både kontanter och kort'}", 'IsUptoFreecard': "{'title_ui': 'Upp till frikort', 'description': 'Betalsättet är giltigt för upp till frikort'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'ExternalCode': "{'title_ui': 'Extern Kod', 'description': {'break': [None, None, None, None]}}", 'IsHiddenInCounter': "{'title_ui': 'Dölj i kassan', 'description': 'Betalsättet döljs i kassan'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

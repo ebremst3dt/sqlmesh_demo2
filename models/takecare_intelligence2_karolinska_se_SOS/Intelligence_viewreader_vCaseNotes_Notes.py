@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Sökorden kan ordnas hierarkiskt i journaltextmallen, som ett träd, men sökordens betydelse är densamma oavsett var i hierarkin de återfinns. Sökord och termer har term-id:n, som återfinns i termkatalogen. Ett sökord kan bara förekomma en gång per anteckning.""",
+    description="Sökorden kan ordnas hierarkiskt i journaltextmallen, som ett träd, men sökordens betydelse är densamma oavsett var i hierarkin de återfinns. Sökord och termer har term-id:n, som återfinns i termkatalogen. Ett sökord kan bara förekomma en gång per anteckning.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'DocumentID': 'varchar(max)', 'KeywordTermID': 'varchar(max)', 'Note': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'KeywordTermID': "{'title_ui': None, 'description': 'Term-id för detta sökord'}", 'Note': "{'title_ui': None, 'description': 'Journalanteckning eller kommentar till annan inmatad data'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

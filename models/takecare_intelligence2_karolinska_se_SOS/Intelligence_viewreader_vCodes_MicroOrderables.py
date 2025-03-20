@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Beställningsspec. En specifikation består av en unik kombination av flera men inte alltid alla av följande: analys, undersökning, rör, provmaterial. (Mikrolabb analyskatalog)""",
+    description="Beställningsspec. En specifikation består av en unik kombination av flera men inte alltid alla av följande: analys, undersökning, rör, provmaterial. (Mikrolabb analyskatalog)",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'AnalysisID': 'varchar(max)', 'ExaminationID': 'varchar(max)', 'IsLocalizationRequired': 'varchar(max)', 'IsSolitary': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'OrderableID': 'varchar(max)', 'SectionCode': 'varchar(max)', 'SpecimenID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TubeID': 'varchar(max)'},
     column_descriptions={'OrderRegistryFileName': "{'title_ui': None, 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'OrderableID': "{'title_ui': None, 'description': 'Beställningsspecifikationsid'}", 'SpecimenID': "{'title_ui': None, 'description': 'Provmaterialid'}", 'ExaminationID': "{'title_ui': None, 'description': 'Undersökningsid'}", 'AnalysisID': "{'title_ui': None, 'description': 'Analysid'}", 'TubeID': "{'title_ui': None, 'description': 'Rörid'}", 'IsLocalizationRequired': "{'title_ui': None, 'description': 'Lokalisation ska visas och måste fyllas i'}", 'SectionCode': "{'title_ui': None, 'description': 'Sektionskod'}", 'IsSolitary': "{'title_ui': None, 'description': 'Kan ej beställas tillsammans med andra analyser/undersökningar'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(

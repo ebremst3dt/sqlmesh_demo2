@@ -8,7 +8,7 @@ from models.mssql import read
 
     
 @model(
-    description="""Vissa aktiviteter utförs på bestämda klockslag, t.ex varje dag 14:00 och 18:00. Här finns i så fall alla sådana klockslag.""",
+    description="Vissa aktiviteter utförs på bestämda klockslag, t.ex varje dag 14:00 och 18:00. Här finns i så fall alla sådana klockslag.",
     columns={'_data_modified_utc': 'datetime', '_metadata_modified_utc': 'datetime', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'TaskID': 'varchar(max)', 'TermID': 'varchar(max)', 'Time': 'varchar(max)', 'TimestampCreated': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'TimestampCreated': "{'title_ui': 'Skapad', 'description': 'När den första versionen av aktiviteten skapades'}", 'TaskID': "{'title_ui': None, 'description': 'Används när flera aktiviteter skapats på samma sekund.'}", 'TermID': "{'title_ui': None, 'description': 'Den term som definierar aktivitetens namn.'}", 'Row': "{'title_ui': None, 'description': 'Löpnummer för klockslaget'}", 'Time': "{'title_ui': 'Tidpunkt', 'description': 'Klockslag när aktiviteten ska utföras'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
