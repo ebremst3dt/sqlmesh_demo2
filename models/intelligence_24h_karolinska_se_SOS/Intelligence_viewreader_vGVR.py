@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,22 +33,22 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CONVERT(varchar(max), AddedDatetime, 126) AS AddedDatetime,
-		CAST(FileName AS VARCHAR(MAX)) AS FileName,
-		CAST(InternalGVRServiceTypeID AS VARCHAR(MAX)) AS InternalGVRServiceTypeID,
-		CAST(IsCompleted AS VARCHAR(MAX)) AS IsCompleted,
-		CONVERT(varchar(max), LatestReplyDatetime, 126) AS LatestReplyDatetime,
-		CONVERT(varchar(max), LatestSendDatetime, 126) AS LatestSendDatetime,
-		CAST(NumberOfTries AS VARCHAR(MAX)) AS NumberOfTries,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ReceivedBytes AS VARCHAR(MAX)) AS ReceivedBytes,
-		CAST(ReplyStatusCode AS VARCHAR(MAX)) AS ReplyStatusCode,
-		CAST(ReplyStatusMessage AS VARCHAR(MAX)) AS ReplyStatusMessage,
-		CAST(SNODApplicationErrorID AS VARCHAR(MAX)) AS SNODApplicationErrorID,
-		CAST(SNODCommunicationErrorID AS VARCHAR(MAX)) AS SNODCommunicationErrorID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TransactionGroup AS VARCHAR(MAX)) AS TransactionGroup,
-		CAST(TransactionID AS VARCHAR(MAX)) AS TransactionID 
+		CONVERT(varchar(max), [AddedDatetime], 126) AS [AddedDatetime],
+		CAST([FileName] AS VARCHAR(MAX)) AS [FileName],
+		CAST([InternalGVRServiceTypeID] AS VARCHAR(MAX)) AS [InternalGVRServiceTypeID],
+		CAST([IsCompleted] AS VARCHAR(MAX)) AS [IsCompleted],
+		CONVERT(varchar(max), [LatestReplyDatetime], 126) AS [LatestReplyDatetime],
+		CONVERT(varchar(max), [LatestSendDatetime], 126) AS [LatestSendDatetime],
+		CAST([NumberOfTries] AS VARCHAR(MAX)) AS [NumberOfTries],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ReceivedBytes] AS VARCHAR(MAX)) AS [ReceivedBytes],
+		CAST([ReplyStatusCode] AS VARCHAR(MAX)) AS [ReplyStatusCode],
+		CAST([ReplyStatusMessage] AS VARCHAR(MAX)) AS [ReplyStatusMessage],
+		CAST([SNODApplicationErrorID] AS VARCHAR(MAX)) AS [SNODApplicationErrorID],
+		CAST([SNODCommunicationErrorID] AS VARCHAR(MAX)) AS [SNODCommunicationErrorID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TransactionGroup] AS VARCHAR(MAX)) AS [TransactionGroup],
+		CAST([TransactionID] AS VARCHAR(MAX)) AS [TransactionID] 
 	FROM Intelligence.viewreader.vGVR) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

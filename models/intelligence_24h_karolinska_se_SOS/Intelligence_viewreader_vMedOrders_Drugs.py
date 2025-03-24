@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,27 +33,27 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(ATC AS VARCHAR(MAX)) AS ATC,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(DosageUnitID AS VARCHAR(MAX)) AS DosageUnitID,
-		CAST(DoseForm AS VARCHAR(MAX)) AS DoseForm,
-		CAST(DoseFormCode AS VARCHAR(MAX)) AS DoseFormCode,
-		CAST(DrugCode AS VARCHAR(MAX)) AS DrugCode,
-		CAST(DrugID AS VARCHAR(MAX)) AS DrugID,
-		CAST(InternalArticleStrength AS VARCHAR(MAX)) AS InternalArticleStrength,
-		CAST(IsApproved AS VARCHAR(MAX)) AS IsApproved,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(PreparationText AS VARCHAR(MAX)) AS PreparationText,
-		CAST(ProductType AS VARCHAR(MAX)) AS ProductType,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(SpecialDrugCode AS VARCHAR(MAX)) AS SpecialDrugCode,
-		CAST(SpecialityID AS VARCHAR(MAX)) AS SpecialityID,
-		CAST(StdSolutionAmount AS VARCHAR(MAX)) AS StdSolutionAmount,
-		CAST(Strength AS VARCHAR(MAX)) AS Strength,
-		CAST(StrengthUnit AS VARCHAR(MAX)) AS StrengthUnit,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(UnitCode AS VARCHAR(MAX)) AS UnitCode,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([ATC] AS VARCHAR(MAX)) AS [ATC],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([DosageUnitID] AS VARCHAR(MAX)) AS [DosageUnitID],
+		CAST([DoseForm] AS VARCHAR(MAX)) AS [DoseForm],
+		CAST([DoseFormCode] AS VARCHAR(MAX)) AS [DoseFormCode],
+		CAST([DrugCode] AS VARCHAR(MAX)) AS [DrugCode],
+		CAST([DrugID] AS VARCHAR(MAX)) AS [DrugID],
+		CAST([InternalArticleStrength] AS VARCHAR(MAX)) AS [InternalArticleStrength],
+		CAST([IsApproved] AS VARCHAR(MAX)) AS [IsApproved],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([PreparationText] AS VARCHAR(MAX)) AS [PreparationText],
+		CAST([ProductType] AS VARCHAR(MAX)) AS [ProductType],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([SpecialDrugCode] AS VARCHAR(MAX)) AS [SpecialDrugCode],
+		CAST([SpecialityID] AS VARCHAR(MAX)) AS [SpecialityID],
+		CAST([StdSolutionAmount] AS VARCHAR(MAX)) AS [StdSolutionAmount],
+		CAST([Strength] AS VARCHAR(MAX)) AS [Strength],
+		CAST([StrengthUnit] AS VARCHAR(MAX)) AS [StrengthUnit],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([UnitCode] AS VARCHAR(MAX)) AS [UnitCode],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vMedOrders_Drugs) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

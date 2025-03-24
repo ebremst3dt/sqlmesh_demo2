@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,15 +33,15 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AddictionDiagnosis AS VARCHAR(MAX)) AS AddictionDiagnosis,
-		CONVERT(varchar(max), ContactRouteDate, 126) AS ContactRouteDate,
-		CAST(ContactRoutes AS VARCHAR(MAX)) AS ContactRoutes,
-		CAST(DiagnosisGroup AS VARCHAR(MAX)) AS DiagnosisGroup,
-		CAST(FileName AS VARCHAR(MAX)) AS FileName,
-		CAST(PatientCategory AS VARCHAR(MAX)) AS PatientCategory,
-		CAST(PersonalityDisorderDiagnosis AS VARCHAR(MAX)) AS PersonalityDisorderDiagnosis,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TransactionID AS VARCHAR(MAX)) AS TransactionID 
+		CAST([AddictionDiagnosis] AS VARCHAR(MAX)) AS [AddictionDiagnosis],
+		CONVERT(varchar(max), [ContactRouteDate], 126) AS [ContactRouteDate],
+		CAST([ContactRoutes] AS VARCHAR(MAX)) AS [ContactRoutes],
+		CAST([DiagnosisGroup] AS VARCHAR(MAX)) AS [DiagnosisGroup],
+		CAST([FileName] AS VARCHAR(MAX)) AS [FileName],
+		CAST([PatientCategory] AS VARCHAR(MAX)) AS [PatientCategory],
+		CAST([PersonalityDisorderDiagnosis] AS VARCHAR(MAX)) AS [PersonalityDisorderDiagnosis],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TransactionID] AS VARCHAR(MAX)) AS [TransactionID] 
 	FROM Intelligence.viewreader.vGVR_CarePeriodBeginnings) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

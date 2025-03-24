@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,22 +33,22 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AnalysisID AS VARCHAR(MAX)) AS AnalysisID,
-		CAST(AnalysisRow AS VARCHAR(MAX)) AS AnalysisRow,
-		CAST(Antibiotics AS VARCHAR(MAX)) AS Antibiotics,
-		CAST(AntibioticsCode AS VARCHAR(MAX)) AS AntibioticsCode,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(CultureRow AS VARCHAR(MAX)) AS CultureRow,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(Mesurement AS VARCHAR(MAX)) AS Mesurement,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ResistenceType AS VARCHAR(MAX)) AS ResistenceType,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(SIRCategory AS VARCHAR(MAX)) AS SIRCategory,
-		CAST(Signature AS VARCHAR(MAX)) AS Signature,
-		CAST(SortOrder AS VARCHAR(MAX)) AS SortOrder,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([AnalysisID] AS VARCHAR(MAX)) AS [AnalysisID],
+		CAST([AnalysisRow] AS VARCHAR(MAX)) AS [AnalysisRow],
+		CAST([Antibiotics] AS VARCHAR(MAX)) AS [Antibiotics],
+		CAST([AntibioticsCode] AS VARCHAR(MAX)) AS [AntibioticsCode],
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([CultureRow] AS VARCHAR(MAX)) AS [CultureRow],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([Mesurement] AS VARCHAR(MAX)) AS [Mesurement],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ResistenceType] AS VARCHAR(MAX)) AS [ResistenceType],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([SIRCategory] AS VARCHAR(MAX)) AS [SIRCategory],
+		CAST([Signature] AS VARCHAR(MAX)) AS [Signature],
+		CAST([SortOrder] AS VARCHAR(MAX)) AS [SortOrder],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vMultiLabReplies_Resistences) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,24 +33,24 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CONVERT(varchar(max), CreationDate, 126) AS CreationDate,
-		CONVERT(varchar(max), CreationTime, 126) AS CreationTime,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(ExternalUnitIdTypeCode AS VARCHAR(MAX)) AS ExternalUnitIdTypeCode,
-		CAST(ForwardedToCareUnitExternalID AS VARCHAR(MAX)) AS ForwardedToCareUnitExternalID,
-		CAST(LockGroupExternalID AS VARCHAR(MAX)) AS LockGroupExternalID,
-		CAST(NoticeCode AS VARCHAR(MAX)) AS NoticeCode,
-		CAST(NotifyingCareUnitExternalID AS VARCHAR(MAX)) AS NotifyingCareUnitExternalID,
-		CAST(NotifyingPersonExternalHSAID AS VARCHAR(MAX)) AS NotifyingPersonExternalHSAID,
-		CAST(NotifyingPersonExternalName AS VARCHAR(MAX)) AS NotifyingPersonExternalName,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ReferralVersionNumber AS VARCHAR(MAX)) AS ReferralVersionNumber,
-		CAST(ReferringCareUnitExternalID AS VARCHAR(MAX)) AS ReferringCareUnitExternalID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(Text AS VARCHAR(MAX)) AS Text,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(Type AS VARCHAR(MAX)) AS Type,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CONVERT(varchar(max), [CreationDate], 126) AS [CreationDate],
+		CONVERT(varchar(max), [CreationTime], 126) AS [CreationTime],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([ExternalUnitIdTypeCode] AS VARCHAR(MAX)) AS [ExternalUnitIdTypeCode],
+		CAST([ForwardedToCareUnitExternalID] AS VARCHAR(MAX)) AS [ForwardedToCareUnitExternalID],
+		CAST([LockGroupExternalID] AS VARCHAR(MAX)) AS [LockGroupExternalID],
+		CAST([NoticeCode] AS VARCHAR(MAX)) AS [NoticeCode],
+		CAST([NotifyingCareUnitExternalID] AS VARCHAR(MAX)) AS [NotifyingCareUnitExternalID],
+		CAST([NotifyingPersonExternalHSAID] AS VARCHAR(MAX)) AS [NotifyingPersonExternalHSAID],
+		CAST([NotifyingPersonExternalName] AS VARCHAR(MAX)) AS [NotifyingPersonExternalName],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ReferralVersionNumber] AS VARCHAR(MAX)) AS [ReferralVersionNumber],
+		CAST([ReferringCareUnitExternalID] AS VARCHAR(MAX)) AS [ReferringCareUnitExternalID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([Text] AS VARCHAR(MAX)) AS [Text],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([Type] AS VARCHAR(MAX)) AS [Type],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vConsultRefs_Notices) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

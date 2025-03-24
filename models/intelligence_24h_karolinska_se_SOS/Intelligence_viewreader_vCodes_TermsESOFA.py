@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,13 +33,13 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(ESOFATypeID AS VARCHAR(MAX)) AS ESOFATypeID,
-		CAST(ExcludeValuesFromDays AS VARCHAR(MAX)) AS ExcludeValuesFromDays,
-		CAST(IncludeLabValuesFromHours AS VARCHAR(MAX)) AS IncludeLabValuesFromHours,
-		CAST(IncludeValuesFromDays AS VARCHAR(MAX)) AS IncludeValuesFromDays,
-		CAST(IncludeValuesFromHours AS VARCHAR(MAX)) AS IncludeValuesFromHours,
-		CAST(TermID AS VARCHAR(MAX)) AS TermID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([ESOFATypeID] AS VARCHAR(MAX)) AS [ESOFATypeID],
+		CAST([ExcludeValuesFromDays] AS VARCHAR(MAX)) AS [ExcludeValuesFromDays],
+		CAST([IncludeLabValuesFromHours] AS VARCHAR(MAX)) AS [IncludeLabValuesFromHours],
+		CAST([IncludeValuesFromDays] AS VARCHAR(MAX)) AS [IncludeValuesFromDays],
+		CAST([IncludeValuesFromHours] AS VARCHAR(MAX)) AS [IncludeValuesFromHours],
+		CAST([TermID] AS VARCHAR(MAX)) AS [TermID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vCodes_TermsESOFA) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

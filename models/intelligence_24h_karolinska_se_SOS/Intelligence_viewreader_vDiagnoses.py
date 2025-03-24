@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,28 +33,28 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CONVERT(varchar(max), ChronicEndDate, 126) AS ChronicEndDate,
-		CONVERT(varchar(max), ChronicEndTime, 126) AS ChronicEndTime,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CONVERT(varchar(max), DiagnosisDate, 126) AS DiagnosisDate,
-		CAST(DiagnosisID AS VARCHAR(MAX)) AS DiagnosisID,
-		CONVERT(varchar(max), DiagnosisTime, 126) AS DiagnosisTime,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(IsCauseOfDeath AS VARCHAR(MAX)) AS IsCauseOfDeath,
-		CAST(IsChronic AS VARCHAR(MAX)) AS IsChronic,
-		CAST(IsOnSigningList AS VARCHAR(MAX)) AS IsOnSigningList,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(RegistrationStatus AS VARCHAR(MAX)) AS RegistrationStatus,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CAST(SignedByUserID AS VARCHAR(MAX)) AS SignedByUserID,
-		CONVERT(varchar(max), SignedDatetime, 126) AS SignedDatetime,
-		CAST(SignerUserID AS VARCHAR(MAX)) AS SignerUserID,
-		CONVERT(varchar(max), TimestampCreated, 126) AS TimestampCreated,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CONVERT(varchar(max), [ChronicEndDate], 126) AS [ChronicEndDate],
+		CONVERT(varchar(max), [ChronicEndTime], 126) AS [ChronicEndTime],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CONVERT(varchar(max), [DiagnosisDate], 126) AS [DiagnosisDate],
+		CAST([DiagnosisID] AS VARCHAR(MAX)) AS [DiagnosisID],
+		CONVERT(varchar(max), [DiagnosisTime], 126) AS [DiagnosisTime],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([IsCauseOfDeath] AS VARCHAR(MAX)) AS [IsCauseOfDeath],
+		CAST([IsChronic] AS VARCHAR(MAX)) AS [IsChronic],
+		CAST([IsOnSigningList] AS VARCHAR(MAX)) AS [IsOnSigningList],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([RegistrationStatus] AS VARCHAR(MAX)) AS [RegistrationStatus],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CAST([SignedByUserID] AS VARCHAR(MAX)) AS [SignedByUserID],
+		CONVERT(varchar(max), [SignedDatetime], 126) AS [SignedDatetime],
+		CAST([SignerUserID] AS VARCHAR(MAX)) AS [SignerUserID],
+		CONVERT(varchar(max), [TimestampCreated], 126) AS [TimestampCreated],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vDiagnoses) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

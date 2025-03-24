@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,13 +33,13 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(InvestigationSampleDemand AS VARCHAR(MAX)) AS InvestigationSampleDemand,
-		CAST(OrderRegistryFileName AS VARCHAR(MAX)) AS OrderRegistryFileName,
-		CAST(PackageExaminationCode AS VARCHAR(MAX)) AS PackageExaminationCode,
-		CAST(PackageID AS VARCHAR(MAX)) AS PackageID,
-		CAST(PackageName AS VARCHAR(MAX)) AS PackageName,
-		CAST(ProfileCode AS VARCHAR(MAX)) AS ProfileCode,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([InvestigationSampleDemand] AS VARCHAR(MAX)) AS [InvestigationSampleDemand],
+		CAST([OrderRegistryFileName] AS VARCHAR(MAX)) AS [OrderRegistryFileName],
+		CAST([PackageExaminationCode] AS VARCHAR(MAX)) AS [PackageExaminationCode],
+		CAST([PackageID] AS VARCHAR(MAX)) AS [PackageID],
+		CAST([PackageName] AS VARCHAR(MAX)) AS [PackageName],
+		CAST([ProfileCode] AS VARCHAR(MAX)) AS [ProfileCode],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vCodes_MultiLabPackages) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

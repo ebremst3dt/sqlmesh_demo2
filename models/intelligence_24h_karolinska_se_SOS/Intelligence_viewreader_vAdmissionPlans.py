@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,26 +33,26 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(ActivityID AS VARCHAR(MAX)) AS ActivityID,
-		CONVERT(varchar(max), AdmissionDate, 126) AS AdmissionDate,
-		CAST(AdmissionEmergencyTypeID AS VARCHAR(MAX)) AS AdmissionEmergencyTypeID,
-		CONVERT(varchar(max), AdmissionTime, 126) AS AdmissionTime,
-		CAST(AdmissionplanComment AS VARCHAR(MAX)) AS AdmissionplanComment,
-		CAST(AdmittingCareUnitID AS VARCHAR(MAX)) AS AdmittingCareUnitID,
-		CAST(BedID AS VARCHAR(MAX)) AS BedID,
-		CAST(BedName AS VARCHAR(MAX)) AS BedName,
-		CAST(CarePlanDocumentID AS VARCHAR(MAX)) AS CarePlanDocumentID,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(RegistrationStatus AS VARCHAR(MAX)) AS RegistrationStatus,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CONVERT(varchar(max), TimestampCreated, 126) AS TimestampCreated,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([ActivityID] AS VARCHAR(MAX)) AS [ActivityID],
+		CONVERT(varchar(max), [AdmissionDate], 126) AS [AdmissionDate],
+		CAST([AdmissionEmergencyTypeID] AS VARCHAR(MAX)) AS [AdmissionEmergencyTypeID],
+		CONVERT(varchar(max), [AdmissionTime], 126) AS [AdmissionTime],
+		CAST([AdmissionplanComment] AS VARCHAR(MAX)) AS [AdmissionplanComment],
+		CAST([AdmittingCareUnitID] AS VARCHAR(MAX)) AS [AdmittingCareUnitID],
+		CAST([BedID] AS VARCHAR(MAX)) AS [BedID],
+		CAST([BedName] AS VARCHAR(MAX)) AS [BedName],
+		CAST([CarePlanDocumentID] AS VARCHAR(MAX)) AS [CarePlanDocumentID],
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([RegistrationStatus] AS VARCHAR(MAX)) AS [RegistrationStatus],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CONVERT(varchar(max), [TimestampCreated], 126) AS [TimestampCreated],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vAdmissionPlans) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

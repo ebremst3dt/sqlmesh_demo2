@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,19 +33,19 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(Analysis AS VARCHAR(MAX)) AS Analysis,
-		CAST(AnalysisComment AS VARCHAR(MAX)) AS AnalysisComment,
-		CAST(AnalysisID AS VARCHAR(MAX)) AS AnalysisID,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(IsDeviating AS VARCHAR(MAX)) AS IsDeviating,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ReferenceArea AS VARCHAR(MAX)) AS ReferenceArea,
-		CAST(ResultGroupRow AS VARCHAR(MAX)) AS ResultGroupRow,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(Unit AS VARCHAR(MAX)) AS Unit,
-		CAST(Value AS VARCHAR(MAX)) AS Value,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([Analysis] AS VARCHAR(MAX)) AS [Analysis],
+		CAST([AnalysisComment] AS VARCHAR(MAX)) AS [AnalysisComment],
+		CAST([AnalysisID] AS VARCHAR(MAX)) AS [AnalysisID],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([IsDeviating] AS VARCHAR(MAX)) AS [IsDeviating],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ReferenceArea] AS VARCHAR(MAX)) AS [ReferenceArea],
+		CAST([ResultGroupRow] AS VARCHAR(MAX)) AS [ResultGroupRow],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([Unit] AS VARCHAR(MAX)) AS [Unit],
+		CAST([Value] AS VARCHAR(MAX)) AS [Value],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vImmLabRepliesIDALab_Analyses) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

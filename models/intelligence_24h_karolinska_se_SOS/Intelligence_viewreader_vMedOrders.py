@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,29 +33,29 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(ChangeReasonID AS VARCHAR(MAX)) AS ChangeReasonID,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(DatabaseID AS VARCHAR(MAX)) AS DatabaseID,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(DosageType AS VARCHAR(MAX)) AS DosageType,
-		CAST(ExternalPrescriber AS VARCHAR(MAX)) AS ExternalPrescriber,
-		CAST(ExternalStartDate AS VARCHAR(MAX)) AS ExternalStartDate,
-		CAST(HasOrdinationReason AS VARCHAR(MAX)) AS HasOrdinationReason,
-		CAST(IsMixture AS VARCHAR(MAX)) AS IsMixture,
-		CAST(IsTriggeredByATC AS VARCHAR(MAX)) AS IsTriggeredByATC,
-		CAST(ParentDocumentID AS VARCHAR(MAX)) AS ParentDocumentID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ProfylaxID AS VARCHAR(MAX)) AS ProfylaxID,
-		CAST(RegistrationStatus AS VARCHAR(MAX)) AS RegistrationStatus,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CAST(SignedByUserID AS VARCHAR(MAX)) AS SignedByUserID,
-		CONVERT(varchar(max), SignedDatetime, 126) AS SignedDatetime,
-		CAST(SignerUserID AS VARCHAR(MAX)) AS SignerUserID,
-		CONVERT(varchar(max), TimestampCreated, 126) AS TimestampCreated,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([ChangeReasonID] AS VARCHAR(MAX)) AS [ChangeReasonID],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([DatabaseID] AS VARCHAR(MAX)) AS [DatabaseID],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([DosageType] AS VARCHAR(MAX)) AS [DosageType],
+		CAST([ExternalPrescriber] AS VARCHAR(MAX)) AS [ExternalPrescriber],
+		CAST([ExternalStartDate] AS VARCHAR(MAX)) AS [ExternalStartDate],
+		CAST([HasOrdinationReason] AS VARCHAR(MAX)) AS [HasOrdinationReason],
+		CAST([IsMixture] AS VARCHAR(MAX)) AS [IsMixture],
+		CAST([IsTriggeredByATC] AS VARCHAR(MAX)) AS [IsTriggeredByATC],
+		CAST([ParentDocumentID] AS VARCHAR(MAX)) AS [ParentDocumentID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ProfylaxID] AS VARCHAR(MAX)) AS [ProfylaxID],
+		CAST([RegistrationStatus] AS VARCHAR(MAX)) AS [RegistrationStatus],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CAST([SignedByUserID] AS VARCHAR(MAX)) AS [SignedByUserID],
+		CONVERT(varchar(max), [SignedDatetime], 126) AS [SignedDatetime],
+		CAST([SignerUserID] AS VARCHAR(MAX)) AS [SignerUserID],
+		CONVERT(varchar(max), [TimestampCreated], 126) AS [TimestampCreated],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vMedOrders) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

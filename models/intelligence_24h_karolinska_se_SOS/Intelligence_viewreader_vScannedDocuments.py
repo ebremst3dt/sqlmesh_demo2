@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,19 +33,19 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AttesterUserID AS VARCHAR(MAX)) AS AttesterUserID,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CONVERT(varchar(max), EventDate, 126) AS EventDate,
-		CONVERT(varchar(max), EventTime, 126) AS EventTime,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(RegistrationStatusID AS VARCHAR(MAX)) AS RegistrationStatusID,
-		CAST(SavedByUser AS VARCHAR(MAX)) AS SavedByUser,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CONVERT(varchar(max), ScannedDocID, 126) AS ScannedDocID,
-		CAST(ScannedDocTypeTermID AS VARCHAR(MAX)) AS ScannedDocTypeTermID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([AttesterUserID] AS VARCHAR(MAX)) AS [AttesterUserID],
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CONVERT(varchar(max), [EventDate], 126) AS [EventDate],
+		CONVERT(varchar(max), [EventTime], 126) AS [EventTime],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([RegistrationStatusID] AS VARCHAR(MAX)) AS [RegistrationStatusID],
+		CAST([SavedByUser] AS VARCHAR(MAX)) AS [SavedByUser],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CONVERT(varchar(max), [ScannedDocID], 126) AS [ScannedDocID],
+		CAST([ScannedDocTypeTermID] AS VARCHAR(MAX)) AS [ScannedDocTypeTermID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vScannedDocuments) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

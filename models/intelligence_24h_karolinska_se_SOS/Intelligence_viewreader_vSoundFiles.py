@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,26 +33,26 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(CreatedByUser AS VARCHAR(MAX)) AS CreatedByUser,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CONVERT(varchar(max), EventDate, 126) AS EventDate,
-		CONVERT(varchar(max), EventTime, 126) AS EventTime,
-		CAST(HistoryStatusID AS VARCHAR(MAX)) AS HistoryStatusID,
-		CAST(LinkedDocumentTemplateID AS VARCHAR(MAX)) AS LinkedDocumentTemplateID,
-		CAST(LinkedDocumentTypeID AS VARCHAR(MAX)) AS LinkedDocumentTypeID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(PriorityID AS VARCHAR(MAX)) AS PriorityID,
-		CAST(ProfessionID AS VARCHAR(MAX)) AS ProfessionID,
-		CAST(RecordedLength AS VARCHAR(MAX)) AS RecordedLength,
-		CAST(RegistrationStatusID AS VARCHAR(MAX)) AS RegistrationStatusID,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedStatusID AS VARCHAR(MAX)) AS SavedStatusID,
-		CAST(SignerUserID AS VARCHAR(MAX)) AS SignerUserID,
-		CONVERT(varchar(max), SoundFileID, 126) AS SoundFileID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved 
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([CreatedByUser] AS VARCHAR(MAX)) AS [CreatedByUser],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CONVERT(varchar(max), [EventDate], 126) AS [EventDate],
+		CONVERT(varchar(max), [EventTime], 126) AS [EventTime],
+		CAST([HistoryStatusID] AS VARCHAR(MAX)) AS [HistoryStatusID],
+		CAST([LinkedDocumentTemplateID] AS VARCHAR(MAX)) AS [LinkedDocumentTemplateID],
+		CAST([LinkedDocumentTypeID] AS VARCHAR(MAX)) AS [LinkedDocumentTypeID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([PriorityID] AS VARCHAR(MAX)) AS [PriorityID],
+		CAST([ProfessionID] AS VARCHAR(MAX)) AS [ProfessionID],
+		CAST([RecordedLength] AS VARCHAR(MAX)) AS [RecordedLength],
+		CAST([RegistrationStatusID] AS VARCHAR(MAX)) AS [RegistrationStatusID],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedStatusID] AS VARCHAR(MAX)) AS [SavedStatusID],
+		CAST([SignerUserID] AS VARCHAR(MAX)) AS [SignerUserID],
+		CONVERT(varchar(max), [SoundFileID], 126) AS [SoundFileID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved] 
 	FROM Intelligence.viewreader.vSoundFiles) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

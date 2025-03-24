@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,16 +33,16 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CompanyGroup AS VARCHAR(MAX)) AS CompanyGroup,
-		CAST(Counter AS VARCHAR(MAX)) AS Counter,
-		CONVERT(varchar(max), EventDate, 126) AS EventDate,
-		CAST(EventID AS VARCHAR(MAX)) AS EventID,
-		CONVERT(varchar(max), EventTime, 126) AS EventTime,
-		CONVERT(varchar(max), FileNameDate, 126) AS FileNameDate,
-		CAST(InternalCounterCode AS VARCHAR(MAX)) AS InternalCounterCode,
-		CONVERT(varchar(max), ReportDate, 126) AS ReportDate,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(UserID AS VARCHAR(MAX)) AS UserID 
+		CAST([CompanyGroup] AS VARCHAR(MAX)) AS [CompanyGroup],
+		CAST([Counter] AS VARCHAR(MAX)) AS [Counter],
+		CONVERT(varchar(max), [EventDate], 126) AS [EventDate],
+		CAST([EventID] AS VARCHAR(MAX)) AS [EventID],
+		CONVERT(varchar(max), [EventTime], 126) AS [EventTime],
+		CONVERT(varchar(max), [FileNameDate], 126) AS [FileNameDate],
+		CAST([InternalCounterCode] AS VARCHAR(MAX)) AS [InternalCounterCode],
+		CONVERT(varchar(max), [ReportDate], 126) AS [ReportDate],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([UserID] AS VARCHAR(MAX)) AS [UserID] 
 	FROM Intelligence.viewreader.vCounterEvents) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

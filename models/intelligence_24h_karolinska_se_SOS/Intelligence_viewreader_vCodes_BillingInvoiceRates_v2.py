@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,15 +33,15 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(BillingInvoiceRateCode AS VARCHAR(MAX)) AS BillingInvoiceRateCode,
-		CAST(BillingInvoiceRateID AS VARCHAR(MAX)) AS BillingInvoiceRateID,
-		CAST(CompanyID AS VARCHAR(MAX)) AS CompanyID,
-		CAST(Name AS VARCHAR(MAX)) AS Name,
-		CAST(Rate AS VARCHAR(MAX)) AS Rate,
-		CAST(RateNonDoctor AS VARCHAR(MAX)) AS RateNonDoctor,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), ValidFromDate, 126) AS ValidFromDate,
-		CONVERT(varchar(max), ValidThroughDate, 126) AS ValidThroughDate 
+		CAST([BillingInvoiceRateCode] AS VARCHAR(MAX)) AS [BillingInvoiceRateCode],
+		CAST([BillingInvoiceRateID] AS VARCHAR(MAX)) AS [BillingInvoiceRateID],
+		CAST([CompanyID] AS VARCHAR(MAX)) AS [CompanyID],
+		CAST([Name] AS VARCHAR(MAX)) AS [Name],
+		CAST([Rate] AS VARCHAR(MAX)) AS [Rate],
+		CAST([RateNonDoctor] AS VARCHAR(MAX)) AS [RateNonDoctor],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [ValidFromDate], 126) AS [ValidFromDate],
+		CONVERT(varchar(max), [ValidThroughDate], 126) AS [ValidThroughDate] 
 	FROM Intelligence.viewreader.vCodes_BillingInvoiceRates_v2) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

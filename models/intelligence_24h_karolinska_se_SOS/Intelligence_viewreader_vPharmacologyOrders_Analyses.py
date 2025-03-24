@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,30 +33,30 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AdministrationRoute AS VARCHAR(MAX)) AS AdministrationRoute,
-		CAST(Analysis AS VARCHAR(MAX)) AS Analysis,
-		CAST(AnalysisID AS VARCHAR(MAX)) AS AnalysisID,
-		CONVERT(varchar(max), DiscontinuedDate, 126) AS DiscontinuedDate,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(Dosage AS VARCHAR(MAX)) AS Dosage,
-		CAST(DosageText AS VARCHAR(MAX)) AS DosageText,
-		CAST(DoseForm AS VARCHAR(MAX)) AS DoseForm,
-		CAST(DrugNameText AS VARCHAR(MAX)) AS DrugNameText,
-		CONVERT(varchar(max), EnteredDate, 126) AS EnteredDate,
-		CONVERT(varchar(max), InfusionEndDate, 126) AS InfusionEndDate,
-		CONVERT(varchar(max), InfusionEndTime, 126) AS InfusionEndTime,
-		CAST(IsEnteredLongTimeAgo AS VARCHAR(MAX)) AS IsEnteredLongTimeAgo,
-		CAST(IsMissingLatestDoseDateTime AS VARCHAR(MAX)) AS IsMissingLatestDoseDateTime,
-		CONVERT(varchar(max), LatestDoseDate, 126) AS LatestDoseDate,
-		CONVERT(varchar(max), LatestDoseTime, 126) AS LatestDoseTime,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(PreparationID AS VARCHAR(MAX)) AS PreparationID,
-		CAST(Strength AS VARCHAR(MAX)) AS Strength,
-		CAST(StrengthUnit AS VARCHAR(MAX)) AS StrengthUnit,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TubeID AS VARCHAR(MAX)) AS TubeID,
-		CAST(TubeName AS VARCHAR(MAX)) AS TubeName,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([AdministrationRoute] AS VARCHAR(MAX)) AS [AdministrationRoute],
+		CAST([Analysis] AS VARCHAR(MAX)) AS [Analysis],
+		CAST([AnalysisID] AS VARCHAR(MAX)) AS [AnalysisID],
+		CONVERT(varchar(max), [DiscontinuedDate], 126) AS [DiscontinuedDate],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([Dosage] AS VARCHAR(MAX)) AS [Dosage],
+		CAST([DosageText] AS VARCHAR(MAX)) AS [DosageText],
+		CAST([DoseForm] AS VARCHAR(MAX)) AS [DoseForm],
+		CAST([DrugNameText] AS VARCHAR(MAX)) AS [DrugNameText],
+		CONVERT(varchar(max), [EnteredDate], 126) AS [EnteredDate],
+		CONVERT(varchar(max), [InfusionEndDate], 126) AS [InfusionEndDate],
+		CONVERT(varchar(max), [InfusionEndTime], 126) AS [InfusionEndTime],
+		CAST([IsEnteredLongTimeAgo] AS VARCHAR(MAX)) AS [IsEnteredLongTimeAgo],
+		CAST([IsMissingLatestDoseDateTime] AS VARCHAR(MAX)) AS [IsMissingLatestDoseDateTime],
+		CONVERT(varchar(max), [LatestDoseDate], 126) AS [LatestDoseDate],
+		CONVERT(varchar(max), [LatestDoseTime], 126) AS [LatestDoseTime],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([PreparationID] AS VARCHAR(MAX)) AS [PreparationID],
+		CAST([Strength] AS VARCHAR(MAX)) AS [Strength],
+		CAST([StrengthUnit] AS VARCHAR(MAX)) AS [StrengthUnit],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TubeID] AS VARCHAR(MAX)) AS [TubeID],
+		CAST([TubeName] AS VARCHAR(MAX)) AS [TubeName],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vPharmacologyOrders_Analyses) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

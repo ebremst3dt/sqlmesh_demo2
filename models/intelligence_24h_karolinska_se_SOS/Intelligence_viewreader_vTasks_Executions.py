@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,20 +33,20 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(CompletedTaskID AS VARCHAR(MAX)) AS CompletedTaskID,
-		CONVERT(varchar(max), CompletedTaskTimestampCreated, 126) AS CompletedTaskTimestampCreated,
-		CAST(ExecutionID AS VARCHAR(MAX)) AS ExecutionID,
-		CAST(IsPerformed AS VARCHAR(MAX)) AS IsPerformed,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), PerformedDate, 126) AS PerformedDate,
-		CONVERT(varchar(max), PerformedTime, 126) AS PerformedTime,
-		CONVERT(varchar(max), PerformedTimestamp, 126) AS PerformedTimestamp,
-		CONVERT(varchar(max), PlannedDate, 126) AS PlannedDate,
-		CONVERT(varchar(max), PlannedTime, 126) AS PlannedTime,
-		CAST(TermID AS VARCHAR(MAX)) AS TermID,
-		CONVERT(varchar(max), TimestampCreated, 126) AS TimestampCreated,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([CompletedTaskID] AS VARCHAR(MAX)) AS [CompletedTaskID],
+		CONVERT(varchar(max), [CompletedTaskTimestampCreated], 126) AS [CompletedTaskTimestampCreated],
+		CAST([ExecutionID] AS VARCHAR(MAX)) AS [ExecutionID],
+		CAST([IsPerformed] AS VARCHAR(MAX)) AS [IsPerformed],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [PerformedDate], 126) AS [PerformedDate],
+		CONVERT(varchar(max), [PerformedTime], 126) AS [PerformedTime],
+		CONVERT(varchar(max), [PerformedTimestamp], 126) AS [PerformedTimestamp],
+		CONVERT(varchar(max), [PlannedDate], 126) AS [PlannedDate],
+		CONVERT(varchar(max), [PlannedTime], 126) AS [PlannedTime],
+		CAST([TermID] AS VARCHAR(MAX)) AS [TermID],
+		CONVERT(varchar(max), [TimestampCreated], 126) AS [TimestampCreated],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vTasks_Executions) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

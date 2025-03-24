@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,24 +33,24 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AppointmentID AS VARCHAR(MAX)) AS AppointmentID,
-		CONVERT(varchar(max), BatchDate, 126) AS BatchDate,
-		CAST(BatchID AS VARCHAR(MAX)) AS BatchID,
-		CONVERT(varchar(max), BatchTime, 126) AS BatchTime,
-		CAST(CareUnitID AS VARCHAR(MAX)) AS CareUnitID,
-		CONVERT(varchar(max), EndDate, 126) AS EndDate,
-		CONVERT(varchar(max), LogDateTime, 126) AS LogDateTime,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), ReservationDate, 126) AS ReservationDate,
-		CONVERT(varchar(max), ReservationTime, 126) AS ReservationTime,
-		CAST(ResourceID AS VARCHAR(MAX)) AS ResourceID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(SMSDestination AS VARCHAR(MAX)) AS SMSDestination,
-		CAST(SMSText AS VARCHAR(MAX)) AS SMSText,
-		CAST(SlotLength AS VARCHAR(MAX)) AS SlotLength,
-		CONVERT(varchar(max), StartDate, 126) AS StartDate,
-		CAST(StatusID AS VARCHAR(MAX)) AS StatusID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([AppointmentID] AS VARCHAR(MAX)) AS [AppointmentID],
+		CONVERT(varchar(max), [BatchDate], 126) AS [BatchDate],
+		CAST([BatchID] AS VARCHAR(MAX)) AS [BatchID],
+		CONVERT(varchar(max), [BatchTime], 126) AS [BatchTime],
+		CAST([CareUnitID] AS VARCHAR(MAX)) AS [CareUnitID],
+		CONVERT(varchar(max), [EndDate], 126) AS [EndDate],
+		CONVERT(varchar(max), [LogDateTime], 126) AS [LogDateTime],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [ReservationDate], 126) AS [ReservationDate],
+		CONVERT(varchar(max), [ReservationTime], 126) AS [ReservationTime],
+		CAST([ResourceID] AS VARCHAR(MAX)) AS [ResourceID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([SMSDestination] AS VARCHAR(MAX)) AS [SMSDestination],
+		CAST([SMSText] AS VARCHAR(MAX)) AS [SMSText],
+		CAST([SlotLength] AS VARCHAR(MAX)) AS [SlotLength],
+		CONVERT(varchar(max), [StartDate], 126) AS [StartDate],
+		CAST([StatusID] AS VARCHAR(MAX)) AS [StatusID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vSmsAppointmentReminderLog) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

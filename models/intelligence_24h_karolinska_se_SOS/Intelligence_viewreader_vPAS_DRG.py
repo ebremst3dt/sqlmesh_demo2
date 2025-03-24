@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,21 +33,21 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CarePlanDocumentID AS VARCHAR(MAX)) AS CarePlanDocumentID,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(HasAdditionalMeasures AS VARCHAR(MAX)) AS HasAdditionalMeasures,
-		CAST(ICUDays AS VARCHAR(MAX)) AS ICUDays,
-		CAST(ICUPoints AS VARCHAR(MAX)) AS ICUPoints,
-		CAST(IsAutopsied AS VARCHAR(MAX)) AS IsAutopsied,
-		CAST(KatzID AS VARCHAR(MAX)) AS KatzID,
-		CAST(OutlierLimit AS VARCHAR(MAX)) AS OutlierLimit,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ProductCode AS VARCHAR(MAX)) AS ProductCode,
-		CAST(ProductName AS VARCHAR(MAX)) AS ProductName,
-		CAST(ProductType AS VARCHAR(MAX)) AS ProductType,
-		CAST(ProductWeight AS VARCHAR(MAX)) AS ProductWeight,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(WeightAtBirth AS VARCHAR(MAX)) AS WeightAtBirth 
+		CAST([CarePlanDocumentID] AS VARCHAR(MAX)) AS [CarePlanDocumentID],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([HasAdditionalMeasures] AS VARCHAR(MAX)) AS [HasAdditionalMeasures],
+		CAST([ICUDays] AS VARCHAR(MAX)) AS [ICUDays],
+		CAST([ICUPoints] AS VARCHAR(MAX)) AS [ICUPoints],
+		CAST([IsAutopsied] AS VARCHAR(MAX)) AS [IsAutopsied],
+		CAST([KatzID] AS VARCHAR(MAX)) AS [KatzID],
+		CAST([OutlierLimit] AS VARCHAR(MAX)) AS [OutlierLimit],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ProductCode] AS VARCHAR(MAX)) AS [ProductCode],
+		CAST([ProductName] AS VARCHAR(MAX)) AS [ProductName],
+		CAST([ProductType] AS VARCHAR(MAX)) AS [ProductType],
+		CAST([ProductWeight] AS VARCHAR(MAX)) AS [ProductWeight],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([WeightAtBirth] AS VARCHAR(MAX)) AS [WeightAtBirth] 
 	FROM Intelligence.viewreader.vPAS_DRG) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

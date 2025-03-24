@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,23 +33,23 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(ContactInfo AS VARCHAR(MAX)) AS ContactInfo,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(MessageHeading AS VARCHAR(MAX)) AS MessageHeading,
-		CAST(MessageText AS VARCHAR(MAX)) AS MessageText,
-		CONVERT(varchar(max), MessageTimestampSaved, 126) AS MessageTimestampSaved,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(SenderReceiverCareUnitID AS VARCHAR(MAX)) AS SenderReceiverCareUnitID,
-		CAST(SenderReceiverUser AS VARCHAR(MAX)) AS SenderReceiverUser,
-		CAST(SenderReceiverUserHSAID AS VARCHAR(MAX)) AS SenderReceiverUserHSAID,
-		CAST(SenderReceiverUserID AS VARCHAR(MAX)) AS SenderReceiverUserID,
-		CAST(SenderReceiverUserName AS VARCHAR(MAX)) AS SenderReceiverUserName,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSent, 126) AS TimestampSent,
-		CONVERT(varchar(max), TimestampSigned, 126) AS TimestampSigned,
-		CAST(TypeID AS VARCHAR(MAX)) AS TypeID,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([ContactInfo] AS VARCHAR(MAX)) AS [ContactInfo],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([MessageHeading] AS VARCHAR(MAX)) AS [MessageHeading],
+		CAST([MessageText] AS VARCHAR(MAX)) AS [MessageText],
+		CONVERT(varchar(max), [MessageTimestampSaved], 126) AS [MessageTimestampSaved],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([SenderReceiverCareUnitID] AS VARCHAR(MAX)) AS [SenderReceiverCareUnitID],
+		CAST([SenderReceiverUser] AS VARCHAR(MAX)) AS [SenderReceiverUser],
+		CAST([SenderReceiverUserHSAID] AS VARCHAR(MAX)) AS [SenderReceiverUserHSAID],
+		CAST([SenderReceiverUserID] AS VARCHAR(MAX)) AS [SenderReceiverUserID],
+		CAST([SenderReceiverUserName] AS VARCHAR(MAX)) AS [SenderReceiverUserName],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSent], 126) AS [TimestampSent],
+		CONVERT(varchar(max), [TimestampSigned], 126) AS [TimestampSigned],
+		CAST([TypeID] AS VARCHAR(MAX)) AS [TypeID],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vQuestionReplies_Messages) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

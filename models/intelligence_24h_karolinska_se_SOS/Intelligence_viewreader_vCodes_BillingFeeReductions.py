@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,17 +33,17 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(BillingFeeReductionID AS VARCHAR(MAX)) AS BillingFeeReductionID,
-		CAST(BillingRateCode AS VARCHAR(MAX)) AS BillingRateCode,
-		CAST(EmergencyWard AS VARCHAR(MAX)) AS EmergencyWard,
-		CAST(MaximumAge AS VARCHAR(MAX)) AS MaximumAge,
-		CAST(MinimumAge AS VARCHAR(MAX)) AS MinimumAge,
-		CAST(MultiplyBy AS VARCHAR(MAX)) AS MultiplyBy,
-		CAST(Name AS VARCHAR(MAX)) AS Name,
-		CAST(SubtractFrom AS VARCHAR(MAX)) AS SubtractFrom,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), ValidFromDate, 126) AS ValidFromDate,
-		CONVERT(varchar(max), ValidThroughDate, 126) AS ValidThroughDate 
+		CAST([BillingFeeReductionID] AS VARCHAR(MAX)) AS [BillingFeeReductionID],
+		CAST([BillingRateCode] AS VARCHAR(MAX)) AS [BillingRateCode],
+		CAST([EmergencyWard] AS VARCHAR(MAX)) AS [EmergencyWard],
+		CAST([MaximumAge] AS VARCHAR(MAX)) AS [MaximumAge],
+		CAST([MinimumAge] AS VARCHAR(MAX)) AS [MinimumAge],
+		CAST([MultiplyBy] AS VARCHAR(MAX)) AS [MultiplyBy],
+		CAST([Name] AS VARCHAR(MAX)) AS [Name],
+		CAST([SubtractFrom] AS VARCHAR(MAX)) AS [SubtractFrom],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [ValidFromDate], 126) AS [ValidFromDate],
+		CONVERT(varchar(max), [ValidThroughDate], 126) AS [ValidThroughDate] 
 	FROM Intelligence.viewreader.vCodes_BillingFeeReductions) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

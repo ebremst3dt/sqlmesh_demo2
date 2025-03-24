@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,17 +33,17 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CareProviderID AS VARCHAR(MAX)) AS CareProviderID,
-		CAST(CareUnitID AS VARCHAR(MAX)) AS CareUnitID,
-		CAST(Name AS VARCHAR(MAX)) AS Name,
-		CAST(ResourceID AS VARCHAR(MAX)) AS ResourceID,
-		CAST(ResourceTypeID AS VARCHAR(MAX)) AS ResourceTypeID,
-		CAST(ScheduleMode AS VARCHAR(MAX)) AS ScheduleMode,
-		CAST(ShareStatus AS VARCHAR(MAX)) AS ShareStatus,
-		CAST(ShortName AS VARCHAR(MAX)) AS ShortName,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), ValidFromDate, 126) AS ValidFromDate,
-		CONVERT(varchar(max), ValidThroughDate, 126) AS ValidThroughDate 
+		CAST([CareProviderID] AS VARCHAR(MAX)) AS [CareProviderID],
+		CAST([CareUnitID] AS VARCHAR(MAX)) AS [CareUnitID],
+		CAST([Name] AS VARCHAR(MAX)) AS [Name],
+		CAST([ResourceID] AS VARCHAR(MAX)) AS [ResourceID],
+		CAST([ResourceTypeID] AS VARCHAR(MAX)) AS [ResourceTypeID],
+		CAST([ScheduleMode] AS VARCHAR(MAX)) AS [ScheduleMode],
+		CAST([ShareStatus] AS VARCHAR(MAX)) AS [ShareStatus],
+		CAST([ShortName] AS VARCHAR(MAX)) AS [ShortName],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [ValidFromDate], 126) AS [ValidFromDate],
+		CONVERT(varchar(max), [ValidThroughDate], 126) AS [ValidThroughDate] 
 	FROM Intelligence.viewreader.vCodes_Resources) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

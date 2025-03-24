@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,17 +33,17 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AppointmentCareGuaranteeCode AS VARCHAR(MAX)) AS AppointmentCareGuaranteeCode,
-		CAST(AppointmentOrigin AS VARCHAR(MAX)) AS AppointmentOrigin,
-		CONVERT(varchar(max), AppointmentReferralDateTime, 126) AS AppointmentReferralDateTime,
-		CONVERT(varchar(max), AppointmentReservationDateTime, 126) AS AppointmentReservationDateTime,
-		CONVERT(varchar(max), AppointmentTaskDecisionDateTime, 126) AS AppointmentTaskDecisionDateTime,
-		CONVERT(varchar(max), AppointmentTimestampCreated, 126) AS AppointmentTimestampCreated,
-		CAST(FileName AS VARCHAR(MAX)) AS FileName,
-		CAST(GVRPostponementReasonCode AS VARCHAR(MAX)) AS GVRPostponementReasonCode,
-		CAST(ReferralTypeCode AS VARCHAR(MAX)) AS ReferralTypeCode,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TransactionID AS VARCHAR(MAX)) AS TransactionID 
+		CAST([AppointmentCareGuaranteeCode] AS VARCHAR(MAX)) AS [AppointmentCareGuaranteeCode],
+		CAST([AppointmentOrigin] AS VARCHAR(MAX)) AS [AppointmentOrigin],
+		CONVERT(varchar(max), [AppointmentReferralDateTime], 126) AS [AppointmentReferralDateTime],
+		CONVERT(varchar(max), [AppointmentReservationDateTime], 126) AS [AppointmentReservationDateTime],
+		CONVERT(varchar(max), [AppointmentTaskDecisionDateTime], 126) AS [AppointmentTaskDecisionDateTime],
+		CONVERT(varchar(max), [AppointmentTimestampCreated], 126) AS [AppointmentTimestampCreated],
+		CAST([FileName] AS VARCHAR(MAX)) AS [FileName],
+		CAST([GVRPostponementReasonCode] AS VARCHAR(MAX)) AS [GVRPostponementReasonCode],
+		CAST([ReferralTypeCode] AS VARCHAR(MAX)) AS [ReferralTypeCode],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TransactionID] AS VARCHAR(MAX)) AS [TransactionID] 
 	FROM Intelligence.viewreader.vGVR_OutpatientAvailability) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

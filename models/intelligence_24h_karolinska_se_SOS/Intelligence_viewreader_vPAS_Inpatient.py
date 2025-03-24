@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,29 +33,29 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AdmissionID AS VARCHAR(MAX)) AS AdmissionID,
-		CONVERT(varchar(max), DischargeDatetime, 126) AS DischargeDatetime,
-		CAST(DischargeFormID AS VARCHAR(MAX)) AS DischargeFormID,
-		CAST(DischargeID AS VARCHAR(MAX)) AS DischargeID,
-		CONVERT(varchar(max), DischargeReadyDate, 126) AS DischargeReadyDate,
-		CAST(DischargingCareUnitEXID AS VARCHAR(MAX)) AS DischargingCareUnitEXID,
-		CAST(DischargingCareUnitKombika AS VARCHAR(MAX)) AS DischargingCareUnitKombika,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(EmergencyID AS VARCHAR(MAX)) AS EmergencyID,
-		CAST(Group AS VARCHAR(MAX)) AS Group,
-		CAST(HasEarlyRetirementPension AS VARCHAR(MAX)) AS HasEarlyRetirementPension,
-		CAST(IsExemptFromFees AS VARCHAR(MAX)) AS IsExemptFromFees,
-		CAST(IsSecret AS VARCHAR(MAX)) AS IsSecret,
-		CAST(PatientClassID AS VARCHAR(MAX)) AS PatientClassID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), PaymentLiabilityDate, 126) AS PaymentLiabilityDate,
-		CONVERT(varchar(max), PlannedDischargeDate, 126) AS PlannedDischargeDate,
-		CAST(ResponsibleDoctorUserID AS VARCHAR(MAX)) AS ResponsibleDoctorUserID,
-		CAST(ResponsibleDoctorUserName AS VARCHAR(MAX)) AS ResponsibleDoctorUserName,
-		CAST(ResponsibleNurseUserID AS VARCHAR(MAX)) AS ResponsibleNurseUserID,
-		CAST(ResponsibleNurseUserName AS VARCHAR(MAX)) AS ResponsibleNurseUserName,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TransportationNeed AS VARCHAR(MAX)) AS TransportationNeed 
+		CAST([AdmissionID] AS VARCHAR(MAX)) AS [AdmissionID],
+		CONVERT(varchar(max), [DischargeDatetime], 126) AS [DischargeDatetime],
+		CAST([DischargeFormID] AS VARCHAR(MAX)) AS [DischargeFormID],
+		CAST([DischargeID] AS VARCHAR(MAX)) AS [DischargeID],
+		CONVERT(varchar(max), [DischargeReadyDate], 126) AS [DischargeReadyDate],
+		CAST([DischargingCareUnitEXID] AS VARCHAR(MAX)) AS [DischargingCareUnitEXID],
+		CAST([DischargingCareUnitKombika] AS VARCHAR(MAX)) AS [DischargingCareUnitKombika],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([EmergencyID] AS VARCHAR(MAX)) AS [EmergencyID],
+		CAST([Group] AS VARCHAR(MAX)) AS [Group],
+		CAST([HasEarlyRetirementPension] AS VARCHAR(MAX)) AS [HasEarlyRetirementPension],
+		CAST([IsExemptFromFees] AS VARCHAR(MAX)) AS [IsExemptFromFees],
+		CAST([IsSecret] AS VARCHAR(MAX)) AS [IsSecret],
+		CAST([PatientClassID] AS VARCHAR(MAX)) AS [PatientClassID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [PaymentLiabilityDate], 126) AS [PaymentLiabilityDate],
+		CONVERT(varchar(max), [PlannedDischargeDate], 126) AS [PlannedDischargeDate],
+		CAST([ResponsibleDoctorUserID] AS VARCHAR(MAX)) AS [ResponsibleDoctorUserID],
+		CAST([ResponsibleDoctorUserName] AS VARCHAR(MAX)) AS [ResponsibleDoctorUserName],
+		CAST([ResponsibleNurseUserID] AS VARCHAR(MAX)) AS [ResponsibleNurseUserID],
+		CAST([ResponsibleNurseUserName] AS VARCHAR(MAX)) AS [ResponsibleNurseUserName],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TransportationNeed] AS VARCHAR(MAX)) AS [TransportationNeed] 
 	FROM Intelligence.viewreader.vPAS_Inpatient) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

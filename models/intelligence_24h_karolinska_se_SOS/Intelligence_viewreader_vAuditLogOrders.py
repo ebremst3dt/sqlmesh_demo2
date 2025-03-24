@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,16 +33,16 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(InvestigatedUserID AS VARCHAR(MAX)) AS InvestigatedUserID,
-		CAST(InvestigationMinuteSpan AS VARCHAR(MAX)) AS InvestigationMinuteSpan,
-		CONVERT(varchar(max), InvestigationStartDate, 126) AS InvestigationStartDate,
-		CONVERT(varchar(max), InvestigationStartTime, 126) AS InvestigationStartTime,
-		CONVERT(varchar(max), OrderDateTime, 126) AS OrderDateTime,
-		CAST(OrderID AS VARCHAR(MAX)) AS OrderID,
-		CAST(OrderedByUserID AS VARCHAR(MAX)) AS OrderedByUserID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([InvestigatedUserID] AS VARCHAR(MAX)) AS [InvestigatedUserID],
+		CAST([InvestigationMinuteSpan] AS VARCHAR(MAX)) AS [InvestigationMinuteSpan],
+		CONVERT(varchar(max), [InvestigationStartDate], 126) AS [InvestigationStartDate],
+		CONVERT(varchar(max), [InvestigationStartTime], 126) AS [InvestigationStartTime],
+		CONVERT(varchar(max), [OrderDateTime], 126) AS [OrderDateTime],
+		CAST([OrderID] AS VARCHAR(MAX)) AS [OrderID],
+		CAST([OrderedByUserID] AS VARCHAR(MAX)) AS [OrderedByUserID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vAuditLogOrders) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

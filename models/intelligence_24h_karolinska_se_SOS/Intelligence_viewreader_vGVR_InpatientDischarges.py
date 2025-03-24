@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,20 +33,20 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CONVERT(varchar(max), DeceasedTime, 126) AS DeceasedTime,
-		CAST(DischargeCode AS VARCHAR(MAX)) AS DischargeCode,
-		CONVERT(varchar(max), DischargeDate, 126) AS DischargeDate,
-		CAST(DischargeFormCode AS VARCHAR(MAX)) AS DischargeFormCode,
-		CAST(DischargingCareUnit AS VARCHAR(MAX)) AS DischargingCareUnit,
-		CAST(DischargingClinic AS VARCHAR(MAX)) AS DischargingClinic,
-		CAST(DischargingHospital AS VARCHAR(MAX)) AS DischargingHospital,
-		CAST(FileName AS VARCHAR(MAX)) AS FileName,
-		CONVERT(varchar(max), PaymentDueDate, 126) AS PaymentDueDate,
-		CAST(ReferredToClinic AS VARCHAR(MAX)) AS ReferredToClinic,
-		CAST(ReferredToHospital AS VARCHAR(MAX)) AS ReferredToHospital,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TransactionID AS VARCHAR(MAX)) AS TransactionID,
-		CONVERT(varchar(max), TreatmentCompletedDate, 126) AS TreatmentCompletedDate 
+		CONVERT(varchar(max), [DeceasedTime], 126) AS [DeceasedTime],
+		CAST([DischargeCode] AS VARCHAR(MAX)) AS [DischargeCode],
+		CONVERT(varchar(max), [DischargeDate], 126) AS [DischargeDate],
+		CAST([DischargeFormCode] AS VARCHAR(MAX)) AS [DischargeFormCode],
+		CAST([DischargingCareUnit] AS VARCHAR(MAX)) AS [DischargingCareUnit],
+		CAST([DischargingClinic] AS VARCHAR(MAX)) AS [DischargingClinic],
+		CAST([DischargingHospital] AS VARCHAR(MAX)) AS [DischargingHospital],
+		CAST([FileName] AS VARCHAR(MAX)) AS [FileName],
+		CONVERT(varchar(max), [PaymentDueDate], 126) AS [PaymentDueDate],
+		CAST([ReferredToClinic] AS VARCHAR(MAX)) AS [ReferredToClinic],
+		CAST([ReferredToHospital] AS VARCHAR(MAX)) AS [ReferredToHospital],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TransactionID] AS VARCHAR(MAX)) AS [TransactionID],
+		CONVERT(varchar(max), [TreatmentCompletedDate], 126) AS [TreatmentCompletedDate] 
 	FROM Intelligence.viewreader.vGVR_InpatientDischarges) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,21 +33,21 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AttesterUserID AS VARCHAR(MAX)) AS AttesterUserID,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CONVERT(varchar(max), EventDate, 126) AS EventDate,
-		CONVERT(varchar(max), EventTime, 126) AS EventTime,
-		CONVERT(varchar(max), ImageID, 126) AS ImageID,
-		CAST(ImageType AS VARCHAR(MAX)) AS ImageType,
-		CAST(ImageTypeTermID AS VARCHAR(MAX)) AS ImageTypeTermID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ReceivingCareUnitID AS VARCHAR(MAX)) AS ReceivingCareUnitID,
-		CAST(RegistrationStatusID AS VARCHAR(MAX)) AS RegistrationStatusID,
-		CAST(SavedByUser AS VARCHAR(MAX)) AS SavedByUser,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([AttesterUserID] AS VARCHAR(MAX)) AS [AttesterUserID],
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CONVERT(varchar(max), [EventDate], 126) AS [EventDate],
+		CONVERT(varchar(max), [EventTime], 126) AS [EventTime],
+		CONVERT(varchar(max), [ImageID], 126) AS [ImageID],
+		CAST([ImageType] AS VARCHAR(MAX)) AS [ImageType],
+		CAST([ImageTypeTermID] AS VARCHAR(MAX)) AS [ImageTypeTermID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ReceivingCareUnitID] AS VARCHAR(MAX)) AS [ReceivingCareUnitID],
+		CAST([RegistrationStatusID] AS VARCHAR(MAX)) AS [RegistrationStatusID],
+		CAST([SavedByUser] AS VARCHAR(MAX)) AS [SavedByUser],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vImages) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

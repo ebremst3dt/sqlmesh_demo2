@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,12 +33,12 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CostCenter AS VARCHAR(MAX)) AS CostCenter,
-		CAST(EAN AS VARCHAR(MAX)) AS EAN,
-		CAST(EXID AS VARCHAR(MAX)) AS EXID,
-		CAST(HSAID AS VARCHAR(MAX)) AS HSAID,
-		CAST(Kombika AS VARCHAR(MAX)) AS Kombika,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([CostCenter] AS VARCHAR(MAX)) AS [CostCenter],
+		CAST([EAN] AS VARCHAR(MAX)) AS [EAN],
+		CAST([EXID] AS VARCHAR(MAX)) AS [EXID],
+		CAST([HSAID] AS VARCHAR(MAX)) AS [HSAID],
+		CAST([Kombika] AS VARCHAR(MAX)) AS [Kombika],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vCodes_ExternalUnitIDS) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,13 +33,13 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(IdTypeCode AS VARCHAR(MAX)) AS IdTypeCode,
-		CAST(IdTypeID AS VARCHAR(MAX)) AS IdTypeID,
-		CAST(IdTypeIntelligenceName AS VARCHAR(MAX)) AS IdTypeIntelligenceName,
-		CAST(IdTypeName AS VARCHAR(MAX)) AS IdTypeName,
-		CAST(IdTypeRegistry AS VARCHAR(MAX)) AS IdTypeRegistry,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), ValidThroughDate, 126) AS ValidThroughDate 
+		CAST([IdTypeCode] AS VARCHAR(MAX)) AS [IdTypeCode],
+		CAST([IdTypeID] AS VARCHAR(MAX)) AS [IdTypeID],
+		CAST([IdTypeIntelligenceName] AS VARCHAR(MAX)) AS [IdTypeIntelligenceName],
+		CAST([IdTypeName] AS VARCHAR(MAX)) AS [IdTypeName],
+		CAST([IdTypeRegistry] AS VARCHAR(MAX)) AS [IdTypeRegistry],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [ValidThroughDate], 126) AS [ValidThroughDate] 
 	FROM Intelligence.viewreader.vCodes_ExternalUnitIdTypes) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

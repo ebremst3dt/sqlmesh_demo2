@@ -6,7 +6,7 @@ from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
 
-    
+
 @model(
     description="Definierade tider för en resurs, en tid kan t.ex vara 'Rond'",
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'BookableDaysAhead': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'FromDate': 'varchar(max)', 'FromTime': 'varchar(max)', 'ResourceID': 'varchar(max)', 'SlotLength': 'varchar(max)', 'TimeTypeID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ToDate': 'varchar(max)', 'ToTime': 'varchar(max)', 'WeekdayID': 'varchar(max)'},
@@ -16,10 +16,11 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=False
 )
 
-    
+
 def execute(
     context: ExecutionContext,
     start: datetime,
@@ -28,23 +29,22 @@ def execute(
     **kwargs: t.Any,
 ) -> pd.DataFrame:
     query = f"""
-	SELECT * FROM (SELECT 
+	SELECT * FROM (SELECT
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(BookableDaysAhead AS VARCHAR(MAX)) AS BookableDaysAhead,
-		CAST(CareUnitID AS VARCHAR(MAX)) AS CareUnitID,
-		CONVERT(varchar(max), FromDate, 126) AS FromDate,
-		CAST(FromTime AS VARCHAR(MAX)) AS FromTime,
-		CAST(ResourceID AS VARCHAR(MAX)) AS ResourceID,
-		CAST(SlotLength AS VARCHAR(MAX)) AS SlotLength,
-		CAST(TimeTypeID AS VARCHAR(MAX)) AS TimeTypeID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), ToDate, 126) AS ToDate,
-		CAST(ToTime AS VARCHAR(MAX)) AS ToTime,
-		CAST(WeekdayID AS VARCHAR(MAX)) AS WeekdayID 
+		CAST([BookableDaysAhead] AS VARCHAR(MAX)) AS [BookableDaysAhead],
+		CAST([CareUnitID] AS VARCHAR(MAX)) AS [CareUnitID],
+		CONVERT(varchar(max), [FromDate], 126) AS [FromDate],
+		CAST([FromTime] AS VARCHAR(MAX)) AS [FromTime],
+		CAST([ResourceID] AS VARCHAR(MAX)) AS [ResourceID],
+		CAST([SlotLength] AS VARCHAR(MAX)) AS [SlotLength],
+		CAST([TimeTypeID] AS VARCHAR(MAX)) AS [TimeTypeID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [ToDate], 126) AS [ToDate],
+		CAST([ToTime] AS VARCHAR(MAX)) AS [ToTime],
+		CAST([WeekdayID] AS VARCHAR(MAX)) AS [WeekdayID]
 	FROM Intelligence.viewreader.vCodes_ResourceTimes) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""
     return read(query=query, server_url="intelligence_24h.karolinska.se_SOS")
-    

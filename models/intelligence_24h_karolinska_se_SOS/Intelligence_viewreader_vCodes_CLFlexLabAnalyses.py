@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,13 +33,13 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AnalysisID AS VARCHAR(MAX)) AS AnalysisID,
-		CAST(AnalysisName AS VARCHAR(MAX)) AS AnalysisName,
-		CAST(AnalysisShortName AS VARCHAR(MAX)) AS AnalysisShortName,
-		CAST(CoOrder AS VARCHAR(MAX)) AS CoOrder,
-		CAST(NoOfTubes AS VARCHAR(MAX)) AS NoOfTubes,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TubeID AS VARCHAR(MAX)) AS TubeID 
+		CAST([AnalysisID] AS VARCHAR(MAX)) AS [AnalysisID],
+		CAST([AnalysisName] AS VARCHAR(MAX)) AS [AnalysisName],
+		CAST([AnalysisShortName] AS VARCHAR(MAX)) AS [AnalysisShortName],
+		CAST([CoOrder] AS VARCHAR(MAX)) AS [CoOrder],
+		CAST([NoOfTubes] AS VARCHAR(MAX)) AS [NoOfTubes],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TubeID] AS VARCHAR(MAX)) AS [TubeID] 
 	FROM Intelligence.viewreader.vCodes_CLFlexLabAnalyses) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

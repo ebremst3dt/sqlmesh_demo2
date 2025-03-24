@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,20 +33,20 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(Active AS VARCHAR(MAX)) AS Active,
-		CAST(ChangeDate AS VARCHAR(MAX)) AS ChangeDate,
-		CAST(CreatedDate AS VARCHAR(MAX)) AS CreatedDate,
-		CAST(DoctorCode AS VARCHAR(MAX)) AS DoctorCode,
-		CAST(DoctorFirstName AS VARCHAR(MAX)) AS DoctorFirstName,
-		CAST(DoctorSurname AS VARCHAR(MAX)) AS DoctorSurname,
-		CAST(ListingID AS VARCHAR(MAX)) AS ListingID,
-		CAST(MedicalCenter AS VARCHAR(MAX)) AS MedicalCenter,
-		CAST(MedicalCenterCode AS VARCHAR(MAX)) AS MedicalCenterCode,
-		CAST(MedicalCenterType AS VARCHAR(MAX)) AS MedicalCenterType,
-		CAST(MedicalCenterTypeFirstLetter AS VARCHAR(MAX)) AS MedicalCenterTypeFirstLetter,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), ReadDate, 126) AS ReadDate,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([Active] AS VARCHAR(MAX)) AS [Active],
+		CAST([ChangeDate] AS VARCHAR(MAX)) AS [ChangeDate],
+		CAST([CreatedDate] AS VARCHAR(MAX)) AS [CreatedDate],
+		CAST([DoctorCode] AS VARCHAR(MAX)) AS [DoctorCode],
+		CAST([DoctorFirstName] AS VARCHAR(MAX)) AS [DoctorFirstName],
+		CAST([DoctorSurname] AS VARCHAR(MAX)) AS [DoctorSurname],
+		CAST([ListingID] AS VARCHAR(MAX)) AS [ListingID],
+		CAST([MedicalCenter] AS VARCHAR(MAX)) AS [MedicalCenter],
+		CAST([MedicalCenterCode] AS VARCHAR(MAX)) AS [MedicalCenterCode],
+		CAST([MedicalCenterType] AS VARCHAR(MAX)) AS [MedicalCenterType],
+		CAST([MedicalCenterTypeFirstLetter] AS VARCHAR(MAX)) AS [MedicalCenterTypeFirstLetter],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [ReadDate], 126) AS [ReadDate],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vPatInfo_ListingPrimula) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

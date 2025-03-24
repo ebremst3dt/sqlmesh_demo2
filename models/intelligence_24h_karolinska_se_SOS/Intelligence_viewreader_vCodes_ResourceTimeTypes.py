@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,22 +33,22 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CareUnitID AS VARCHAR(MAX)) AS CareUnitID,
-		CAST(ColourCodeBlue AS VARCHAR(MAX)) AS ColourCodeBlue,
-		CAST(ColourCodeGreen AS VARCHAR(MAX)) AS ColourCodeGreen,
-		CAST(ColourCodeRed AS VARCHAR(MAX)) AS ColourCodeRed,
-		CAST(HasSelfCheckIn AS VARCHAR(MAX)) AS HasSelfCheckIn,
-		CAST(IsBookable AS VARCHAR(MAX)) AS IsBookable,
-		CAST(IsHiddenForCounter AS VARCHAR(MAX)) AS IsHiddenForCounter,
-		CAST(IsHiddenForPatient AS VARCHAR(MAX)) AS IsHiddenForPatient,
-		CAST(IsWebBookable AS VARCHAR(MAX)) AS IsWebBookable,
-		CAST(IsWebCancellable AS VARCHAR(MAX)) AS IsWebCancellable,
-		CAST(IsWebRebookable AS VARCHAR(MAX)) AS IsWebRebookable,
-		CAST(Name AS VARCHAR(MAX)) AS Name,
-		CAST(Purpose AS VARCHAR(MAX)) AS Purpose,
-		CAST(TimeTypeID AS VARCHAR(MAX)) AS TimeTypeID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(WebName AS VARCHAR(MAX)) AS WebName 
+		CAST([CareUnitID] AS VARCHAR(MAX)) AS [CareUnitID],
+		CAST([ColourCodeBlue] AS VARCHAR(MAX)) AS [ColourCodeBlue],
+		CAST([ColourCodeGreen] AS VARCHAR(MAX)) AS [ColourCodeGreen],
+		CAST([ColourCodeRed] AS VARCHAR(MAX)) AS [ColourCodeRed],
+		CAST([HasSelfCheckIn] AS VARCHAR(MAX)) AS [HasSelfCheckIn],
+		CAST([IsBookable] AS VARCHAR(MAX)) AS [IsBookable],
+		CAST([IsHiddenForCounter] AS VARCHAR(MAX)) AS [IsHiddenForCounter],
+		CAST([IsHiddenForPatient] AS VARCHAR(MAX)) AS [IsHiddenForPatient],
+		CAST([IsWebBookable] AS VARCHAR(MAX)) AS [IsWebBookable],
+		CAST([IsWebCancellable] AS VARCHAR(MAX)) AS [IsWebCancellable],
+		CAST([IsWebRebookable] AS VARCHAR(MAX)) AS [IsWebRebookable],
+		CAST([Name] AS VARCHAR(MAX)) AS [Name],
+		CAST([Purpose] AS VARCHAR(MAX)) AS [Purpose],
+		CAST([TimeTypeID] AS VARCHAR(MAX)) AS [TimeTypeID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([WebName] AS VARCHAR(MAX)) AS [WebName] 
 	FROM Intelligence.viewreader.vCodes_ResourceTimeTypes) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

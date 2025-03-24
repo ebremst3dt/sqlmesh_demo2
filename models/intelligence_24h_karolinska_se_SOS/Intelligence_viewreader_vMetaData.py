@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,25 +33,25 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(DataFiles AS VARCHAR(MAX)) AS DataFiles,
-		CAST(ExportID AS VARCHAR(MAX)) AS ExportID,
-		CONVERT(varchar(max), FromDatetime, 126) AS FromDatetime,
-		CAST(HasCodeTables AS VARCHAR(MAX)) AS HasCodeTables,
-		CAST(IsBatch AS VARCHAR(MAX)) AS IsBatch,
-		CAST(IsEncrypted AS VARCHAR(MAX)) AS IsEncrypted,
-		CAST(IsReload AS VARCHAR(MAX)) AS IsReload,
-		CAST(MetaFiles AS VARCHAR(MAX)) AS MetaFiles,
-		CAST(MiscTables AS VARCHAR(MAX)) AS MiscTables,
-		CONVERT(varchar(max), ReaderEndDatetime, 126) AS ReaderEndDatetime,
-		CONVERT(varchar(max), ReaderStartDatetime, 126) AS ReaderStartDatetime,
-		CAST(ReaderVersion AS VARCHAR(MAX)) AS ReaderVersion,
-		CAST(RecordPartitions AS VARCHAR(MAX)) AS RecordPartitions,
-		CAST(RecordsAttemptedToOpen AS VARCHAR(MAX)) AS RecordsAttemptedToOpen,
-		CAST(RecordsOpened AS VARCHAR(MAX)) AS RecordsOpened,
-		CAST(RunComment AS VARCHAR(MAX)) AS RunComment,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), ToDatetime, 126) AS ToDatetime,
-		CAST(WriterVersion AS VARCHAR(MAX)) AS WriterVersion 
+		CAST([DataFiles] AS VARCHAR(MAX)) AS [DataFiles],
+		CAST([ExportID] AS VARCHAR(MAX)) AS [ExportID],
+		CONVERT(varchar(max), [FromDatetime], 126) AS [FromDatetime],
+		CAST([HasCodeTables] AS VARCHAR(MAX)) AS [HasCodeTables],
+		CAST([IsBatch] AS VARCHAR(MAX)) AS [IsBatch],
+		CAST([IsEncrypted] AS VARCHAR(MAX)) AS [IsEncrypted],
+		CAST([IsReload] AS VARCHAR(MAX)) AS [IsReload],
+		CAST([MetaFiles] AS VARCHAR(MAX)) AS [MetaFiles],
+		CAST([MiscTables] AS VARCHAR(MAX)) AS [MiscTables],
+		CONVERT(varchar(max), [ReaderEndDatetime], 126) AS [ReaderEndDatetime],
+		CONVERT(varchar(max), [ReaderStartDatetime], 126) AS [ReaderStartDatetime],
+		CAST([ReaderVersion] AS VARCHAR(MAX)) AS [ReaderVersion],
+		CAST([RecordPartitions] AS VARCHAR(MAX)) AS [RecordPartitions],
+		CAST([RecordsAttemptedToOpen] AS VARCHAR(MAX)) AS [RecordsAttemptedToOpen],
+		CAST([RecordsOpened] AS VARCHAR(MAX)) AS [RecordsOpened],
+		CAST([RunComment] AS VARCHAR(MAX)) AS [RunComment],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [ToDatetime], 126) AS [ToDatetime],
+		CAST([WriterVersion] AS VARCHAR(MAX)) AS [WriterVersion] 
 	FROM Intelligence.viewreader.vMetaData) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

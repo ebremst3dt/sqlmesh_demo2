@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,17 +33,17 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CareUnitID AS VARCHAR(MAX)) AS CareUnitID,
-		CONVERT(varchar(max), ConfirmedDateTime, 126) AS ConfirmedDateTime,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(OutputFormatID AS VARCHAR(MAX)) AS OutputFormatID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ReferralNotificationMethodID AS VARCHAR(MAX)) AS ReferralNotificationMethodID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(TemplateID AS VARCHAR(MAX)) AS TemplateID,
-		CAST(TemplateName AS VARCHAR(MAX)) AS TemplateName,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([CareUnitID] AS VARCHAR(MAX)) AS [CareUnitID],
+		CONVERT(varchar(max), [ConfirmedDateTime], 126) AS [ConfirmedDateTime],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([OutputFormatID] AS VARCHAR(MAX)) AS [OutputFormatID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ReferralNotificationMethodID] AS VARCHAR(MAX)) AS [ReferralNotificationMethodID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([TemplateID] AS VARCHAR(MAX)) AS [TemplateID],
+		CAST([TemplateName] AS VARCHAR(MAX)) AS [TemplateName],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vConsultRefs_ConfirmationLetterTypes) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

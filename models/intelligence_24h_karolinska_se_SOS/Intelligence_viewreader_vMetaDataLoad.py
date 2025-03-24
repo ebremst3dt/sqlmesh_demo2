@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,25 +33,25 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(DataPartitionCode AS VARCHAR(MAX)) AS DataPartitionCode,
-		CAST(DefaultDatabase AS VARCHAR(MAX)) AS DefaultDatabase,
-		CAST(ExportHasData AS VARCHAR(MAX)) AS ExportHasData,
-		CAST(ExportHeaderCompsInRange AS VARCHAR(MAX)) AS ExportHeaderCompsInRange,
-		CAST(ExportHeaderRowsInRange AS VARCHAR(MAX)) AS ExportHeaderRowsInRange,
-		CAST(ExportID AS VARCHAR(MAX)) AS ExportID,
-		CAST(ExportRecordsInRange AS VARCHAR(MAX)) AS ExportRecordsInRange,
-		CAST(ExportRecordsOpened AS VARCHAR(MAX)) AS ExportRecordsOpened,
-		CAST(ExportRecordsWithDoctype AS VARCHAR(MAX)) AS ExportRecordsWithDoctype,
-		CAST(FailDatabase AS VARCHAR(MAX)) AS FailDatabase,
-		CAST(IsBatch AS VARCHAR(MAX)) AS IsBatch,
-		CAST(IsLoaded AS VARCHAR(MAX)) AS IsLoaded,
-		CAST(LoadingRuntimeID AS VARCHAR(MAX)) AS LoadingRuntimeID,
-		CAST(LoadingRuntimeLockFile AS VARCHAR(MAX)) AS LoadingRuntimeLockFile,
-		CAST(StagingDatabase AS VARCHAR(MAX)) AS StagingDatabase,
-		CAST(TableGroupName AS VARCHAR(MAX)) AS TableGroupName,
-		CAST(TableGroupOriginCode AS VARCHAR(MAX)) AS TableGroupOriginCode,
-		CONVERT(varchar(max), TimestampLoaded, 126) AS TimestampLoaded,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([DataPartitionCode] AS VARCHAR(MAX)) AS [DataPartitionCode],
+		CAST([DefaultDatabase] AS VARCHAR(MAX)) AS [DefaultDatabase],
+		CAST([ExportHasData] AS VARCHAR(MAX)) AS [ExportHasData],
+		CAST([ExportHeaderCompsInRange] AS VARCHAR(MAX)) AS [ExportHeaderCompsInRange],
+		CAST([ExportHeaderRowsInRange] AS VARCHAR(MAX)) AS [ExportHeaderRowsInRange],
+		CAST([ExportID] AS VARCHAR(MAX)) AS [ExportID],
+		CAST([ExportRecordsInRange] AS VARCHAR(MAX)) AS [ExportRecordsInRange],
+		CAST([ExportRecordsOpened] AS VARCHAR(MAX)) AS [ExportRecordsOpened],
+		CAST([ExportRecordsWithDoctype] AS VARCHAR(MAX)) AS [ExportRecordsWithDoctype],
+		CAST([FailDatabase] AS VARCHAR(MAX)) AS [FailDatabase],
+		CAST([IsBatch] AS VARCHAR(MAX)) AS [IsBatch],
+		CAST([IsLoaded] AS VARCHAR(MAX)) AS [IsLoaded],
+		CAST([LoadingRuntimeID] AS VARCHAR(MAX)) AS [LoadingRuntimeID],
+		CAST([LoadingRuntimeLockFile] AS VARCHAR(MAX)) AS [LoadingRuntimeLockFile],
+		CAST([StagingDatabase] AS VARCHAR(MAX)) AS [StagingDatabase],
+		CAST([TableGroupName] AS VARCHAR(MAX)) AS [TableGroupName],
+		CAST([TableGroupOriginCode] AS VARCHAR(MAX)) AS [TableGroupOriginCode],
+		CONVERT(varchar(max), [TimestampLoaded], 126) AS [TimestampLoaded],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vMetaDataLoad) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

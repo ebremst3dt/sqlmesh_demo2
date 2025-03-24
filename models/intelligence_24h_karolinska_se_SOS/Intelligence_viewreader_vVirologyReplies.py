@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,30 +33,30 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(BecameIllDate AS VARCHAR(MAX)) AS BecameIllDate,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(EmergencyTelNo AS VARCHAR(MAX)) AS EmergencyTelNo,
-		CAST(InvoiceeCareUnitKombika AS VARCHAR(MAX)) AS InvoiceeCareUnitKombika,
-		CAST(LID AS VARCHAR(MAX)) AS LID,
-		CAST(LaboratoryCareUnitID AS VARCHAR(MAX)) AS LaboratoryCareUnitID,
-		CONVERT(varchar(max), MachineTime, 126) AS MachineTime,
-		CAST(OrderDocumentID AS VARCHAR(MAX)) AS OrderDocumentID,
-		CAST(OrdererCareUnitKombika AS VARCHAR(MAX)) AS OrdererCareUnitKombika,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(Priority AS VARCHAR(MAX)) AS Priority,
-		CONVERT(varchar(max), ReferralDate, 126) AS ReferralDate,
-		CAST(ReferralID AS VARCHAR(MAX)) AS ReferralID,
-		CONVERT(varchar(max), ReferralTime, 126) AS ReferralTime,
-		CAST(ReferringDoctor AS VARCHAR(MAX)) AS ReferringDoctor,
-		CAST(ReplyRecipientCareUnitID AS VARCHAR(MAX)) AS ReplyRecipientCareUnitID,
-		CAST(ReplyRecipientCareUnitKombika AS VARCHAR(MAX)) AS ReplyRecipientCareUnitKombika,
-		CAST(SID AS VARCHAR(MAX)) AS SID,
-		CONVERT(varchar(max), SamplingDatetime, 126) AS SamplingDatetime,
-		CAST(Section AS VARCHAR(MAX)) AS Section,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([BecameIllDate] AS VARCHAR(MAX)) AS [BecameIllDate],
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([EmergencyTelNo] AS VARCHAR(MAX)) AS [EmergencyTelNo],
+		CAST([InvoiceeCareUnitKombika] AS VARCHAR(MAX)) AS [InvoiceeCareUnitKombika],
+		CAST([LID] AS VARCHAR(MAX)) AS [LID],
+		CAST([LaboratoryCareUnitID] AS VARCHAR(MAX)) AS [LaboratoryCareUnitID],
+		CONVERT(varchar(max), [MachineTime], 126) AS [MachineTime],
+		CAST([OrderDocumentID] AS VARCHAR(MAX)) AS [OrderDocumentID],
+		CAST([OrdererCareUnitKombika] AS VARCHAR(MAX)) AS [OrdererCareUnitKombika],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([Priority] AS VARCHAR(MAX)) AS [Priority],
+		CONVERT(varchar(max), [ReferralDate], 126) AS [ReferralDate],
+		CAST([ReferralID] AS VARCHAR(MAX)) AS [ReferralID],
+		CONVERT(varchar(max), [ReferralTime], 126) AS [ReferralTime],
+		CAST([ReferringDoctor] AS VARCHAR(MAX)) AS [ReferringDoctor],
+		CAST([ReplyRecipientCareUnitID] AS VARCHAR(MAX)) AS [ReplyRecipientCareUnitID],
+		CAST([ReplyRecipientCareUnitKombika] AS VARCHAR(MAX)) AS [ReplyRecipientCareUnitKombika],
+		CAST([SID] AS VARCHAR(MAX)) AS [SID],
+		CONVERT(varchar(max), [SamplingDatetime], 126) AS [SamplingDatetime],
+		CAST([Section] AS VARCHAR(MAX)) AS [Section],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vVirologyReplies) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

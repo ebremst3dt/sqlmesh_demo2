@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,24 +33,24 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(Admitted AS VARCHAR(MAX)) AS Admitted,
-		CAST(AppointedBeds AS VARCHAR(MAX)) AS AppointedBeds,
-		CAST(AvailableBeds AS VARCHAR(MAX)) AS AvailableBeds,
-		CAST(Beds AS VARCHAR(MAX)) AS Beds,
-		CAST(CareUnitID AS VARCHAR(MAX)) AS CareUnitID,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(ConfirmedByUserName AS VARCHAR(MAX)) AS ConfirmedByUserName,
-		CONVERT(varchar(max), ConfirmedTime, 126) AS ConfirmedTime,
-		CAST(DischargeReady AS VARCHAR(MAX)) AS DischargeReady,
-		CAST(IsOpenFiveDaysAWeek AS VARCHAR(MAX)) AS IsOpenFiveDaysAWeek,
-		CAST(OccupancyRate AS VARCHAR(MAX)) AS OccupancyRate,
-		CAST(OnLeave AS VARCHAR(MAX)) AS OnLeave,
-		CAST(Placed AS VARCHAR(MAX)) AS Placed,
-		CAST(PlannedAdmissions AS VARCHAR(MAX)) AS PlannedAdmissions,
-		CAST(PlannedDischarges AS VARCHAR(MAX)) AS PlannedDischarges,
-		CONVERT(varchar(max), ReportDate, 126) AS ReportDate,
-		CONVERT(varchar(max), ReportTime, 126) AS ReportTime,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([Admitted] AS VARCHAR(MAX)) AS [Admitted],
+		CAST([AppointedBeds] AS VARCHAR(MAX)) AS [AppointedBeds],
+		CAST([AvailableBeds] AS VARCHAR(MAX)) AS [AvailableBeds],
+		CAST([Beds] AS VARCHAR(MAX)) AS [Beds],
+		CAST([CareUnitID] AS VARCHAR(MAX)) AS [CareUnitID],
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([ConfirmedByUserName] AS VARCHAR(MAX)) AS [ConfirmedByUserName],
+		CONVERT(varchar(max), [ConfirmedTime], 126) AS [ConfirmedTime],
+		CAST([DischargeReady] AS VARCHAR(MAX)) AS [DischargeReady],
+		CAST([IsOpenFiveDaysAWeek] AS VARCHAR(MAX)) AS [IsOpenFiveDaysAWeek],
+		CAST([OccupancyRate] AS VARCHAR(MAX)) AS [OccupancyRate],
+		CAST([OnLeave] AS VARCHAR(MAX)) AS [OnLeave],
+		CAST([Placed] AS VARCHAR(MAX)) AS [Placed],
+		CAST([PlannedAdmissions] AS VARCHAR(MAX)) AS [PlannedAdmissions],
+		CAST([PlannedDischarges] AS VARCHAR(MAX)) AS [PlannedDischarges],
+		CONVERT(varchar(max), [ReportDate], 126) AS [ReportDate],
+		CONVERT(varchar(max), [ReportTime], 126) AS [ReportTime],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vOccupancy) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

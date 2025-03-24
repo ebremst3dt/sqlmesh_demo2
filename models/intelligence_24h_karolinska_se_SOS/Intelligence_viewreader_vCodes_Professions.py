@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,14 +33,14 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(HSATitle AS VARCHAR(MAX)) AS HSATitle,
-		CAST(NamePlural AS VARCHAR(MAX)) AS NamePlural,
-		CAST(NameShort AS VARCHAR(MAX)) AS NameShort,
-		CAST(NameSingular AS VARCHAR(MAX)) AS NameSingular,
-		CAST(ProfessionID AS VARCHAR(MAX)) AS ProfessionID,
-		CAST(SLLID AS VARCHAR(MAX)) AS SLLID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), ValidThroughDate, 126) AS ValidThroughDate 
+		CAST([HSATitle] AS VARCHAR(MAX)) AS [HSATitle],
+		CAST([NamePlural] AS VARCHAR(MAX)) AS [NamePlural],
+		CAST([NameShort] AS VARCHAR(MAX)) AS [NameShort],
+		CAST([NameSingular] AS VARCHAR(MAX)) AS [NameSingular],
+		CAST([ProfessionID] AS VARCHAR(MAX)) AS [ProfessionID],
+		CAST([SLLID] AS VARCHAR(MAX)) AS [SLLID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [ValidThroughDate], 126) AS [ValidThroughDate] 
 	FROM Intelligence.viewreader.vCodes_Professions) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

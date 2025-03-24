@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,33 +33,33 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AttesterUserID AS VARCHAR(MAX)) AS AttesterUserID,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CONVERT(varchar(max), EventDate, 126) AS EventDate,
-		CONVERT(varchar(max), EventTime, 126) AS EventTime,
-		CAST(IsGlobalTemplate AS VARCHAR(MAX)) AS IsGlobalTemplate,
-		CAST(MeasurementOrderDocumentID AS VARCHAR(MAX)) AS MeasurementOrderDocumentID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CAST(SignedByUserID AS VARCHAR(MAX)) AS SignedByUserID,
-		CAST(SignerUserID AS VARCHAR(MAX)) AS SignerUserID,
-		CAST(Status AS VARCHAR(MAX)) AS Status,
-		CAST(TaskID AS VARCHAR(MAX)) AS TaskID,
-		CAST(TaskTermID AS VARCHAR(MAX)) AS TaskTermID,
-		CONVERT(varchar(max), TaskTimestamp, 126) AS TaskTimestamp,
-		CAST(TemplateID AS VARCHAR(MAX)) AS TemplateID,
-		CAST(TermID AS VARCHAR(MAX)) AS TermID,
-		CONVERT(varchar(max), TimestampCreated, 126) AS TimestampCreated,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CONVERT(varchar(max), TimestampSigned, 126) AS TimestampSigned,
-		CAST(TriageMeasurementUUID AS VARCHAR(MAX)) AS TriageMeasurementUUID,
-		CAST(Value AS VARCHAR(MAX)) AS Value,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([AttesterUserID] AS VARCHAR(MAX)) AS [AttesterUserID],
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CONVERT(varchar(max), [EventDate], 126) AS [EventDate],
+		CONVERT(varchar(max), [EventTime], 126) AS [EventTime],
+		CAST([IsGlobalTemplate] AS VARCHAR(MAX)) AS [IsGlobalTemplate],
+		CAST([MeasurementOrderDocumentID] AS VARCHAR(MAX)) AS [MeasurementOrderDocumentID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CAST([SignedByUserID] AS VARCHAR(MAX)) AS [SignedByUserID],
+		CAST([SignerUserID] AS VARCHAR(MAX)) AS [SignerUserID],
+		CAST([Status] AS VARCHAR(MAX)) AS [Status],
+		CAST([TaskID] AS VARCHAR(MAX)) AS [TaskID],
+		CAST([TaskTermID] AS VARCHAR(MAX)) AS [TaskTermID],
+		CONVERT(varchar(max), [TaskTimestamp], 126) AS [TaskTimestamp],
+		CAST([TemplateID] AS VARCHAR(MAX)) AS [TemplateID],
+		CAST([TermID] AS VARCHAR(MAX)) AS [TermID],
+		CONVERT(varchar(max), [TimestampCreated], 126) AS [TimestampCreated],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CONVERT(varchar(max), [TimestampSigned], 126) AS [TimestampSigned],
+		CAST([TriageMeasurementUUID] AS VARCHAR(MAX)) AS [TriageMeasurementUUID],
+		CAST([Value] AS VARCHAR(MAX)) AS [Value],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vMeasurements) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,33 +33,33 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(ComplementDocumentID AS VARCHAR(MAX)) AS ComplementDocumentID,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(ExternalDocumentID AS VARCHAR(MAX)) AS ExternalDocumentID,
-		CAST(ExternalSystemID AS VARCHAR(MAX)) AS ExternalSystemID,
-		CAST(IsCancellationQuestion AS VARCHAR(MAX)) AS IsCancellationQuestion,
-		CONVERT(varchar(max), LatestReplyDate, 126) AS LatestReplyDate,
-		CAST(LinkedDocumentSubTypeID AS VARCHAR(MAX)) AS LinkedDocumentSubTypeID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ReplySavedAtCareUnitID AS VARCHAR(MAX)) AS ReplySavedAtCareUnitID,
-		CAST(ReplySavedByUserID AS VARCHAR(MAX)) AS ReplySavedByUserID,
-		CONVERT(varchar(max), ReplyTimestampSaved, 126) AS ReplyTimestampSaved,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CAST(SignedByUser AS VARCHAR(MAX)) AS SignedByUser,
-		CAST(SignedByUserID AS VARCHAR(MAX)) AS SignedByUserID,
-		CAST(SignerUser AS VARCHAR(MAX)) AS SignerUser,
-		CAST(SignerUserID AS VARCHAR(MAX)) AS SignerUserID,
-		CAST(StatusID AS VARCHAR(MAX)) AS StatusID,
-		CAST(SubjectCode AS VARCHAR(MAX)) AS SubjectCode,
-		CONVERT(varchar(max), TimestampCreated, 126) AS TimestampCreated,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CONVERT(varchar(max), TimestampSigned, 126) AS TimestampSigned,
-		CAST(UUID AS VARCHAR(MAX)) AS UUID,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([ComplementDocumentID] AS VARCHAR(MAX)) AS [ComplementDocumentID],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([ExternalDocumentID] AS VARCHAR(MAX)) AS [ExternalDocumentID],
+		CAST([ExternalSystemID] AS VARCHAR(MAX)) AS [ExternalSystemID],
+		CAST([IsCancellationQuestion] AS VARCHAR(MAX)) AS [IsCancellationQuestion],
+		CONVERT(varchar(max), [LatestReplyDate], 126) AS [LatestReplyDate],
+		CAST([LinkedDocumentSubTypeID] AS VARCHAR(MAX)) AS [LinkedDocumentSubTypeID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ReplySavedAtCareUnitID] AS VARCHAR(MAX)) AS [ReplySavedAtCareUnitID],
+		CAST([ReplySavedByUserID] AS VARCHAR(MAX)) AS [ReplySavedByUserID],
+		CONVERT(varchar(max), [ReplyTimestampSaved], 126) AS [ReplyTimestampSaved],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CAST([SignedByUser] AS VARCHAR(MAX)) AS [SignedByUser],
+		CAST([SignedByUserID] AS VARCHAR(MAX)) AS [SignedByUserID],
+		CAST([SignerUser] AS VARCHAR(MAX)) AS [SignerUser],
+		CAST([SignerUserID] AS VARCHAR(MAX)) AS [SignerUserID],
+		CAST([StatusID] AS VARCHAR(MAX)) AS [StatusID],
+		CAST([SubjectCode] AS VARCHAR(MAX)) AS [SubjectCode],
+		CONVERT(varchar(max), [TimestampCreated], 126) AS [TimestampCreated],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CONVERT(varchar(max), [TimestampSigned], 126) AS [TimestampSigned],
+		CAST([UUID] AS VARCHAR(MAX)) AS [UUID],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vQuestionReplies) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

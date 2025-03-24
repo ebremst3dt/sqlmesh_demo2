@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,13 +33,13 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(FileName AS VARCHAR(MAX)) AS FileName,
-		CAST(ProductCode AS VARCHAR(MAX)) AS ProductCode,
-		CAST(ProductType AS VARCHAR(MAX)) AS ProductType,
-		CAST(ProductValue AS VARCHAR(MAX)) AS ProductValue,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TransactionID AS VARCHAR(MAX)) AS TransactionID 
+		CAST([FileName] AS VARCHAR(MAX)) AS [FileName],
+		CAST([ProductCode] AS VARCHAR(MAX)) AS [ProductCode],
+		CAST([ProductType] AS VARCHAR(MAX)) AS [ProductType],
+		CAST([ProductValue] AS VARCHAR(MAX)) AS [ProductValue],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TransactionID] AS VARCHAR(MAX)) AS [TransactionID] 
 	FROM Intelligence.viewreader.vGVR_InpatientBilling) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,25 +33,25 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(BVCCreatedDate AS VARCHAR(MAX)) AS BVCCreatedDate,
-		CAST(BVCKombika AS VARCHAR(MAX)) AS BVCKombika,
-		CAST(BVCName AS VARCHAR(MAX)) AS BVCName,
-		CAST(BVCType AS VARCHAR(MAX)) AS BVCType,
-		CAST(CareProviderCode AS VARCHAR(MAX)) AS CareProviderCode,
-		CAST(CareProviderName AS VARCHAR(MAX)) AS CareProviderName,
-		CAST(CreatedDate AS VARCHAR(MAX)) AS CreatedDate,
-		CAST(District AS VARCHAR(MAX)) AS District,
-		CAST(LeaveDate AS VARCHAR(MAX)) AS LeaveDate,
-		CAST(LeaveReason AS VARCHAR(MAX)) AS LeaveReason,
-		CAST(MedicalCenter AS VARCHAR(MAX)) AS MedicalCenter,
-		CAST(MedicalCenterKombika AS VARCHAR(MAX)) AS MedicalCenterKombika,
-		CONVERT(varchar(max), NursingHomeAdmissionDate, 126) AS NursingHomeAdmissionDate,
-		CAST(NursingHomeCode AS VARCHAR(MAX)) AS NursingHomeCode,
-		CAST(NursingHomeName AS VARCHAR(MAX)) AS NursingHomeName,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), ReadDate, 126) AS ReadDate,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(Type AS VARCHAR(MAX)) AS Type 
+		CAST([BVCCreatedDate] AS VARCHAR(MAX)) AS [BVCCreatedDate],
+		CAST([BVCKombika] AS VARCHAR(MAX)) AS [BVCKombika],
+		CAST([BVCName] AS VARCHAR(MAX)) AS [BVCName],
+		CAST([BVCType] AS VARCHAR(MAX)) AS [BVCType],
+		CAST([CareProviderCode] AS VARCHAR(MAX)) AS [CareProviderCode],
+		CAST([CareProviderName] AS VARCHAR(MAX)) AS [CareProviderName],
+		CAST([CreatedDate] AS VARCHAR(MAX)) AS [CreatedDate],
+		CAST([District] AS VARCHAR(MAX)) AS [District],
+		CAST([LeaveDate] AS VARCHAR(MAX)) AS [LeaveDate],
+		CAST([LeaveReason] AS VARCHAR(MAX)) AS [LeaveReason],
+		CAST([MedicalCenter] AS VARCHAR(MAX)) AS [MedicalCenter],
+		CAST([MedicalCenterKombika] AS VARCHAR(MAX)) AS [MedicalCenterKombika],
+		CONVERT(varchar(max), [NursingHomeAdmissionDate], 126) AS [NursingHomeAdmissionDate],
+		CAST([NursingHomeCode] AS VARCHAR(MAX)) AS [NursingHomeCode],
+		CAST([NursingHomeName] AS VARCHAR(MAX)) AS [NursingHomeName],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [ReadDate], 126) AS [ReadDate],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([Type] AS VARCHAR(MAX)) AS [Type] 
 	FROM Intelligence.viewreader.vPatInfo_ListingListOn) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

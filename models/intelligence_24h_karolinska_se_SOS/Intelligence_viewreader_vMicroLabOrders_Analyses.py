@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,25 +33,25 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(Analysis AS VARCHAR(MAX)) AS Analysis,
-		CAST(AnalysisID AS VARCHAR(MAX)) AS AnalysisID,
-		CAST(Batch AS VARCHAR(MAX)) AS Batch,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(Examination AS VARCHAR(MAX)) AS Examination,
-		CAST(ExaminationID AS VARCHAR(MAX)) AS ExaminationID,
-		CAST(IsAllRequired AS VARCHAR(MAX)) AS IsAllRequired,
-		CAST(IsRequired AS VARCHAR(MAX)) AS IsRequired,
-		CAST(Localization AS VARCHAR(MAX)) AS Localization,
-		CAST(OrderableID AS VARCHAR(MAX)) AS OrderableID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(SectionCode AS VARCHAR(MAX)) AS SectionCode,
-		CAST(ServiceGroup AS VARCHAR(MAX)) AS ServiceGroup,
-		CAST(Specimen AS VARCHAR(MAX)) AS Specimen,
-		CAST(SpecimenID AS VARCHAR(MAX)) AS SpecimenID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TubeID AS VARCHAR(MAX)) AS TubeID,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([Analysis] AS VARCHAR(MAX)) AS [Analysis],
+		CAST([AnalysisID] AS VARCHAR(MAX)) AS [AnalysisID],
+		CAST([Batch] AS VARCHAR(MAX)) AS [Batch],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([Examination] AS VARCHAR(MAX)) AS [Examination],
+		CAST([ExaminationID] AS VARCHAR(MAX)) AS [ExaminationID],
+		CAST([IsAllRequired] AS VARCHAR(MAX)) AS [IsAllRequired],
+		CAST([IsRequired] AS VARCHAR(MAX)) AS [IsRequired],
+		CAST([Localization] AS VARCHAR(MAX)) AS [Localization],
+		CAST([OrderableID] AS VARCHAR(MAX)) AS [OrderableID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([SectionCode] AS VARCHAR(MAX)) AS [SectionCode],
+		CAST([ServiceGroup] AS VARCHAR(MAX)) AS [ServiceGroup],
+		CAST([Specimen] AS VARCHAR(MAX)) AS [Specimen],
+		CAST([SpecimenID] AS VARCHAR(MAX)) AS [SpecimenID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TubeID] AS VARCHAR(MAX)) AS [TubeID],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vMicroLabOrders_Analyses) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

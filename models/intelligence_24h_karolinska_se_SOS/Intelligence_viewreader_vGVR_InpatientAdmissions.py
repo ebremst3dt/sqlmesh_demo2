@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,18 +33,18 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AdmissionCode AS VARCHAR(MAX)) AS AdmissionCode,
-		CAST(AdmissionFormCode AS VARCHAR(MAX)) AS AdmissionFormCode,
-		CAST(CareConnection AS VARCHAR(MAX)) AS CareConnection,
-		CAST(ClinicalPathwayNumber AS VARCHAR(MAX)) AS ClinicalPathwayNumber,
-		CAST(FileName AS VARCHAR(MAX)) AS FileName,
-		CAST(IsEmergency AS VARCHAR(MAX)) AS IsEmergency,
-		CAST(ReferringCareUnit AS VARCHAR(MAX)) AS ReferringCareUnit,
-		CAST(ReferringClinic AS VARCHAR(MAX)) AS ReferringClinic,
-		CAST(ReferringHospital AS VARCHAR(MAX)) AS ReferringHospital,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TransactionID AS VARCHAR(MAX)) AS TransactionID,
-		CAST(TreatmentPeriod AS VARCHAR(MAX)) AS TreatmentPeriod 
+		CAST([AdmissionCode] AS VARCHAR(MAX)) AS [AdmissionCode],
+		CAST([AdmissionFormCode] AS VARCHAR(MAX)) AS [AdmissionFormCode],
+		CAST([CareConnection] AS VARCHAR(MAX)) AS [CareConnection],
+		CAST([ClinicalPathwayNumber] AS VARCHAR(MAX)) AS [ClinicalPathwayNumber],
+		CAST([FileName] AS VARCHAR(MAX)) AS [FileName],
+		CAST([IsEmergency] AS VARCHAR(MAX)) AS [IsEmergency],
+		CAST([ReferringCareUnit] AS VARCHAR(MAX)) AS [ReferringCareUnit],
+		CAST([ReferringClinic] AS VARCHAR(MAX)) AS [ReferringClinic],
+		CAST([ReferringHospital] AS VARCHAR(MAX)) AS [ReferringHospital],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TransactionID] AS VARCHAR(MAX)) AS [TransactionID],
+		CAST([TreatmentPeriod] AS VARCHAR(MAX)) AS [TreatmentPeriod] 
 	FROM Intelligence.viewreader.vGVR_InpatientAdmissions) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

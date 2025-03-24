@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,16 +33,16 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(FormTemplateID AS VARCHAR(MAX)) AS FormTemplateID,
-		CAST(Name AS VARCHAR(MAX)) AS Name,
-		CAST(ObjectID AS VARCHAR(MAX)) AS ObjectID,
-		CAST(ObjectTypeID AS VARCHAR(MAX)) AS ObjectTypeID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(UserID AS VARCHAR(MAX)) AS UserID,
-		CAST(UserName AS VARCHAR(MAX)) AS UserName,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([FormTemplateID] AS VARCHAR(MAX)) AS [FormTemplateID],
+		CAST([Name] AS VARCHAR(MAX)) AS [Name],
+		CAST([ObjectID] AS VARCHAR(MAX)) AS [ObjectID],
+		CAST([ObjectTypeID] AS VARCHAR(MAX)) AS [ObjectTypeID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([UserID] AS VARCHAR(MAX)) AS [UserID],
+		CAST([UserName] AS VARCHAR(MAX)) AS [UserName],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vForms_UserFields) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,30 +33,30 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CONVERT(varchar(max), CompletedDate, 126) AS CompletedDate,
-		CONVERT(varchar(max), CompletedTime, 126) AS CompletedTime,
-		CONVERT(varchar(max), CompletedTimestamp, 126) AS CompletedTimestamp,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CAST(ExplanationInstruction AS VARCHAR(MAX)) AS ExplanationInstruction,
-		CAST(LinkedDocumentID AS VARCHAR(MAX)) AS LinkedDocumentID,
-		CAST(LinkedDocumentTypeID AS VARCHAR(MAX)) AS LinkedDocumentTypeID,
-		CAST(LockedByUserID AS VARCHAR(MAX)) AS LockedByUserID,
-		CONVERT(varchar(max), LockedTimestamp, 126) AS LockedTimestamp,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(PriorityID AS VARCHAR(MAX)) AS PriorityID,
-		CAST(ProfessionID AS VARCHAR(MAX)) AS ProfessionID,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CAST(SignedByUserID AS VARCHAR(MAX)) AS SignedByUserID,
-		CONVERT(varchar(max), SignedDatetime, 126) AS SignedDatetime,
-		CAST(SignerUserID AS VARCHAR(MAX)) AS SignerUserID,
-		CAST(Status AS VARCHAR(MAX)) AS Status,
-		CAST(TaskID AS VARCHAR(MAX)) AS TaskID,
-		CAST(TermID AS VARCHAR(MAX)) AS TermID,
-		CONVERT(varchar(max), TimestampCreated, 126) AS TimestampCreated,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved 
+		CONVERT(varchar(max), [CompletedDate], 126) AS [CompletedDate],
+		CONVERT(varchar(max), [CompletedTime], 126) AS [CompletedTime],
+		CONVERT(varchar(max), [CompletedTimestamp], 126) AS [CompletedTimestamp],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CAST([ExplanationInstruction] AS VARCHAR(MAX)) AS [ExplanationInstruction],
+		CAST([LinkedDocumentID] AS VARCHAR(MAX)) AS [LinkedDocumentID],
+		CAST([LinkedDocumentTypeID] AS VARCHAR(MAX)) AS [LinkedDocumentTypeID],
+		CAST([LockedByUserID] AS VARCHAR(MAX)) AS [LockedByUserID],
+		CONVERT(varchar(max), [LockedTimestamp], 126) AS [LockedTimestamp],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([PriorityID] AS VARCHAR(MAX)) AS [PriorityID],
+		CAST([ProfessionID] AS VARCHAR(MAX)) AS [ProfessionID],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CAST([SignedByUserID] AS VARCHAR(MAX)) AS [SignedByUserID],
+		CONVERT(varchar(max), [SignedDatetime], 126) AS [SignedDatetime],
+		CAST([SignerUserID] AS VARCHAR(MAX)) AS [SignerUserID],
+		CAST([Status] AS VARCHAR(MAX)) AS [Status],
+		CAST([TaskID] AS VARCHAR(MAX)) AS [TaskID],
+		CAST([TermID] AS VARCHAR(MAX)) AS [TermID],
+		CONVERT(varchar(max), [TimestampCreated], 126) AS [TimestampCreated],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved] 
 	FROM Intelligence.viewreader.vTasks) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

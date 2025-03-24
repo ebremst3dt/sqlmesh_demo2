@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,24 +33,24 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(DecidedByUserID AS VARCHAR(MAX)) AS DecidedByUserID,
-		CAST(DecidedByUserName AS VARCHAR(MAX)) AS DecidedByUserName,
-		CONVERT(varchar(max), DecidedDate, 126) AS DecidedDate,
-		CAST(HasLeft AS VARCHAR(MAX)) AS HasLeft,
-		CAST(ObtainedByUserID AS VARCHAR(MAX)) AS ObtainedByUserID,
-		CAST(ObtainedByUserName AS VARCHAR(MAX)) AS ObtainedByUserName,
-		CONVERT(varchar(max), ObtainedDate, 126) AS ObtainedDate,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(PatientStudyID AS VARCHAR(MAX)) AS PatientStudyID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CAST(Status AS VARCHAR(MAX)) AS Status,
-		CAST(StudyID AS VARCHAR(MAX)) AS StudyID,
-		CONVERT(varchar(max), StudyLeaveDate, 126) AS StudyLeaveDate,
-		CAST(StudyLeaveReasonID AS VARCHAR(MAX)) AS StudyLeaveReasonID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved 
+		CAST([DecidedByUserID] AS VARCHAR(MAX)) AS [DecidedByUserID],
+		CAST([DecidedByUserName] AS VARCHAR(MAX)) AS [DecidedByUserName],
+		CONVERT(varchar(max), [DecidedDate], 126) AS [DecidedDate],
+		CAST([HasLeft] AS VARCHAR(MAX)) AS [HasLeft],
+		CAST([ObtainedByUserID] AS VARCHAR(MAX)) AS [ObtainedByUserID],
+		CAST([ObtainedByUserName] AS VARCHAR(MAX)) AS [ObtainedByUserName],
+		CONVERT(varchar(max), [ObtainedDate], 126) AS [ObtainedDate],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([PatientStudyID] AS VARCHAR(MAX)) AS [PatientStudyID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CAST([Status] AS VARCHAR(MAX)) AS [Status],
+		CAST([StudyID] AS VARCHAR(MAX)) AS [StudyID],
+		CONVERT(varchar(max), [StudyLeaveDate], 126) AS [StudyLeaveDate],
+		CAST([StudyLeaveReasonID] AS VARCHAR(MAX)) AS [StudyLeaveReasonID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved] 
 	FROM Intelligence.viewreader.vPatInfo_StudyConsents) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

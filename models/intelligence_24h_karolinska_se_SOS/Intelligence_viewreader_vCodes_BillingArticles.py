@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,17 +33,17 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AccountID AS VARCHAR(MAX)) AS AccountID,
-		CAST(ArticleCode AS VARCHAR(MAX)) AS ArticleCode,
-		CAST(ArticleID AS VARCHAR(MAX)) AS ArticleID,
-		CAST(IsOptionalPrice AS VARCHAR(MAX)) AS IsOptionalPrice,
-		CAST(IsPreventiveHealthCare AS VARCHAR(MAX)) AS IsPreventiveHealthCare,
-		CAST(Keywords AS VARCHAR(MAX)) AS Keywords,
-		CAST(Name AS VARCHAR(MAX)) AS Name,
-		CAST(ProfessionID AS VARCHAR(MAX)) AS ProfessionID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), ValidFromDate, 126) AS ValidFromDate,
-		CONVERT(varchar(max), ValidThroughDate, 126) AS ValidThroughDate 
+		CAST([AccountID] AS VARCHAR(MAX)) AS [AccountID],
+		CAST([ArticleCode] AS VARCHAR(MAX)) AS [ArticleCode],
+		CAST([ArticleID] AS VARCHAR(MAX)) AS [ArticleID],
+		CAST([IsOptionalPrice] AS VARCHAR(MAX)) AS [IsOptionalPrice],
+		CAST([IsPreventiveHealthCare] AS VARCHAR(MAX)) AS [IsPreventiveHealthCare],
+		CAST([Keywords] AS VARCHAR(MAX)) AS [Keywords],
+		CAST([Name] AS VARCHAR(MAX)) AS [Name],
+		CAST([ProfessionID] AS VARCHAR(MAX)) AS [ProfessionID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [ValidFromDate], 126) AS [ValidFromDate],
+		CONVERT(varchar(max), [ValidThroughDate], 126) AS [ValidThroughDate] 
 	FROM Intelligence.viewreader.vCodes_BillingArticles) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

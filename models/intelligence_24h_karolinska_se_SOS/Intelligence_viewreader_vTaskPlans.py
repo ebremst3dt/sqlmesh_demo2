@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,30 +33,30 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CAST(Description AS VARCHAR(MAX)) AS Description,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CONVERT(varchar(max), EndDate, 126) AS EndDate,
-		CONVERT(varchar(max), EndTime, 126) AS EndTime,
-		CAST(GoalDescription AS VARCHAR(MAX)) AS GoalDescription,
-		CAST(GoalEvaluation AS VARCHAR(MAX)) AS GoalEvaluation,
-		CAST(IsCurrent AS VARCHAR(MAX)) AS IsCurrent,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ProblemDescription AS VARCHAR(MAX)) AS ProblemDescription,
-		CAST(ProfessionID AS VARCHAR(MAX)) AS ProfessionID,
-		CAST(ResponsibleUserID AS VARCHAR(MAX)) AS ResponsibleUserID,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CONVERT(varchar(max), StartDate, 126) AS StartDate,
-		CONVERT(varchar(max), StartTime, 126) AS StartTime,
-		CAST(Status AS VARCHAR(MAX)) AS Status,
-		CAST(TaskPlanTermID AS VARCHAR(MAX)) AS TaskPlanTermID,
-		CAST(TemplateID AS VARCHAR(MAX)) AS TemplateID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CAST([Description] AS VARCHAR(MAX)) AS [Description],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CONVERT(varchar(max), [EndDate], 126) AS [EndDate],
+		CONVERT(varchar(max), [EndTime], 126) AS [EndTime],
+		CAST([GoalDescription] AS VARCHAR(MAX)) AS [GoalDescription],
+		CAST([GoalEvaluation] AS VARCHAR(MAX)) AS [GoalEvaluation],
+		CAST([IsCurrent] AS VARCHAR(MAX)) AS [IsCurrent],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ProblemDescription] AS VARCHAR(MAX)) AS [ProblemDescription],
+		CAST([ProfessionID] AS VARCHAR(MAX)) AS [ProfessionID],
+		CAST([ResponsibleUserID] AS VARCHAR(MAX)) AS [ResponsibleUserID],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CONVERT(varchar(max), [StartDate], 126) AS [StartDate],
+		CONVERT(varchar(max), [StartTime], 126) AS [StartTime],
+		CAST([Status] AS VARCHAR(MAX)) AS [Status],
+		CAST([TaskPlanTermID] AS VARCHAR(MAX)) AS [TaskPlanTermID],
+		CAST([TemplateID] AS VARCHAR(MAX)) AS [TemplateID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vTaskPlans) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

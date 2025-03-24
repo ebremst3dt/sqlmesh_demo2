@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,14 +33,14 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(RelationDocumentID AS VARCHAR(MAX)) AS RelationDocumentID,
-		CAST(RelationTypeCode AS VARCHAR(MAX)) AS RelationTypeCode,
-		CAST(RelationTypeDisplayName AS VARCHAR(MAX)) AS RelationTypeDisplayName,
-		CAST(RelationWebcertCode AS VARCHAR(MAX)) AS RelationWebcertCode,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([RelationDocumentID] AS VARCHAR(MAX)) AS [RelationDocumentID],
+		CAST([RelationTypeCode] AS VARCHAR(MAX)) AS [RelationTypeCode],
+		CAST([RelationTypeDisplayName] AS VARCHAR(MAX)) AS [RelationTypeDisplayName],
+		CAST([RelationWebcertCode] AS VARCHAR(MAX)) AS [RelationWebcertCode],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vWebcertCertificates_Relations) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

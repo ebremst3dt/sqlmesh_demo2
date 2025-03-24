@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,31 +33,31 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CarePlanningID AS VARCHAR(MAX)) AS CarePlanningID,
-		CAST(CaseID AS VARCHAR(MAX)) AS CaseID,
-		CONVERT(varchar(max), CaseStartDatetime, 126) AS CaseStartDatetime,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(ContactResourceID AS VARCHAR(MAX)) AS ContactResourceID,
-		CAST(ContactTypeCode AS VARCHAR(MAX)) AS ContactTypeCode,
-		CAST(DRGKOKSApprovedByUserName AS VARCHAR(MAX)) AS DRGKOKSApprovedByUserName,
-		CAST(DiagnosisApprovedByUserID AS VARCHAR(MAX)) AS DiagnosisApprovedByUserID,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(EconomicalInKombika AS VARCHAR(MAX)) AS EconomicalInKombika,
-		CAST(IdentificationTypeID AS VARCHAR(MAX)) AS IdentificationTypeID,
-		CAST(IsInpatient AS VARCHAR(MAX)) AS IsInpatient,
-		CAST(IsSLLPatient AS VARCHAR(MAX)) AS IsSLLPatient,
-		CAST(PASType AS VARCHAR(MAX)) AS PASType,
-		CAST(PatientCountyID AS VARCHAR(MAX)) AS PatientCountyID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(PatientMunicipalityID AS VARCHAR(MAX)) AS PatientMunicipalityID,
-		CAST(ReferredToKombika AS VARCHAR(MAX)) AS ReferredToKombika,
-		CAST(ReferringKombika AS VARCHAR(MAX)) AS ReferringKombika,
-		CAST(RegistrationStatus AS VARCHAR(MAX)) AS RegistrationStatus,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CONVERT(varchar(max), StartDatetime, 126) AS StartDatetime,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved 
+		CAST([CarePlanningID] AS VARCHAR(MAX)) AS [CarePlanningID],
+		CAST([CaseID] AS VARCHAR(MAX)) AS [CaseID],
+		CONVERT(varchar(max), [CaseStartDatetime], 126) AS [CaseStartDatetime],
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([ContactResourceID] AS VARCHAR(MAX)) AS [ContactResourceID],
+		CAST([ContactTypeCode] AS VARCHAR(MAX)) AS [ContactTypeCode],
+		CAST([DRGKOKSApprovedByUserName] AS VARCHAR(MAX)) AS [DRGKOKSApprovedByUserName],
+		CAST([DiagnosisApprovedByUserID] AS VARCHAR(MAX)) AS [DiagnosisApprovedByUserID],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([EconomicalInKombika] AS VARCHAR(MAX)) AS [EconomicalInKombika],
+		CAST([IdentificationTypeID] AS VARCHAR(MAX)) AS [IdentificationTypeID],
+		CAST([IsInpatient] AS VARCHAR(MAX)) AS [IsInpatient],
+		CAST([IsSLLPatient] AS VARCHAR(MAX)) AS [IsSLLPatient],
+		CAST([PASType] AS VARCHAR(MAX)) AS [PASType],
+		CAST([PatientCountyID] AS VARCHAR(MAX)) AS [PatientCountyID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([PatientMunicipalityID] AS VARCHAR(MAX)) AS [PatientMunicipalityID],
+		CAST([ReferredToKombika] AS VARCHAR(MAX)) AS [ReferredToKombika],
+		CAST([ReferringKombika] AS VARCHAR(MAX)) AS [ReferringKombika],
+		CAST([RegistrationStatus] AS VARCHAR(MAX)) AS [RegistrationStatus],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CONVERT(varchar(max), [StartDatetime], 126) AS [StartDatetime],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved] 
 	FROM Intelligence.viewreader.vPAS) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

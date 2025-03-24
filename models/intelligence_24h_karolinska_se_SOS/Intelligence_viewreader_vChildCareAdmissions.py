@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,23 +33,23 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CONVERT(varchar(max), AdmissionDate, 126) AS AdmissionDate,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(CreatedByUserID AS VARCHAR(MAX)) AS CreatedByUserID,
-		CAST(DischargeComment AS VARCHAR(MAX)) AS DischargeComment,
-		CONVERT(varchar(max), DischargeDate, 126) AS DischargeDate,
-		CAST(DischargeToEXID AS VARCHAR(MAX)) AS DischargeToEXID,
-		CAST(DischargeToID AS VARCHAR(MAX)) AS DischargeToID,
-		CAST(DischargeToName AS VARCHAR(MAX)) AS DischargeToName,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(RegistrationStatus AS VARCHAR(MAX)) AS RegistrationStatus,
-		CAST(ResponsibleUserID AS VARCHAR(MAX)) AS ResponsibleUserID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CONVERT(varchar(max), TimestampCreated, 126) AS TimestampCreated,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CONVERT(varchar(max), [AdmissionDate], 126) AS [AdmissionDate],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([CreatedByUserID] AS VARCHAR(MAX)) AS [CreatedByUserID],
+		CAST([DischargeComment] AS VARCHAR(MAX)) AS [DischargeComment],
+		CONVERT(varchar(max), [DischargeDate], 126) AS [DischargeDate],
+		CAST([DischargeToEXID] AS VARCHAR(MAX)) AS [DischargeToEXID],
+		CAST([DischargeToID] AS VARCHAR(MAX)) AS [DischargeToID],
+		CAST([DischargeToName] AS VARCHAR(MAX)) AS [DischargeToName],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([RegistrationStatus] AS VARCHAR(MAX)) AS [RegistrationStatus],
+		CAST([ResponsibleUserID] AS VARCHAR(MAX)) AS [ResponsibleUserID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CONVERT(varchar(max), [TimestampCreated], 126) AS [TimestampCreated],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vChildCareAdmissions) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

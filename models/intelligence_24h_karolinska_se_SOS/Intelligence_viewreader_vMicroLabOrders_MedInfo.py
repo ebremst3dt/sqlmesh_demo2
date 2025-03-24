@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,16 +33,16 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(IsRequired AS VARCHAR(MAX)) AS IsRequired,
-		CAST(MedInfoID AS VARCHAR(MAX)) AS MedInfoID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(TextLabel AS VARCHAR(MAX)) AS TextLabel,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(Type AS VARCHAR(MAX)) AS Type,
-		CAST(Unit AS VARCHAR(MAX)) AS Unit,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([IsRequired] AS VARCHAR(MAX)) AS [IsRequired],
+		CAST([MedInfoID] AS VARCHAR(MAX)) AS [MedInfoID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([TextLabel] AS VARCHAR(MAX)) AS [TextLabel],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([Type] AS VARCHAR(MAX)) AS [Type],
+		CAST([Unit] AS VARCHAR(MAX)) AS [Unit],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vMicroLabOrders_MedInfo) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

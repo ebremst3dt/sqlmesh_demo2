@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,15 +33,15 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AnalysisID AS VARCHAR(MAX)) AS AnalysisID,
-		CAST(AnalysisName AS VARCHAR(MAX)) AS AnalysisName,
-		CAST(CoOrder AS VARCHAR(MAX)) AS CoOrder,
-		CAST(IsEmergency AS VARCHAR(MAX)) AS IsEmergency,
-		CAST(IsOKToOrder AS VARCHAR(MAX)) AS IsOKToOrder,
-		CAST(IsPaperOrdered AS VARCHAR(MAX)) AS IsPaperOrdered,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TubeID AS VARCHAR(MAX)) AS TubeID,
-		CAST(Unit AS VARCHAR(MAX)) AS Unit 
+		CAST([AnalysisID] AS VARCHAR(MAX)) AS [AnalysisID],
+		CAST([AnalysisName] AS VARCHAR(MAX)) AS [AnalysisName],
+		CAST([CoOrder] AS VARCHAR(MAX)) AS [CoOrder],
+		CAST([IsEmergency] AS VARCHAR(MAX)) AS [IsEmergency],
+		CAST([IsOKToOrder] AS VARCHAR(MAX)) AS [IsOKToOrder],
+		CAST([IsPaperOrdered] AS VARCHAR(MAX)) AS [IsPaperOrdered],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TubeID] AS VARCHAR(MAX)) AS [TubeID],
+		CAST([Unit] AS VARCHAR(MAX)) AS [Unit] 
 	FROM Intelligence.viewreader.vCodes_CLCLabAnalyses) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

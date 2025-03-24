@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,16 +33,16 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(AnalysisID AS VARCHAR(MAX)) AS AnalysisID,
-		CAST(ExaminationID AS VARCHAR(MAX)) AS ExaminationID,
-		CAST(IsLocalizationRequired AS VARCHAR(MAX)) AS IsLocalizationRequired,
-		CAST(IsSolitary AS VARCHAR(MAX)) AS IsSolitary,
-		CAST(OrderRegistryFileName AS VARCHAR(MAX)) AS OrderRegistryFileName,
-		CAST(OrderableID AS VARCHAR(MAX)) AS OrderableID,
-		CAST(SectionCode AS VARCHAR(MAX)) AS SectionCode,
-		CAST(SpecimenID AS VARCHAR(MAX)) AS SpecimenID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TubeID AS VARCHAR(MAX)) AS TubeID 
+		CAST([AnalysisID] AS VARCHAR(MAX)) AS [AnalysisID],
+		CAST([ExaminationID] AS VARCHAR(MAX)) AS [ExaminationID],
+		CAST([IsLocalizationRequired] AS VARCHAR(MAX)) AS [IsLocalizationRequired],
+		CAST([IsSolitary] AS VARCHAR(MAX)) AS [IsSolitary],
+		CAST([OrderRegistryFileName] AS VARCHAR(MAX)) AS [OrderRegistryFileName],
+		CAST([OrderableID] AS VARCHAR(MAX)) AS [OrderableID],
+		CAST([SectionCode] AS VARCHAR(MAX)) AS [SectionCode],
+		CAST([SpecimenID] AS VARCHAR(MAX)) AS [SpecimenID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TubeID] AS VARCHAR(MAX)) AS [TubeID] 
 	FROM Intelligence.viewreader.vCodes_MicroOrderables) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

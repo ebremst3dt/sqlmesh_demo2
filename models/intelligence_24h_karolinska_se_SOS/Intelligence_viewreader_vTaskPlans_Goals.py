@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,20 +33,20 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CONVERT(varchar(max), CompletedDate, 126) AS CompletedDate,
-		CONVERT(varchar(max), CompletedTime, 126) AS CompletedTime,
-		CAST(Description AS VARCHAR(MAX)) AS Description,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CONVERT(varchar(max), InitiatedDate, 126) AS InitiatedDate,
-		CONVERT(varchar(max), InitiatedTime, 126) AS InitiatedTime,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ProfessionID AS VARCHAR(MAX)) AS ProfessionID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSavedGPE, 126) AS TimestampSavedGPE,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CONVERT(varchar(max), [CompletedDate], 126) AS [CompletedDate],
+		CONVERT(varchar(max), [CompletedTime], 126) AS [CompletedTime],
+		CAST([Description] AS VARCHAR(MAX)) AS [Description],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CONVERT(varchar(max), [InitiatedDate], 126) AS [InitiatedDate],
+		CONVERT(varchar(max), [InitiatedTime], 126) AS [InitiatedTime],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ProfessionID] AS VARCHAR(MAX)) AS [ProfessionID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSavedGPE], 126) AS [TimestampSavedGPE],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vTaskPlans_Goals) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

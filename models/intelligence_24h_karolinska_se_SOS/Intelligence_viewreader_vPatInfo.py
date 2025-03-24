@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,30 +33,30 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CFUBaseAreaCode AS VARCHAR(MAX)) AS CFUBaseAreaCode,
-		CAST(CFUCounty AS VARCHAR(MAX)) AS CFUCounty,
-		CAST(CFUDateOfBirth AS VARCHAR(MAX)) AS CFUDateOfBirth,
-		CAST(CFUMaritalStatus AS VARCHAR(MAX)) AS CFUMaritalStatus,
-		CAST(CFUMaritalStatusDate AS VARCHAR(MAX)) AS CFUMaritalStatusDate,
-		CAST(CFUMunicipality AS VARCHAR(MAX)) AS CFUMunicipality,
-		CAST(CFUOrdererUnitCode AS VARCHAR(MAX)) AS CFUOrdererUnitCode,
-		CAST(CFUOrdererUnitName AS VARCHAR(MAX)) AS CFUOrdererUnitName,
-		CAST(CFUParish AS VARCHAR(MAX)) AS CFUParish,
-		CAST(CFUPsychiatryAreaCode AS VARCHAR(MAX)) AS CFUPsychiatryAreaCode,
-		CAST(CFUPsychiatryAreaName AS VARCHAR(MAX)) AS CFUPsychiatryAreaName,
-		CONVERT(varchar(max), CFURetrievedTime, 126) AS CFURetrievedTime,
-		CONVERT(varchar(max), DateOfBirth, 126) AS DateOfBirth,
-		CAST(LMACardNumber AS VARCHAR(MAX)) AS LMACardNumber,
-		CONVERT(varchar(max), LMACardValidThrough, 126) AS LMACardValidThrough,
-		CAST(MedicareCardNumber AS VARCHAR(MAX)) AS MedicareCardNumber,
-		CAST(MedicareCardProviderID AS VARCHAR(MAX)) AS MedicareCardProviderID,
-		CAST(MedicareCardUUID AS VARCHAR(MAX)) AS MedicareCardUUID,
-		CONVERT(varchar(max), MedicareCardValidFrom, 126) AS MedicareCardValidFrom,
-		CONVERT(varchar(max), MedicareCardValidThrough, 126) AS MedicareCardValidThrough,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), RecordCreatedTimestamp, 126) AS RecordCreatedTimestamp,
-		CAST(Sex AS VARCHAR(MAX)) AS Sex,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead 
+		CAST([CFUBaseAreaCode] AS VARCHAR(MAX)) AS [CFUBaseAreaCode],
+		CAST([CFUCounty] AS VARCHAR(MAX)) AS [CFUCounty],
+		CAST([CFUDateOfBirth] AS VARCHAR(MAX)) AS [CFUDateOfBirth],
+		CAST([CFUMaritalStatus] AS VARCHAR(MAX)) AS [CFUMaritalStatus],
+		CAST([CFUMaritalStatusDate] AS VARCHAR(MAX)) AS [CFUMaritalStatusDate],
+		CAST([CFUMunicipality] AS VARCHAR(MAX)) AS [CFUMunicipality],
+		CAST([CFUOrdererUnitCode] AS VARCHAR(MAX)) AS [CFUOrdererUnitCode],
+		CAST([CFUOrdererUnitName] AS VARCHAR(MAX)) AS [CFUOrdererUnitName],
+		CAST([CFUParish] AS VARCHAR(MAX)) AS [CFUParish],
+		CAST([CFUPsychiatryAreaCode] AS VARCHAR(MAX)) AS [CFUPsychiatryAreaCode],
+		CAST([CFUPsychiatryAreaName] AS VARCHAR(MAX)) AS [CFUPsychiatryAreaName],
+		CONVERT(varchar(max), [CFURetrievedTime], 126) AS [CFURetrievedTime],
+		CONVERT(varchar(max), [DateOfBirth], 126) AS [DateOfBirth],
+		CAST([LMACardNumber] AS VARCHAR(MAX)) AS [LMACardNumber],
+		CONVERT(varchar(max), [LMACardValidThrough], 126) AS [LMACardValidThrough],
+		CAST([MedicareCardNumber] AS VARCHAR(MAX)) AS [MedicareCardNumber],
+		CAST([MedicareCardProviderID] AS VARCHAR(MAX)) AS [MedicareCardProviderID],
+		CAST([MedicareCardUUID] AS VARCHAR(MAX)) AS [MedicareCardUUID],
+		CONVERT(varchar(max), [MedicareCardValidFrom], 126) AS [MedicareCardValidFrom],
+		CONVERT(varchar(max), [MedicareCardValidThrough], 126) AS [MedicareCardValidThrough],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [RecordCreatedTimestamp], 126) AS [RecordCreatedTimestamp],
+		CAST([Sex] AS VARCHAR(MAX)) AS [Sex],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead] 
 	FROM Intelligence.viewreader.vPatInfo) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

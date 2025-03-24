@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,22 +33,22 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CONVERT(varchar(max), AdministrationStartDate, 126) AS AdministrationStartDate,
-		CONVERT(varchar(max), AdministrationStartTime, 126) AS AdministrationStartTime,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(DosageInstruction AS VARCHAR(MAX)) AS DosageInstruction,
-		CAST(DosageInstructionTemplate AS VARCHAR(MAX)) AS DosageInstructionTemplate,
-		CAST(InfusionTime AS VARCHAR(MAX)) AS InfusionTime,
-		CAST(IsSelfAdministered AS VARCHAR(MAX)) AS IsSelfAdministered,
-		CAST(MaxDailyDose AS VARCHAR(MAX)) AS MaxDailyDose,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(SavedAtCareUnitID AS VARCHAR(MAX)) AS SavedAtCareUnitID,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CAST(SignerUserID AS VARCHAR(MAX)) AS SignerUserID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CONVERT(varchar(max), [AdministrationStartDate], 126) AS [AdministrationStartDate],
+		CONVERT(varchar(max), [AdministrationStartTime], 126) AS [AdministrationStartTime],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([DosageInstruction] AS VARCHAR(MAX)) AS [DosageInstruction],
+		CAST([DosageInstructionTemplate] AS VARCHAR(MAX)) AS [DosageInstructionTemplate],
+		CAST([InfusionTime] AS VARCHAR(MAX)) AS [InfusionTime],
+		CAST([IsSelfAdministered] AS VARCHAR(MAX)) AS [IsSelfAdministered],
+		CAST([MaxDailyDose] AS VARCHAR(MAX)) AS [MaxDailyDose],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([SavedAtCareUnitID] AS VARCHAR(MAX)) AS [SavedAtCareUnitID],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CAST([SignerUserID] AS VARCHAR(MAX)) AS [SignerUserID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vMedOrders_Days) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

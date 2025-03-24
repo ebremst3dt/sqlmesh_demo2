@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,19 +33,19 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CareUnit AS VARCHAR(MAX)) AS CareUnit,
-		CAST(Clinic AS VARCHAR(MAX)) AS Clinic,
-		CAST(EconomicalKombika AS VARCHAR(MAX)) AS EconomicalKombika,
-		CONVERT(varchar(max), EventDate, 126) AS EventDate,
-		CONVERT(varchar(max), EventDatetime, 126) AS EventDatetime,
-		CONVERT(varchar(max), EventTime, 126) AS EventTime,
-		CAST(FileName AS VARCHAR(MAX)) AS FileName,
-		CAST(Hospital AS VARCHAR(MAX)) AS Hospital,
-		CAST(IsCancellation AS VARCHAR(MAX)) AS IsCancellation,
-		CAST(IsCorrection AS VARCHAR(MAX)) AS IsCorrection,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TransactionID AS VARCHAR(MAX)) AS TransactionID 
+		CAST([CareUnit] AS VARCHAR(MAX)) AS [CareUnit],
+		CAST([Clinic] AS VARCHAR(MAX)) AS [Clinic],
+		CAST([EconomicalKombika] AS VARCHAR(MAX)) AS [EconomicalKombika],
+		CONVERT(varchar(max), [EventDate], 126) AS [EventDate],
+		CONVERT(varchar(max), [EventDatetime], 126) AS [EventDatetime],
+		CONVERT(varchar(max), [EventTime], 126) AS [EventTime],
+		CAST([FileName] AS VARCHAR(MAX)) AS [FileName],
+		CAST([Hospital] AS VARCHAR(MAX)) AS [Hospital],
+		CAST([IsCancellation] AS VARCHAR(MAX)) AS [IsCancellation],
+		CAST([IsCorrection] AS VARCHAR(MAX)) AS [IsCorrection],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TransactionID] AS VARCHAR(MAX)) AS [TransactionID] 
 	FROM Intelligence.viewreader.vGVR_Outpatient) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

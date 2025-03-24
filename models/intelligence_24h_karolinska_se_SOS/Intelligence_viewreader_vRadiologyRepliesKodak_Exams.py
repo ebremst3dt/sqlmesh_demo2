@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,20 +33,20 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(CCode1 AS VARCHAR(MAX)) AS CCode1,
-		CAST(CCode2 AS VARCHAR(MAX)) AS CCode2,
-		CAST(CatCode1 AS VARCHAR(MAX)) AS CatCode1,
-		CAST(CatCode2 AS VARCHAR(MAX)) AS CatCode2,
-		CAST(DiagnosisCode AS VARCHAR(MAX)) AS DiagnosisCode,
-		CAST(DiagnosisText AS VARCHAR(MAX)) AS DiagnosisText,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(Exam AS VARCHAR(MAX)) AS Exam,
-		CAST(ExamID AS VARCHAR(MAX)) AS ExamID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(Row AS VARCHAR(MAX)) AS Row,
-		CAST(Side AS VARCHAR(MAX)) AS Side,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([CCode1] AS VARCHAR(MAX)) AS [CCode1],
+		CAST([CCode2] AS VARCHAR(MAX)) AS [CCode2],
+		CAST([CatCode1] AS VARCHAR(MAX)) AS [CatCode1],
+		CAST([CatCode2] AS VARCHAR(MAX)) AS [CatCode2],
+		CAST([DiagnosisCode] AS VARCHAR(MAX)) AS [DiagnosisCode],
+		CAST([DiagnosisText] AS VARCHAR(MAX)) AS [DiagnosisText],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([Exam] AS VARCHAR(MAX)) AS [Exam],
+		CAST([ExamID] AS VARCHAR(MAX)) AS [ExamID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([Row] AS VARCHAR(MAX)) AS [Row],
+		CAST([Side] AS VARCHAR(MAX)) AS [Side],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vRadiologyRepliesKodak_Exams) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,33 +33,33 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(Comment AS VARCHAR(MAX)) AS Comment,
-		CAST(CreatedAtCareUnitID AS VARCHAR(MAX)) AS CreatedAtCareUnitID,
-		CAST(Diagnosis AS VARCHAR(MAX)) AS Diagnosis,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(Invoicee AS VARCHAR(MAX)) AS Invoicee,
-		CAST(InvoiceeCareUnitKombika AS VARCHAR(MAX)) AS InvoiceeCareUnitKombika,
-		CAST(IsBloodInfection AS VARCHAR(MAX)) AS IsBloodInfection,
-		CAST(IsEmergency AS VARCHAR(MAX)) AS IsEmergency,
-		CAST(LID AS VARCHAR(MAX)) AS LID,
-		CAST(Message AS VARCHAR(MAX)) AS Message,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CAST(ReferringDoctor AS VARCHAR(MAX)) AS ReferringDoctor,
-		CAST(ReferringDoctorUserID AS VARCHAR(MAX)) AS ReferringDoctorUserID,
-		CAST(ReferringDoctorUserName AS VARCHAR(MAX)) AS ReferringDoctorUserName,
-		CAST(ReplyRecipient AS VARCHAR(MAX)) AS ReplyRecipient,
-		CAST(ReplyRecipientCareUnitKombika AS VARCHAR(MAX)) AS ReplyRecipientCareUnitKombika,
-		CONVERT(varchar(max), SamplingDate, 126) AS SamplingDate,
-		CONVERT(varchar(max), SamplingTime, 126) AS SamplingTime,
-		CAST(SavedByUserID AS VARCHAR(MAX)) AS SavedByUserID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CONVERT(varchar(max), TimestampSaved, 126) AS TimestampSaved,
-		CONVERT(varchar(max), UrineSamplingEndDate, 126) AS UrineSamplingEndDate,
-		CONVERT(varchar(max), UrineSamplingEndTime, 126) AS UrineSamplingEndTime,
-		CONVERT(varchar(max), UrineSamplingStartDate, 126) AS UrineSamplingStartDate,
-		CONVERT(varchar(max), UrineSamplingStartTime, 126) AS UrineSamplingStartTime,
-		CAST(UrineSamplingVolume AS VARCHAR(MAX)) AS UrineSamplingVolume,
-		CAST(Version AS VARCHAR(MAX)) AS Version 
+		CAST([Comment] AS VARCHAR(MAX)) AS [Comment],
+		CAST([CreatedAtCareUnitID] AS VARCHAR(MAX)) AS [CreatedAtCareUnitID],
+		CAST([Diagnosis] AS VARCHAR(MAX)) AS [Diagnosis],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([Invoicee] AS VARCHAR(MAX)) AS [Invoicee],
+		CAST([InvoiceeCareUnitKombika] AS VARCHAR(MAX)) AS [InvoiceeCareUnitKombika],
+		CAST([IsBloodInfection] AS VARCHAR(MAX)) AS [IsBloodInfection],
+		CAST([IsEmergency] AS VARCHAR(MAX)) AS [IsEmergency],
+		CAST([LID] AS VARCHAR(MAX)) AS [LID],
+		CAST([Message] AS VARCHAR(MAX)) AS [Message],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CAST([ReferringDoctor] AS VARCHAR(MAX)) AS [ReferringDoctor],
+		CAST([ReferringDoctorUserID] AS VARCHAR(MAX)) AS [ReferringDoctorUserID],
+		CAST([ReferringDoctorUserName] AS VARCHAR(MAX)) AS [ReferringDoctorUserName],
+		CAST([ReplyRecipient] AS VARCHAR(MAX)) AS [ReplyRecipient],
+		CAST([ReplyRecipientCareUnitKombika] AS VARCHAR(MAX)) AS [ReplyRecipientCareUnitKombika],
+		CONVERT(varchar(max), [SamplingDate], 126) AS [SamplingDate],
+		CONVERT(varchar(max), [SamplingTime], 126) AS [SamplingTime],
+		CAST([SavedByUserID] AS VARCHAR(MAX)) AS [SavedByUserID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CONVERT(varchar(max), [TimestampSaved], 126) AS [TimestampSaved],
+		CONVERT(varchar(max), [UrineSamplingEndDate], 126) AS [UrineSamplingEndDate],
+		CONVERT(varchar(max), [UrineSamplingEndTime], 126) AS [UrineSamplingEndTime],
+		CONVERT(varchar(max), [UrineSamplingStartDate], 126) AS [UrineSamplingStartDate],
+		CONVERT(varchar(max), [UrineSamplingStartTime], 126) AS [UrineSamplingStartTime],
+		CAST([UrineSamplingVolume] AS VARCHAR(MAX)) AS [UrineSamplingVolume],
+		CAST([Version] AS VARCHAR(MAX)) AS [Version] 
 	FROM Intelligence.viewreader.vChemLabOrdersCLab) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

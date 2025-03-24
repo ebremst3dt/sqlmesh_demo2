@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,17 +33,17 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(BillingRateCode AS VARCHAR(MAX)) AS BillingRateCode,
-		CAST(CarePeriodCode AS VARCHAR(MAX)) AS CarePeriodCode,
-		CAST(CareProviderCode AS VARCHAR(MAX)) AS CareProviderCode,
-		CAST(ClinicalPathwayNumber AS VARCHAR(MAX)) AS ClinicalPathwayNumber,
-		CAST(ContactTypeCode AS VARCHAR(MAX)) AS ContactTypeCode,
-		CAST(FileName AS VARCHAR(MAX)) AS FileName,
-		CAST(HealthCareContract AS VARCHAR(MAX)) AS HealthCareContract,
-		CAST(IsEmergency AS VARCHAR(MAX)) AS IsEmergency,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(TransactionID AS VARCHAR(MAX)) AS TransactionID,
-		CAST(VisitTypeCode AS VARCHAR(MAX)) AS VisitTypeCode 
+		CAST([BillingRateCode] AS VARCHAR(MAX)) AS [BillingRateCode],
+		CAST([CarePeriodCode] AS VARCHAR(MAX)) AS [CarePeriodCode],
+		CAST([CareProviderCode] AS VARCHAR(MAX)) AS [CareProviderCode],
+		CAST([ClinicalPathwayNumber] AS VARCHAR(MAX)) AS [ClinicalPathwayNumber],
+		CAST([ContactTypeCode] AS VARCHAR(MAX)) AS [ContactTypeCode],
+		CAST([FileName] AS VARCHAR(MAX)) AS [FileName],
+		CAST([HealthCareContract] AS VARCHAR(MAX)) AS [HealthCareContract],
+		CAST([IsEmergency] AS VARCHAR(MAX)) AS [IsEmergency],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([TransactionID] AS VARCHAR(MAX)) AS [TransactionID],
+		CAST([VisitTypeCode] AS VARCHAR(MAX)) AS [VisitTypeCode] 
 	FROM Intelligence.viewreader.vGVR_OutpatientVisits) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""

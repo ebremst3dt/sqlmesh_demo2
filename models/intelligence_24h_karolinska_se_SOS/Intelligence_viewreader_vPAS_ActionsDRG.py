@@ -16,7 +16,8 @@ from models.mssql import read
 
         time_column="_data_modified_utc"
     ),
-    cron="@daily"
+    cron="@daily",
+    enabled=True
 )
 
     
@@ -32,15 +33,15 @@ def execute(
  		CAST(CAST(TimestampRead AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'intelligence_24h_karolinska_se_Intelligence_viewreader' as _source,
-		CAST(ActionCode AS VARCHAR(MAX)) AS ActionCode,
-		CONVERT(varchar(max), ActionDate, 126) AS ActionDate,
-		CAST(ActionID AS VARCHAR(MAX)) AS ActionID,
-		CAST(DiagnosisID AS VARCHAR(MAX)) AS DiagnosisID,
-		CAST(DocumentID AS VARCHAR(MAX)) AS DocumentID,
-		CAST(PatientID AS VARCHAR(MAX)) AS PatientID,
-		CONVERT(varchar(max), TimestampRead, 126) AS TimestampRead,
-		CAST(ZATC1ActionCode AS VARCHAR(MAX)) AS ZATC1ActionCode,
-		CAST(ZATC2ActionCode AS VARCHAR(MAX)) AS ZATC2ActionCode 
+		CAST([ActionCode] AS VARCHAR(MAX)) AS [ActionCode],
+		CONVERT(varchar(max), [ActionDate], 126) AS [ActionDate],
+		CAST([ActionID] AS VARCHAR(MAX)) AS [ActionID],
+		CAST([DiagnosisID] AS VARCHAR(MAX)) AS [DiagnosisID],
+		CAST([DocumentID] AS VARCHAR(MAX)) AS [DocumentID],
+		CAST([PatientID] AS VARCHAR(MAX)) AS [PatientID],
+		CONVERT(varchar(max), [TimestampRead], 126) AS [TimestampRead],
+		CAST([ZATC1ActionCode] AS VARCHAR(MAX)) AS [ZATC1ActionCode],
+		CAST([ZATC2ActionCode] AS VARCHAR(MAX)) AS [ZATC2ActionCode] 
 	FROM Intelligence.viewreader.vPAS_ActionsDRG) y
 	WHERE _data_modified_utc between '{start}' and '{end}'
 	"""
