@@ -27,7 +27,7 @@ config = Config(
         infer_names=True
     ),
     model_defaults=ModelDefaultsConfig(
-        dialect="tsql",
+        dialect="tsql,normalization_strategy=case_sensitive",
         start="2025-03-07"
     )
 )
