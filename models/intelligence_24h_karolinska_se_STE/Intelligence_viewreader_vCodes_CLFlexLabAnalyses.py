@@ -17,7 +17,7 @@ from models.mssql import read
         time_column="_data_modified_utc"
     ),
     cron="@daily",
-    enabled=True
+    enabled=False
 )
 
     
