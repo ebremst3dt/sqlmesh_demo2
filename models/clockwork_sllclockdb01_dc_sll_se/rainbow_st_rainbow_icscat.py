@@ -5,8 +5,9 @@ import pandas as pd
 from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
+from data_load_parameters.clockwork import start
 
-        
+    
 @model(
     columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source_catalog': 'varchar(max)', 'chgdat': 'varchar(max)', 'chgusr': 'varchar(max)', 'compny': 'varchar(max)', 'credat': 'varchar(max)', 'creusr': 'varchar(max)', 'digcod': 'varchar(max)', 'gencom': 'varchar(max)', 'hidsrc': 'varchar(max)', 'icscat': 'varchar(max)', 'icscod': 'varchar(max)', 'icsmap': 'varchar(max)', 'icsnam': 'varchar(max)', 'icsref': 'varchar(max)', 'ikscat': 'varchar(max)', 'iksref': 'varchar(max)', 'lvlcod': 'varchar(max)', 'migcod': 'varchar(max)', 'ofmcod': 'varchar(max)', 'parseq': 'varchar(max)', 'prbuac': 'varchar(max)', 'seqnum': 'varchar(max)', 'sigcod': 'varchar(max)', 'txtdsc': 'varchar(max)'},
     kind=dict(
@@ -14,6 +15,7 @@ from models.mssql import read
         batch_size=5000,
         time_column="_data_modified_utc"
     ),
+    start=start,
     cron="@daily",
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_rainbow_st_rainbow_icscat_data_modified_utc ON clockwork_sllclockdb01_dc_sll_se.rainbow_st_rainbow_icscat (_data_modified_utc)"]
 )

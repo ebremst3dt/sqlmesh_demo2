@@ -5,8 +5,9 @@ import pandas as pd
 from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from models.mssql import read
+from data_load_parameters.clockwork import start
 
-        
+    
 @model(
     columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source_catalog': 'varchar(max)', 'adcsf1': 'varchar(max)', 'adcsf2': 'varchar(max)', 'adcst1': 'varchar(max)', 'adcst2': 'varchar(max)', 'adcsv1': 'varchar(max)', 'adcsv2': 'varchar(max)', 'adddsc': 'varchar(max)', 'ageval': 'varchar(max)', 'agporp': 'varchar(max)', 'agrnum': 'varchar(max)', 'agrqty': 'varchar(max)', 'agrusd': 'varchar(max)', 'agvunt': 'varchar(max)', 'altnum': 'varchar(max)', 'cattyp': 'varchar(max)', 'chgdat': 'varchar(max)', 'chgusr': 'varchar(max)', 'cntori': 'varchar(max)', 'compny': 'varchar(max)', 'cprmut': 'varchar(max)', 'cprmuv': 'varchar(max)', 'cptwor': 'varchar(max)', 'cpypor': 'varchar(max)', 'cpytxt': 'varchar(max)', 'credat': 'varchar(max)', 'creusr': 'varchar(max)', 'curcod': 'varchar(max)', 'curprc': 'varchar(max)', 'dldact': 'varchar(max)', 'dlddat': 'varchar(max)', 'dldmax': 'varchar(max)', 'dldmin': 'varchar(max)', 'dlvday': 'varchar(max)', 'dppmpc': 'varchar(max)', 'dscmtx': 'varchar(max)', 'eicact': 'varchar(max)', 'eiclcs': 'varchar(max)', 'eictxt': 'varchar(max)', 'envcls': 'varchar(max)', 'extcod': 'varchar(max)', 'extdrw': 'varchar(max)', 'extict': 'varchar(max)', 'extigr': 'varchar(max)', 'extitm': 'varchar(max)', 'extity': 'varchar(max)', 'extnam': 'varchar(max)', 'extrra': 'varchar(max)', 'extrty': 'varchar(max)', 'extsys': 'varchar(max)', 'exttyp': 'varchar(max)', 'extunt': 'varchar(max)', 'exwldt': 'varchar(max)', 'grsam2': 'varchar(max)', 'grsvdm': 'varchar(max)', 'grswkg': 'varchar(max)', 'hidsrc': 'varchar(max)', 'inthnd': 'varchar(max)', 'itkseq': 'varchar(max)', 'itmcod': 'varchar(max)', 'lcsdat': 'varchar(max)', 'lcsusr': 'varchar(max)', 'maxddd': 'varchar(max)', 'maxqty': 'varchar(max)', 'menddd': 'varchar(max)', 'minddd': 'varchar(max)', 'minqty': 'varchar(max)', 'minunt': 'varchar(max)', 'mrkldt': 'varchar(max)', 'mtxgrp': 'varchar(max)', 'netam2': 'varchar(max)', 'netvdm': 'varchar(max)', 'netwkg': 'varchar(max)', 'newprc': 'varchar(max)', 'owncod': 'varchar(max)', 'owntyp': 'varchar(max)', 'pdcitc': 'varchar(max)', 'pdcitn': 'varchar(max)', 'pdcnam': 'varchar(max)', 'prcdat': 'varchar(max)', 'prcmtx': 'varchar(max)', 'prcunt': 'varchar(max)', 'prinum': 'varchar(max)', 'ptdlvm': 'varchar(max)', 'recycl': 'varchar(max)', 'revnum': 'varchar(max)', 'seqnum': 'varchar(max)', 'tdlcod': 'varchar(max)', 'tpycod': 'varchar(max)', 'untinf': 'varchar(max)', 'usefco': 'varchar(max)', 'valfrm': 'varchar(max)', 'wtrcod': 'varchar(max)'},
     kind=dict(
@@ -14,6 +15,7 @@ from models.mssql import read
         batch_size=5000,
         time_column="_data_modified_utc"
     ),
+    start=start,
     cron="@daily",
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_rainbow_slso_rainbow_eic_data_modified_utc ON clockwork_sllclockdb01_dc_sll_se.rainbow_slso_rainbow_eic (_data_modified_utc)"]
 )
