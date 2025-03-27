@@ -8,24 +8,10 @@ from models.mssql import read
 
         
 @model(
-    columns={'_data_modified_utc': 'date',
- '_metadata_modified_utc': 'datetime2',
- '_source_catalog': 'varchar(max)',
- 'chgdat': 'varchar(max)',
- 'chgusr': 'varchar(max)',
- 'compny': 'varchar(max)',
- 'credat': 'varchar(max)',
- 'creusr': 'varchar(max)',
- 'digcod': 'varchar(max)',
- 'dignam': 'varchar(max)',
- 'migcod': 'varchar(max)',
- 'sigcod': 'varchar(max)',
- 'srtnam': 'varchar(max)',
- 'srtnum': 'varchar(max)',
- 'txtdsc': 'varchar(max)'},
+    columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source_catalog': 'varchar(max)', 'chgdat': 'varchar(max)', 'chgusr': 'varchar(max)', 'compny': 'varchar(max)', 'credat': 'varchar(max)', 'creusr': 'varchar(max)', 'digcod': 'varchar(max)', 'dignam': 'varchar(max)', 'migcod': 'varchar(max)', 'sigcod': 'varchar(max)', 'srtnam': 'varchar(max)', 'srtnum': 'varchar(max)', 'txtdsc': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-        batch_size=1,
+        batch_size=5000,
         time_column="_data_modified_utc"
     ),
     cron="@daily",
