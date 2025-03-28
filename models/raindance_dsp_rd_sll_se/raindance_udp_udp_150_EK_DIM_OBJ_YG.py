@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'dsp_rd_sll_se_raindance_udp_udp_150' as _source,
-		CONVERT(varchar(max), YG_GILTIG_FOM, 126) AS yg_giltig_fom,
-		CONVERT(varchar(max), YG_GILTIG_TOM, 126) AS yg_giltig_tom,
-		CAST(YG_ID AS VARCHAR(MAX)) AS yg_id,
-		CAST(YG_ID_TEXT AS VARCHAR(MAX)) AS yg_id_text,
-		CAST(YG_PASSIV AS VARCHAR(MAX)) AS yg_passiv,
-		CAST(YG_TEXT AS VARCHAR(MAX)) AS yg_text 
+		CONVERT(varchar(max), YG_GILTIG_FOM, 126) AS YG_GILTIG_FOM,
+		CONVERT(varchar(max), YG_GILTIG_TOM, 126) AS YG_GILTIG_TOM,
+		CAST(YG_ID AS VARCHAR(MAX)) AS YG_ID,
+		CAST(YG_ID_TEXT AS VARCHAR(MAX)) AS YG_ID_TEXT,
+		CAST(YG_PASSIV AS VARCHAR(MAX)) AS YG_PASSIV,
+		CAST(YG_TEXT AS VARCHAR(MAX)) AS YG_TEXT 
 	FROM raindance_udp.udp_150.EK_DIM_OBJ_YG ) y
 
 	"""

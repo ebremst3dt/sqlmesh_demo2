@@ -28,9 +28,9 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'nksp_rd_sll_se_raindance_udp_udp_100' as _source,
-		CONVERT(varchar(max), BOKFORINGSAR, 126) AS bokforingsar,
-		CONVERT(varchar(max), BOKFORINGSARSLUT, 126) AS bokforingsarslut,
-		CAST(BOKFORINGSAR_TEXT AS VARCHAR(MAX)) AS bokforingsar_text 
+		CONVERT(varchar(max), BOKFORINGSAR, 126) AS BOKFORINGSAR,
+		CONVERT(varchar(max), BOKFORINGSARSLUT, 126) AS BOKFORINGSARSLUT,
+		CAST(BOKFORINGSAR_TEXT AS VARCHAR(MAX)) AS BOKFORINGSAR_TEXT 
 	FROM raindance_udp.udp_100.EK_DIM_BOKFORINGSAR ) y
 
 	"""

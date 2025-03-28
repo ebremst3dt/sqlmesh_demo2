@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata298' as _source,
-		CONVERT(varchar(max), TDAG_GILTIG_FOM, 126) AS tdag_giltig_fom,
-		CONVERT(varchar(max), TDAG_GILTIG_TOM, 126) AS tdag_giltig_tom,
-		CAST(TDAG_ID AS VARCHAR(MAX)) AS tdag_id,
-		CAST(TDAG_ID_TEXT AS VARCHAR(MAX)) AS tdag_id_text,
-		CAST(TDAG_PASSIV AS VARCHAR(MAX)) AS tdag_passiv,
-		CAST(TDAG_TEXT AS VARCHAR(MAX)) AS tdag_text 
+		CONVERT(varchar(max), TDAG_GILTIG_FOM, 126) AS TDAG_GILTIG_FOM,
+		CONVERT(varchar(max), TDAG_GILTIG_TOM, 126) AS TDAG_GILTIG_TOM,
+		CAST(TDAG_ID AS VARCHAR(MAX)) AS TDAG_ID,
+		CAST(TDAG_ID_TEXT AS VARCHAR(MAX)) AS TDAG_ID_TEXT,
+		CAST(TDAG_PASSIV AS VARCHAR(MAX)) AS TDAG_PASSIV,
+		CAST(TDAG_TEXT AS VARCHAR(MAX)) AS TDAG_TEXT 
 	FROM utdata.utdata298.EK_DIM_OBJ_TDAG ) y
 
 	"""

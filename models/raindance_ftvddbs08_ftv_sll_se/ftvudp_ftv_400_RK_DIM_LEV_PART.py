@@ -28,8 +28,8 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'ftvddbs08_ftv_sll_se_ftvudp_ftv_400' as _source,
-		CAST(PART AS VARCHAR(MAX)) AS part,
-		CAST(SBID AS VARCHAR(MAX)) AS sbid 
+		CAST(PART AS VARCHAR(MAX)) AS PART,
+		CAST(SBID AS VARCHAR(MAX)) AS SBID 
 	FROM ftvudp.ftv_400.RK_DIM_LEV_PART ) y
 
 	"""

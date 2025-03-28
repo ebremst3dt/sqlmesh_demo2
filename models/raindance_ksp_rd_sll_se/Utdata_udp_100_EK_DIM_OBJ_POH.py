@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'ksp_rd_sll_se_Utdata_udp_100' as _source,
-		CONVERT(varchar(max), POH_GILTIG_FOM, 126) AS poh_giltig_fom,
-		CONVERT(varchar(max), POH_GILTIG_TOM, 126) AS poh_giltig_tom,
-		CAST(POH_ID AS VARCHAR(MAX)) AS poh_id,
-		CAST(POH_ID_TEXT AS VARCHAR(MAX)) AS poh_id_text,
-		CAST(POH_PASSIV AS VARCHAR(MAX)) AS poh_passiv,
-		CAST(POH_TEXT AS VARCHAR(MAX)) AS poh_text 
+		CONVERT(varchar(max), POH_GILTIG_FOM, 126) AS POH_GILTIG_FOM,
+		CONVERT(varchar(max), POH_GILTIG_TOM, 126) AS POH_GILTIG_TOM,
+		CAST(POH_ID AS VARCHAR(MAX)) AS POH_ID,
+		CAST(POH_ID_TEXT AS VARCHAR(MAX)) AS POH_ID_TEXT,
+		CAST(POH_PASSIV AS VARCHAR(MAX)) AS POH_PASSIV,
+		CAST(POH_TEXT AS VARCHAR(MAX)) AS POH_TEXT 
 	FROM Utdata.udp_100.EK_DIM_OBJ_POH ) y
 
 	"""

@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata298' as _source,
-		CONVERT(varchar(max), TTYP_GILTIG_FOM, 126) AS ttyp_giltig_fom,
-		CONVERT(varchar(max), TTYP_GILTIG_TOM, 126) AS ttyp_giltig_tom,
-		CAST(TTYP_ID AS VARCHAR(MAX)) AS ttyp_id,
-		CAST(TTYP_ID_TEXT AS VARCHAR(MAX)) AS ttyp_id_text,
-		CAST(TTYP_PASSIV AS VARCHAR(MAX)) AS ttyp_passiv,
-		CAST(TTYP_TEXT AS VARCHAR(MAX)) AS ttyp_text 
+		CONVERT(varchar(max), TTYP_GILTIG_FOM, 126) AS TTYP_GILTIG_FOM,
+		CONVERT(varchar(max), TTYP_GILTIG_TOM, 126) AS TTYP_GILTIG_TOM,
+		CAST(TTYP_ID AS VARCHAR(MAX)) AS TTYP_ID,
+		CAST(TTYP_ID_TEXT AS VARCHAR(MAX)) AS TTYP_ID_TEXT,
+		CAST(TTYP_PASSIV AS VARCHAR(MAX)) AS TTYP_PASSIV,
+		CAST(TTYP_TEXT AS VARCHAR(MAX)) AS TTYP_TEXT 
 	FROM utdata.utdata298.EK_DIM_OBJ_TTYP ) y
 
 	"""

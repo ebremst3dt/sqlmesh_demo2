@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'stsp_rd_sll_se_stsudp_udp_858' as _source,
-		CONVERT(varchar(max), VAL_GILTIG_FOM, 126) AS val_giltig_fom,
-		CONVERT(varchar(max), VAL_GILTIG_TOM, 126) AS val_giltig_tom,
-		CAST(VAL_ID AS VARCHAR(MAX)) AS val_id,
-		CAST(VAL_ID_TEXT AS VARCHAR(MAX)) AS val_id_text,
-		CAST(VAL_PASSIV AS VARCHAR(MAX)) AS val_passiv,
-		CAST(VAL_TEXT AS VARCHAR(MAX)) AS val_text 
+		CONVERT(varchar(max), VAL_GILTIG_FOM, 126) AS VAL_GILTIG_FOM,
+		CONVERT(varchar(max), VAL_GILTIG_TOM, 126) AS VAL_GILTIG_TOM,
+		CAST(VAL_ID AS VARCHAR(MAX)) AS VAL_ID,
+		CAST(VAL_ID_TEXT AS VARCHAR(MAX)) AS VAL_ID_TEXT,
+		CAST(VAL_PASSIV AS VARCHAR(MAX)) AS VAL_PASSIV,
+		CAST(VAL_TEXT AS VARCHAR(MAX)) AS VAL_TEXT 
 	FROM stsudp.udp_858.EK_DIM_OBJ_VAL ) y
 
 	"""

@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'rnddbp01_orion_sll_se_udpb4_udpb4_100' as _source,
-		CONVERT(varchar(max), AKT_GILTIG_FOM, 126) AS akt_giltig_fom,
-		CONVERT(varchar(max), AKT_GILTIG_TOM, 126) AS akt_giltig_tom,
-		CAST(AKT_ID AS VARCHAR(MAX)) AS akt_id,
-		CAST(AKT_ID_TEXT AS VARCHAR(MAX)) AS akt_id_text,
-		CAST(AKT_PASSIV AS VARCHAR(MAX)) AS akt_passiv,
-		CAST(AKT_TEXT AS VARCHAR(MAX)) AS akt_text 
+		CONVERT(varchar(max), AKT_GILTIG_FOM, 126) AS AKT_GILTIG_FOM,
+		CONVERT(varchar(max), AKT_GILTIG_TOM, 126) AS AKT_GILTIG_TOM,
+		CAST(AKT_ID AS VARCHAR(MAX)) AS AKT_ID,
+		CAST(AKT_ID_TEXT AS VARCHAR(MAX)) AS AKT_ID_TEXT,
+		CAST(AKT_PASSIV AS VARCHAR(MAX)) AS AKT_PASSIV,
+		CAST(AKT_TEXT AS VARCHAR(MAX)) AS AKT_TEXT 
 	FROM udpb4.udpb4_100.EK_DIM_OBJ_AKT ) y
 
 	"""

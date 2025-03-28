@@ -28,8 +28,8 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata290' as _source,
-		CAST(ATTEST AS VARCHAR(MAX)) AS attest,
-		CAST(ATTEST_TEXT AS VARCHAR(MAX)) AS attest_text 
+		CAST(ATTEST AS VARCHAR(MAX)) AS ATTEST,
+		CAST(ATTEST_TEXT AS VARCHAR(MAX)) AS ATTEST_TEXT 
 	FROM utdata.utdata290.RK_DIM_ATTEST ) y
 
 	"""

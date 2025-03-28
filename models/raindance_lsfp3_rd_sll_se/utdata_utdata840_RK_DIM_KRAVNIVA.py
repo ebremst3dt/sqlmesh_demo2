@@ -28,8 +28,8 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata840' as _source,
-		CAST(KRAVNIVA AS VARCHAR(MAX)) AS kravniva,
-		CAST(KRAVNIVA_TEXT AS VARCHAR(MAX)) AS kravniva_text 
+		CAST(KRAVNIVA AS VARCHAR(MAX)) AS KRAVNIVA,
+		CAST(KRAVNIVA_TEXT AS VARCHAR(MAX)) AS KRAVNIVA_TEXT 
 	FROM utdata.utdata840.RK_DIM_KRAVNIVA ) y
 
 	"""

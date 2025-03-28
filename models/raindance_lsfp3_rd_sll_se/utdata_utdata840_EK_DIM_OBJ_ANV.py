@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata840' as _source,
-		CONVERT(varchar(max), ANV_GILTIG_FOM, 126) AS anv_giltig_fom,
-		CONVERT(varchar(max), ANV_GILTIG_TOM, 126) AS anv_giltig_tom,
-		CAST(ANV_ID AS VARCHAR(MAX)) AS anv_id,
-		CAST(ANV_ID_TEXT AS VARCHAR(MAX)) AS anv_id_text,
-		CAST(ANV_PASSIV AS VARCHAR(MAX)) AS anv_passiv,
-		CAST(ANV_TEXT AS VARCHAR(MAX)) AS anv_text 
+		CONVERT(varchar(max), ANV_GILTIG_FOM, 126) AS ANV_GILTIG_FOM,
+		CONVERT(varchar(max), ANV_GILTIG_TOM, 126) AS ANV_GILTIG_TOM,
+		CAST(ANV_ID AS VARCHAR(MAX)) AS ANV_ID,
+		CAST(ANV_ID_TEXT AS VARCHAR(MAX)) AS ANV_ID_TEXT,
+		CAST(ANV_PASSIV AS VARCHAR(MAX)) AS ANV_PASSIV,
+		CAST(ANV_TEXT AS VARCHAR(MAX)) AS ANV_TEXT 
 	FROM utdata.utdata840.EK_DIM_OBJ_ANV ) y
 
 	"""

@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata293' as _source,
-		CONVERT(varchar(max), PROJ_GILTIG_FOM, 126) AS proj_giltig_fom,
-		CONVERT(varchar(max), PROJ_GILTIG_TOM, 126) AS proj_giltig_tom,
-		CAST(PROJ_ID AS VARCHAR(MAX)) AS proj_id,
-		CAST(PROJ_ID_TEXT AS VARCHAR(MAX)) AS proj_id_text,
-		CAST(PROJ_PASSIV AS VARCHAR(MAX)) AS proj_passiv,
-		CAST(PROJ_TEXT AS VARCHAR(MAX)) AS proj_text 
+		CONVERT(varchar(max), PROJ_GILTIG_FOM, 126) AS PROJ_GILTIG_FOM,
+		CONVERT(varchar(max), PROJ_GILTIG_TOM, 126) AS PROJ_GILTIG_TOM,
+		CAST(PROJ_ID AS VARCHAR(MAX)) AS PROJ_ID,
+		CAST(PROJ_ID_TEXT AS VARCHAR(MAX)) AS PROJ_ID_TEXT,
+		CAST(PROJ_PASSIV AS VARCHAR(MAX)) AS PROJ_PASSIV,
+		CAST(PROJ_TEXT AS VARCHAR(MAX)) AS PROJ_TEXT 
 	FROM utdata.utdata293.EK_DIM_OBJ_PROJ ) y
 
 	"""

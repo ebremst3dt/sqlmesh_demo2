@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata840' as _source,
-		CONVERT(varchar(max), FRI_GILTIG_FOM, 126) AS fri_giltig_fom,
-		CONVERT(varchar(max), FRI_GILTIG_TOM, 126) AS fri_giltig_tom,
-		CAST(FRI_ID AS VARCHAR(MAX)) AS fri_id,
-		CAST(FRI_ID_TEXT AS VARCHAR(MAX)) AS fri_id_text,
-		CAST(FRI_PASSIV AS VARCHAR(MAX)) AS fri_passiv,
-		CAST(FRI_TEXT AS VARCHAR(MAX)) AS fri_text 
+		CONVERT(varchar(max), FRI_GILTIG_FOM, 126) AS FRI_GILTIG_FOM,
+		CONVERT(varchar(max), FRI_GILTIG_TOM, 126) AS FRI_GILTIG_TOM,
+		CAST(FRI_ID AS VARCHAR(MAX)) AS FRI_ID,
+		CAST(FRI_ID_TEXT AS VARCHAR(MAX)) AS FRI_ID_TEXT,
+		CAST(FRI_PASSIV AS VARCHAR(MAX)) AS FRI_PASSIV,
+		CAST(FRI_TEXT AS VARCHAR(MAX)) AS FRI_TEXT 
 	FROM utdata.utdata840.EK_DIM_OBJ_FRI ) y
 
 	"""

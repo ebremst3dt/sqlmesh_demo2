@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'nksp_rd_sll_se_raindance_udp_udp_100' as _source,
-		CONVERT(varchar(max), AKTI_GILTIG_FOM, 126) AS akti_giltig_fom,
-		CONVERT(varchar(max), AKTI_GILTIG_TOM, 126) AS akti_giltig_tom,
-		CAST(AKTI_ID AS VARCHAR(MAX)) AS akti_id,
-		CAST(AKTI_ID_TEXT AS VARCHAR(MAX)) AS akti_id_text,
-		CAST(AKTI_PASSIV AS VARCHAR(MAX)) AS akti_passiv,
-		CAST(AKTI_TEXT AS VARCHAR(MAX)) AS akti_text 
+		CONVERT(varchar(max), AKTI_GILTIG_FOM, 126) AS AKTI_GILTIG_FOM,
+		CONVERT(varchar(max), AKTI_GILTIG_TOM, 126) AS AKTI_GILTIG_TOM,
+		CAST(AKTI_ID AS VARCHAR(MAX)) AS AKTI_ID,
+		CAST(AKTI_ID_TEXT AS VARCHAR(MAX)) AS AKTI_ID_TEXT,
+		CAST(AKTI_PASSIV AS VARCHAR(MAX)) AS AKTI_PASSIV,
+		CAST(AKTI_TEXT AS VARCHAR(MAX)) AS AKTI_TEXT 
 	FROM raindance_udp.udp_100.EK_DIM_OBJ_AKTI ) y
 
 	"""

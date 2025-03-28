@@ -28,8 +28,8 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'step_rd_sll_se_steudp_udp_600' as _source,
-		CAST(IB AS VARCHAR(MAX)) AS ib,
-		CAST(IB_TEXT AS VARCHAR(MAX)) AS ib_text 
+		CAST(IB AS VARCHAR(MAX)) AS IB,
+		CAST(IB_TEXT AS VARCHAR(MAX)) AS IB_TEXT 
 	FROM steudp.udp_600.EK_DIM_IB ) y
 
 	"""

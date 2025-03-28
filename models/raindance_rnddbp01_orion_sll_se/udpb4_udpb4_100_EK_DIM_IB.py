@@ -28,8 +28,8 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'rnddbp01_orion_sll_se_udpb4_udpb4_100' as _source,
-		CAST(IB AS VARCHAR(MAX)) AS ib,
-		CAST(IB_TEXT AS VARCHAR(MAX)) AS ib_text 
+		CAST(IB AS VARCHAR(MAX)) AS IB,
+		CAST(IB_TEXT AS VARCHAR(MAX)) AS IB_TEXT 
 	FROM udpb4.udpb4_100.EK_DIM_IB ) y
 
 	"""

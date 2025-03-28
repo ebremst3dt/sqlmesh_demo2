@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata150' as _source,
-		CONVERT(varchar(max), GEO_GILTIG_FOM, 126) AS geo_giltig_fom,
-		CONVERT(varchar(max), GEO_GILTIG_TOM, 126) AS geo_giltig_tom,
-		CAST(GEO_ID AS VARCHAR(MAX)) AS geo_id,
-		CAST(GEO_ID_TEXT AS VARCHAR(MAX)) AS geo_id_text,
-		CAST(GEO_PASSIV AS VARCHAR(MAX)) AS geo_passiv,
-		CAST(GEO_TEXT AS VARCHAR(MAX)) AS geo_text 
+		CONVERT(varchar(max), GEO_GILTIG_FOM, 126) AS GEO_GILTIG_FOM,
+		CONVERT(varchar(max), GEO_GILTIG_TOM, 126) AS GEO_GILTIG_TOM,
+		CAST(GEO_ID AS VARCHAR(MAX)) AS GEO_ID,
+		CAST(GEO_ID_TEXT AS VARCHAR(MAX)) AS GEO_ID_TEXT,
+		CAST(GEO_PASSIV AS VARCHAR(MAX)) AS GEO_PASSIV,
+		CAST(GEO_TEXT AS VARCHAR(MAX)) AS GEO_TEXT 
 	FROM utdata.utdata150.EK_DIM_OBJ_GEO ) y
 
 	"""

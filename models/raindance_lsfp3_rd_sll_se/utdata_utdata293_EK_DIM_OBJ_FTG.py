@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata293' as _source,
-		CONVERT(varchar(max), FTG_GILTIG_FOM, 126) AS ftg_giltig_fom,
-		CONVERT(varchar(max), FTG_GILTIG_TOM, 126) AS ftg_giltig_tom,
-		CAST(FTG_ID AS VARCHAR(MAX)) AS ftg_id,
-		CAST(FTG_ID_TEXT AS VARCHAR(MAX)) AS ftg_id_text,
-		CAST(FTG_PASSIV AS VARCHAR(MAX)) AS ftg_passiv,
-		CAST(FTG_TEXT AS VARCHAR(MAX)) AS ftg_text 
+		CONVERT(varchar(max), FTG_GILTIG_FOM, 126) AS FTG_GILTIG_FOM,
+		CONVERT(varchar(max), FTG_GILTIG_TOM, 126) AS FTG_GILTIG_TOM,
+		CAST(FTG_ID AS VARCHAR(MAX)) AS FTG_ID,
+		CAST(FTG_ID_TEXT AS VARCHAR(MAX)) AS FTG_ID_TEXT,
+		CAST(FTG_PASSIV AS VARCHAR(MAX)) AS FTG_PASSIV,
+		CAST(FTG_TEXT AS VARCHAR(MAX)) AS FTG_TEXT 
 	FROM utdata.utdata293.EK_DIM_OBJ_FTG ) y
 
 	"""

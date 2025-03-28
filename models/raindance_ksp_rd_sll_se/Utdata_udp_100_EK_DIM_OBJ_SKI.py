@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'ksp_rd_sll_se_Utdata_udp_100' as _source,
-		CONVERT(varchar(max), SKI_GILTIG_FOM, 126) AS ski_giltig_fom,
-		CONVERT(varchar(max), SKI_GILTIG_TOM, 126) AS ski_giltig_tom,
-		CAST(SKI_ID AS VARCHAR(MAX)) AS ski_id,
-		CAST(SKI_ID_TEXT AS VARCHAR(MAX)) AS ski_id_text,
-		CAST(SKI_PASSIV AS VARCHAR(MAX)) AS ski_passiv,
-		CAST(SKI_TEXT AS VARCHAR(MAX)) AS ski_text 
+		CONVERT(varchar(max), SKI_GILTIG_FOM, 126) AS SKI_GILTIG_FOM,
+		CONVERT(varchar(max), SKI_GILTIG_TOM, 126) AS SKI_GILTIG_TOM,
+		CAST(SKI_ID AS VARCHAR(MAX)) AS SKI_ID,
+		CAST(SKI_ID_TEXT AS VARCHAR(MAX)) AS SKI_ID_TEXT,
+		CAST(SKI_PASSIV AS VARCHAR(MAX)) AS SKI_PASSIV,
+		CAST(SKI_TEXT AS VARCHAR(MAX)) AS SKI_TEXT 
 	FROM Utdata.udp_100.EK_DIM_OBJ_SKI ) y
 
 	"""

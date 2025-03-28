@@ -28,8 +28,8 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'mcp1_rd_sll_se_MediCarrierUDP_utdata100' as _source,
-		CAST(LEVRTYP AS VARCHAR(MAX)) AS levrtyp,
-		CAST(LEVRTYP_TEXT AS VARCHAR(MAX)) AS levrtyp_text 
+		CAST(LEVRTYP AS VARCHAR(MAX)) AS LEVRTYP,
+		CAST(LEVRTYP_TEXT AS VARCHAR(MAX)) AS LEVRTYP_TEXT 
 	FROM MediCarrierUDP.utdata100.RK_DIM_LEVRTYP ) y
 
 	"""

@@ -28,12 +28,12 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'step_rd_sll_se_steudp_udp_600' as _source,
-		CONVERT(varchar(max), OKI_GILTIG_FOM, 126) AS oki_giltig_fom,
-		CONVERT(varchar(max), OKI_GILTIG_TOM, 126) AS oki_giltig_tom,
-		CAST(OKI_ID AS VARCHAR(MAX)) AS oki_id,
-		CAST(OKI_ID_TEXT AS VARCHAR(MAX)) AS oki_id_text,
-		CAST(OKI_PASSIV AS VARCHAR(MAX)) AS oki_passiv,
-		CAST(OKI_TEXT AS VARCHAR(MAX)) AS oki_text 
+		CONVERT(varchar(max), OKI_GILTIG_FOM, 126) AS OKI_GILTIG_FOM,
+		CONVERT(varchar(max), OKI_GILTIG_TOM, 126) AS OKI_GILTIG_TOM,
+		CAST(OKI_ID AS VARCHAR(MAX)) AS OKI_ID,
+		CAST(OKI_ID_TEXT AS VARCHAR(MAX)) AS OKI_ID_TEXT,
+		CAST(OKI_PASSIV AS VARCHAR(MAX)) AS OKI_PASSIV,
+		CAST(OKI_TEXT AS VARCHAR(MAX)) AS OKI_TEXT 
 	FROM steudp.udp_600.EK_DIM_OBJ_OKI ) y
 
 	"""

@@ -28,9 +28,9 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'lsfp3_rd_sll_se_utdata_utdata294' as _source,
-		CAST(ATTRIBUTE AS VARCHAR(MAX)) AS attribute,
-		CAST(ATTR_KEY_PAT AS VARCHAR(MAX)) AS attr_key_pat,
-		CAST(SBID AS VARCHAR(MAX)) AS sbid 
+		CAST(ATTRIBUTE AS VARCHAR(MAX)) AS ATTRIBUTE,
+		CAST(ATTR_KEY_PAT AS VARCHAR(MAX)) AS ATTR_KEY_PAT,
+		CAST(SBID AS VARCHAR(MAX)) AS SBID 
 	FROM utdata.utdata294.RK_DIM_LEV_ATTR ) y
 
 	"""

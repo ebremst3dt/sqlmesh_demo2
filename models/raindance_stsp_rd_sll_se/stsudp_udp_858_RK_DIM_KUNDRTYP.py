@@ -28,8 +28,8 @@ def execute(
  		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _data_modified_utc,
 		CAST(CAST(GETDATE() AS datetime2) AT TIME ZONE 'CENTRAL EUROPEAN STANDARD TIME' AT TIME ZONE 'UTC' AS datetime2) as _metadata_modified_utc,
 		'stsp_rd_sll_se_stsudp_udp_858' as _source,
-		CAST(KUNDRTYP AS VARCHAR(MAX)) AS kundrtyp,
-		CAST(KUNDRTYP_TEXT AS VARCHAR(MAX)) AS kundrtyp_text 
+		CAST(KUNDRTYP AS VARCHAR(MAX)) AS KUNDRTYP,
+		CAST(KUNDRTYP_TEXT AS VARCHAR(MAX)) AS KUNDRTYP_TEXT 
 	FROM stsudp.udp_858.RK_DIM_KUNDRTYP ) y
 
 	"""
