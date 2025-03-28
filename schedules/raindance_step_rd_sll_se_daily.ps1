@@ -2,9 +2,9 @@
 $trigger = New-JobTrigger -Daily -At "2:00 AM"
 $options = New-ScheduledJobOption -RunElevated
 
-Register-ScheduledJob -Name "clockwork_daily" -ScriptBlock {
+Register-ScheduledJob -Name "raindance_step_rd_sll_se_daily" -ScriptBlock {
     # Get current timestamp for file naming
-    $job_name = "clockwork_daily"
+    $job_name = "raindance_step_rd_sll_se_daily"
     $timestamp = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
     $logDir = "C:\Users\GAISYSBH2d\sqlmesh_demo2\SQLMeshLogs"
     $logFile = Join-Path -Path $logDir -ChildPath "$job_name $timestamp.txt"
@@ -21,7 +21,7 @@ Register-ScheduledJob -Name "clockwork_daily" -ScriptBlock {
     Set-Location -Path $sqlMeshConfigDir
 
     # Run SQLMesh command and capture output to the log file
-    $output = & sqlmesh --paths "C:\Users\GAISYSBH2D\sqlmesh_demo2\" run --select-model "clockwork*" prod 2>&1
+    $output = & sqlmesh --paths "C:\Users\GAISYSBH2D\sqlmesh_demo2\" run --select-model "raindance_step_rd_sll_se*" prod 2>&1
 
     # Append command output to log file
     Add-Content -Path $logFile -Value "Command output:"
