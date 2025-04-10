@@ -5,6 +5,7 @@ import pandas as pd
 from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
 from ingest.mssql import read
+from data_load_parameters.takecare import start
 
     
 @model(
@@ -17,6 +18,7 @@ from ingest.mssql import read
         time_column="_data_modified_utc"
     ),
     cron="@daily",
+    start=start,
     enabled=False
 )
 
