@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CarePlanningID': 'varchar(max)', 'ClinicalPathwayNumber': 'varchar(max)', 'DiagnosisCode': 'varchar(max)', 'FileName': 'varchar(max)', 'ReferringCareUnit': 'varchar(max)', 'ReferringClinic': 'varchar(max)', 'ReferringHospital': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'Row': "{'title_ui': None, 'description': 'Inmatningsordning för diagnos. Den första är huvuddiagnosen.'}", 'ReferringHospital': "{'title_ui': None, 'description': 'Remitterande inrättning'}", 'ReferringClinic': "{'title_ui': None, 'description': 'Remitterande klinik'}", 'ReferringCareUnit': "{'title_ui': None, 'description': 'Remitterande avdelning'}", 'CarePlanningID': "{'title_ui': None, 'description': 'Vårdplaneringskod'}", 'DiagnosisCode': "{'title_ui': None, 'description': 'Diagnos-kod eller ATC-kod eller orsakskod'}", 'ClinicalPathwayNumber': "{'title_ui': None, 'description': 'Vårdkedjenummer. Används ej.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['FileName', 'Row', 'TransactionID']
     ),
     cron="@daily",
     start=start,

@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'IsFromExport': 'varchar(max)', 'TableName': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'TableName': "{'title_ui': None, 'description': 'Tabellens namn'}", 'IsFromExport': "{'title_ui': None, 'description': 'Om metadata fanns i exporten eller om det är manuellt tillagt statiskt (ev. föråldrat) data'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['IsFromExport', 'TableName']
     ),
     cron="@daily",
     start=start,

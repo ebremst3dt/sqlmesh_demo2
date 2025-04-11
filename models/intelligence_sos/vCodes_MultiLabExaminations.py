@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'Dicipline': 'varchar(max)', 'ExaminationID': 'varchar(max)', 'ExaminationName': 'varchar(max)', 'ExaminationShortName': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'OrderRegistryFileName': "{'title_ui': None, 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'ExaminationID': "{'title_ui': None, 'description': 'Undersökningsid'}", 'ExaminationShortName': "{'title_ui': None, 'description': 'Undersökningens kortnamn'}", 'ExaminationName': "{'title_ui': None, 'description': 'Undersökningsnamn'}", 'Dicipline': "{'title_ui': None, 'description': {'break': [None, None, None]}}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['ExaminationID', 'OrderRegistryFileName']
     ),
     cron="@daily",
     start=start,

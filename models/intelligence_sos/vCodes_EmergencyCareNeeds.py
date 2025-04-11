@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CareNeedID': 'varchar(max)', 'IsActive': 'varchar(max)', 'Name': 'varchar(max)', 'ShortName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'CareNeedID': "{'title_ui': 'Id', 'description': 'ID för omvårdnadsbehov.'}", 'Name': "{'title_ui': 'Namn', 'description': 'Omvårdnadsbehov'}", 'ShortName': "{'title_ui': 'Kort namn', 'description': 'Det kortnamn som används för att presentera omv. behovet i akutliggaren.'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då omv. behovet är giltig'}", 'IsActive': "{'title_ui': None, 'description': 'Om detta omvårdnadsbehov används för tillfället.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['CareNeedID']
     ),
     cron="@daily",
     start=start,

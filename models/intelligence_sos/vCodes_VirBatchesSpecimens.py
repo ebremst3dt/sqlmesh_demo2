@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'Batch': 'varchar(max)', 'BatchID': 'varchar(max)', 'Category': 'varchar(max)', 'IsAllAnalysesRequired': 'varchar(max)', 'SpecimenID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'BatchID': "{'title_ui': None, 'description': 'Paketid. Alltid unikt med ett undantag då det finns två provmaterial i samma paket.'}", 'Batch': "{'title_ui': None, 'description': 'Paketets namn'}", 'SpecimenID': "{'title_ui': None, 'description': 'I detta paket ska analyserna endast visas med dessa provmaterial. 0=ta provmaterial från Codes_VirSpecAnalyses istället'}", 'IsAllAnalysesRequired': "{'title_ui': None, 'description': 'Alla analyser inom paketet är obligatoriska'}", 'Category': "{'title_ui': None, 'description': {'break': [None, None]}}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['BatchID', 'SpecimenID']
     ),
     cron="@daily",
     start=start,

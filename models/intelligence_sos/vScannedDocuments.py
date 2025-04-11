@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AttesterUserID': 'varchar(max)', 'Comment': 'varchar(max)', 'CreatedAtCareUnitID': 'varchar(max)', 'CreatedByUserID': 'varchar(max)', 'EventDate': 'varchar(max)', 'EventTime': 'varchar(max)', 'PatientID': 'varchar(max)', 'RegistrationStatusID': 'varchar(max)', 'SavedByUser': 'varchar(max)', 'SavedByUserID': 'varchar(max)', 'ScannedDocID': 'varchar(max)', 'ScannedDocTypeTermID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'ScannedDocID': "{'title_ui': 'Ankomsttid', 'description': 'Tidsstämpel då skannat dokument skapats. Utgör id (nyckel) till dokumentet'}", 'SavedByUserID': "{'title_ui': 'Version skapad av/Makulerad av', 'description': 'PID för användare som skapat eller makulerat dokumentet'}", 'SavedByUser': "{'title_ui': 'Version skapad av/Makulerad av', 'description': 'Namn på användare som skapat eller makulerat dokumentet'}", 'CreatedByUserID': "{'title_ui': None, 'description': 'PID för användare som skapat dokumentet'}", 'CreatedAtCareUnitID': "{'title_ui': 'Tillhör arbetsplats', 'description': 'Vårdenhets ID, original (dokumentet skapat på denna arb.plats). Styr behörigheter.'}", 'RegistrationStatusID': "{'title_ui': None, 'description': {'break': None}}", 'Comment': "{'title_ui': 'Kommentar', 'description': 'Synlig i översikten'}", 'AttesterUserID': "{'title_ui': 'Vidimeringsansvarig', 'description': 'Vidimeringsansvarig (original). Här syns det inte om vidimeringsansvarig ändrats efter att dokumentet sparats.'}", 'ScannedDocTypeTermID': "{'title_ui': 'Dokumenttyp', 'description': 'Dokumenttypens term-id'}", 'EventDate': "{'title_ui': 'Händelsetid/Datum/tid', 'description': 'Händelsedatum'}", 'EventTime': "{'title_ui': 'Händelsetid/Datum/tid', 'description': 'Händelsetid'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['PatientID', 'SavedByUserID', 'ScannedDocID']
     ),
     cron="@daily",
     start=start,

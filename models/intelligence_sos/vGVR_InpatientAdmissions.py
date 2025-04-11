@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AdmissionCode': 'varchar(max)', 'AdmissionFormCode': 'varchar(max)', 'CareConnection': 'varchar(max)', 'ClinicalPathwayNumber': 'varchar(max)', 'FileName': 'varchar(max)', 'IsEmergency': 'varchar(max)', 'ReferringCareUnit': 'varchar(max)', 'ReferringClinic': 'varchar(max)', 'ReferringHospital': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)', 'TreatmentPeriod': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'ReferringHospital': "{'title_ui': None, 'description': 'Remitterande inrättning. Första delen av kombika.'}", 'ReferringClinic': "{'title_ui': None, 'description': 'Remitterande klinik. Andra delen av kombika.'}", 'ReferringCareUnit': "{'title_ui': None, 'description': 'Remitterande avdelning. Tredje delen av kombika.'}", 'AdmissionCode': "{'title_ui': None, 'description': 'Inskrivningskod. Anger varifrån patienten kom vid inskrivningen.'}", 'AdmissionFormCode': "{'title_ui': None, 'description': 'Psykiatrisk vårdform. Registreras enbart inom psykiatrin.'}", 'IsEmergency': "{'title_ui': None, 'description': 'Akutinskrivning'}", 'TreatmentPeriod': "{'title_ui': None, 'description': 'Psykvårdperiod'}", 'CareConnection': "{'title_ui': None, 'description': 'Vårdsamband. Används ej.'}", 'ClinicalPathwayNumber': "{'title_ui': None, 'description': 'Vårdkedjenummer. Används ej'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['FileName', 'TransactionID']
     ),
     cron="@daily",
     start=start,

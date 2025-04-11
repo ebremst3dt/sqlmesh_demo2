@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ActionCode': 'varchar(max)', 'ActionDate': 'varchar(max)', 'DiagnosisRow': 'varchar(max)', 'FileName': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'DiagnosisRow': "{'title_ui': None, 'description': 'Pekar på den diagnos till vilken åtgärden hör'}", 'Row': "{'title_ui': None, 'description': 'Inmatningsordning för operationen. Den första är huvudoperation.'}", 'ActionCode': "{'title_ui': None, 'description': 'Åtgärdskod (operationskod) eller ATC-kod'}", 'ActionDate': "{'title_ui': None, 'description': 'Datum för åtgärd'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['DiagnosisRow', 'FileName', 'Row', 'TransactionID']
     ),
     cron="@daily",
     start=start,

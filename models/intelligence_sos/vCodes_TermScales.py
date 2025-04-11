@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'Description': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Value': 'varchar(max)'},
     column_descriptions={'TermID': "{'title_ui': 'Term id', 'description': 'Termens id'}", 'Value': "{'title_ui': 'Unikt id', 'description': 'Det faktiska värdet'}", 'Description': "{'title_ui': 'Förklarande text', 'description': 'Textrepresentationen av värdet'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['TermID', 'Value']
     ),
     cron="@daily",
     start=start,

@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AddictionDiagnosis': 'varchar(max)', 'DiagnosisGroup': 'varchar(max)', 'FileName': 'varchar(max)', 'PatientCategory': 'varchar(max)', 'PersonalityDisorderDiagnosis': 'varchar(max)', 'ReferredTo': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'DiagnosisGroup': "{'title_ui': None, 'description': 'Slutlig diagnosgrupp. Avser den slutliga bedömningen.'}", 'ReferredTo': "{'title_ui': None, 'description': 'Hänvisad till. Används ej.'}", 'PatientCategory': "{'title_ui': None, 'description': 'Slutgiltig patientkategori'}", 'AddictionDiagnosis': "{'title_ui': None, 'description': 'Beroendediagnos'}", 'PersonalityDisorderDiagnosis': "{'title_ui': None, 'description': 'Personlighetsstörning. Används ej.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['FileName', 'TransactionID']
     ),
     cron="@daily",
     start=start,

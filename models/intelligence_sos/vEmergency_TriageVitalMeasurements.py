@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'Comment': 'varchar(max)', 'DocumentID': 'varchar(max)', 'EventDate': 'varchar(max)', 'EventTime': 'varchar(max)', 'MeasurementTimestampSigned': 'varchar(max)', 'PatientID': 'varchar(max)', 'PriorityID': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TriageMeasurementUUID': 'varchar(max)', 'Value': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'TermID': "{'title_ui': 'Term', 'description': 'Kod för term'}", 'Value': "{'title_ui': 'Mätvärde', 'description': 'Kopia på mätvärde'}", 'PriorityID': "{'title_ui': None, 'description': 'Avgör var kryssen sätts'}", 'EventDate': "{'title_ui': 'Händelsetid', 'description': 'Det datum mätvärdet avser (kopia på mätvärde)'}", 'EventTime': "{'title_ui': 'Händelsetid', 'description': 'Den tid mätvärdet avser (kopia på mätvärde)'}", 'MeasurementTimestampSigned': "{'title_ui': None, 'description': 'Signeringstidpunkt för kopplat mätvärde'}", 'Comment': "{'title_ui': 'Kommentar', 'description': 'Fritextkommentar'}", 'TriageMeasurementUUID': "{'title_ui': None, 'description': 'UUID för kopplat mätvärde'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['DocumentID', 'PatientID', 'TermID', 'Version']
     ),
     cron="@daily",
     start=start,

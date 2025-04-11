@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'Analysis': 'varchar(max)', 'AnalysisCode': 'varchar(max)', 'AnalysisID': 'varchar(max)', 'IsOrderable': 'varchar(max)', 'IsPaperOrdered': 'varchar(max)', 'IsSolitaryOrderable': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'AnalysisID': "{'title_ui': None, 'description': 'Analysid'}", 'Analysis': "{'title_ui': None, 'description': 'Analysnamn'}", 'AnalysisCode': "{'title_ui': None, 'description': 'Unikt ID för analysen'}", 'IsOrderable': "{'title_ui': None, 'description': 'Beställningsbar'}", 'IsSolitaryOrderable': "{'title_ui': None, 'description': {'break': None}}", 'IsPaperOrdered': "{'title_ui': None, 'description': 'Beställs på papper'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['AnalysisID']
     ),
     cron="@daily",
     start=start,

@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'DomainID': 'varchar(max)', 'HSAID': 'varchar(max)', 'LockGroupID': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'LockGroupID': "{'title_ui': None, 'description': 'Spärr ID'}", 'Name': "{'title_ui': 'Gruppnamn', 'description': None}", 'DomainID': "{'title_ui': 'Vårdgivare', 'description': 'Den vårdgivare som spärrgruppen tillhör'}", 'HSAID': "{'title_ui': 'HSA-id', 'description': 'HSA-id för spärrgrupp'}", 'CareUnitID': "{'title_ui': 'Vårdenheter', 'description': 'Vårdenhet som tillhör gruppen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['CareUnitID', 'LockGroupID']
     ),
     cron="@daily",
     start=start,

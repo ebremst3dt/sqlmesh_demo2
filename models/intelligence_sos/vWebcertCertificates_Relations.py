@@ -13,9 +13,7 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'DocumentID': 'varchar(max)', 'PatientID': 'varchar(max)', 'RelationDocumentID': 'varchar(max)', 'RelationTypeCode': 'varchar(max)', 'RelationTypeDisplayName': 'varchar(max)', 'RelationWebcertCode': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.FULL
     ),
     cron="@daily",
     start=start,

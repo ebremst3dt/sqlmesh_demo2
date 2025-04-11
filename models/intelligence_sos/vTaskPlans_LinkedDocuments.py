@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'DocumentID': 'varchar(max)', 'LinkedDocumentDateID': 'varchar(max)', 'LinkedDocumentID': 'varchar(max)', 'LinkedDocumentTypeID': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': 'Aktivitetplansid', 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'Row': "{'title_ui': None, 'description': 'Unik rad för kopplat dokument'}", 'LinkedDocumentTypeID': "{'title_ui': 'Kopplade dokument', 'description': 'Länkad dokumenttyp.'}", 'LinkedDocumentDateID': "{'title_ui': 'Kopplade dokument', 'description': 'Nyckel till länkat dokument som har tidsstämpel som nyckel (ex. Multimedia dokument).'}", 'LinkedDocumentID': "{'title_ui': 'Kopplade dokument', 'description': 'Nyckel till länkat dokument som ej har tidsstämpel som nyckel.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['DocumentID', 'PatientID', 'Row', 'Version']
     ),
     cron="@daily",
     start=start,

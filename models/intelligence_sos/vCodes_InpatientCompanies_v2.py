@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CompanyCode': 'varchar(max)', 'CountyID': 'varchar(max)', 'EconomicalCatalogue': 'varchar(max)', 'InpatientCompanyID': 'varchar(max)', 'Name': 'varchar(max)', 'PlusGiro': 'varchar(max)', 'RESFolder': 'varchar(max)', 'RESUser': 'varchar(max)', 'SnodServer': 'varchar(max)', 'SnodUser': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'InpatientCompanyID': "{'title_ui': 'Id', 'description': None}", 'CompanyCode': "{'title_ui': 'FtgKod', 'description': 'Företagskod'}", 'Name': "{'title_ui': 'Företagsnamn', 'description': None}", 'PlusGiro': "{'title_ui': 'Plusgironummer', 'description': 'PlusGiro-konto'}", 'EconomicalCatalogue': "{'title_ui': 'Katalog för rapportering', 'description': 'Katalog för ekonomisk rapportering'}", 'RESUser': "{'title_ui': 'Användar ID mot RES', 'description': 'Användarnamn mot RES'}", 'RESFolder': "{'title_ui': 'Katalog för svarsfil från RES', 'description': None}", 'SnodUser': "{'title_ui': 'Snod-användarid', 'description': 'Användarnamn Snod (för överföring RES)'}", 'SnodServer': "{'title_ui': 'Snod-server', 'description': None}", 'CountyID': "{'title_ui': 'Länskod', 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['InpatientCompanyID']
     ),
     cron="@daily",
     start=start,

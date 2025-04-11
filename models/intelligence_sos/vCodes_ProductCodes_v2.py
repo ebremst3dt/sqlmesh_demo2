@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'Description': 'varchar(max)', 'Name': 'varchar(max)', 'OutlierLimit': 'varchar(max)', 'ProductCode': 'varchar(max)', 'ProductType': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)', 'Weight': 'varchar(max)'},
     column_descriptions={'ProductType': "{'title_ui': None, 'description': None}", 'ProductCode': "{'title_ui': None, 'description': None}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'ValidThroughDate': "{'title_ui': None, 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'Description': "{'title_ui': None, 'description': None}", 'Weight': "{'title_ui': None, 'description': None}", 'OutlierLimit': "{'title_ui': None, 'description': 'Ytterfallsgräns'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['ProductCode', 'ProductType', 'Row', 'ValidThroughDate']
     ),
     cron="@daily",
     start=start,

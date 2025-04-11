@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ActionCode': 'varchar(max)', 'ActionDate': 'varchar(max)', 'ActionID': 'varchar(max)', 'DiagnosisID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ZATC1ActionCode': 'varchar(max)', 'ZATC2ActionCode': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'ActionID': "{'title_ui': None, 'description': 'Löpnummer'}", 'ActionCode': "{'title_ui': 'Op-/åtgärdskod', 'description': 'Operations- eller åtgärdskod'}", 'ActionDate': "{'title_ui': 'Op-/åtgärdsdatum', 'description': 'Datum för åtgärd (operationsdatum)'}", 'ZATC1ActionCode': "{'title_ui': 'Z/ATC-kod 1', 'description': 'Z- eller ATC-kod som förtydligar åtgärdskoden. Z-koder är operationskoder som börjar med Z.'}", 'ZATC2ActionCode': "{'title_ui': 'Z/ATC-kod 2', 'description': 'Z- eller ATC-kod som förtydligar åtgärdskoden. Z-koder är operationskoder som börjar med Z.'}", 'DiagnosisID': "{'title_ui': 'Op-/åtgärdsdiagnos', 'description': 'Vilken av diagnoserna som ligger till grund för åtgärden'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['ActionID', 'DocumentID', 'PatientID']
     ),
     cron="@daily",
     start=start,

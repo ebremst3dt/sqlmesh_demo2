@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CompletedDate': 'varchar(max)', 'CompletedTime': 'varchar(max)', 'Description': 'varchar(max)', 'DocumentID': 'varchar(max)', 'InitiatedDate': 'varchar(max)', 'InitiatedTime': 'varchar(max)', 'PatientID': 'varchar(max)', 'ProblemTypeID': 'varchar(max)', 'ProfessionID': 'varchar(max)', 'Row': 'varchar(max)', 'SavedAtCareUnitID': 'varchar(max)', 'SavedByUserID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TimestampSavedGPE': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': 'Aktivitetplansid', 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'ProblemTypeID': "{'title_ui': 'Typ', 'description': 'Vilken typ av problem som föranledde planen: resurs, risk, problem etc'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'Description': "{'title_ui': 'Beskrivning', 'description': 'En närmare beskrivning av målet/problemet/utvärderingen'}", 'InitiatedDate': "{'title_ui': 'Påbörjad', 'description': None}", 'InitiatedTime': "{'title_ui': 'Påbörjad', 'description': None}", 'CompletedDate': "{'title_ui': 'Avslutad', 'description': None}", 'CompletedTime': "{'title_ui': 'Avslutad', 'description': None}", 'TimestampSavedGPE': "{'title_ui': 'Ändrad', 'description': 'När målet/problemet/utvärderingen registrerades, maskintid.'}", 'SavedByUserID': "{'title_ui': 'Ändrad av', 'description': 'Den användare som senast har ändrat dokumentet'}", 'SavedAtCareUnitID': "{'title_ui': 'Ändrad på', 'description': 'Den vårdenhet där användaren gjorde registreringen.'}", 'ProfessionID': "{'title_ui': 'Yrke', 'description': 'Den yrkesgrupp användaren hade vid registreringen.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['DocumentID', 'PatientID', 'Row', 'Version']
     ),
     cron="@daily",
     start=start,

@@ -13,9 +13,7 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ExternalUserHSAID': 'varchar(max)', 'ExternalUserID': 'varchar(max)', 'PatientID': 'varchar(max)', 'SystemUserName': 'varchar(max)', 'TimestampOpened': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Den journal som öppnades'}", 'TimestampOpened': "{'title_ui': None, 'description': 'Tidpunkt för journalöppning'}", 'SystemUserName': "{'title_ui': None, 'description': 'Det externa systemets användarnamn i TakeCare'}", 'ExternalUserID': "{'title_ui': None, 'description': 'Ev. extern användare som öppnade journalen'}", 'ExternalUserHSAID': "{'title_ui': None, 'description': 'HSAID för ev. extern användare som öppnade journalen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.FULL
     ),
     cron="@daily",
     start=start,

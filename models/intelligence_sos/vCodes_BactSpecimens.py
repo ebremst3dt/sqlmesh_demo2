@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'GroupID': 'varchar(max)', 'IsLocalizationRequired': 'varchar(max)', 'IsMiscSpecimenRequired': 'varchar(max)', 'Specimen': 'varchar(max)', 'SpecimenID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'SpecimenID': "{'title_ui': None, 'description': 'Provmaterialets id'}", 'Specimen': "{'title_ui': None, 'description': 'Provmaterial'}", 'GroupID': "{'title_ui': None, 'description': 'Tillhör grupp'}", 'IsLocalizationRequired': "{'title_ui': None, 'description': 'Lokalisation ska visas och måste fyllas i'}", 'IsMiscSpecimenRequired': '{\'title_ui\': None, \'description\': \'"Ange provmaterialet" ska visas i Kompletterande uppgifter och måste fyllas i\'}', 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['SpecimenID']
     ),
     cron="@daily",
     start=start,

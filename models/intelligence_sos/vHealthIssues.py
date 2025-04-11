@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CreatedAtCareUnitID': 'varchar(max)', 'CreatedByUserID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'IssueID': 'varchar(max)', 'Name': 'varchar(max)', 'PatientID': 'varchar(max)', 'SavedAtCareUnitID': 'varchar(max)', 'SavedByUserID': 'varchar(max)', 'TimestampCreated': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TimestampSaved': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'TimestampSaved': "{'title_ui': 'Senast ändrad', 'description': 'Version skapad'}", 'SavedByUserID': "{'title_ui': 'Senast ändrad av', 'description': 'Version skapad av'}", 'SavedAtCareUnitID': "{'title_ui': None, 'description': 'Version skapad på'}", 'CreatedAtCareUnitID': "{'title_ui': 'Tillhör vårdenhet', 'description': 'Den vårdenhet där dokumentet är skapat. Den vårdenhet som behörighet utgår från.'}", 'CreatedByUserID': "{'title_ui': None, 'description': 'Skapad av'}", 'TimestampCreated': "{'title_ui': None, 'description': 'Skapad'}", 'ValidFromDate': "{'title_ui': None, 'description': 'Giltig fr.o.m'}", 'ValidThroughDate': "{'title_ui': None, 'description': 'Giltig t.o.m'}", 'Name': "{'title_ui': None, 'description': 'Hälsoproblem namn. Visas i läkemedelsmodulen som ordinationsorsak'}", 'IssueID': "{'title_ui': None, 'description': 'Hälsoproblem Id'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['DocumentID', 'PatientID', 'Version']
     ),
     cron="@daily",
     start=start,

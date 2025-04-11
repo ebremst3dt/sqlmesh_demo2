@@ -13,9 +13,7 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'FromDatetime': 'varchar(max)', 'ResourceID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ToDatetime': 'varchar(max)'},
     column_descriptions={'ResourceID': "{'title_ui': 'Resurs', 'description': None}", 'CareUnitID': "{'title_ui': 'Vårdenhet', 'description': None}", 'FromDatetime': "{'title_ui': 'Tidpunkt from', 'description': 'From detta datum och klockslag är alla tider för resursen spärrade'}", 'ToDatetime': "{'title_ui': 'Tidpunkt tom', 'description': 'Tom detta datum och klockslag är alla tider för resursen spärrade'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.FULL
     ),
     cron="@daily",
     start=start,

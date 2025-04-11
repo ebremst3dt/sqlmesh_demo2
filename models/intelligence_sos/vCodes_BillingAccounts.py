@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AccountID': 'varchar(max)', 'AccountNumber': 'varchar(max)', 'Counterpart': 'varchar(max)', 'CountyID': 'varchar(max)', 'Description': 'varchar(max)', 'SalesTaxClass': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'VATAccount': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'AccountID': "{'title_ui': 'ID', 'description': None}", 'Description': "{'title_ui': 'Beskrivning', 'description': 'Beskrivning av kontot'}", 'CountyID': "{'title_ui': 'Län', 'description': None}", 'AccountNumber': "{'title_ui': 'Kontonummer', 'description': None}", 'SalesTaxClass': "{'title_ui': 'Momsklass', 'description': None}", 'Counterpart': "{'title_ui': 'Motpart', 'description': None}", 'ValidFromDate': "{'title_ui': 'Giltig fr.o.m', 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'VATAccount': "{'title_ui': 'Momskonto', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['AccountID']
     ),
     cron="@daily",
     start=start,

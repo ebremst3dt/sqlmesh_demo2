@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AppointmentCareGuaranteeCode': 'varchar(max)', 'AppointmentOrigin': 'varchar(max)', 'AppointmentReferralDateTime': 'varchar(max)', 'AppointmentReservationDateTime': 'varchar(max)', 'AppointmentTaskDecisionDateTime': 'varchar(max)', 'AppointmentTimestampCreated': 'varchar(max)', 'FileName': 'varchar(max)', 'GVRPostponementReasonCode': 'varchar(max)', 'ReferralTypeCode': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'AppointmentCareGuaranteeCode': "{'title_ui': None, 'description': {'break': [None, None, None]}}", 'AppointmentOrigin': "{'title_ui': None, 'description': {'break': [None, None, None]}}", 'AppointmentTimestampCreated': "{'title_ui': None, 'description': 'Datum då bokningen skapats i systemet'}", 'AppointmentReservationDateTime': "{'title_ui': None, 'description': 'Datum för när besöket ska ske'}", 'AppointmentReferralDateTime': "{'title_ui': None, 'description': 'Datum då remissen skapades'}", 'ReferralTypeCode': "{'title_ui': None, 'description': {'break': [None, None, None, None]}}", 'AppointmentTaskDecisionDateTime': "{'title_ui': None, 'description': 'Startdatum för åtgärd'}", 'GVRPostponementReasonCode': "{'title_ui': None, 'description': {'break': [None, None, None, None, None, None, None]}}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['FileName', 'TransactionID']
     ),
     cron="@daily",
     start=start,

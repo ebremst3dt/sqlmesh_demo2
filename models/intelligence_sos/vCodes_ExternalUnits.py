@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CostDepartment': 'varchar(max)', 'EXID': 'varchar(max)', 'ParentEXID': 'varchar(max)', 'Row': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'UnitLevelID': 'varchar(max)', 'UnitName': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)', 'WorkPlaceCode': 'varchar(max)'},
     column_descriptions={'EXID': "{'title_ui': None, 'description': 'Internt id för enheten'}", 'Row': "{'title_ui': None, 'description': 'Användardefinierad version av enheten. Högsta versionsnummer som innefattar ett givet datum är giltig.'}", 'ValidFromDate': "{'title_ui': None, 'description': 'Avgör om versionen är eller har varit giltig för ett givet datum. Se ValidThroughDate och Row.'}", 'ValidThroughDate': "{'title_ui': None, 'description': 'Avgör om versionen är eller har varit giltig för ett givet datum. Se ValidFromDate och Row.'}", 'UnitLevelID': "{'title_ui': None, 'description': {'break': [None, None, None]}}", 'ParentEXID': "{'title_ui': None, 'description': 'EXID för enhet som denna enhet sorterar under. Se kolumn UnitLevelID'}", 'UnitName': "{'title_ui': None, 'description': 'Enhetens namn'}", 'CostDepartment': "{'title_ui': None, 'description': 'Kostnadsställe. Ej att förväxlas med Id-kolumnen Codes_ExternalUnitIDs.CostCenter.'}", 'WorkPlaceCode': "{'title_ui': None, 'description': 'Arbetsplatskod. Matas enl. uppg. in utan inledande länskod'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['EXID', 'Row']
     ),
     cron="@daily",
     start=start,

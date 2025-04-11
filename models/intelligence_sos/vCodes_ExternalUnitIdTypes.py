@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'IdTypeCode': 'varchar(max)', 'IdTypeID': 'varchar(max)', 'IdTypeIntelligenceName': 'varchar(max)', 'IdTypeName': 'varchar(max)', 'IdTypeRegistry': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'IdTypeID': "{'title_ui': None, 'description': None}", 'IdTypeCode': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': None, 'description': None}", 'IdTypeName': "{'title_ui': None, 'description': None}", 'IdTypeRegistry': "{'title_ui': None, 'description': None}", 'IdTypeIntelligenceName': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['IdTypeID']
     ),
     cron="@daily",
     start=start,

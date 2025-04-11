@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AnalysisID': 'varchar(max)', 'AnalysisRow': 'varchar(max)', 'Antibiotics': 'varchar(max)', 'AntibioticsCode': 'varchar(max)', 'Comment': 'varchar(max)', 'CultureRow': 'varchar(max)', 'DocumentID': 'varchar(max)', 'Mesurement': 'varchar(max)', 'PatientID': 'varchar(max)', 'ResistenceType': 'varchar(max)', 'Row': 'varchar(max)', 'SIRCategory': 'varchar(max)', 'Signature': 'varchar(max)', 'SortOrder': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'AnalysisID': "{'title_ui': None, 'description': 'Labbets kod för analysen'}", 'AnalysisRow': "{'title_ui': None, 'description': None}", 'CultureRow': "{'title_ui': None, 'description': None}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'Antibiotics': "{'title_ui': 'Resistenstabell', 'description': 'Antimikrobiellt medel'}", 'AntibioticsCode': "{'title_ui': 'Resistenstabell', 'description': 'Kod för antimikrobiellt medel'}", 'ResistenceType': "{'title_ui': None, 'description': {'break': [None, None]}}", 'Mesurement': "{'title_ui': '*Fynd', 'description': 'Mätvärde. Visas endast för MIC-värden'}", 'SIRCategory': "{'title_ui': None, 'description': 'SIR-Kategori'}", 'Comment': "{'title_ui': '*Fynd', 'description': 'Resistenskommentar'}", 'Signature': "{'title_ui': None, 'description': 'Signatur'}", 'SortOrder': "{'title_ui': None, 'description': 'Innehåller ett ordningsnummer som används för sortering'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['AnalysisID', 'AnalysisRow', 'CultureRow', 'DocumentID', 'PatientID', 'Row', 'Version']
     ),
     cron="@daily",
     start=start,

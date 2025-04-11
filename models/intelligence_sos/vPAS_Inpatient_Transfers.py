@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'EconomicalKombika': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'SavedByUserID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TimestampSaved': 'varchar(max)', 'TransferDatetime': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'CareUnitID': "{'title_ui': 'Flytta patient till', 'description': 'Den vårdenhet patienten flyttats till'}", 'EconomicalKombika': "{'title_ui': 'Ekonomisk enhet (ut)', 'description': 'Ny kombika/EXID'}", 'TimestampSaved': "{'title_ui': 'Senast ändrad', 'description': 'Tidpunkt för registrering av förflyttningen'}", 'SavedByUserID': "{'title_ui': 'Senast ändrad av', 'description': 'Den användare som registrerat förflyttningen'}", 'TransferDatetime': "{'title_ui': 'Flyttad/Ändrad datum', 'description': 'När flytten skedde'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['DocumentID', 'PatientID', 'Row']
     ),
     cron="@daily",
     start=start,

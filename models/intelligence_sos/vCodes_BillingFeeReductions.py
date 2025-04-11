@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'BillingFeeReductionID': 'varchar(max)', 'BillingRateCode': 'varchar(max)', 'EmergencyWard': 'varchar(max)', 'MaximumAge': 'varchar(max)', 'MinimumAge': 'varchar(max)', 'MultiplyBy': 'varchar(max)', 'Name': 'varchar(max)', 'SubtractFrom': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'BillingFeeReductionID': "{'title_ui': 'Id', 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'ValidFromDate': "{'title_ui': 'Giltig fr.o.m', 'description': None}", 'MinimumAge': "{'title_ui': 'Ålder fr.o.m', 'description': None}", 'MaximumAge': "{'title_ui': 'Ålder upp till', 'description': None}", 'EmergencyWard': "{'title_ui': 'Akutenhet', 'description': '1=Ej Akutenhet, 2=Akutenhet'}", 'BillingRateCode': "{'title_ui': 'Taxa', 'description': None}", 'MultiplyBy': "{'title_ui': 'Multiplicera taxa med', 'description': None}", 'SubtractFrom': "{'title_ui': 'Subtrahera från taxa', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['BillingFeeReductionID']
     ),
     cron="@daily",
     start=start,

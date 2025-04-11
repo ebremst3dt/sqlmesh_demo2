@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CarePeriodCode': 'varchar(max)', 'EconomicalKombika': 'varchar(max)', 'EventDatetime': 'varchar(max)', 'FileName': 'varchar(max)', 'IsCancellation': 'varchar(max)', 'IsCorrection': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'PatientID': "{'title_ui': None, 'description': 'Patientens Person-/reservnummer'}", 'CarePeriodCode': "{'title_ui': None, 'description': 'Vårdperiod-id. Kombika plus ett internt löpnummer som består av godtyckligt ledigt datum'}", 'EventDatetime': "{'title_ui': None, 'description': 'Händelsedatum. Datatypen är dock datetime för att möjliggöra koppling till PAS. Datumet tolkas som startdatum för start- och borttagningstransaktioner för vårdperiod, men som slutdatum för avslut av vårdperiod'}", 'EconomicalKombika': "{'title_ui': None, 'description': 'Ekonomisk kombika extraherad ur kolumnen CarePeriodCodes för att kunna matchas mot PAS.'}", 'IsCancellation': "{'title_ui': None, 'description': 'Denna transaktion tar bort en vårdperiod. Denna kolumn är skapad internt, utgående från transaktionstyps-id i kolumnen GVR.InternalGVRServiceTypeID.'}", 'IsCorrection': "{'title_ui': None, 'description': 'Denna transaktion korrigerar en Vårdperiod. Allt data sänds på nytt. Denna kolumn är skapad internt, utgående från transaktionstyps-id i kolumnen GVR.InternalGVRServiceTypeID.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['FileName', 'TransactionID']
     ),
     cron="@daily",
     start=start,

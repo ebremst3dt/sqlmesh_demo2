@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AdministrationRouteID': 'varchar(max)', 'DoseForm': 'varchar(max)', 'IsInfusion': 'varchar(max)', 'IsOxygenTreatment': 'varchar(max)', 'Name': 'varchar(max)', 'ShortName': 'varchar(max)', 'SimpleName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'AdministrationRouteID': "{'title_ui': 'Id', 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'ShortName': "{'title_ui': 'Namn, korttext', 'description': None}", 'IsInfusion': "{'title_ui': 'Tänder spädning', 'description': 'Om administrationsvägen används för infusion'}", 'DoseForm': "{'title_ui': 'Autoval läkemedelsform', 'description': 'Autoval läkemedelsformer Apoteket/SIL'}", 'SimpleName': "{'title_ui': 'Namn, dosanvisning', 'description': 'Förenklad text som används på recept till patienten.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['AdministrationRouteID']
     ),
     cron="@daily",
     start=start,

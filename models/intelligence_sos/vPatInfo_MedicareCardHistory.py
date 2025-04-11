@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CardNumber': 'varchar(max)', 'MedicareCardProviderID': 'varchar(max)', 'MedicareCardUUID': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': None}", 'CardNumber': "{'title_ui': 'Frikortsnummer', 'description': None}", 'ValidFromDate': "{'title_ui': 'Giltig fr.o.m.', 'description': None}", 'MedicareCardUUID': "{'title_ui': None, 'description': 'UUID för patientens frikort. Ny 2015. Hämtas från extern frikortstjänst.'}", 'MedicareCardProviderID': "{'title_ui': None, 'description': 'Identifierar leverantören av frikortet. 1=CGI Ny 2015.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['CardNumber', 'PatientID', 'ValidThroughDate']
     ),
     cron="@daily",
     start=start,

@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CompanyGroup': 'varchar(max)', 'Counter': 'varchar(max)', 'EventDate': 'varchar(max)', 'EventID': 'varchar(max)', 'EventTime': 'varchar(max)', 'FileNameDate': 'varchar(max)', 'InternalCounterCode': 'varchar(max)', 'ReportDate': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'UserID': 'varchar(max)'},
     column_descriptions={'InternalCounterCode': "{'title_ui': None, 'description': 'Kundgrupp och kassakod slås ihop internt för att skapa unik identifierare för kassor'}", 'EventID': "{'title_ui': 'Läge', 'description': {'break': [None, None, None, None]}}", 'EventDate': "{'title_ui': 'Datum', 'description': 'Datum för kassahändelse'}", 'EventTime': "{'title_ui': 'Tid', 'description': 'Tid för kassahändelse'}", 'UserID': "{'title_ui': 'Användarnamn', 'description': 'Användarens PID'}", 'FileNameDate': "{'title_ui': None, 'description': 'Datumet hämtas från kassafilnamnet. Kolumnen existerar bara för att separera annars identiska kassahändelser som kopierats över till nästa dags fil.'}", 'ReportDate': "{'title_ui': 'Kassarapportdatum', 'description': 'Senaste kassarapportdatum'}", 'CompanyGroup': "{'title_ui': 'Kundgrupp', 'description': None}", 'Counter': "{'title_ui': 'Kassa', 'description': 'Kassakod'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['EventDate', 'EventID', 'EventTime', 'FileNameDate', 'InternalCounterCode', 'UserID']
     ),
     cron="@daily",
     start=start,

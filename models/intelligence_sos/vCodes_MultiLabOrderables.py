@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AnalysisID': 'varchar(max)', 'ExaminationID': 'varchar(max)', 'IsAcute': 'varchar(max)', 'IsDrugInfoRequired': 'varchar(max)', 'IsLocalizationRequired': 'varchar(max)', 'IsRoutine': 'varchar(max)', 'NoOfLabels': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'OrderableID': 'varchar(max)', 'SectionCode': 'varchar(max)', 'SpecimenID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TubeID': 'varchar(max)'},
     column_descriptions={'OrderRegistryFileName': "{'title_ui': None, 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'OrderableID': "{'title_ui': None, 'description': 'Beställningsspecifikationsid'}", 'SpecimenID': "{'title_ui': None, 'description': 'Provmaterialid'}", 'ExaminationID': "{'title_ui': None, 'description': 'Undersökningsid'}", 'AnalysisID': "{'title_ui': None, 'description': 'Analysid'}", 'TubeID': "{'title_ui': None, 'description': 'Rörid'}", 'IsLocalizationRequired': "{'title_ui': None, 'description': 'Lokalisation ska visas och måste fyllas i'}", 'NoOfLabels': "{'title_ui': None, 'description': 'Antal etiketter'}", 'SectionCode': "{'title_ui': None, 'description': 'Sektionskod'}", 'IsAcute': "{'title_ui': None, 'description': 'Om både IsAcute och IsRoutine är False så ingår analysen i en profil och kan inte beställas separat.'}", 'IsRoutine': "{'title_ui': None, 'description': 'Om både IsAcute och IsRoutine är False så ingår analysen i en profil och kan inte beställas separat.'}", 'IsDrugInfoRequired': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['OrderableID', 'OrderRegistryFileName']
     ),
     cron="@daily",
     start=start,

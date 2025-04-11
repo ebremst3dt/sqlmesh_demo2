@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ConditionID': 'varchar(max)', 'Description': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'UseOperand1': 'varchar(max)', 'UseOperand2': 'varchar(max)'},
     column_descriptions={'ConditionID': "{'title_ui': None, 'description': None}", 'Description': "{'title_ui': None, 'description': None}", 'UseOperand1': "{'title_ui': None, 'description': None}", 'UseOperand2': "{'title_ui': None, 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['ConditionID']
     ),
     cron="@daily",
     start=start,

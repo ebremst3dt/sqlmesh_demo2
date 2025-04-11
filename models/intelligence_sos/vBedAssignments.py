@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'BedDescription': 'varchar(max)', 'BedID': 'varchar(max)', 'BedName': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'Category': 'varchar(max)', 'ChangedDate': 'varchar(max)', 'Comment': 'varchar(max)', 'PatientID': 'varchar(max)', 'SortIndex': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)', 'ValidUntilDate': 'varchar(max)'},
     column_descriptions={'CareUnitID': "{'title_ui': None, 'description': 'Vårdenhet'}", 'TransactionID': "{'title_ui': None, 'description': 'Unik nyckel för denna transaktion och vårdenhet'}", 'BedID': "{'title_ui': None, 'description': 'Vårdplats Id'}", 'ChangedDate': "{'title_ui': None, 'description': 'Datum då förändringen skedde'}", 'BedName': '{\'title_ui\': \'Plats\', \'description\': \'Vårdplatsens namn, t.ex. "12:1"\'}', 'BedDescription': '{\'title_ui\': \'Beskrivning\', \'description\': \'En utförligare beskrivning av vårdplatsen, t.ex "syrgas"\'}', 'ValidUntilDate': "{'title_ui': 'Stängd', 'description': 'Efter detta datum (inklusivt) är vårdplatsen inaktiverad'}", 'SortIndex': "{'title_ui': None, 'description': 'Sorteringsindex. På en viss vårdenhet visas vårdplatser i stigande ordning enligt denna kolumn.'}", 'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'Category': '{\'title_ui\': \'Kategori\', \'description\': \'Fritextfält där man kan ange en kategori för patienten, t.ex. "Blått team" eller "Armbrott".\'}', 'Comment': "{'title_ui': 'Kommentar', 'description': 'Fritextfält där man kan ange en kommentar för patienten.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['CareUnitID', 'TransactionID']
     ),
     cron="@daily",
     start=start,

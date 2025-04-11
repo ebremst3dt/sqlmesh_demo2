@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'DocumentID': 'varchar(max)', 'Exam': 'varchar(max)', 'ExamDateTime': 'varchar(max)', 'ExamID': 'varchar(max)', 'MethodCode': 'varchar(max)', 'PatientID': 'varchar(max)', 'Row': 'varchar(max)', 'Template': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'ExamID': "{'title_ui': 'Undersökning', 'description': 'Undersökningskod. Visas ej i TakeCare om svaret kommer från Huddinge fyslab.'}", 'Exam': "{'title_ui': 'Undersökning', 'description': 'Visas ej i TakeCare om svaret kommer från Huddinge fyslab.'}", 'Template': "{'title_ui': None, 'description': 'Mall'}", 'ExamDateTime': "{'title_ui': None, 'description': 'Datum och tid då undersökningen genomfördes. Endast Sectra'}", 'MethodCode': "{'title_ui': None, 'description': 'Metodkod. Endast Sectra'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['DocumentID', 'ExamID', 'PatientID', 'Row', 'Version']
     ),
     cron="@daily",
     start=start,

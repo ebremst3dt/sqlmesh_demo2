@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'LabName': 'varchar(max)', 'LabOrderSettingsID': 'varchar(max)', 'LabSystem': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'SID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'LabOrderSettingsID': "{'title_ui': 'Id', 'description': 'Identifierar ett labb och dess inställningar'}", 'LabName': "{'title_ui': 'Namn', 'description': None}", 'SID': "{'title_ui': 'Lab-SID', 'description': 'System-id'}", 'ValidThroughDate': "{'title_ui': 'Giltig tom datum', 'description': None}", 'LabSystem': "{'title_ui': 'Labsystem', 'description': None}", 'OrderRegistryFileName': "{'title_ui': 'Analysregisterfil-namn', 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['LabOrderSettingsID']
     ),
     cron="@daily",
     start=start,

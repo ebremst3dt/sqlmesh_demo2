@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AnalysisID': 'varchar(max)', 'AnalysisName': 'varchar(max)', 'CoOrder': 'varchar(max)', 'IsEmergency': 'varchar(max)', 'IsOKToOrder': 'varchar(max)', 'IsPaperOrdered': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TubeID': 'varchar(max)', 'Unit': 'varchar(max)'},
     column_descriptions={'AnalysisID': "{'title_ui': None, 'description': 'Analyskod'}", 'AnalysisName': "{'title_ui': None, 'description': 'Analysnamn. Används vid beställning av analys'}", 'Unit': "{'title_ui': 'Enhet', 'description': None}", 'IsOKToOrder': "{'title_ui': None, 'description': 'Beställningsbar. Om 1 syns analysen i beställningbilden.'}", 'TubeID': "{'title_ui': None, 'description': 'Rörnummer. Den typ av rör som analysen kräver'}", 'IsPaperOrdered': "{'title_ui': None, 'description': 'Beställs på papper'}", 'IsEmergency': "{'title_ui': None, 'description': 'Akut'}", 'CoOrder': "{'title_ui': None, 'description': 'Sambeställning. Analyser med samma nummer kan sambeställas.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['AnalysisID']
     ),
     cron="@daily",
     start=start,

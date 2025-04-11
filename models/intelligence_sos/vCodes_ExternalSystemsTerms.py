@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ExternalSystemID': 'varchar(max)', 'ExternalTermID': 'varchar(max)', 'ExternalTermName': 'varchar(max)', 'InternalTermID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'ExternalSystemID': "{'title_ui': None, 'description': 'TakeCares interna id för det externa systemet'}", 'ExternalTermID': "{'title_ui': 'Externt uttryck', 'description': 'Det externa systemets terms id. Id:t är TakeCare-internt, dock ej från termkatalogen.'}", 'ExternalTermName': "{'title_ui': 'Externt uttryck', 'description': 'Det externa systemets terms namn'}", 'InternalTermID': "{'title_ui': 'Term', 'description': 'En TakeCare-term som motsvarar det externa systemets term'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['ExternalSystemID', 'ExternalTermID', 'InternalTermID']
     ),
     cron="@daily",
     start=start,

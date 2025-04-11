@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CompanyCode': 'varchar(max)', 'Counter': 'varchar(max)', 'CounterRow': 'varchar(max)', 'CustomerGroupCode': 'varchar(max)', 'Hospital': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'CounterRow': "{'title_ui': None, 'description': 'Används som id för kassan. Internt id som kan förändras.'}", 'Counter': "{'title_ui': 'Kassa', 'description': 'Kassakod'}", 'Name': "{'title_ui': 'Kassa', 'description': 'Kassanamn'}", 'Hospital': "{'title_ui': 'Inrättning', 'description': 'Inrättning'}", 'CompanyCode': "{'title_ui': 'Kundkod', 'description': 'Det som tidigare kallades företagskod, men egentligen var en kundkod'}", 'CustomerGroupCode': "{'title_ui': 'Kod', 'description': 'Kundgruppskod, är NULL när kundgrupp saknas'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['CounterRow']
     ),
     cron="@daily",
     start=start,

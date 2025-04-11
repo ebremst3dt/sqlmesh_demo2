@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AppointmentID': 'varchar(max)', 'BatchDate': 'varchar(max)', 'BatchID': 'varchar(max)', 'BatchTime': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'EndDate': 'varchar(max)', 'LogDateTime': 'varchar(max)', 'PatientID': 'varchar(max)', 'ReservationDate': 'varchar(max)', 'ReservationTime': 'varchar(max)', 'ResourceID': 'varchar(max)', 'Row': 'varchar(max)', 'SMSDestination': 'varchar(max)', 'SMSText': 'varchar(max)', 'SlotLength': 'varchar(max)', 'StartDate': 'varchar(max)', 'StatusID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'StartDate': "{'title_ui': None, 'description': 'Loggperiodens startdatum'}", 'EndDate': "{'title_ui': None, 'description': 'Loggperiodens slutdatum'}", 'BatchID': "{'title_ui': None, 'description': 'Internt id på körningen som genererar SMS'}", 'Row': "{'title_ui': None, 'description': 'Löpnummer på SMS i en körning'}", 'LogDateTime': "{'title_ui': None, 'description': 'Tiden då raden skrevs till loggen'}", 'BatchDate': "{'title_ui': None, 'description': 'Datum då körningen gjordes'}", 'BatchTime': "{'title_ui': None, 'description': 'Tid då körningen gjordes'}", 'PatientID': "{'title_ui': None, 'description': 'Person- eller reservnummer'}", 'AppointmentID': "{'title_ui': None, 'description': 'Bokningsnummer'}", 'ResourceID': "{'title_ui': None, 'description': 'Den resurs som bokningen gäller'}", 'ReservationDate': "{'title_ui': None, 'description': 'Bokningsdatum'}", 'ReservationTime': "{'title_ui': None, 'description': 'Bokningstid'}", 'StatusID': "{'title_ui': None, 'description': 'Bokningens status'}", 'CareUnitID': "{'title_ui': None, 'description': 'Vårdenhet'}", 'SlotLength': "{'title_ui': None, 'description': 'Längd i minuter på bokningen'}", 'SMSText': "{'title_ui': None, 'description': 'SMS-meddelande'}", 'SMSDestination': "{'title_ui': None, 'description': 'SMS-mottagarens telefonnummer'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['BatchID', 'EndDate', 'Row', 'StartDate']
     ),
     cron="@daily",
     start=start,

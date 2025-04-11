@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'InvestigationSampleDemand': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'PackageExaminationCode': 'varchar(max)', 'PackageID': 'varchar(max)', 'PackageName': 'varchar(max)', 'ProfileCode': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'OrderRegistryFileName': "{'title_ui': None, 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'PackageID': "{'title_ui': None, 'description': 'Paketid'}", 'PackageName': "{'title_ui': None, 'description': 'Paketnamn'}", 'ProfileCode': "{'title_ui': None, 'description': 'Profilkod'}", 'PackageExaminationCode': "{'title_ui': None, 'description': 'Undersökningskod. Har ingen koppling till Codes_MultiLabExaminations'}", 'InvestigationSampleDemand': "{'title_ui': None, 'description': {'break': [None, None]}}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['OrderRegistryFileName', 'PackageID']
     ),
     cron="@daily",
     start=start,

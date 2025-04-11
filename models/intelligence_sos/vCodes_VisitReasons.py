@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CVRCode': 'varchar(max)', 'IsSentToCVR': 'varchar(max)', 'Name': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TreatmentDefinition': 'varchar(max)', 'ValidThroughDate': 'varchar(max)', 'VisitReasonID': 'varchar(max)'},
     column_descriptions={'VisitReasonID': "{'title_ui': 'Id', 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'IsSentToCVR': "{'title_ui': 'Till CVR', 'description': 'Sant om bokningar med besöksorsaken ska skickas till CVR - Centralt VäntetidsRegister'}", 'TreatmentDefinition': "{'title_ui': 'Behandlingsdefinition', 'description': {'break': [None, None]}}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['VisitReasonID']
     ),
     cron="@daily",
     start=start,

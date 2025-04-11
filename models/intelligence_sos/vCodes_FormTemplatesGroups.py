@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'FormTemplateID': 'varchar(max)', 'GroupID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'GroupID': '{\'title_ui\': None, \'description\': \'Gruppens id. 0="Övriga" men den ligger inte i Codes_FormGroups utan hanteras i TC.\'}', 'FormTemplateID': "{'title_ui': 'Identitet', 'description': 'Formulärdefinitionens id'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['FormTemplateID', 'GroupID']
     ),
     cron="@daily",
     start=start,

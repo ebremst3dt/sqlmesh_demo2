@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'Body': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'ExaminationID': 'varchar(max)', 'Heading': 'varchar(max)', 'Name': 'varchar(max)', 'TaskTermID': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'ExaminationID': "{'title_ui': None, 'description': None}", 'CareUnitID': "{'title_ui': 'Vårdenhet', 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'Heading': "{'title_ui': 'Rubrik', 'description': 'Används inte för tillfället'}", 'Body': "{'title_ui': 'Brödtext', 'description': 'Kan stoppas in i kallelsen som går till patienten och därför innehålla taggar som ersätts med bl.a. den bokade tiden, eller patientens namn vid utskrift.'}", 'TaskTermID': '{\'title_ui\': \'Aktivitet\', \'description\': \'Om man vill kan man koppla en aktivitet till undersökningen. På så sätt kan man få aktiviteten att dyka upp i "Att göra" i TakeCare automatiskt.\'}', 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['CareUnitID', 'ExaminationID']
     ),
     cron="@daily",
     start=start,

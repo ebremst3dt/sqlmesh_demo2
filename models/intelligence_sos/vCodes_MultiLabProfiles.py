@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'EDIProfileCode': 'varchar(max)', 'OrderRegistryFileName': 'varchar(max)', 'ProfileCode': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'OrderRegistryFileName': "{'title_ui': None, 'description': 'Namnet på den fil där bl.a. analyskatalogen ligger.'}", 'ProfileCode': "{'title_ui': None, 'description': 'Profilkod för etiketter'}", 'EDIProfileCode': "{'title_ui': None, 'description': 'Labbets profilkod'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['EDIProfileCode', 'OrderRegistryFileName', 'ProfileCode']
     ),
     cron="@daily",
     start=start,

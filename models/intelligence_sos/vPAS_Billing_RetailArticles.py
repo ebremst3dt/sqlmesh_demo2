@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ArticleCode': 'varchar(max)', 'ArticleID': 'varchar(max)', 'DocumentID': 'varchar(max)', 'IsPreventiveHealthCare': 'varchar(max)', 'PatientID': 'varchar(max)', 'Price': 'varchar(max)', 'ProfessionID': 'varchar(max)', 'Quantity': 'varchar(max)', 'Row': 'varchar(max)', 'SalesTax': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Row': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'ArticleID': "{'title_ui': 'Artikel id', 'description': 'Index till artikeltabell'}", 'ArticleCode': "{'title_ui': 'Artikelkod', 'description': None}", 'Price': "{'title_ui': 'Artikelkod', 'description': None}", 'Quantity': "{'title_ui': 'Antal', 'description': None}", 'SalesTax': "{'title_ui': 'Moms', 'description': 'Momssatsen som togs ut vid köp'}", 'IsPreventiveHealthCare': "{'title_ui': 'Hälsovård', 'description': None}", 'ProfessionID': "{'title_ui': 'Yrkeskategori', 'description': None}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['DocumentID', 'PatientID', 'Row']
     ),
     cron="@daily",
     start=start,

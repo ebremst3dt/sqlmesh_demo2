@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ISO1Code': 'varchar(max)', 'ISO2Code': 'varchar(max)', 'IsSelectableInPrescriptions': 'varchar(max)', 'LanguageID': 'varchar(max)', 'Name': 'varchar(max)', 'TermID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'LanguageID': "{'title_ui': 'Id', 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då data är giltigt'}", 'ISO1Code': "{'title_ui': 'Kod ISO 639-1', 'description': 'Språkets kod enl. ISO 639-1'}", 'ISO2Code': "{'title_ui': 'Kod ISO 639-2', 'description': 'Språkets kod enl. ISO 639-2'}", 'TermID': "{'title_ui': 'Kod i termkatalog', 'description': None}", 'IsSelectableInPrescriptions': "{'title_ui': 'Valbar vid recept', 'description': 'Visad som valbart språk för doseringsanvisning i recept'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['LanguageID']
     ),
     cron="@daily",
     start=start,

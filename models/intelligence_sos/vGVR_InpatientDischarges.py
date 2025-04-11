@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'DeceasedTime': 'varchar(max)', 'DischargeCode': 'varchar(max)', 'DischargeDate': 'varchar(max)', 'DischargeFormCode': 'varchar(max)', 'DischargingCareUnit': 'varchar(max)', 'DischargingClinic': 'varchar(max)', 'DischargingHospital': 'varchar(max)', 'FileName': 'varchar(max)', 'PaymentDueDate': 'varchar(max)', 'ReferredToClinic': 'varchar(max)', 'ReferredToHospital': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'TransactionID': 'varchar(max)', 'TreatmentCompletedDate': 'varchar(max)'},
     column_descriptions={'FileName': "{'title_ui': None, 'description': 'Namnet på den GVR-loggfil (komponentfil) varifrån datat hämtats'}", 'TransactionID': "{'title_ui': None, 'description': 'Internt id som identifierar transaktionen i filen'}", 'ReferredToHospital': "{'title_ui': None, 'description': 'Remitterad till inrättning. Första delen av kombika.'}", 'ReferredToClinic': "{'title_ui': None, 'description': 'Remitterad till klinik. Andra delen av kombika.'}", 'DischargeDate': "{'title_ui': None, 'description': 'Utskrivningsdatum'}", 'DischargingCareUnit': "{'title_ui': None, 'description': 'Utskrivande avdelning. Ekonomisk enhet. Tredje delen av kombika.'}", 'DischargingHospital': "{'title_ui': None, 'description': 'Utskrivande inrättning. Ekonomisk enhet. Första delen av kombika.'}", 'DischargingClinic': "{'title_ui': None, 'description': 'Utskrivande klinik. Ekonomisk enhet. Andra delen av kombika.'}", 'DischargeCode': "{'title_ui': None, 'description': 'Utskrivningskod'}", 'DischargeFormCode': "{'title_ui': None, 'description': 'Utskrivningsformskod'}", 'DeceasedTime': "{'title_ui': None, 'description': 'Dödstidpunkt, klockslag'}", 'TreatmentCompletedDate': "{'title_ui': None, 'description': 'Färdigbehandlad datum'}", 'PaymentDueDate': "{'title_ui': None, 'description': 'Betalningsansvarig datum'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['FileName', 'TransactionID']
     ),
     cron="@daily",
     start=start,

@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'ColorBlue': 'varchar(max)', 'ColorGreen': 'varchar(max)', 'ColorRed': 'varchar(max)', 'IsActive': 'varchar(max)', 'MaxWaitTime': 'varchar(max)', 'Name': 'varchar(max)', 'PriorityID': 'varchar(max)', 'ShortName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'PriorityID': "{'title_ui': 'Id', 'description': None}", 'Name': "{'title_ui': 'Namn', 'description': 'Namn på prioritetsklassen'}", 'MaxWaitTime': "{'title_ui': 'Tid för omhändertagande', 'description': 'Inom hur lång tid patienter som hör till denna klass måste tas om hand. Enhet är minuter'}", 'IsActive': "{'title_ui': 'Giltig t.o.m.', 'description': 'Om denna klass används för tillfället.'}", 'ShortName': "{'title_ui': 'Kortnamn', 'description': 'Ett kortare namn som visas i akutliggaren'}", 'ColorRed': "{'title_ui': 'Färgkod', 'description': 'Den färg (i RGB) som ska användas för denna prioritet i akutliggaren. Om standardfärg används är denna kolumn NULL.'}", 'ColorGreen': "{'title_ui': 'Färgkod', 'description': 'Den färg (i RGB) som ska användas för denna prioritet i akutliggaren. Om standardfärg används är denna kolumn NULL.'}", 'ColorBlue': "{'title_ui': 'Färgkod', 'description': 'Den färg (i RGB) som ska användas för denna prioritet i akutliggaren. Om standardfärg används är denna kolumn NULL.'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då klassen är giltig'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['PriorityID']
     ),
     cron="@daily",
     start=start,

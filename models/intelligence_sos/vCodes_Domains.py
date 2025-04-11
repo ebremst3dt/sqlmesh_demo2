@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'DomainID': 'varchar(max)', 'HSAID': 'varchar(max)', 'HasCoherentRecords': 'varchar(max)', 'Name': 'varchar(max)', 'OrgNo': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'DomainID': "{'title_ui': 'Identitet', 'description': None}", 'Name': "{'title_ui': 'Vårdgivarnamn', 'description': 'Namn på vårdgivaren'}", 'ValidThroughDate': "{'title_ui': 'Giltig t.o.m.', 'description': 'Sista datum då vårdgivaren är giltig'}", 'HasCoherentRecords': "{'title_ui': 'Sammanhållen journal', 'description': 'Om vårdgivaren tillämpar sammanhållen journalföring'}", 'HSAID': "{'title_ui': 'HSA-id', 'description': 'HSA-id för vårdgivare'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['DomainID']
     ),
     cron="@daily",
     start=start,

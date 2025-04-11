@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'TaskPlanTemplateID': 'varchar(max)', 'TaskPlanTemplateName': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'CareUnitID': "{'title_ui': None, 'description': 'Vårdenhet som mallen tillhör.'}", 'TaskPlanTemplateID': "{'title_ui': None, 'description': 'Id för mallen'}", 'TaskPlanTemplateName': "{'title_ui': 'Namn', 'description': 'Namn på mallen'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['CareUnitID', 'TaskPlanTemplateID']
     ),
     cron="@daily",
     start=start,

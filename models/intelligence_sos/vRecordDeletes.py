@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'DeleteID': 'varchar(max)', 'ExportID': 'varchar(max)', 'PatientID': 'varchar(max)', 'RecordPartition': 'varchar(max)', 'TimestampDeleted': 'varchar(max)', 'TimestampRead': 'varchar(max)'},
     column_descriptions={'DeleteID': "{'title_ui': None, 'description': 'Unikt id för omläsningen'}", 'PatientID': "{'title_ui': None, 'description': 'Journal där data ska läsas om helt'}", 'TimestampDeleted': "{'title_ui': None, 'description': 'Tidpunkt då omläsning beställdes'}", 'ExportID': "{'title_ui': None, 'description': None}", 'RecordPartition': "{'title_ui': None, 'description': 'Journalpartition som journalen hör till'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['DeleteID']
     ),
     cron="@daily",
     start=start,

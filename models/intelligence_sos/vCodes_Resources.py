@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'CareProviderID': 'varchar(max)', 'CareUnitID': 'varchar(max)', 'Name': 'varchar(max)', 'ResourceID': 'varchar(max)', 'ResourceTypeID': 'varchar(max)', 'ScheduleMode': 'varchar(max)', 'ShareStatus': 'varchar(max)', 'ShortName': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'ValidFromDate': 'varchar(max)', 'ValidThroughDate': 'varchar(max)'},
     column_descriptions={'ResourceID': "{'title_ui': None, 'description': 'Resursens id'}", 'CareUnitID': "{'title_ui': 'Vårdenhet', 'description': None}", 'Name': "{'title_ui': None, 'description': None}", 'ShortName': "{'title_ui': 'Kortnamn', 'description': None}", 'ResourceTypeID': "{'title_ui': 'Typ', 'description': 'Person, rum, befattning etc'}", 'ValidFromDate': "{'title_ui': 'Giltig from', 'description': 'Om kolumnen är NULL anses resursen giltig så länge även Giltig tom stämmer. Ogilitiga resurser kan inte få nya bokningar, kan t.ex vara en person som slutat eller flyttat till en annan enhet.'}", 'ValidThroughDate': "{'title_ui': 'Giltig tom', 'description': 'Om kolumnen är NULL anses resursen giltig så länge även Giltig from stämmer.'}", 'CareProviderID': "{'title_ui': 'Vårdgivarkod', 'description': 'Vårdgivarkoden används i kassan'}", 'ShareStatus': "{'title_ui': 'Utdelat', 'description': {'break': [None, None, None, None]}}", 'ScheduleMode': "{'title_ui': 'Inget schema', 'description': {'break': [None, None]}}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=5000,
+        unique_key=['CareUnitID', 'ResourceID']
     ),
     cron="@daily",
     start=start,

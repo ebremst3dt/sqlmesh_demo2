@@ -13,9 +13,9 @@ from data_load_parameters.takecare import start
     columns={'_data_modified_utc': 'datetime2', '_metadata_modified_utc': 'datetime2', '_source': 'varchar(max)', 'AnalysisRow': 'varchar(max)', 'DocumentID': 'varchar(max)', 'GroupRow': 'varchar(max)', 'IsDeviating': 'varchar(max)', 'OccasionRow': 'varchar(max)', 'PatientID': 'varchar(max)', 'TimestampRead': 'varchar(max)', 'Value': 'varchar(max)', 'Version': 'varchar(max)'},
     column_descriptions={'PatientID': "{'title_ui': None, 'description': 'Patientens id (person- eller reservnummer)'}", 'DocumentID': "{'title_ui': None, 'description': 'Internt id som identifierar dokumentet i journalen'}", 'Version': "{'title_ui': None, 'description': 'Löpnummer för version av dokument. Kan förändras mellan körningar.'}", 'GroupRow': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'OccasionRow': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'AnalysisRow': "{'title_ui': None, 'description': 'Internt rad- eller löpnummer'}", 'Value': "{'title_ui': None, 'description': 'Värde på resultatet av labanalysen. Ibland en sträng, ibland ett tal.'}", 'IsDeviating': "{'title_ui': '*', 'description': 'Om värdet är utanför referensintervall. True och NULL visas som avvikande (*) i TakeCare.'}", 'TimestampRead': "{'title_ui': None, 'description': 'När data lästs in från TakeCare-databasen'}"},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
-
-        time_column="_data_modified_utc"
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
+        batch_size=30,
+        unique_key=['AnalysisRow', 'DocumentID', 'GroupRow', 'OccasionRow', 'PatientID', 'Version']
     ),
     cron="@daily",
     start=start,
