@@ -4,16 +4,16 @@ from datetime import datetime
 import pandas as pd
 from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
-from models.mssql import read
+from ingest.mssql import read
 from data_load_parameters.clockwork import start
 
     
 @model(
     columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source_catalog': 'varchar(max)', 'astcod': 'varchar(max)', 'basunt': 'varchar(max)', 'budunt': 'varchar(max)', 'chgdat': 'varchar(max)', 'chgusr': 'varchar(max)', 'cnsunt': 'varchar(max)', 'compny': 'varchar(max)', 'credat': 'varchar(max)', 'creusr': 'varchar(max)', 'csccod': 'varchar(max)', 'dtlunt': 'varchar(max)', 'fcpcod': 'varchar(max)', 'ictcod': 'varchar(max)', 'idgcod': 'varchar(max)', 'itycod': 'varchar(max)', 'logcod': 'varchar(max)', 'migcod': 'varchar(max)', 'pfmcod': 'varchar(max)', 'pgrcod': 'varchar(max)', 'plgcod': 'varchar(max)', 'pmdcod': 'varchar(max)', 'pmgcod': 'varchar(max)', 'pplcod': 'varchar(max)', 'prbuac': 'varchar(max)', 'prccod': 'varchar(max)', 'prcunt': 'varchar(max)', 'prncod': 'varchar(max)', 'qamcod': 'varchar(max)', 'qlmcod': 'varchar(max)', 'reinit': 'varchar(max)', 'rrbbud': 'varchar(max)', 'rrbcns': 'varchar(max)', 'rrbdtl': 'varchar(max)', 'rrbprc': 'varchar(max)', 'rrbsal': 'varchar(max)', 'rtbbud': 'varchar(max)', 'rtbcns': 'varchar(max)', 'rtbdtl': 'varchar(max)', 'rtbprc': 'varchar(max)', 'rtbsal': 'varchar(max)', 'salunt': 'varchar(max)', 'sapcod': 'varchar(max)', 'sigcod': 'varchar(max)', 'signam': 'varchar(max)', 'srtnam': 'varchar(max)', 'srtnum': 'varchar(max)', 'sublvl': 'varchar(max)', 'txgcod': 'varchar(max)', 'txtdsc': 'varchar(max)'},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
         batch_size=5000,
-        time_column="_data_modified_utc"
+        unique_key=['compny', 'migcod', 'sigcod']
     ),
     start=start,
     cron="@daily",

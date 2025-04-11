@@ -4,16 +4,16 @@ from datetime import datetime
 import pandas as pd
 from sqlmesh import ExecutionContext, model
 from sqlmesh.core.model.kind import ModelKindName
-from models.mssql import read
+from ingest.mssql import read
 from data_load_parameters.clockwork import start
 
     
 @model(
     columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source_catalog': 'varchar(max)', 'actpas': 'varchar(max)', 'altcod': 'varchar(max)', 'altr01': 'varchar(max)', 'altr02': 'varchar(max)', 'chgdat': 'varchar(max)', 'chgusr': 'varchar(max)', 'compny': 'varchar(max)', 'credat': 'varchar(max)', 'creusr': 'varchar(max)', 'extcod': 'varchar(max)', 'gencom': 'varchar(max)', 'hidsrc': 'varchar(max)', 'infmdl': 'varchar(max)', 'isocod': 'varchar(max)', 'namdes': 'varchar(max)', 'objcod': 'varchar(max)', 'objn01': 'varchar(max)', 'objn02': 'varchar(max)', 'objp01': 'varchar(max)', 'objt01': 'varchar(max)', 'objt02': 'varchar(max)', 'objt04': 'varchar(max)', 'objtyp': 'varchar(max)', 'srtnam': 'varchar(max)', 'srtnum': 'varchar(max)', 'text01': 'varchar(max)', 'txtdsc': 'varchar(max)', 'valfrm': 'varchar(max)', 'valunt': 'varchar(max)'},
     kind=dict(
-        name=ModelKindName.INCREMENTAL_BY_TIME_RANGE,
+        name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
         batch_size=5000,
-        time_column="_data_modified_utc"
+        unique_key=['compny', 'objcod', 'objtyp']
     ),
     start=start,
     cron="@daily",
