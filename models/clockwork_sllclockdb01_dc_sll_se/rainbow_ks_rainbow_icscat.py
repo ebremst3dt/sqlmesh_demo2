@@ -12,11 +12,11 @@ from data_load_parameters.clockwork import start
     columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source_catalog': 'varchar(max)', 'chgdat': 'varchar(max)', 'chgusr': 'varchar(max)', 'compny': 'varchar(max)', 'credat': 'varchar(max)', 'creusr': 'varchar(max)', 'digcod': 'varchar(max)', 'gencom': 'varchar(max)', 'hidsrc': 'varchar(max)', 'icscat': 'varchar(max)', 'icscod': 'varchar(max)', 'icsmap': 'varchar(max)', 'icsnam': 'varchar(max)', 'icsref': 'varchar(max)', 'ikscat': 'varchar(max)', 'iksref': 'varchar(max)', 'lvlcod': 'varchar(max)', 'migcod': 'varchar(max)', 'ofmcod': 'varchar(max)', 'parseq': 'varchar(max)', 'prbuac': 'varchar(max)', 'seqnum': 'varchar(max)', 'sigcod': 'varchar(max)', 'txtdsc': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
-        batch_size=5000,
+        batch_size=30,
         unique_key=['compny', 'icscat', 'seqnum']
     ),
     start=start,
-    cron="@daily",
+    cron="0 2 * * *",
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_rainbow_ks_rainbow_icscat_data_modified_utc ON clockwork_sllclockdb01_dc_sll_se.rainbow_ks_rainbow_icscat (_data_modified_utc)"]
 )
 

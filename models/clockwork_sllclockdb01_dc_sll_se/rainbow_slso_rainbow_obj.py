@@ -12,11 +12,11 @@ from data_load_parameters.clockwork import start
     columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source_catalog': 'varchar(max)', 'actpas': 'varchar(max)', 'altcod': 'varchar(max)', 'altr01': 'varchar(max)', 'altr02': 'varchar(max)', 'chgdat': 'varchar(max)', 'chgusr': 'varchar(max)', 'compny': 'varchar(max)', 'credat': 'varchar(max)', 'creusr': 'varchar(max)', 'extcod': 'varchar(max)', 'gencom': 'varchar(max)', 'hidsrc': 'varchar(max)', 'infmdl': 'varchar(max)', 'isocod': 'varchar(max)', 'namdes': 'varchar(max)', 'objcod': 'varchar(max)', 'objn01': 'varchar(max)', 'objn02': 'varchar(max)', 'objp01': 'varchar(max)', 'objt01': 'varchar(max)', 'objt02': 'varchar(max)', 'objt04': 'varchar(max)', 'objtyp': 'varchar(max)', 'srtnam': 'varchar(max)', 'srtnum': 'varchar(max)', 'text01': 'varchar(max)', 'txtdsc': 'varchar(max)', 'valfrm': 'varchar(max)', 'valunt': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
-        batch_size=5000,
+        batch_size=30,
         unique_key=['compny', 'objcod', 'objtyp']
     ),
     start=start,
-    cron="@daily",
+    cron="0 2 * * *",
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_rainbow_slso_rainbow_obj_data_modified_utc ON clockwork_sllclockdb01_dc_sll_se.rainbow_slso_rainbow_obj (_data_modified_utc)"]
 )
 

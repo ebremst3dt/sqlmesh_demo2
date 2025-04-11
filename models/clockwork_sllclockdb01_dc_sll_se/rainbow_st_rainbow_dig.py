@@ -12,11 +12,11 @@ from data_load_parameters.clockwork import start
     columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source_catalog': 'varchar(max)', 'chgdat': 'varchar(max)', 'chgusr': 'varchar(max)', 'compny': 'varchar(max)', 'credat': 'varchar(max)', 'creusr': 'varchar(max)', 'digcod': 'varchar(max)', 'dignam': 'varchar(max)', 'migcod': 'varchar(max)', 'sigcod': 'varchar(max)', 'srtnam': 'varchar(max)', 'srtnum': 'varchar(max)', 'txtdsc': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
-        batch_size=5000,
+        batch_size=30,
         unique_key=['compny', 'digcod', 'migcod', 'sigcod']
     ),
     start=start,
-    cron="@daily",
+    cron="0 2 * * *",
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_rainbow_st_rainbow_dig_data_modified_utc ON clockwork_sllclockdb01_dc_sll_se.rainbow_st_rainbow_dig (_data_modified_utc)"]
 )
 

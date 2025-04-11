@@ -12,11 +12,11 @@ from data_load_parameters.clockwork import start
     columns={'_data_modified_utc': 'date', '_metadata_modified_utc': 'datetime2', '_source_catalog': 'varchar(max)', 'chgdat': 'varchar(max)', 'chgusr': 'varchar(max)', 'compny': 'varchar(max)', 'credat': 'varchar(max)', 'creusr': 'varchar(max)', 'defacc': 'varchar(max)', 'defcod': 'varchar(max)', 'defdim': 'varchar(max)', 'deftyp': 'varchar(max)', 'dficod': 'varchar(max)', 'dfiseq': 'varchar(max)', 'entdat': 'varchar(max)', 'entfrm': 'varchar(max)', 'entpgm': 'varchar(max)', 'entusr': 'varchar(max)', 'seqnum': 'varchar(max)', 'taxtyp': 'varchar(max)'},
     kind=dict(
         name=ModelKindName.INCREMENTAL_BY_UNIQUE_KEY,
-        batch_size=5000,
+        batch_size=30,
         unique_key=['compny', 'defacc', 'defdim', 'deftyp', 'dficod', 'dfiseq', 'seqnum']
     ),
     start=start,
-    cron="@daily",
+    cron="0 2 * * *",
     post_statements=["CREATE INDEX IF NOT EXISTS sllclockdb01_dc_sll_se_rainbow_slso_rainbow_dfitrn_data_modified_utc ON clockwork_sllclockdb01_dc_sll_se.rainbow_slso_rainbow_dfitrn (_data_modified_utc)"]
 )
 
