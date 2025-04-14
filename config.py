@@ -7,7 +7,7 @@ from sqlmesh.core.config import (
 )
 from roskarl import env_var_dsn
 
-lakehouse_dsn = env_var_dsn(name="LAKEHOUSE")
+lakehouse_dsn = env_var_dsn(name="SANDBOX")
 
 config = Config(
     gateways={
