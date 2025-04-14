@@ -6,6 +6,16 @@ This command is really useful
 sqlmesh --help
 ```
 
+Another useful one is the web gui (and catalog)
+
+```
+sqlmesh ui
+```
+
+```
+sqlmesh ui --mode catalog
+```
+
 ## Checkout dev
 
 ```
